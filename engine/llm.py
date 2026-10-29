@@ -13,6 +13,13 @@ class QuotaExhausted(Exception):
     pass
 
 
+_COOLDOWN = {"until": 0.0}   # process-wide: after the free quota runs out, skip AI calls for a while instead of waiting on errors
+
+
+def ai_available():
+    return bool(api_key()) and time.time() >= _COOLDOWN["until"]
+
+
 def api_key():
     k = os.environ.get("GEMINI_API_KEY")
     if k:
@@ -26,10 +33,12 @@ def api_key():
         return None
 
 
-def _post(body, timeout=90):
+def _post(body, timeout=60):
     key = api_key()
     if not key:
         raise QuotaExhausted("no key")
+    if time.time() < _COOLDOWN["until"]:
+        raise QuotaExhausted("cooling down after the free quota ran out")
     last = None
     for m in MODELS:
         for attempt in range(3):
@@ -46,10 +55,11 @@ def _post(body, timeout=90):
             if r.status_code == 429 and "PerDay" in r.text:
                 break                      # this model's daily quota is used up: try the next model
             if r.status_code in (429, 500, 503):
-                time.sleep(4 * (attempt + 1))
+                time.sleep(2 * (attempt + 1))
                 continue
             last = RuntimeError(f"{r.status_code} {r.text[:200]}")
             break
+    _COOLDOWN["until"] = time.time() + 20 * 60
     raise QuotaExhausted(str(last) if last else "all free models are at their daily limit")
 
 

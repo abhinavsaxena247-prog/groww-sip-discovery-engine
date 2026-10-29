@@ -238,7 +238,7 @@ def answer(q, history=None, use_ai=True):
         txt = REPLIES[v].format(kind=inp.get("kind", "detail")) if v == "pii" else REPLIES[v]
         return _result(rt, txt, [(f"Input check: {inp['reason'].lower()}", False), ("No AI call made", None)],
                        reframe=reframe_for(q) if v == "advice" else None, suggest=v == "off_topic")
-    if use_ai and llm.api_key():
+    if use_ai and llm.ai_available():
         try:
             return _ai_answer(q, history or [])
         except llm.QuotaExhausted:

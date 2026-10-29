@@ -22,7 +22,7 @@ if "msgs" not in st.session_state:
     st.session_state.history = []
     st.session_state.asked = 0
 
-ai_on = bool(llm.api_key())
+ai_on = llm.ai_available()
 with st.sidebar:
     st.subheader("How every reply is checked")
     st.markdown("1. **Rule check** on your question: abuse (English, Hinglish, Hindi), personal data, attempts to override the rules, advice and off-topic requests. Blocked messages never reach the AI and are not stored.\n"
