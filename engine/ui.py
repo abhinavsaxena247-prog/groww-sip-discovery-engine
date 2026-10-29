@@ -54,8 +54,8 @@ def bars(rows, label_col="label", value_col="n", title=None, color=GREEN, height
     if df.empty:
         return
     ch = (alt.Chart(df).mark_bar(color=color, cornerRadiusEnd=3)
-          .encode(x=alt.X(f"{value_col}:Q", title=None), y=alt.Y(f"{label_col}:N", sort="-x", title=None, axis=alt.Axis(labelLimit=320)),
+          .encode(x=alt.X(f"{value_col}:Q", title=None, scale=alt.Scale(domain=[0, float(df[value_col].max()) * 1.18 or 1])), y=alt.Y(f"{label_col}:N", sort="-x", title=None, axis=alt.Axis(labelLimit=320, labelOverlap=False)),
                   tooltip=[label_col, value_col] + (["pct_of_base"] if "pct_of_base" in df else []))
-          .properties(height=height or max(80, 28 * len(df)), title=title or ""))
+          .properties(height=height or max(100, 34 * len(df) + 20), title=title or ""))
     text = ch.mark_text(align="left", dx=4, color=INK).encode(text=alt.Text(f"{value_col}:Q", format=","))
     st.altair_chart(ch + text, use_container_width=True)

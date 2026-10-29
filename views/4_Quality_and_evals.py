@@ -85,8 +85,9 @@ with st.expander("What the held-out sets caught before the fixes"):
 st.header("Checks on the AI tagging behind the numbers")
 GR, RB = E["guardrail"], E["reddit_robustness"]
 st.markdown(f"- **Golden set:** {E['golden']['size']} comments hand-labelled to measure how often the AI tags agree with a human. Status: {E['golden']['status']}.\n"
-            f"- **Guardrail scan of AI-written fields:** {GR['checked']:,} outputs checked, {GR['flags']} flagged by keyword, "
-            f"{GR['true_violations']} real violations after manual review (each flag restated the user's own request).\n"
+            f"- **Guardrail scan of AI-written tagging fields:** all {GR['checked']:,} outputs checked; {GR['flags']} flagged by keyword and reviewed by hand. "
+            f"No field recommends a fund or gives advice. **{GR['true_violations']} fields ({100*GR['true_violations']/GR['checked']:.2f}%) repeated a fund-house name** from the user's own text "
+            "(for example 'Axis funds underperforming'); these are counted as guardrail violations and masked wherever AI-written text is shown.\n"
             "- **Prompt corrections before the full run:** the model copied label definitions instead of choosing labels (fixed with a strict JSON schema), "
             "counted generic praise as relevant, and treated support complaints as drop-offs (fixed with explicit rules and smaller batches).\n"
             f"- **Reddit robustness:** a random stratified 3,999-item sample and all {E['funnel']['reddit']['tagged']:,} tagged Reddit items give near-identical shares.")

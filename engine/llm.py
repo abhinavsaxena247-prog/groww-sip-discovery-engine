@@ -18,8 +18,10 @@ def api_key():
     if k:
         return k
     try:
-        import streamlit as st
-        return st.secrets.get("GEMINI_API_KEY")
+        from streamlit.runtime.secrets import secrets_singleton
+        if not secrets_singleton.load_if_toml_exists():   # avoids Streamlit's "No secrets found" banner
+            return None
+        return secrets_singleton.get("GEMINI_API_KEY")
     except Exception:
         return None
 
