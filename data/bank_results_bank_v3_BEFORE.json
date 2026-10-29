@@ -1,0 +1,1209 @@
+{
+ "name": "bank_v3",
+ "mode": "basic",
+ "pass": 23,
+ "total": 131,
+ "by": {
+  "basics": [
+   0,
+   59
+  ],
+  "research": [
+   0,
+   49
+  ],
+  "answer": [
+   10,
+   10
+  ],
+  "decline_advice": [
+   10,
+   10
+  ],
+  "decline_offtopic": [
+   3,
+   3
+  ]
+ },
+ "rows": [
+  {
+   "q": "What is the minimum amount to start a SIP?",
+   "expect": "basics",
+   "topic": "min_amount",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "minimum sip amount",
+   "expect": "basics",
+   "topic": "min_amount",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "Can I start a SIP with 100 rupees?",
+   "expect": "basics",
+   "topic": "min_amount",
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": false,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "kitne paise se sip shuru kar sakte hain",
+   "expect": "basics",
+   "topic": "min_amount",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what is chhoti sip",
+   "expect": "basics",
+   "topic": "min_amount",
+   "route": "concept",
+   "got_topic": null,
+   "pass": false,
+   "text": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed instalment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions"
+  },
+  {
+   "q": "What are the ways to invest in a mutual fund, lumpsum or monthly?",
+   "expect": "basics",
+   "topic": "sip_vs_lumpsum",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "difference between sip and lumpsum",
+   "expect": "basics",
+   "topic": "sip_vs_lumpsum",
+   "route": "definition",
+   "got_topic": null,
+   "pass": false,
+   "text": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV).\n\nA lumpsum is a one-time investment of a larger a"
+  },
+  {
+   "q": "lumpsum vs sip",
+   "expect": "basics",
+   "topic": "sip_vs_lumpsum",
+   "route": "definition",
+   "got_topic": null,
+   "pass": false,
+   "text": "A lumpsum is a one-time investment of a larger amount, as opposed to a SIP's regular instalments.\n\nA SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each inst"
+  },
+  {
+   "q": "Can a SIP be weekly or daily instead of monthly?",
+   "expect": "basics",
+   "topic": "frequency",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what sip frequencies are available",
+   "expect": "basics",
+   "topic": "frequency",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "Can I choose or change my SIP date?",
+   "expect": "basics",
+   "topic": "sip_date",
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": false,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "How do I start a SIP?",
+   "expect": "basics",
+   "topic": "start_sip",
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": false,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "steps to start sip on groww",
+   "expect": "basics",
+   "topic": "start_sip",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 3,166 comments that match your question. The most common: app bug or friction (1,118, 35.3%), trust or support failure (753, 23.8%), no way to pause, skip or change (254, 8.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "Can I stop my SIP anytime?",
+   "expect": "basics",
+   "topic": "stop_sip",
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": false,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "Is there a penalty for stopping a SIP?",
+   "expect": "basics",
+   "topic": "stop_sip",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "how to cancel a sip",
+   "expect": "basics",
+   "topic": "stop_sip",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What happens to my money if I stop the SIP?",
+   "expect": "basics",
+   "topic": "cancel_effect",
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": false,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "What happens if I miss a SIP instalment?",
+   "expect": "basics",
+   "topic": "missed_instalment",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: continued (4,763, 22.2%), started (3,906, 18.2%), checked or tracked (2,884, 13.4%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what if my sip payment fails",
+   "expect": "basics",
+   "topic": "missed_instalment",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 667 comments that match your question. The most common: payment failed or lapsed (389, 58.3%), stopped or cancelled (96, 14.4%), skipped (70, 10.5%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "is sip cancelled after 3 failed payments",
+   "expect": "basics",
+   "topic": "missed_instalment",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 593 comments that match your question. The most common: payment failed or lapsed (389, 65.6%), stopped or cancelled (96, 16.2%), skipped (70, 11.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "bounce charges for sip",
+   "expect": "basics",
+   "topic": "missed_instalment",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 609 comments that match your question. The most common: stopped or cancelled (92, 15.1%), switched platform (89, 14.6%), continued (74, 12.2%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "Can I pause my SIP?",
+   "expect": "basics",
+   "topic": "pause_skip",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 220 comments that match your question. The most common: stopped or cancelled (124, 56.4%), switched platform (38, 17.3%), skipped (35, 15.9%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "how to skip a sip instalment on groww",
+   "expect": "basics",
+   "topic": "pause_skip",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 36 comments that match your question. The most common: stopped or cancelled (23, 63.9%), switched platform (10, 27.8%), started (3, 8.3%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "sip pause kaise kare",
+   "expect": "basics",
+   "topic": "pause_skip",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 220 comments that match your question. The most common: stopped or cancelled (124, 56.4%), switched platform (38, 17.3%), skipped (35, 15.9%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "Can I increase or decrease my SIP amount?",
+   "expect": "basics",
+   "topic": "modify_amount",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what is step up sip",
+   "expect": "basics",
+   "topic": "step_up",
+   "route": "definition",
+   "got_topic": null,
+   "pass": false,
+   "text": "A step-up (or top-up) SIP raises the instalment automatically at set intervals, for example by a fixed percentage each year. This is a general definition, not advice. In this engine's data, 680 of 21,445 relevant public comments (3.2%) describe increasing a SIP or using a step-up."
+  },
+  {
+   "q": "How is SIP taxed?",
+   "expect": "basics",
+   "topic": "tax",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "tax on mutual fund gains",
+   "expect": "basics",
+   "topic": "tax",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "LTCG on equity mutual funds",
+   "expect": "basics",
+   "topic": "tax",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what is the lock in for elss sip",
+   "expect": "basics",
+   "topic": "elss_lockin",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "Which NAV do I get for my SIP instalment?",
+   "expect": "basics",
+   "topic": "nav_cutoff",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 623 comments that match your question. The most common: checked or tracked (255, 40.9%), started (61, 9.8%), continued (43, 6.9%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what is the cut off time for mutual funds",
+   "expect": "basics",
+   "topic": "nav_cutoff",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What is rupee cost averaging?",
+   "expect": "basics",
+   "topic": "rupee_cost_avg",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "how does compounding work in sip",
+   "expect": "basics",
+   "topic": "compounding",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "How do I withdraw money from my SIP?",
+   "expect": "basics",
+   "topic": "redemption",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 1,137 comments that match your question. The most common: trust or support failure (356, 31.3%), app bug or friction (239, 21.0%), needed the money (76, 6.7%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "how long does redemption take",
+   "expect": "basics",
+   "topic": "redemption",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 1,137 comments that match your question. The most common: trust or support failure (356, 31.3%), app bug or friction (239, 21.0%), needed the money (76, 6.7%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what is exit load",
+   "expect": "basics",
+   "topic": "exit_load",
+   "route": "definition",
+   "got_topic": null,
+   "pass": false,
+   "text": "An exit load is a fee some funds charge if units are sold before a set period, often one year. It is a percentage of the amount redeemed. This is a general definition, not advice. In this engine's data, 609 of 21,445 relevant public comments (2.8%) mention fees or hidden charges."
+  },
+  {
+   "q": "what is expense ratio",
+   "expect": "basics",
+   "topic": "expense_ratio",
+   "route": "definition",
+   "got_topic": null,
+   "pass": false,
+   "text": "The expense ratio is the yearly fee a fund charges to manage the money, shown as a percentage of assets. It is taken out of the fund's value, so it is already reflected in the NAV. This is a general definition, not advice. In this engine's data, 609 of 21,445 relevant public comments (2.8%) mention "
+  },
+  {
+   "q": "direct vs regular mutual fund",
+   "expect": "basics",
+   "topic": "direct_regular",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What documents are needed for mutual fund KYC?",
+   "expect": "basics",
+   "topic": "kyc",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "Across 16,001 comments where a need was recorded, the most repeated are: plain explanation of returns and figures (1,185), support that answers and resolves (1,042), instalments that go through, with clear alerts when they don't (998)."
+  },
+  {
+   "q": "what is an autopay mandate",
+   "expect": "basics",
+   "topic": "mandate",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "how long does mandate approval take",
+   "expect": "basics",
+   "topic": "mandate_time",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 667 comments that match your question. The most common: payment failed or lapsed (389, 58.3%), stopped or cancelled (96, 14.4%), skipped (70, 10.5%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "Can I have more than one SIP?",
+   "expect": "basics",
+   "topic": "multiple_sips",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "Are SIP returns guaranteed?",
+   "expect": "basics",
+   "topic": "returns_guarantee",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 1,479 comments that match your question. The most common: continued (495, 33.5%), checked or tracked (350, 23.7%), stopped or cancelled (298, 20.1%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "Is SIP risky?",
+   "expect": "basics",
+   "topic": "risk",
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": false,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "What are the types of mutual funds?",
+   "expect": "basics",
+   "topic": "fund_types",
+   "route": "concept",
+   "got_topic": null,
+   "pass": false,
+   "text": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed instalment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions"
+  },
+  {
+   "q": "what is an index fund",
+   "expect": "basics",
+   "topic": "index_fund",
+   "route": "concept",
+   "got_topic": null,
+   "pass": false,
+   "text": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed instalment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions"
+  },
+  {
+   "q": "what is SWP",
+   "expect": "basics",
+   "topic": "stp_swp",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "what is STP in mutual funds",
+   "expect": "basics",
+   "topic": "stp_swp",
+   "route": "concept",
+   "got_topic": null,
+   "pass": false,
+   "text": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed instalment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions"
+  },
+  {
+   "q": "what is a folio number",
+   "expect": "basics",
+   "topic": "folio_cas",
+   "route": "concept",
+   "got_topic": null,
+   "pass": false,
+   "text": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed instalment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions"
+  },
+  {
+   "q": "how can I see all my mutual funds in one statement",
+   "expect": "basics",
+   "topic": "folio_cas",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "difference between SIP and FD",
+   "expect": "basics",
+   "topic": "sip_vs_fd",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "sip vs recurring deposit",
+   "expect": "basics",
+   "topic": "sip_vs_fd",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "how does a sip calculator work",
+   "expect": "basics",
+   "topic": "sip_calculator",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what is sip",
+   "expect": "basics",
+   "topic": "sip",
+   "route": "definition",
+   "got_topic": null,
+   "pass": false,
+   "text": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV). This is a general definition, not advice. In this"
+  },
+  {
+   "q": "sip kya hai",
+   "expect": "basics",
+   "topic": "sip",
+   "route": "definition",
+   "got_topic": null,
+   "pass": false,
+   "text": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV). This is a general definition, not advice. In this"
+  },
+  {
+   "q": "what is NAV",
+   "expect": "basics",
+   "topic": "nav",
+   "route": "definition",
+   "got_topic": null,
+   "pass": false,
+   "text": "NAV (Net Asset Value) is the price of one unit of a mutual fund. It is calculated at the end of each business day from the value of everything the fund holds, minus its expenses. This is a general definition, not advice. In this engine's data, 814 of 21,445 relevant public comments (3.8%) mention ch"
+  },
+  {
+   "q": "what does xirr mean",
+   "expect": "basics",
+   "topic": "xirr",
+   "route": "definition",
+   "got_topic": null,
+   "pass": false,
+   "text": "XIRR is a yearly return figure that accounts for money going in on different dates. Apps show it for SIPs because each instalment is invested at a different time, so a simple percentage gain can mislead. This is a general definition, not advice. In this engine's data, 596 of 21,445 relevant public c"
+  },
+  {
+   "q": "what is a mutual fund",
+   "expect": "basics",
+   "topic": "mutual_fund",
+   "route": "definition",
+   "got_topic": null,
+   "pass": false,
+   "text": "A mutual fund pools money from many investors and invests it in stocks, bonds or other assets. It is run by an asset management company (AMC) and regulated by SEBI. Each investor holds units whose value moves with the value of the fund's holdings. This is a general definition, not advice. In this en"
+  },
+  {
+   "q": "Why do people start a SIP, and what do they expect to happen?",
+   "expect": "research",
+   "topic": "q1",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 1,479 comments that match your question. The most common: continued (495, 33.5%), checked or tracked (350, 23.7%), stopped or cancelled (298, 20.1%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "why do people start sip",
+   "expect": "research",
+   "topic": "q1",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what do investors expect when they start investing",
+   "expect": "research",
+   "topic": "q1",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 1,479 comments that match your question. The most common: continued (495, 33.5%), checked or tracked (350, 23.7%), stopped or cancelled (298, 20.1%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What changes in their behaviour in the months after starting?",
+   "expect": "research",
+   "topic": "q2",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "how does behaviour change after the first few months of a sip",
+   "expect": "research",
+   "topic": "q2",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What leads investors to pause, reduce or stop a SIP?",
+   "expect": "research",
+   "topic": "q3",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 220 comments that match your question. The most common: stopped or cancelled (124, 56.4%), switched platform (38, 17.3%), skipped (35, 15.9%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "why do people stop their sip",
+   "expect": "research",
+   "topic": "q3",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "reasons for sip discontinuation",
+   "expect": "research",
+   "topic": "q3",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What do investors check, and how often, once started?",
+   "expect": "research",
+   "topic": "q4",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: returns, profit or loss (2,211, 10.3%), portfolio value (1,990, 9.3%), whether the instalment went through (1,819, 8.5%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what do people check after starting a sip",
+   "expect": "research",
+   "topic": "q4",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: returns, profit or loss (2,211, 10.3%), portfolio value (1,990, 9.3%), whether the instalment went through (1,819, 8.5%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What confuses or worries them inside the app?",
+   "expect": "research",
+   "topic": "q5",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 623 comments that match your question. The most common: checked or tracked (255, 40.9%), started (61, 9.8%), continued (43, 6.9%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what confuses investors in the app",
+   "expect": "research",
+   "topic": "q5",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 623 comments that match your question. The most common: checked or tracked (255, 40.9%), started (61, 9.8%), continued (43, 6.9%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What do they do outside the app when they feel unsure?",
+   "expect": "research",
+   "topic": "q6",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 609 comments that match your question. The most common: stopped or cancelled (92, 15.1%), switched platform (89, 14.6%), continued (74, 12.2%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "where do investors go for help outside the app",
+   "expect": "research",
+   "topic": "q6",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: contact customer support (1,415, 6.6%), check amc, cams or kfintech (394, 1.8%), youtube or social media (391, 1.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What separates investors who continue from those who quietly drop off?",
+   "expect": "research",
+   "topic": "q7",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "difference between people who continue and people who drop off",
+   "expect": "research",
+   "topic": "q7",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "How do patterns differ across segments (income stability, age, source of money, who influenced them)?",
+   "expect": "research",
+   "topic": "q8",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 473 comments that match your question. The most common: self (376, 79.5%), friend or family (14, 3.0%), social media (6, 1.3%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "how do salaried and self-employed investors differ",
+   "expect": "research",
+   "topic": "q8",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "Salaried (1,926 comments): cash-flow or income change (8.0%), goal clarity or tracking (4.9%). Variable income (164 comments): cash-flow or income change (22.0%), negative or volatile returns (2.4%). Segment cuts are small, so treat differences as directional."
+  },
+  {
+   "q": "do students behave differently from salaried investors",
+   "expect": "research",
+   "topic": "q8",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "Salaried (1,926 comments): cash-flow or income change (8.0%), goal clarity or tracking (4.9%). Student or no income (429 comments): negative or volatile returns (3.3%), cash-flow or income change (3.3%). Segment cuts are small, so treat differences as directional."
+  },
+  {
+   "q": "What unmet needs emerge consistently?",
+   "expect": "research",
+   "topic": "q9",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "Across 16,001 comments where a need was recorded, the most repeated are: plain explanation of returns and figures (1,185), support that answers and resolves (1,042), instalments that go through, with clear alerts when they don't (998)."
+  },
+  {
+   "q": "what do investors want that they don't get",
+   "expect": "research",
+   "topic": "q9",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "Across 16,001 comments where a need was recorded, the most repeated are: plain explanation of returns and figures (1,185), support that answers and resolves (1,042), instalments that go through, with clear alerts when they don't (998)."
+  },
+  {
+   "q": "What is the business metric?",
+   "expect": "research",
+   "topic": "metric",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "what is the north star metric for this project",
+   "expect": "research",
+   "topic": "metric",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "What counts as an active SIP?",
+   "expect": "research",
+   "topic": "active_sip",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What problem is this engine trying to solve?",
+   "expect": "research",
+   "topic": "problem",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what is the problem statement",
+   "expect": "research",
+   "topic": "problem",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "Which sources did you collect data from?",
+   "expect": "research",
+   "topic": "sources",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: reddit (8,675, 40.5%), play store (5,103, 23.8%), tradingqna (2,609, 12.2%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "how many comments did you analyse",
+   "expect": "research",
+   "topic": "sources",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "how much data is in this engine",
+   "expect": "research",
+   "topic": "sources",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "How was the data cleaned?",
+   "expect": "research",
+   "topic": "cleaning",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "How were themes identified?",
+   "expect": "research",
+   "topic": "tagging",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "how does the ai tag comments",
+   "expect": "research",
+   "topic": "tagging",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "which AI model did you use",
+   "expect": "research",
+   "topic": "tagging",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "How was insight quality validated?",
+   "expect": "research",
+   "topic": "validation",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "what is the golden set",
+   "expect": "research",
+   "topic": "validation",
+   "route": "concept",
+   "got_topic": null,
+   "pass": false,
+   "text": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed instalment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions"
+  },
+  {
+   "q": "What guardrails does this engine have?",
+   "expect": "research",
+   "topic": "guardrails",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "how do you stop the engine from giving investment advice",
+   "expect": "research",
+   "topic": "guardrails",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "How did you evaluate the engine?",
+   "expect": "research",
+   "topic": "evals",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what are your eval results",
+   "expect": "research",
+   "topic": "evals",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "What are the opportunity areas?",
+   "expect": "research",
+   "topic": "opportunities",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "compare the opportunity areas",
+   "expect": "research",
+   "topic": "opportunities",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What is the biggest opportunity?",
+   "expect": "research",
+   "topic": "top_opportunity",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "which opportunity should groww focus on",
+   "expect": "research",
+   "topic": "top_opportunity",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 3,166 comments that match your question. The most common: app bug or friction (1,118, 35.3%), trust or support failure (753, 23.8%), no way to pause, skip or change (254, 8.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "How were the opportunities scored?",
+   "expect": "research",
+   "topic": "scoring",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What are the limitations of this data?",
+   "expect": "research",
+   "topic": "limitations",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "How many drop-offs are involuntary?",
+   "expect": "research",
+   "topic": "drop_types",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "voluntary vs involuntary drop off",
+   "expect": "research",
+   "topic": "drop_types",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "How does this discovery engine work?",
+   "expect": "research",
+   "topic": "how_it_works",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What happens next in the project?",
+   "expect": "research",
+   "topic": "next_steps",
+   "route": "answer",
+   "got_topic": null,
+   "pass": false,
+   "text": "I counted 21,445 comments that match your question. The most common: continued (4,763, 22.2%), started (3,906, 18.2%), checked or tracked (2,884, 13.4%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "Why do first-time investors stop their SIPs?",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "I counted 282 comments that match your question. The most common: app bug or friction (89, 31.6%), payment, mandate or autopay failure (53, 18.8%), trust or support failure (47, 16.7%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What goes wrong when Groww SIP payments fail?",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "I counted 203 comments that match your question. The most common: payment failed or lapsed (119, 58.6%), stopped or cancelled (31, 15.3%), started (15, 7.4%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "How do Reddit and Play Store differ on why people stop?",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "I counted 2,450 comments that match your question. The most common: app bug or friction (616, 25.1%), trust or support failure (572, 23.3%), payment, mandate or autopay failure (414, 16.9%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "Do people ask to pause instead of cancel?",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "I counted 220 comments that match your question. The most common: stopped or cancelled (124, 56.4%), switched platform (38, 17.3%), skipped (35, 15.9%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what do people say about Groww customer support",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "I counted 753 comments that match your question. The most common: redeemed or withdrew (229, 30.4%), stopped or cancelled (99, 13.1%), checked or tracked (94, 12.5%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "how often do first time investors mention xirr",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "I counted 124 comments that match your question. The most common: started (39, 31.5%), checked or tracked (19, 15.3%), continued (13, 10.5%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "log SIP kyun band karte hain?",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what problems do Zerodha Coin users mention",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "I counted 1,232 comments that match your question. The most common: app bug or friction (539, 43.8%), trust or support failure (150, 12.2%), no way to pause, skip or change (142, 11.5%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "how have complaints about failed payments changed over time",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "Share of relevant comments matching your question, by year: 2022: 72 of 964 (7.5%); 2023: 65 of 1,091 (6.0%); 2024: 170 of 5,709 (3.0%); 2025: 109 of 5,658 (1.9%); 2026: 99 of 4,183 (2.4%). Years with few comments are noisy."
+  },
+  {
+   "q": "show me quotes about mandate failures",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "I counted 667 comments that match your question. The most common: payment failed or lapsed (389, 58.3%), stopped or cancelled (96, 14.4%), skipped (70, 10.5%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "What is the minimum SIP in the best fund?",
+   "expect": "decline_advice",
+   "topic": null,
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": true,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "which sip gives the highest return",
+   "expect": "decline_advice",
+   "topic": null,
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": true,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "should I do lumpsum or sip now",
+   "expect": "decline_advice",
+   "topic": null,
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": true,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "will sip give 12% return",
+   "expect": "decline_advice",
+   "topic": null,
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": true,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "is it a good time to start a sip",
+   "expect": "decline_advice",
+   "topic": null,
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": true,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "how much should I invest in sip per month",
+   "expect": "decline_advice",
+   "topic": null,
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": true,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "which index fund is best",
+   "expect": "decline_advice",
+   "topic": null,
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": true,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "should I stop my sip",
+   "expect": "decline_advice",
+   "topic": null,
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": true,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "kaunsa mutual fund lena chahiye",
+   "expect": "decline_advice",
+   "topic": null,
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": true,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "is elss better than ppf for me",
+   "expect": "decline_advice",
+   "topic": null,
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": true,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "what is the capital of France",
+   "expect": "decline_offtopic",
+   "topic": null,
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": true,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "write me a poem",
+   "expect": "decline_offtopic",
+   "topic": null,
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": true,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "who won the cricket match yesterday",
+   "expect": "decline_offtopic",
+   "topic": null,
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": true,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  }
+ ]
+}

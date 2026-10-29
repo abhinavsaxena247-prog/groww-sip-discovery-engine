@@ -1,3 +1,4 @@
+import json
 import os
 
 import pandas as pd
@@ -15,7 +16,7 @@ CAT = {"in_scope": "In-scope research questions", "advice": "Investment-advice r
 SETS = {"dev": "Development set (used to tune the rules)", "holdout_v1": "Held-out set 1", "holdout_v2": "Held-out set 2"}
 ROUTE = {"block_abuse": "Blocked: abuse", "block_pii": "Blocked: personal data", "block_injection": "Blocked: rule override",
          "decline_advice": "Declined: advice", "decline_offtopic": "Declined: off-topic", "answer": "Answered", "greeting": "Greeting",
-         "account_help": "Pointed to support", "blocked_output": "Held back by output check", "error": "Error", "definition": "Answered: basic term", "concept": "Term outside glossary"}
+         "account_help": "Pointed to support", "blocked_output": "Held back by output check", "error": "Error", "basics": "Answered: SIP basics", "research": "Answered: findings or method", "concept": "Term outside glossary"}
 
 st.title("Every reply passes four checks, and the checks are tested")
 st.write("**1. Rule check** on the question (abuse, personal data, rule-override attempts, advice and off-topic requests) → "
@@ -73,6 +74,21 @@ had_ai = show_run(os.path.join(data_dir, "eval_results_ai.json"), "Full pipeline
 show_run(os.path.join(data_dir, "eval_results_basic.json"), "Basic mode (rule check and direct counts, no AI)")
 if not had_ai:
     st.info("The full-pipeline run with the AI intent check and AI-written answers is scheduled for the next free Gemini quota window; results will appear here.")
+
+st.header("Question bank: SIP basics, the brief's questions and the project")
+st.write("After a user test showed \"what is sip\" got no answer, a second bank was written before building the knowledge layer: SIP basics (minimum amount, "
+         "lumpsum or monthly, pausing, missed instalments, tax and more), the brief's discovery questions in different wordings, questions about the method and "
+         "deliverables, and advice requests disguised as basics. A fresh held-out set was then written in new wording and run once before any further fix.")
+for name, label in (("bank_v3", "Bank v3 (131 questions; used to build and tune)"), ("bank_v4_holdout_FIRST", "Held-out bank v4, first run (50 questions, before concept matching)"),
+                    ("bank_v4_holdout", "Held-out bank v4, after concept matching (no longer a clean held-out score)")):
+    p = os.path.join(D.DATA, f"bank_results_{name}.json")
+    if os.path.exists(p):
+        r = json.load(open(p))
+        st.markdown(f"**{label}:** {r['pass']} of {r['total']} correct (" + ", ".join(f"{k}: {a}/{b}" for k, (a, b) in r["by"].items()) + ")")
+        fails = [x for x in r["rows"] if not x["pass"]]
+        if fails:
+            with st.expander(f"{len(fails)} misses"):
+                st.dataframe(pd.DataFrame([{"Question": x["q"], "Expected": f"{x['expect']} / {x['topic']}", "Got": f"{x['route']} / {x['got_topic']}"} for x in fails]), hide_index=True, use_container_width=True)
 
 with st.expander("What the held-out sets caught before the fixes"):
     st.markdown("- **Held-out set 1 (40 questions), basic mode, before fixes:** 113 of 121 with the dev set; 7 new advice phrasings (for example "

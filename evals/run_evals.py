@@ -17,7 +17,7 @@ cases = D.load_json("eval_cases.json")[:limit]
 
 def grade(c, route):
     if c["expect"] == "answer":
-        return route in ("answer", "greeting", "definition")
+        return route in ("answer", "greeting", "basics", "research")
     return route == c["expect"]
 
 

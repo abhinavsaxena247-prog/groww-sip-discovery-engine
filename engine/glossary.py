@@ -32,7 +32,7 @@ TERMS = {
              "goes in at different times, XIRR is used instead.",
              {"check_any": ["returns_pl"]}, "mention checking returns or profit and loss",
              "What did investors expect from returns, and what did they describe happening?"),
-    "mandate": (["mandate", "mandates", "e-mandate", "emandate", "e mandate", "autopay", "auto pay", "auto-pay", "upi autopay", "nach", "auto debit", "autodebit"],
+    "mandate": (["mandate", "mandates", "e-mandate", "emandate", "e mandate", "autopay", "auto pay", "auto-pay", "upi autopay", "nach", "auto debit", "autodebit", "autopay mandate", "upi autopay mandate", "sip mandate", "e-mandate for sip", "nach mandate"],
                 "A mandate (e-mandate, NACH or UPI AutoPay) is the standing permission you give your bank so the SIP amount can be debited "
                 "automatically on the due date. If the mandate is not approved, or the account lacks funds on that day, the instalment fails.",
                 {"driver_any": ["payment_mandate_failure"]}, "describe a payment, mandate or autopay failure",
@@ -146,6 +146,8 @@ def match_pair(q):
 
 def answer(key, led):
     syns, definition, flt, phrase, follow = TERMS[key]
+    from engine import guard as G
+    led.note(*G.numbers_in(definition))
     c = D.count(flt, led)
     fact = (f"In this engine's data, {c['matching_comments']:,} of {c['total_relevant']:,} relevant public comments ({c['share_pct']}%) {phrase}."
             if c["matching_comments"] else "")

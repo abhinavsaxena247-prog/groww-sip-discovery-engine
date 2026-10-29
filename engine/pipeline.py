@@ -7,6 +7,7 @@ import re
 from engine import data as D
 from engine import guard as G
 from engine import glossary as GL
+from engine import kb as KB
 from engine import llm
 
 CODE = {
@@ -226,7 +227,7 @@ def basic_answer(q, led):
 
 def _result(route_name, text, checks, **kw):
     out = {"route": route_name, "text": text, "checks": checks, "breakdown": None, "quotes": None, "title": None, "reframe": None,
-           "suggest": False, "issues": None, "model": None, "followup": None}
+           "suggest": False, "issues": None, "model": None, "followup": None, "topic": None}
     out.update(kw)
     return out
 
@@ -235,7 +236,11 @@ def answer(q, history=None, use_ai=True):
     """Run one message through the full pipeline. Returns a dict with route, text, checks and evidence."""
     inp = G.check_input(q)
     v = inp["verdict"]
-    if v == "advice" and GL.CONCEPT_OPENER.search(GL._norm(q)) and len(GL._norm(q).split()) <= 7 and not GL.match(q) \
+    if v in ("ok", "advice"):
+        kb_out = _knowledge(q, v)
+        if kb_out:
+            return kb_out
+    if v == "advice" and GL.CONCEPT_OPENER.search(GL._norm(q)) and len(GL._norm(q).split()) <= 7 \
             and not re.search(r"\b(best|good|safe|should|which|top|better|worth|recommend)\b", q, re.I):
         return _result("concept", REPLIES["concept"], [("Input check passed", True), ("General term outside the glossary", None)],
                        followup="Why do first-time investors stop their SIPs?")
@@ -245,17 +250,6 @@ def answer(q, history=None, use_ai=True):
         txt = REPLIES[v].format(kind=inp.get("kind", "detail")) if v == "pii" else REPLIES[v]
         return _result(rt, txt, [(f"Input check: {inp['reason'].lower()}", False), ("No AI call made", None)],
                        reframe=reframe_for(q) if v == "advice" else None, suggest=v == "off_topic")
-    key = GL.match(q)
-    if key:
-        return _definition(key, q)
-    pair = GL.match_pair(q)
-    if pair and pair[0] == pair[1]:
-        return _definition(pair[0], q)
-    if pair:
-        a, b = GL.TERMS[pair[0]][1], GL.TERMS[pair[1]][1]
-        return _result("definition", f"{a}\n\n{b}\n\nThese are general definitions, not advice on which to choose.",
-                       [("Input check passed", True), ("Basic terms: general definitions, not advice", True), ("Output guardrails passed", G.check_output(a + b)["pass"])],
-                       followup=GL.TERMS[pair[0]][4])
     if use_ai and llm.ai_available():
         try:
             return _ai_answer(q, history or [])
@@ -264,15 +258,81 @@ def answer(q, history=None, use_ai=True):
     return _basic(q)
 
 
+SPECIFIC = ("first_time", "app", "source", "income", "keyword", "year_min", "year_max")
+
+
+def _knowledge(q, verdict):
+    """SIP basics, the brief's questions and the project's method/deliverables. Returns None if the question needs the counting tools."""
+    led = D.Ledger()
+    key = GL.match(q)
+    if key:
+        return _definition(key, q)
+    pair = GL.match_pair(q)
+    if pair and pair[0] == pair[1]:
+        return _definition(pair[0], q)
+    if pair:
+        a, b = GL.TERMS[pair[0]][1], GL.TERMS[pair[1]][1]
+        txt = f"{a}\n\n{b}\n\nThese are general definitions, not advice on which to choose."
+        return _result("basics", txt, [("Input check passed", True), ("Basic terms: general definitions, not advice", True),
+                                       ("Output guardrails passed", G.check_output(txt)["pass"])],
+                       followup=GL.TERMS[pair[0]][4], topic=_gl_topic(pair[0]) if pair[0] != "lumpsum" and pair[1] != "lumpsum" else "sip_vs_lumpsum")
+    t = KB.match_basics(q)
+    rt = KB.match_research(q) if verdict != "advice" else None
+    # concept matching: generalises to new phrasings; it wins when it has more evidence (2+ word groups) than a single pattern
+    ct, kind, sc = KB.match_concept(q, allow_basics=not KB.ADVICE_WORDS.search(KB._norm(q)))
+    if ct and (sc >= 20 or (not t and not rt)):
+        if kind == "basics" and not (KB.DATA_ASK.search(KB._norm(q)) and not KB.HOWTO.search(KB._norm(q))):
+            t, rt = ct, None
+        elif kind == "research" and verdict != "advice":
+            t, rt = None, ct
+    if t and rt and rt.startswith("q") and THIRD.search(q):
+        t = None                            # "why do investors pause..." is a research question, not a how-to
+    if t and t not in KB.BASICS and t in GL.TERMS:
+        return _definition(t, q)
+    if t:
+        txt, follow = KB.basics_answer(t, led)
+        return _checked("basics", txt, led, [("Input check passed", True), ("SIP basics: general information, not advice", True),
+                                             ("Reference facts checked against AMFI, SEBI and help pages (Oct 2026)", None)], followup=follow, topic=t)
+    if verdict == "advice":
+        return None
+    t = rt
+    if t:
+        f, _, _ = route(q)
+        ok_cut = {"q8": SPECIFIC, "q1": ("first_time",), "q4": ("first_time",), "q6": ("first_time",)}.get(t, ())
+        if t.startswith("q") and any(k in f and k not in ok_cut for k in SPECIFIC):
+            return None                     # a specific cut (first-time, an app, a source...): count it instead
+        r = KB.research(t, led)
+        if r:
+            txt, br, qf, follow = r
+            if br:
+                br["plain"] = all(x["pct_of_base"] in (0, x["n"]) for x in br["values"])
+            qs = D.quotes(qf, led, 2) if qf is not None else None
+            return _checked("research", txt, led, [("Input check passed", True), ("Answered from the project's computed results", True)],
+                            breakdown=br, quotes=qs, title=(br or {}).get("title") or "From the computed results", followup=follow, topic=t)
+    return None
+
+
+def _checked(route_name, txt, led, checks, **kw):
+    oc = G.check_output(txt, led.nums)
+    g = oc["grounded"]
+    checks = checks + [(f"Numbers traced: {g['traced']} of {g['total']}", g["traced"] == g["total"]),
+                       ("Output guardrails passed" if oc["pass"] else "Output guardrail: " + oc["issues"][0], oc["pass"])]
+    return _result(route_name, txt, checks, issues=None if oc["pass"] else oc["issues"], **kw)
+
+
+def _gl_topic(k):
+    return KB.BASICS_FROM_GLOSSARY.get(k, k)
+
+
 def _definition(key, q):
     led = D.Ledger()
     txt, follow = GL.answer(key, led)
     oc = G.check_output(txt, led.nums)
     g = oc["grounded"]
-    return _result("definition", txt, [("Input check passed", True), ("Basic term: general definition, not advice", True),
-                                       (f"Numbers traced: {g['traced']} of {g['total']}", g["traced"] == g["total"]),
-                                       ("Output guardrails passed" if oc["pass"] else "Output guardrail: " + oc["issues"][0], oc["pass"])],
-                   followup=follow)
+    return _result("basics", txt, [("Input check passed", True), ("Basic term: general definition, not advice", True),
+                                   (f"Numbers traced: {g['traced']} of {g['total']}", g["traced"] == g["total"]),
+                                   ("Output guardrails passed" if oc["pass"] else "Output guardrail: " + oc["issues"][0], oc["pass"])],
+                   followup=follow, topic=_gl_topic(key))
 
 
 BEHAVIOUR = re.compile(r"(stop|pause|skip|cancel|continu|drop|lapse|fail|why|kyun|reason|people|investor|users|log|comment|review|complain|check|worr|problem|issue|groww|zerodha|reddit|first)", re.I)

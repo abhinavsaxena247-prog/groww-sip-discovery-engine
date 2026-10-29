@@ -1,0 +1,480 @@
+{
+ "name": "bank_v4_holdout",
+ "mode": "basic",
+ "pass": 48,
+ "total": 50,
+ "by": {
+  "basics": [
+   29,
+   30
+  ],
+  "research": [
+   13,
+   14
+  ],
+  "answer": [
+   3,
+   3
+  ],
+  "decline_advice": [
+   2,
+   2
+  ],
+  "decline_offtopic": [
+   1,
+   1
+  ]
+ },
+ "rows": [
+  {
+   "q": "whats the least i can put in a sip every month",
+   "expect": "basics",
+   "topic": "min_amount",
+   "route": "basics",
+   "got_topic": "min_amount",
+   "pass": true,
+   "text": "Most fund houses let you start a SIP from about ₹100 to ₹500 a month; each scheme sets its own minimum, shown on the scheme page in the app. SEBI and AMFI also introduced a ₹250 \"Chhoti SIP\" aimed at new investors, offered by the fund houses that choose to take part. General information, not advice."
+  },
+  {
+   "q": "can i do sip with 500 rs",
+   "expect": "basics",
+   "topic": "min_amount",
+   "route": "basics",
+   "got_topic": "min_amount",
+   "pass": true,
+   "text": "Most fund houses let you start a SIP from about ₹100 to ₹500 a month; each scheme sets its own minimum, shown on the scheme page in the app. SEBI and AMFI also introduced a ₹250 \"Chhoti SIP\" aimed at new investors, offered by the fund houses that choose to take part. General information, not advice."
+  },
+  {
+   "q": "should money go in all at once or in parts, what are the options",
+   "expect": "basics",
+   "topic": "sip_vs_lumpsum",
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": false,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  },
+  {
+   "q": "SIP or one time investment, what's the difference",
+   "expect": "basics",
+   "topic": "sip_vs_lumpsum",
+   "route": "basics",
+   "got_topic": "sip_vs_lumpsum",
+   "pass": true,
+   "text": "There are two ways to put money into a mutual fund. A lumpsum is a single payment that buys units at one day's NAV. A SIP invests a fixed amount at regular intervals (usually monthly) through an automatic debit, so each instalment buys units at that day's NAV. Neither is guaranteed to do better; whi"
+  },
+  {
+   "q": "is a weekly sip possible",
+   "expect": "basics",
+   "topic": "frequency",
+   "route": "basics",
+   "got_topic": "frequency",
+   "pass": true,
+   "text": "Monthly is the most common, but many fund houses and apps also offer daily, weekly, fortnightly or quarterly SIPs. The frequencies and minimum amounts available differ by scheme and app. General information, not advice. For more, see AMFI investor education (amfiindia.com)."
+  },
+  {
+   "q": "how to change sip date in groww",
+   "expect": "basics",
+   "topic": "sip_date",
+   "route": "basics",
+   "got_topic": "sip_date",
+   "pass": true,
+   "text": "You pick the SIP date when you set the SIP up. Most apps let you change the date by editing the SIP (some do it by cancelling and creating a new one). Because each debit is scheduled in advance, a change can take one cycle to apply. General information, not advice. For more, see AMFI investor educat"
+  },
+  {
+   "q": "I am new, how can I begin a SIP on Groww?",
+   "expect": "basics",
+   "topic": "start_sip",
+   "route": "basics",
+   "got_topic": "start_sip",
+   "pass": true,
+   "text": "Starting a SIP usually takes four steps: complete KYC once; choose a scheme and an amount; pick the frequency and date; and approve a payment mandate (UPI AutoPay or a bank e-mandate) so instalments are debited automatically. On Groww this is done from the mutual funds section of the app, and groww."
+  },
+  {
+   "q": "how do i cancel my sip on groww",
+   "expect": "basics",
+   "topic": "stop_sip",
+   "route": "basics",
+   "got_topic": "stop_sip",
+   "pass": true,
+   "text": "Yes. A SIP can be cancelled at any time, and fund houses do not charge a penalty for stopping. Cancelling stops future instalments only; units already bought remain in the fund until you redeem them. On most apps it is done from the SIP's edit or manage option (on Groww: My SIPs, then the SIP). If t"
+  },
+  {
+   "q": "will I be charged if I stop a SIP early",
+   "expect": "basics",
+   "topic": "stop_sip",
+   "route": "basics",
+   "got_topic": "stop_sip",
+   "pass": true,
+   "text": "Yes. A SIP can be cancelled at any time, and fund houses do not charge a penalty for stopping. Cancelling stops future instalments only; units already bought remain in the fund until you redeem them. On most apps it is done from the SIP's edit or manage option (on Groww: My SIPs, then the SIP). If t"
+  },
+  {
+   "q": "if I stop my sip do I lose the money already invested",
+   "expect": "basics",
+   "topic": "cancel_effect",
+   "route": "basics",
+   "got_topic": "cancel_effect",
+   "pass": true,
+   "text": "Stopping a SIP only stops future instalments. The money already invested stays in the fund as units, and its value keeps moving with the fund's NAV until you redeem. Taking the money out is a separate step (redemption), which may carry an exit load or tax depending on how long the units were held. G"
+  },
+  {
+   "q": "my bank balance was low on sip date, what now",
+   "expect": "basics",
+   "topic": "missed_instalment",
+   "route": "basics",
+   "got_topic": "missed_instalment",
+   "pass": true,
+   "text": "If an instalment's debit fails, usually because of low balance or a mandate problem, no units are bought for that instalment. Fund houses generally do not charge a penalty, but your bank may charge a fee for a failed auto-debit. If several instalments in a row fail (commonly three), the fund house m"
+  },
+  {
+   "q": "sip ka paisa nahi kata toh kya hoga",
+   "expect": "basics",
+   "topic": "missed_instalment",
+   "route": "basics",
+   "got_topic": "missed_instalment",
+   "pass": true,
+   "text": "If an instalment's debit fails, usually because of low balance or a mandate problem, no units are bought for that instalment. Fund houses generally do not charge a penalty, but your bank may charge a fee for a failed auto-debit. If several instalments in a row fail (commonly three), the fund house m"
+  },
+  {
+   "q": "can sip be put on hold for 2 months",
+   "expect": "basics",
+   "topic": "pause_skip",
+   "route": "basics",
+   "got_topic": "pause_skip",
+   "pass": true,
+   "text": "Many apps and fund houses let you pause or skip upcoming instalments instead of cancelling. On Groww, its help centre describes: My SIPs, choose the SIP, Edit SIP, then Skip instalment. How many instalments can be skipped, and how far ahead you must do it, differ by app and fund house. The SIP resum"
+  },
+  {
+   "q": "how to reduce sip amount",
+   "expect": "basics",
+   "topic": "modify_amount",
+   "route": "basics",
+   "got_topic": "modify_amount",
+   "pass": true,
+   "text": "Most apps let you change a SIP's amount by editing it; some handle it by cancelling and starting a new SIP. A step-up option can raise the amount automatically each year. The change usually applies from a later instalment. In this engine's data, 797 of 21,445 relevant public comments (3.7%) describe"
+  },
+  {
+   "q": "what does top up sip mean",
+   "expect": "basics",
+   "topic": "step_up",
+   "route": "basics",
+   "got_topic": "step_up",
+   "pass": true,
+   "text": "A step-up (or top-up) SIP raises the instalment automatically at set intervals, for example by a fixed percentage each year. This is a general definition, not advice. In this engine's data, 680 of 21,445 relevant public comments (3.2%) describe increasing a SIP or using a step-up."
+  },
+  {
+   "q": "do i pay tax on sip returns",
+   "expect": "basics",
+   "topic": "tax",
+   "route": "basics",
+   "got_topic": "tax",
+   "pass": true,
+   "text": "Tax applies when units are sold (redeemed), not when you invest. For equity-oriented funds (at least 65% in Indian shares), as of FY 2026-27: gains on units held 12 months or less are taxed at 20%; gains on units held longer are taxed at 12.5% on gains above ₹1.25 lakh in a financial year. In a SIP "
+  },
+  {
+   "q": "what is short term capital gain on mutual funds",
+   "expect": "basics",
+   "topic": "tax",
+   "route": "basics",
+   "got_topic": "tax",
+   "pass": true,
+   "text": "Tax applies when units are sold (redeemed), not when you invest. For equity-oriented funds (at least 65% in Indian shares), as of FY 2026-27: gains on units held 12 months or less are taxed at 20%; gains on units held longer are taxed at 12.5% on gains above ₹1.25 lakh in a financial year. In a SIP "
+  },
+  {
+   "q": "why did my units get allotted a day later",
+   "expect": "basics",
+   "topic": "nav_cutoff",
+   "route": "basics",
+   "got_topic": "nav_cutoff",
+   "pass": true,
+   "text": "For most schemes (other than liquid and overnight funds) the cut-off is 3 PM on a business day. You get the NAV of the day the fund house receives your money: before 3 PM, that day's NAV; after, the next business day's. For a SIP, the NAV depends on when the debited money reaches the fund house, whi"
+  },
+  {
+   "q": "how many days to get money after redeeming",
+   "expect": "basics",
+   "topic": "redemption",
+   "route": "basics",
+   "got_topic": "redemption",
+   "pass": true,
+   "text": "Redemption means selling mutual fund units to get the money back. In an app it is done from the fund's page (Redeem or Withdraw). SEBI requires fund houses to pay redemptions within three working days, and many credit equity funds sooner. An exit load or tax may apply. In this engine's data, 1,018 o"
+  },
+  {
+   "q": "is there any charge for withdrawing before 1 year",
+   "expect": "basics",
+   "topic": "exit_load",
+   "route": "basics",
+   "got_topic": "exit_load",
+   "pass": true,
+   "text": "An exit load is a fee some funds charge if units are sold before a set period, often one year. It is a percentage of the amount redeemed. This is a general definition, not advice. In this engine's data, 609 of 21,445 relevant public comments (2.8%) mention fees or hidden charges."
+  },
+  {
+   "q": "what fees does a mutual fund charge every year",
+   "expect": "basics",
+   "topic": "expense_ratio",
+   "route": "basics",
+   "got_topic": "expense_ratio",
+   "pass": true,
+   "text": "The expense ratio is the yearly fee a fund charges to manage the money, shown as a percentage of assets. It is taken out of the fund's value, so it is already reflected in the NAV. This is a general definition, not advice. In this engine's data, 609 of 21,445 relevant public comments (2.8%) mention "
+  },
+  {
+   "q": "is kyc needed for sip",
+   "expect": "basics",
+   "topic": "kyc",
+   "route": "basics",
+   "got_topic": "kyc",
+   "pass": true,
+   "text": "KYC (Know Your Customer) is a one-time identity check needed before investing in mutual funds in India. It usually needs your PAN, an address proof such as Aadhaar, and a photo and signature; most apps complete it online through Aadhaar-based eKYC, sometimes with a short video check. Once done, it w"
+  },
+  {
+   "q": "my autopay mandate is still pending, how long does it take",
+   "expect": "basics",
+   "topic": "mandate_time",
+   "route": "basics",
+   "got_topic": "mandate_time",
+   "pass": true,
+   "text": "A UPI AutoPay mandate is usually active as soon as you approve it in your UPI app. A bank e-mandate (via net banking or debit card) usually registers within a few working days, and a paper mandate can take a few weeks. Until it is approved, instalments may fail or need to be paid manually. In this e"
+  },
+  {
+   "q": "does sip give fixed returns",
+   "expect": "basics",
+   "topic": "returns_guarantee",
+   "route": "basics",
+   "got_topic": "returns_guarantee",
+   "pass": true,
+   "text": "No. SIP returns are not guaranteed. A SIP is only a way of investing; returns depend on what the fund invests in and on markets, and they can be negative, especially over short periods. Past returns shown in apps do not indicate future returns. In this engine's data, 795 of 21,445 relevant public co"
+  },
+  {
+   "q": "can I lose money in a SIP",
+   "expect": "basics",
+   "topic": "risk",
+   "route": "basics",
+   "got_topic": "risk",
+   "pass": true,
+   "text": "A SIP is only a method of investing; the risk comes from the fund it invests in. Equity funds can fall in value, especially over short periods; debt funds carry interest-rate and credit risk. Every scheme shows a riskometer level from low to very high. Whether a level of risk suits someone is a pers"
+  },
+  {
+   "q": "how does sip average out the cost",
+   "expect": "basics",
+   "topic": "rupee_cost_avg",
+   "route": "basics",
+   "got_topic": "rupee_cost_avg",
+   "pass": true,
+   "text": "Rupee cost averaging describes what happens when the same amount is invested at regular intervals: it buys more units when the NAV is low and fewer when it is high, so the average cost per unit evens out over time. It does not guarantee a profit or protect against losses. General information, not ad"
+  },
+  {
+   "q": "how is sip different from a bank fd",
+   "expect": "basics",
+   "topic": "sip_vs_fd",
+   "route": "basics",
+   "got_topic": "sip_vs_fd",
+   "pass": true,
+   "text": "A fixed deposit (FD) or recurring deposit (RD) pays a fixed interest rate agreed upfront, and bank deposits are insured up to ₹5 lakh per bank by DICGC. An RD is the deposit equivalent of a SIP: a fixed monthly amount. A SIP in a mutual fund has no fixed rate; its value moves with the market and can"
+  },
+  {
+   "q": "what is a systematic withdrawal plan",
+   "expect": "basics",
+   "topic": "stp_swp",
+   "route": "basics",
+   "got_topic": "stp_swp",
+   "pass": true,
+   "text": "An STP (systematic transfer plan) moves a fixed amount at regular intervals from one fund to another within the same fund house, for example from a liquid fund to an equity fund. An SWP (systematic withdrawal plan) is the reverse of a SIP: it redeems a fixed amount at regular intervals and pays it t"
+  },
+  {
+   "q": "how to get consolidated account statement",
+   "expect": "basics",
+   "topic": "folio_cas",
+   "route": "basics",
+   "got_topic": "folio_cas",
+   "pass": true,
+   "text": "A folio number is the account number a fund house gives your investments with it. To see all your mutual funds across fund houses in one place, you can get a Consolidated Account Statement (CAS) from the registrars CAMS or KFintech, or from MF Central, using the email linked to your investments. Ple"
+  },
+  {
+   "q": "explain SIP in simple words",
+   "expect": "basics",
+   "topic": "sip",
+   "route": "basics",
+   "got_topic": "sip",
+   "pass": true,
+   "text": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV). This is a general definition, not advice. In this"
+  },
+  {
+   "q": "what motivates first time investors to start sips",
+   "expect": "research",
+   "topic": "q1",
+   "route": "research",
+   "got_topic": "q1",
+   "pass": true,
+   "text": "3,906 comments describe starting a SIP (2,772 from self-described first-time investors). Most say they decided themselves (3,097); the visible outside triggers are friend or family (156), social media (156), app nudge (8). Expectations show up mostly as gaps later: 327 drop-off comments say returns "
+  },
+  {
+   "q": "what makes people quit their sip",
+   "expect": "research",
+   "topic": "q3",
+   "route": "research",
+   "got_topic": "q3",
+   "pass": true,
+   "text": "Across 3,336 comments describing a SIP being skipped, paused, reduced, stopped or lapsing, the most common reasons are app bug or friction (876), trust or support failure (722), payment, mandate or autopay failure (593), returns below expectation (327). 963 of these drop-offs (28.9%) were not the in"
+  },
+  {
+   "q": "what do new investors keep checking in the app",
+   "expect": "research",
+   "topic": "q4",
+   "route": "research",
+   "got_topic": "q4",
+   "pass": true,
+   "text": "First-time investors mostly check returns, profit or loss (332), whether the instalment went through (248), portfolio value (151); XIRR and NAV matter far less to them than to experienced investors (all investors: returns, profit or loss (2,211), portfolio value (1,990), whether the instalment went "
+  },
+  {
+   "q": "what worries investors most in the app",
+   "expect": "research",
+   "topic": "q5",
+   "route": "research",
+   "got_topic": "q5",
+   "pass": true,
+   "text": "Inside the app, the biggest worries are app bug or friction (3,292), trust or support failure (1,798), no way to pause, skip or change (991), then payment, mandate or autopay failure (667), confusing numbers or terms (623), fees or hidden charges (609). Confusing figures (returns, XIRR, NAV) are a s"
+  },
+  {
+   "q": "when investors are confused where do they look for answers",
+   "expect": "research",
+   "topic": "q6",
+   "route": "research",
+   "got_topic": "q6",
+   "pass": true,
+   "text": "When unsure, first-time investors turn to youtube or social media (201), forums or reddit (115), contact customer support (104), ahead of other routes; experienced investors go first to contact customer support (1,415), check amc, cams or kfintech (394), youtube or social media (391)."
+  },
+  {
+   "q": "what is different about investors who keep their sip going",
+   "expect": "research",
+   "topic": "q7",
+   "route": "research",
+   "got_topic": "q7",
+   "pass": true,
+   "text": "Comments from people still investing (n=4,478) credit habit or automation (keeps them going) (812) most, while drop-off comments (n=3,336) cite app bug or friction (876), trust or support failure (722), payment, mandate or autopay failure (593). Both groups mention weak returns, so returns alone don"
+  },
+  {
+   "q": "does age change sip behaviour",
+   "expect": "research",
+   "topic": "q8",
+   "route": "research",
+   "got_topic": "q8",
+   "pass": true,
+   "text": "Salaried writers (n=1,926) describe a drop-off in 13.0% of comments and variable-income writers (n=164) in 12.8%; both name cash-flow change as their top reason. Students (n=429) describe fewer (7.0%). By age: under 25 7.6% (n=1,749), 25 to 35 14.8% (n=1,184). Those influenced by friends or family d"
+  },
+  {
+   "q": "what features are investors asking for",
+   "expect": "research",
+   "topic": "q9",
+   "route": "research",
+   "got_topic": "q9",
+   "pass": true,
+   "text": "Across 16,001 comments where a need was recorded, the most repeated are: plain explanation of returns and figures (1,185); support that answers and resolves (1,042); instalments that go through, with clear alerts when they don't (998); faster, predictable redemption and allotment (929). About 1,919 "
+  },
+  {
+   "q": "what metric is this project trying to improve",
+   "expect": "research",
+   "topic": "metric",
+   "route": "research",
+   "got_topic": "metric",
+   "pass": true,
+   "text": "The project's business metric is the share of first-time mutual fund investors who still have an active SIP 12 months after starting their first one. An active SIP means at least one successful instalment in the last 30 days. This engine looks for what breaks that continuation; the metric itself is "
+  },
+  {
+   "q": "what data did you use",
+   "expect": "research",
+   "topic": "sources",
+   "route": "research",
+   "got_topic": "sources",
+   "pass": true,
+   "text": "344,872 public items were collected from Play Store and App Store reviews (Groww and 9 other investing apps), Reddit, YouTube comments on personal finance videos, TradingQnA, Zerodha Varsity and Team-BHP. After cleaning, 33,457 remained; 27,678 were AI-tagged and 21,445 were judged relevant to SIPs."
+  },
+  {
+   "q": "what should groww fix first",
+   "expect": "research",
+   "topic": "top_opportunity",
+   "route": "research",
+   "got_topic": "top_opportunity",
+   "pass": true,
+   "text": "The highest-scoring area is \"A. SIP lapses without the investor deciding (failed debit, mandate, autopay)\" with a score of 76.7, well ahead of the next (37.2). It covers 29.6% of all drop-off comments, 93.0% of its comments describe a drop-off, and its severity is the highest (2.3 of 3). Why it rank"
+  },
+  {
+   "q": "how reliable are these findings",
+   "expect": "research",
+   "topic": "limitations",
+   "route": "research",
+   "got_topic": "validation",
+   "pass": false,
+   "text": "Quality is checked four ways. 1) A golden set of 26 comments sampled across themes is being hand-labelled; the agreement rate will be reported once the labels are in (status: awaiting human labels). 2) A guardrail review of all 27,709 AI-written fields found 198 keyword flags and 22 real issues (fun"
+  },
+  {
+   "q": "explain how you built this engine",
+   "expect": "research",
+   "topic": "how_it_works",
+   "route": "research",
+   "got_topic": "how_it_works",
+   "pass": true,
+   "text": "Five stages. 1) Collect: 344,872 public items from app stores, Reddit, YouTube and investing forums. 2) Clean: remove duplicates, very short, promotional and off-topic items (33,457 left). 3) Tag: an AI tags each comment against a fixed codebook (27,678 tagged, 21,445 relevant). 4) Analyse: count th"
+  },
+  {
+   "q": "how many people stop sip without choosing to",
+   "expect": "research",
+   "topic": "drop_types",
+   "route": "research",
+   "got_topic": "drop_types",
+   "pass": true,
+   "text": "Of 3,336 comments describing a drop-off, 2,343 were voluntary (the investor chose to stop, skip, pause or reduce), 963 (28.9%) were involuntary (a failed debit, broken mandate or app error stopped the SIP without the investor deciding), and 20 were passive drift. Among self-described first-time inve"
+  },
+  {
+   "q": "what do Upstox users complain about",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "I counted 102 comments that match your question. The most common: app bug or friction (56, 54.9%), trust or support failure (22, 21.6%), no way to pause, skip or change (17, 16.7%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "what do youtube comments say about stopping sips",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "I counted 287 comments that match your question. The most common: payment, mandate or autopay failure (65, 22.6%), app bug or friction (40, 13.9%), negative or volatile returns (30, 10.5%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "how many first time investors mention failed payments",
+   "expect": "answer",
+   "topic": null,
+   "route": "answer",
+   "got_topic": null,
+   "pass": true,
+   "text": "I counted 59 comments that match your question. The most common: payment failed or lapsed (36, 61.0%), started (20, 33.9%), stopped or cancelled (8, 13.6%). These are AI tags on public comments, so treat them as directional."
+  },
+  {
+   "q": "is it better to invest monthly or lumpsum for me",
+   "expect": "decline_advice",
+   "topic": null,
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": true,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "which app should I use for SIP",
+   "expect": "decline_advice",
+   "topic": null,
+   "route": "decline_advice",
+   "got_topic": null,
+   "pass": true,
+   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+  },
+  {
+   "q": "how to make biryani",
+   "expect": "decline_offtopic",
+   "topic": null,
+   "route": "decline_offtopic",
+   "got_topic": null,
+   "pass": true,
+   "text": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop."
+  }
+ ]
+}

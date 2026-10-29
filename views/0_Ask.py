@@ -25,6 +25,8 @@ if "msgs" not in st.session_state:
 ai_on = llm.ai_available()
 with st.sidebar:
     st.subheader("How every reply is checked")
+    st.markdown("**What you can ask:** SIP basics (minimum amount, lumpsum or monthly, pausing, missed instalments, tax, NAV...), "
+                "the research findings and how they were produced, or any question about what investors wrote, by app, source, segment or year.")
     st.markdown("1. **Rule check** on your question: abuse (English, Hinglish, Hindi), personal data, attempts to override the rules, advice and off-topic requests. Blocked messages never reach the AI and are not stored.\n"
                 "2. **AI intent check**: research question, advice, own-account help, off-topic or greeting.\n"
                 "3. **Grounded answer**: the AI must call counting tools over the tagged comments.\n"
@@ -36,8 +38,8 @@ with st.sidebar:
         st.rerun()
 
 STARTERS = ["Why do first-time investors stop their SIPs?", "What goes wrong when Groww SIP payments fail?",
-            "What do new investors check after starting?", "Do people ask to pause instead of cancel?",
-            "How do Reddit and Play Store differ on why people stop?", "log SIP kyun band karte hain?"]
+            "What is the minimum amount to start a SIP?", "What happens if I miss a SIP instalment?",
+            "What is the biggest opportunity?", "log SIP kyun band karte hain?"]
 
 
 def render(m):
@@ -51,8 +53,11 @@ def render(m):
             return
         if o.get("breakdown") and o["breakdown"].get("values"):
             b = o["breakdown"]
-            ui.bars([{"label": f"{v['label']} ({v['pct_of_base']}%)", "n": v["n"]} for v in b["values"][:6]],
-                    title=f"{o.get('title') or 'Counted breakdown'} · base {b['base_comments']:,} comments" + (" (small sample)" if b["base_comments"] < 30 else ""))
+            if b.get("plain"):
+                ui.bars([{"label": v["label"], "n": v["n"]} for v in b["values"][:8]], title=o.get("title") or "From the computed results")
+            else:
+                ui.bars([{"label": f"{v['label']} ({v['pct_of_base']}%)", "n": v["n"]} for v in b["values"][:8]],
+                        title=f"{o.get('title') or 'Counted breakdown'} · base {b['base_comments']:,} comments" + (" (small sample)" if b["base_comments"] < 30 else ""))
         for q in (o.get("quotes") or [])[:3]:
             ui.quote(q)
         ui.chips(o["checks"])
@@ -97,7 +102,7 @@ if q:
             with st.spinner("Checking your question and counting the comments…"):
                 out = P.answer(q, st.session_state.history, use_ai=ai_on)
         st.session_state.msgs += [user_msg, {"role": "assistant", "text": out["text"], "out": out}]
-        if out["route"] in ("answer", "definition"):
+        if out["route"] in ("answer", "basics", "research"):
             st.session_state.history.append({"q": q, "a": out["text"]})
         st.rerun()
 

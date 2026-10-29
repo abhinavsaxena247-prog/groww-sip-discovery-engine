@@ -188,7 +188,7 @@ def trend(f, led):
             hit[y] = hit.get(y, 0) + 1
     years = [{"year": y, "matching": hit.get(y, 0), "all_relevant": allc[y], "pct": round(100 * hit.get(y, 0) / allc[y], 1)} for y in sorted(allc)]
     for y in years:
-        led.note(y["matching"], y["all_relevant"], y["pct"])
+        led.note(y["year"], y["matching"], y["all_relevant"], y["pct"])
     led.trace.append("Counted matches by year")
     return {"years": years}
 

@@ -1059,84 +1059,84 @@
  {
   "id": "D01",
   "cat": "definitions",
-  "expect": "definition",
+  "expect": "basics",
   "q": "what is sip",
   "set": "dev"
  },
  {
   "id": "D02",
   "cat": "definitions",
-  "expect": "definition",
+  "expect": "basics",
   "q": "What is a SIP?",
   "set": "dev"
  },
  {
   "id": "D03",
   "cat": "definitions",
-  "expect": "definition",
+  "expect": "basics",
   "q": "sip kya hai",
   "set": "dev"
  },
  {
   "id": "D04",
   "cat": "definitions",
-  "expect": "definition",
+  "expect": "basics",
   "q": "what does XIRR mean",
   "set": "dev"
  },
  {
   "id": "D05",
   "cat": "definitions",
-  "expect": "definition",
+  "expect": "basics",
   "q": "how does a sip work",
   "set": "dev"
  },
  {
   "id": "D06",
   "cat": "definitions",
-  "expect": "definition",
+  "expect": "basics",
   "q": "what is NAV",
   "set": "dev"
  },
  {
   "id": "D07",
   "cat": "definitions",
-  "expect": "definition",
+  "expect": "basics",
   "q": "what is an e-mandate",
   "set": "dev"
  },
  {
   "id": "D08",
   "cat": "definitions",
-  "expect": "definition",
+  "expect": "basics",
   "q": "explain step up sip",
   "set": "dev"
  },
  {
   "id": "D09",
   "cat": "definitions",
-  "expect": "definition",
+  "expect": "basics",
   "q": "difference between sip and lumpsum",
   "set": "dev"
  },
  {
   "id": "D10",
   "cat": "definitions",
-  "expect": "definition",
+  "expect": "basics",
   "q": "what is exit load",
   "set": "dev"
  },
  {
   "id": "D11",
   "cat": "definitions",
-  "expect": "definition",
+  "expect": "basics",
   "q": "kyc kya hota hai",
   "set": "dev"
  },
  {
   "id": "D12",
   "cat": "definitions",
-  "expect": "definition",
+  "expect": "basics",
   "q": "direct plan vs regular plan",
   "set": "dev"
  },
@@ -1150,9 +1150,10 @@
  {
   "id": "D14",
   "cat": "definitions",
-  "expect": "concept",
+  "expect": "basics",
   "q": "what is an index fund",
-  "set": "dev"
+  "set": "dev",
+  "note": "was 'concept' until the basics layer added index funds (29 Oct)"
  },
  {
   "id": "D15",
