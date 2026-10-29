@@ -58,20 +58,29 @@ def render(m):
         ui.chips(o["checks"])
         if o.get("reframe"):
             st.caption("You can ask this instead: " + o["reframe"])
+        if o.get("followup"):
+            st.caption("Try asking: " + o["followup"])
 
 
 for m in st.session_state.msgs:
     render(m)
 
-if not st.session_state.msgs:
-    with st.chat_message("assistant", avatar=":material/query_stats:"):
-        st.write(P.greeting())
-
-cols = st.columns(3)
+starters_box = st.empty()
 clicked = None
-for i, s in enumerate(STARTERS):
-    if cols[i % 3].button(s, key=f"s{i}", use_container_width=True):
-        clicked = s
+if not st.session_state.msgs:
+    with starters_box.container():
+        with st.chat_message("assistant", avatar=":material/query_stats:"):
+            st.write(P.greeting())
+        cols = st.columns(3)
+        for i, s in enumerate(STARTERS):
+            if cols[i % 3].button(s, key=f"s{i}", use_container_width=True):
+                clicked = s
+else:
+    with st.expander("Example questions"):
+        cols = st.columns(2)
+        for i, s in enumerate(STARTERS):
+            if cols[i % 2].button(s, key=f"e{i}", use_container_width=True):
+                clicked = s
 
 q = st.chat_input("Ask about SIP behaviour, for example: what do first-time investors on Groww check after starting?", max_chars=800) or clicked
 if q:
@@ -79,13 +88,16 @@ if q:
         st.warning("You've reached the limit of 25 questions for this session. Reload the page to start a new session.")
     else:
         st.session_state.asked += 1
+        starters_box.empty()
         pre = G.check_input(q)
         shown = {"abuse": "Message hidden: abusive language", "pii": "Message hidden: it contained personal data"}.get(pre["verdict"])
-        st.session_state.msgs.append({"role": "user", "text": shown or q, "masked": bool(shown)})
-        with st.spinner("Checking and counting…"):
-            out = P.answer(q, st.session_state.history, use_ai=ai_on)
-        st.session_state.msgs.append({"role": "assistant", "text": out["text"], "out": out})
-        if out["route"] == "answer":
+        user_msg = {"role": "user", "text": shown or q, "masked": bool(shown)}
+        render(user_msg)                                   # show the question straight away
+        with st.chat_message("assistant", avatar=":material/query_stats:"):
+            with st.spinner("Checking your question and counting the comments…"):
+                out = P.answer(q, st.session_state.history, use_ai=ai_on)
+        st.session_state.msgs += [user_msg, {"role": "assistant", "text": out["text"], "out": out}]
+        if out["route"] in ("answer", "definition"):
             st.session_state.history.append({"q": q, "a": out["text"]})
         st.rerun()
 

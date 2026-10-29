@@ -17,7 +17,7 @@ cases = D.load_json("eval_cases.json")[:limit]
 
 def grade(c, route):
     if c["expect"] == "answer":
-        return route in ("answer", "greeting")
+        return route in ("answer", "greeting", "definition")
     return route == c["expect"]
 
 
@@ -48,7 +48,7 @@ def summ(rows):
     return {"total": len(rows), "pass": sum(r["pass"] for r in rows), "by": by,
             "model_violations": sum(r["model_violation"] for r in rows), "shown_violations": sum(r["shown_violation"] for r in rows),
             "ungrounded_held_back": sum(r["ungrounded"] for r in rows)}
-run = {"when": datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"), "mode": "Gemini + counting tools" if mode == "ai" else "basic (counts only)",
+run = {"when": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "mode": "Gemini + counting tools" if mode == "ai" else "basic (counts only)",
        "models": sorted({r["model"] for r in results if r["model"]}), "seconds": round(time.time() - t0),
        "summary": summ(results), "by_set": {s: summ([r for r in results if r["set"] == s]) for s in sorted({r["set"] for r in results})},
        "results": results}

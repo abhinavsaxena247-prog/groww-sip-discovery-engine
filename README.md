@@ -10,8 +10,9 @@ Independent student research for a NextLeap course project. Not affiliated with 
   2. an AI intent check;
   3. a grounded answer built from counting tools;
   4. an output check (every number must trace to the counts; no fund names, advice wording, urgency or personal data).
+- **Basic terms:** "what is a SIP / NAV / XIRR / mandate" and similar get a plain definition (not advice) plus a counted fact from the data.
 - **Findings, Opportunities, Evidence explorer:** theme counts, the opportunity comparison and the verbatim evidence behind them.
-- **Quality and evals:** a 151-question eval suite (development set plus two held-out sets) with results per category.
+- **Quality and evals:** a 169-question eval suite (development set plus two held-out sets) with results per category.
 - **How it works:** the pipeline, sources, volumes and limits.
 
 ## Data

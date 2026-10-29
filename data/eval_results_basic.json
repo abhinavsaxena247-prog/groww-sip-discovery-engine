@@ -1,23 +1,23 @@
 {
- "when": "2026-10-29 15:13 UTC",
+ "when": "2026-10-29 17:06 UTC",
  "mode": "basic (counts only)",
  "models": [],
- "seconds": 84,
+ "seconds": 77,
  "summary": {
-  "total": 151,
-  "pass": 150,
+  "total": 169,
+  "pass": 169,
   "by": {
    "in_scope": {
     "n": 55,
     "pass": 55
    },
    "advice": {
-    "n": 29,
-    "pass": 28
+    "n": 31,
+    "pass": 31
    },
    "off_topic": {
-    "n": 15,
-    "pass": 15
+    "n": 17,
+    "pass": 17
    },
    "abuse": {
     "n": 17,
@@ -34,6 +34,10 @@
    "edge": {
     "n": 13,
     "pass": 13
+   },
+   "definitions": {
+    "n": 14,
+    "pass": 14
    }
   },
   "model_violations": 0,
@@ -42,20 +46,20 @@
  },
  "by_set": {
   "dev": {
-   "total": 81,
-   "pass": 81,
+   "total": 99,
+   "pass": 99,
    "by": {
     "in_scope": {
      "n": 28,
      "pass": 28
     },
     "advice": {
-     "n": 14,
-     "pass": 14
+     "n": 16,
+     "pass": 16
     },
     "off_topic": {
-     "n": 8,
-     "pass": 8
+     "n": 10,
+     "pass": 10
     },
     "abuse": {
      "n": 9,
@@ -72,6 +76,10 @@
     "edge": {
      "n": 10,
      "pass": 10
+    },
+    "definitions": {
+     "n": 14,
+     "pass": 14
     }
    },
    "model_violations": 0,
@@ -117,7 +125,7 @@
   },
   "holdout_v2": {
    "total": 30,
-   "pass": 29,
+   "pass": 30,
    "by": {
     "in_scope": {
      "n": 12,
@@ -125,7 +133,7 @@
     },
     "advice": {
      "n": 7,
-     "pass": 6
+     "pass": 7
     },
     "off_topic": {
      "n": 3,
@@ -2688,7 +2696,7 @@
    "answer": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser.",
    "checks": [
     "Input check passed",
-    "Basic mode: personal money decision, treated as advice",
+    "Basic mode: asks which option is better, treated as advice",
     "Not answered"
    ],
    "model": null
@@ -2754,15 +2762,16 @@
    "cat": "advice",
    "q": "Is 2000 rupees a month enough to start?",
    "expect": "decline_advice",
-   "route": "decline_offtopic",
-   "pass": false,
+   "route": "decline_advice",
+   "pass": true,
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop.",
+   "answer": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser.",
    "checks": [
     "Input check passed",
-    "Off-topic (keyword check)"
+    "Basic mode: asks about an amount to invest, treated as advice",
+    "Not answered"
    ],
    "model": null
   },
@@ -2997,6 +3006,354 @@
    "checks": [
     "Input check passed",
     "Greeting"
+   ],
+   "model": null
+  },
+  {
+   "id": "D01",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "what is sip",
+   "expect": "definition",
+   "route": "definition",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV). This is a general definition, not advice. In this engine's data, 3,336 of 21,445 relevant public comments (15.6%) describe a SIP being skipped, paused, stopped or lapsing.",
+   "checks": [
+    "Input check passed",
+    "Basic term: general definition, not advice",
+    "Numbers traced: 3 of 3",
+    "Output guardrails passed"
+   ],
+   "model": null
+  },
+  {
+   "id": "D02",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "What is a SIP?",
+   "expect": "definition",
+   "route": "definition",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV). This is a general definition, not advice. In this engine's data, 3,336 of 21,445 relevant public comments (15.6%) describe a SIP being skipped, paused, stopped or lapsing.",
+   "checks": [
+    "Input check passed",
+    "Basic term: general definition, not advice",
+    "Numbers traced: 3 of 3",
+    "Output guardrails passed"
+   ],
+   "model": null
+  },
+  {
+   "id": "D03",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "sip kya hai",
+   "expect": "definition",
+   "route": "definition",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV). This is a general definition, not advice. In this engine's data, 3,336 of 21,445 relevant public comments (15.6%) describe a SIP being skipped, paused, stopped or lapsing.",
+   "checks": [
+    "Input check passed",
+    "Basic term: general definition, not advice",
+    "Numbers traced: 3 of 3",
+    "Output guardrails passed"
+   ],
+   "model": null
+  },
+  {
+   "id": "D04",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "what does XIRR mean",
+   "expect": "definition",
+   "route": "definition",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "XIRR is a yearly return figure that accounts for money going in on different dates. Apps show it for SIPs because each instalment is invested at a different time, so a simple percentage gain can mislead. This is a general definition, not advice. In this engine's data, 596 of 21,445 relevant public comments (2.8%) mention checking XIRR.",
+   "checks": [
+    "Input check passed",
+    "Basic term: general definition, not advice",
+    "Numbers traced: 3 of 3",
+    "Output guardrails passed"
+   ],
+   "model": null
+  },
+  {
+   "id": "D05",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "how does a sip work",
+   "expect": "definition",
+   "route": "definition",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV). This is a general definition, not advice. In this engine's data, 3,336 of 21,445 relevant public comments (15.6%) describe a SIP being skipped, paused, stopped or lapsing.",
+   "checks": [
+    "Input check passed",
+    "Basic term: general definition, not advice",
+    "Numbers traced: 3 of 3",
+    "Output guardrails passed"
+   ],
+   "model": null
+  },
+  {
+   "id": "D06",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "what is NAV",
+   "expect": "definition",
+   "route": "definition",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "NAV (Net Asset Value) is the price of one unit of a mutual fund. It is calculated at the end of each business day from the value of everything the fund holds, minus its expenses. This is a general definition, not advice. In this engine's data, 814 of 21,445 relevant public comments (3.8%) mention checking the NAV.",
+   "checks": [
+    "Input check passed",
+    "Basic term: general definition, not advice",
+    "Numbers traced: 3 of 3",
+    "Output guardrails passed"
+   ],
+   "model": null
+  },
+  {
+   "id": "D07",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "what is an e-mandate",
+   "expect": "definition",
+   "route": "definition",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "A mandate (e-mandate, NACH or UPI AutoPay) is the standing permission you give your bank so the SIP amount can be debited automatically on the due date. If the mandate is not approved, or the account lacks funds on that day, the instalment fails. This is a general definition, not advice. In this engine's data, 667 of 21,445 relevant public comments (3.1%) describe a payment, mandate or autopay failure.",
+   "checks": [
+    "Input check passed",
+    "Basic term: general definition, not advice",
+    "Numbers traced: 3 of 3",
+    "Output guardrails passed"
+   ],
+   "model": null
+  },
+  {
+   "id": "D08",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "explain step up sip",
+   "expect": "definition",
+   "route": "definition",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "A step-up (or top-up) SIP raises the instalment automatically at set intervals, for example by a fixed percentage each year. This is a general definition, not advice. In this engine's data, 680 of 21,445 relevant public comments (3.2%) describe increasing a SIP or using a step-up.",
+   "checks": [
+    "Input check passed",
+    "Basic term: general definition, not advice",
+    "Numbers traced: 3 of 3",
+    "Output guardrails passed"
+   ],
+   "model": null
+  },
+  {
+   "id": "D09",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "difference between sip and lumpsum",
+   "expect": "definition",
+   "route": "definition",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV).\n\nA lumpsum is a one-time investment of a larger amount, as opposed to a SIP's regular instalments.\n\nThese are general definitions, not advice on which to choose.",
+   "checks": [
+    "Input check passed",
+    "Basic terms: general definitions, not advice",
+    "Output guardrails passed"
+   ],
+   "model": null
+  },
+  {
+   "id": "D10",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "what is exit load",
+   "expect": "definition",
+   "route": "definition",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "An exit load is a fee some funds charge if units are sold before a set period, often one year. It is a percentage of the amount redeemed. This is a general definition, not advice. In this engine's data, 609 of 21,445 relevant public comments (2.8%) mention fees or hidden charges.",
+   "checks": [
+    "Input check passed",
+    "Basic term: general definition, not advice",
+    "Numbers traced: 3 of 3",
+    "Output guardrails passed"
+   ],
+   "model": null
+  },
+  {
+   "id": "D11",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "kyc kya hota hai",
+   "expect": "definition",
+   "route": "definition",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "KYC (Know Your Customer) is the identity check every investor completes once before investing in mutual funds in India. This is a general definition, not advice. In this engine's data, 2,293 of 21,445 relevant public comments (10.7%) are about the setup stage, before or while starting a SIP.",
+   "checks": [
+    "Input check passed",
+    "Basic term: general definition, not advice",
+    "Numbers traced: 3 of 3",
+    "Output guardrails passed"
+   ],
+   "model": null
+  },
+  {
+   "id": "D12",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "direct plan vs regular plan",
+   "expect": "definition",
+   "route": "definition",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "A direct plan is bought straight from the fund house with no distributor commission, so its expense ratio is lower. A regular plan includes a distributor commission. Both invest in the same portfolio. This is a general definition, not advice. In this engine's data, 609 of 21,445 relevant public comments (2.8%) mention fees or hidden charges.",
+   "checks": [
+    "Input check passed",
+    "Basic term: general definition, not advice",
+    "Numbers traced: 3 of 3",
+    "Output guardrail: uses advice wording"
+   ],
+   "model": null
+  },
+  {
+   "id": "D13",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "what is a demat account",
+   "expect": "concept",
+   "route": "concept",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed instalment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions, AMFI's investor education site (amfiindia.com) is a good source.",
+   "checks": [
+    "Input check passed",
+    "General term outside the glossary"
+   ],
+   "model": null
+  },
+  {
+   "id": "D14",
+   "set": "dev",
+   "cat": "definitions",
+   "q": "what is an index fund",
+   "expect": "concept",
+   "route": "concept",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed instalment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions, AMFI's investor education site (amfiindia.com) is a good source.",
+   "checks": [
+    "Input check passed",
+    "General term outside the glossary"
+   ],
+   "model": null
+  },
+  {
+   "id": "D15",
+   "set": "dev",
+   "cat": "advice",
+   "q": "sip vs lumpsum which is better",
+   "expect": "decline_advice",
+   "route": "decline_advice",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser.",
+   "checks": [
+    "Input check passed",
+    "Basic mode: asks which option is better, treated as advice",
+    "Not answered"
+   ],
+   "model": null
+  },
+  {
+   "id": "D16",
+   "set": "dev",
+   "cat": "advice",
+   "q": "which app is better groww or zerodha",
+   "expect": "decline_advice",
+   "route": "decline_advice",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser.",
+   "checks": [
+    "Input check: asks for investment advice",
+    "No AI call made"
+   ],
+   "model": null
+  },
+  {
+   "id": "D17",
+   "set": "dev",
+   "cat": "off_topic",
+   "q": "what is the meaning of life",
+   "expect": "decline_offtopic",
+   "route": "decline_offtopic",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop.",
+   "checks": [
+    "Input check passed",
+    "Off-topic (keyword check)"
+   ],
+   "model": null
+  },
+  {
+   "id": "D18",
+   "set": "dev",
+   "cat": "off_topic",
+   "q": "what is the capital of France",
+   "expect": "decline_offtopic",
+   "route": "decline_offtopic",
+   "pass": true,
+   "model_violation": false,
+   "shown_violation": false,
+   "ungrounded": false,
+   "answer": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop.",
+   "checks": [
+    "Input check: outside sip and investor research",
+    "No AI call made"
    ],
    "model": null
   }

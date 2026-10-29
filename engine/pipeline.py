@@ -6,6 +6,7 @@ import re
 
 from engine import data as D
 from engine import guard as G
+from engine import glossary as GL
 from engine import llm
 
 CODE = {
@@ -31,6 +32,7 @@ REPLIES = {
     "account_help": "I can't see or fix anyone's account or transactions. For a failed instalment or mandate on your own SIP, your app's support can check it (for Groww: groww.in/help). I can show what other investors wrote when this happened to them.",
     "too_long": "Please keep your question under 800 characters.",
     "empty": "Type a question first.",
+    "concept": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed instalment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions, AMFI's investor education site (amfiindia.com) is a good source.",
 }
 
 
@@ -56,11 +58,12 @@ def reframe_for(q):
 
 
 INTENT_SCHEMA = {"type": "OBJECT", "properties": {
-    "intent": {"type": "STRING", "enum": ["research", "advice", "account_help", "off_topic", "abusive", "greeting"]},
+    "intent": {"type": "STRING", "enum": ["research", "concept", "advice", "account_help", "off_topic", "abusive", "greeting"]},
     "reframe": {"type": "STRING"}}, "required": ["intent", "reframe"]}
 INTENT_PROMPT = """You are the intent filter for a research engine. The engine ONLY describes what public Indian investor comments (app reviews, Reddit, YouTube, forums) say about SIPs and mutual funds. It never gives investment advice.
 Classify the user's message into exactly one intent:
 - "research": asks what investors say, do, feel, check, experience or need; reasons, patterns, comparisons across apps, sources, segments or time; quotes; questions about the data or method; product or research questions about the findings (for example what a product team should look at). Hinglish counts.
+- "concept": asks only what a general investing term or product means (for example "what is a demat account", "how does an index fund work"), not what investors say about it.
 - "advice": asks what THEY should do with their money: which fund, app or amount; whether a fund is good or safe; whether to start, stop, pause, continue or switch; whether stopping is good or bad; return or market predictions; tax or allocation guidance.
 - "account_help": wants help with their own account, transaction, mandate or SIP.
 - "off_topic": anything unrelated to SIP or investor-behaviour research.
@@ -223,7 +226,7 @@ def basic_answer(q, led):
 
 def _result(route_name, text, checks, **kw):
     out = {"route": route_name, "text": text, "checks": checks, "breakdown": None, "quotes": None, "title": None, "reframe": None,
-           "suggest": False, "issues": None, "model": None}
+           "suggest": False, "issues": None, "model": None, "followup": None}
     out.update(kw)
     return out
 
@@ -232,12 +235,27 @@ def answer(q, history=None, use_ai=True):
     """Run one message through the full pipeline. Returns a dict with route, text, checks and evidence."""
     inp = G.check_input(q)
     v = inp["verdict"]
+    if v == "advice" and GL.CONCEPT_OPENER.search(GL._norm(q)) and len(GL._norm(q).split()) <= 7 and not GL.match(q) \
+            and not re.search(r"\b(best|good|safe|should|which|top|better|worth|recommend)\b", q, re.I):
+        return _result("concept", REPLIES["concept"], [("Input check passed", True), ("General term outside the glossary", None)],
+                       followup="Why do first-time investors stop their SIPs?")
     if v != "ok":
         rt = {"abuse": "block_abuse", "pii": "block_pii", "injection": "block_injection", "advice": "decline_advice",
               "off_topic": "decline_offtopic", "too_long": "too_long", "empty": "empty"}[v]
         txt = REPLIES[v].format(kind=inp.get("kind", "detail")) if v == "pii" else REPLIES[v]
         return _result(rt, txt, [(f"Input check: {inp['reason'].lower()}", False), ("No AI call made", None)],
                        reframe=reframe_for(q) if v == "advice" else None, suggest=v == "off_topic")
+    key = GL.match(q)
+    if key:
+        return _definition(key, q)
+    pair = GL.match_pair(q)
+    if pair and pair[0] == pair[1]:
+        return _definition(pair[0], q)
+    if pair:
+        a, b = GL.TERMS[pair[0]][1], GL.TERMS[pair[1]][1]
+        return _result("definition", f"{a}\n\n{b}\n\nThese are general definitions, not advice on which to choose.",
+                       [("Input check passed", True), ("Basic terms: general definitions, not advice", True), ("Output guardrails passed", G.check_output(a + b)["pass"])],
+                       followup=GL.TERMS[pair[0]][4])
     if use_ai and llm.ai_available():
         try:
             return _ai_answer(q, history or [])
@@ -246,9 +264,34 @@ def answer(q, history=None, use_ai=True):
     return _basic(q)
 
 
+def _definition(key, q):
+    led = D.Ledger()
+    txt, follow = GL.answer(key, led)
+    oc = G.check_output(txt, led.nums)
+    g = oc["grounded"]
+    return _result("definition", txt, [("Input check passed", True), ("Basic term: general definition, not advice", True),
+                                       (f"Numbers traced: {g['traced']} of {g['total']}", g["traced"] == g["total"]),
+                                       ("Output guardrails passed" if oc["pass"] else "Output guardrail: " + oc["issues"][0], oc["pass"])],
+                   followup=follow)
+
+
+BEHAVIOUR = re.compile(r"(stop|pause|skip|cancel|continu|drop|lapse|fail|why|kyun|reason|people|investor|users|log|comment|review|complain|check|worr|problem|issue|groww|zerodha|reddit|first)", re.I)
+
+
 def _basic(q):
     if GREET.search(q.strip()):
         return _result("greeting", greeting(), [("Input check passed", True), ("Greeting", True)])
+    if re.search(r"\b(which|kaun|kaunsa|konsa)\b.{0,25}\b(better|best|accha|achha|sahi|safer|safe)\b|\b(better|best)\b.{0,15}\b(option|choice|for beginners)\b", q, re.I):
+        return _result("decline_advice", REPLIES["advice"], [("Input check passed", True), ("Basic mode: asks which option is better, treated as advice", False), ("Not answered", None)],
+                       reframe=reframe_for(q))
+    if re.search(r"(₹\s?\d|\d[\d,]*\s?(rs|rupees|inr|k\b|thousand|hazaar|hazar))", q, re.I) and DECISION.search(q) and not THIRD.search(q):
+        return _result("decline_advice", REPLIES["advice"], [("Input check passed", True), ("Basic mode: asks about an amount to invest, treated as advice", False), ("Not answered", None)],
+                       reframe=reframe_for(q))
+    if GL.CONCEPT_OPENER.search(GL._norm(q)) and len(GL._norm(q).split()) <= 7 and not BEHAVIOUR.search(q):
+        if not GL.FINANCE.search(q):
+            return _result("decline_offtopic", REPLIES["off_topic"], [("Input check passed", True), ("Off-topic (keyword check)", False)], suggest=True)
+        return _result("concept", REPLIES["concept"], [("Input check passed", True), ("General term outside the glossary", None)],
+                       followup="Why do first-time investors stop their SIPs?")
     if FIRST_PERSON.search(q) and DECISION.search(q) and not THIRD.search(q):
         return _result("decline_advice", REPLIES["advice"], [("Input check passed", True), ("Basic mode: personal money decision, treated as advice", False), ("Not answered", None)],
                        reframe=reframe_for(q))
@@ -280,6 +323,9 @@ def _ai_answer(q, history):
                        reframe=it.get("reframe") or reframe_for(q), model=m1)
     if intent == "greeting":
         return _result("greeting", greeting(), base + [("Intent check: greeting", True)], model=m1)
+    if intent == "concept":
+        return _result("concept", REPLIES["concept"], base + [("Intent check: general term outside the glossary", None)],
+                       followup="Why do first-time investors stop their SIPs?", model=m1)
     led = D.Ledger()
     turns = []
     for h in history[-4:]:
@@ -295,7 +341,10 @@ def _ai_answer(q, history):
                      (f"Numbers traced: {g['traced']} of {g['total']}", g["traced"] == g["total"]),
                      ("Output guardrails passed" if oc["pass"] else "Output guardrail: " + oc["issues"][0], oc["pass"])]
     if not text:
-        return _result("blocked_output", "I couldn't produce an answer for that. Try rephrasing, or ask about a specific behaviour, app or source.", checks, model=m2)
+        out = _basic(q)            # the AI returned no text: answer from the counts instead of showing an error
+        out["checks"] = [c for c in out["checks"]] + [("AI reply was empty, so this answer is the direct count", None)]
+        out["model"] = m2
+        return out
     if not oc["pass"]:
         return _result("blocked_output", f"I held this answer back because it failed a quality check ({'; '.join(oc['issues'])}). Here is the counted data instead.",
                        checks, breakdown=led.last_break, quotes=led.last_quotes, title="Counted breakdown", issues=oc["issues"], model=m2, model_text=text)

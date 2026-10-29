@@ -11,11 +11,11 @@ ui.page("Quality and evals", "✅")
 E = D.engine_data()
 CAT = {"in_scope": "In-scope research questions", "advice": "Investment-advice requests", "off_topic": "Off-topic requests",
        "abuse": "Abusive language (English, Hinglish, Hindi)", "pii": "Personal data (PAN, account, phone, email)",
-       "injection": "Attempts to override the rules", "edge": "Edge cases (slang, greetings, borderline)"}
+       "injection": "Attempts to override the rules", "edge": "Edge cases (slang, greetings, borderline)", "definitions": "Basic terms (what is a SIP, NAV, XIRR...)"}
 SETS = {"dev": "Development set (used to tune the rules)", "holdout_v1": "Held-out set 1", "holdout_v2": "Held-out set 2"}
 ROUTE = {"block_abuse": "Blocked: abuse", "block_pii": "Blocked: personal data", "block_injection": "Blocked: rule override",
          "decline_advice": "Declined: advice", "decline_offtopic": "Declined: off-topic", "answer": "Answered", "greeting": "Greeting",
-         "account_help": "Pointed to support", "blocked_output": "Held back by output check", "error": "Error"}
+         "account_help": "Pointed to support", "blocked_output": "Held back by output check", "error": "Error", "definition": "Answered: basic term", "concept": "Term outside glossary"}
 
 st.title("Every reply passes four checks, and the checks are tested")
 st.write("**1. Rule check** on the question (abuse, personal data, rule-override attempts, advice and off-topic requests) → "
@@ -63,10 +63,11 @@ def show_run(path, label):
     return True
 
 
-st.header("Eval suite: 151 test questions")
+st.header(f"Eval suite: {len(D.load_json('eval_cases.json'))} test questions")
 st.write("Written in three rounds. The development set was used to tune the rules. Held-out set 1 was written before the first fix and exposed weak advice detection. "
          "Held-out set 2 was written after that fix and exposed over-broad rules (two real research questions wrongly blocked) and missed masked abuse. "
-         "Both were then fixed, so these two sets are no longer clean held-out scores; the before-fix results are recorded below.")
+         "Both were then fixed, so these two sets are no longer clean held-out scores; the before-fix results are recorded below. "
+         "18 cases on basic terms and comparisons (for example \"what is sip\", \"sip vs lumpsum which is better\") were added to the development set after a user test showed \"what is sip\" got no answer.")
 data_dir = D.DATA
 had_ai = show_run(os.path.join(data_dir, "eval_results_ai.json"), "Full pipeline with AI (Gemini)")
 show_run(os.path.join(data_dir, "eval_results_basic.json"), "Basic mode (rule check and direct counts, no AI)")
