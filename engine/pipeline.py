@@ -65,6 +65,7 @@ INTENT_PROMPT = """You are the intent filter for a research engine. The engine O
 Classify the user's message into exactly one intent:
 - "research": asks what investors say, do, feel, check, experience or need; reasons, patterns, comparisons across apps, sources, segments or time; quotes; questions about the data or method; product or research questions about the findings (for example what a product team should look at). Hinglish counts.
 - "concept": asks only what a general investing term or product means (for example "what is a demat account", "how does an index fund work"), not what investors say about it.
+- Questions about how SIPs and mutual funds work, their rules and options, or what is allowed (for example "can I pause my SIP", "is there a penalty for stopping", "what happens if a payment fails", "minimum SIP amount") are "concept", NOT advice.
 - "advice": asks what THEY should do with their money: which fund, app or amount; whether a fund is good or safe; whether to start, stop, pause, continue or switch; whether stopping is good or bad; return or market predictions; tax or allocation guidance.
 - "account_help": wants help with their own account, transaction, mandate or SIP.
 - "off_topic": anything unrelated to SIP or investor-behaviour research.
