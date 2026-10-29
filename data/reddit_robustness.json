@@ -1,0 +1,32 @@
+{
+ "sample": {
+  "relevant": 3686,
+  "drop%": 15.7,
+  "vol% of drops": 89.6,
+  "first_time%": 47.1,
+  "returns_below_expectation": 4.7,
+  "negative_or_volatile_returns": 5.3,
+  "cashflow_or_income_change": 3.1,
+  "emergency_or_goal_need_for_money": 2.2,
+  "missing_control_pause_skip_modify": 1.2,
+  "payment_mandate_failure": 1.1,
+  "app_friction_or_bug": 3.5,
+  "confusing_numbers_or_terms": 0.9,
+  "goal_clarity_or_tracking": 4.5
+ },
+ "all_tagged": {
+  "relevant": 8675,
+  "drop%": 16.5,
+  "vol% of drops": 87.1,
+  "first_time%": 48.3,
+  "returns_below_expectation": 5.7,
+  "negative_or_volatile_returns": 5.2,
+  "cashflow_or_income_change": 2.4,
+  "emergency_or_goal_need_for_money": 1.5,
+  "missing_control_pause_skip_modify": 1.1,
+  "payment_mandate_failure": 1.2,
+  "app_friction_or_bug": 3.9,
+  "confusing_numbers_or_terms": 1.1,
+  "goal_clarity_or_tracking": 4.4
+ }
+}

@@ -1,0 +1,102 @@
+{
+ "collected": {
+  "app_store": 9000,
+  "play_store": 168082,
+  "reddit": 15550,
+  "team_bhp": 87,
+  "tradingqna": 6389,
+  "zerodha_varsity": 4310,
+  "youtube": 24740
+ },
+ "duplicates_removed": {
+  "app_store": 1730,
+  "play_store": 88791,
+  "reddit": 373,
+  "tradingqna": 30,
+  "zerodha_varsity": 9,
+  "youtube": 5344
+ },
+ "too_short_removed": {
+  "app_store": 498,
+  "play_store": 17933,
+  "tradingqna": 146,
+  "zerodha_varsity": 101,
+  "youtube": 5123
+ },
+ "promotional_removed": {
+  "app_store": 2,
+  "play_store": 9,
+  "tradingqna": 2,
+  "zerodha_varsity": 2,
+  "youtube": 9
+ },
+ "not_relevant_removed": {
+  "app_store": 5227,
+  "play_store": 54212,
+  "reddit": 643,
+  "tradingqna": 2675,
+  "zerodha_varsity": 2809,
+  "youtube": 9033
+ },
+ "relevant_kept": {
+  "app_store": 1543,
+  "play_store": 7137,
+  "reddit": 14534,
+  "team_bhp": 87,
+  "tradingqna": 3536,
+  "zerodha_varsity": 1389,
+  "youtube": 5231
+ },
+ "relevant_by_app": {
+  "Groww": 4088,
+  "Zerodha Coin": 1559,
+  "Zerodha Kite": 213,
+  "Upstox": 279,
+  "Angel One": 247,
+  "Paytm Money": 1026,
+  "INDmoney": 572,
+  "ET Money": 316,
+  "Kuvera": 139,
+  "MO Riise": 241,
+  "r/mutualfunds": 10533,
+  "r/IndiaInvestments": 409,
+  "r/personalfinanceindia": 3592,
+  "forum": 5012,
+  "youtube": 5231
+ },
+ "lang": {
+  "english": 31656,
+  "hinglish": 1479,
+  "hindi_devanagari": 322
+ },
+ "date_window": {
+  "app_store": [
+   "2017-09-19",
+   "2026-10-25"
+  ],
+  "play_store": [
+   "2018-01-29",
+   "2026-10-27"
+  ],
+  "reddit": [
+   "2024-01-01",
+   "2026-10-29"
+  ],
+  "team_bhp": [
+   "10th April 2020, 14:10",
+   "9th October 2020, 14:03"
+  ],
+  "tradingqna": [
+   "2014-06-17",
+   "2026-10-26"
+  ],
+  "zerodha_varsity": [
+   "April 1, 2020",
+   "September 9, 2024"
+  ],
+  "youtube": [
+   "2023-02-09",
+   "2026-10-28"
+  ]
+ }
+}

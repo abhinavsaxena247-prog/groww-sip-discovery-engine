@@ -1,0 +1,200 @@
+{
+ "summary": {
+  "checked": 14221,
+  "advice": 34,
+  "fund_name": 8
+ },
+ "examples": [
+  [
+   "FUND",
+   "Simple and direct options to select standard index funds like Nifty 50 Expected simple category options like Nifty 50 but found confusing na"
+  ],
+  [
+   "ADV",
+   "simple steps to link and invest in existing mutual funds through bank account expected simple guidance on linking existing external SIPs "
+  ],
+  [
+   "ADV",
+   "systematic withdrawal plan feature Expected SWP features but had to switch to competitor apps "
+  ],
+  [
+   "ADV",
+   "Option to invest in direct mutual fund plans Expected direct plans but got regular plans "
+  ],
+  [
+   "ADV",
+   "allow mutual fund investments regardless of demat bank origin wanted to invest in mutual funds through the app "
+  ],
+  [
+   "ADV",
+   "Ability to add minor and invest in children funds App should allow investing in children funds for minors "
+  ],
+  [
+   "ADV",
+   "mutual fund investing without mandatory demat account Expected to invest in mutual funds without a demat account "
+  ],
+  [
+   "ADV",
+   "Option to invest in mutual funds without opening a demat account Expected option to invest in mutual funds without a demat account "
+  ],
+  [
+   "ADV",
+   "uninterrupted ability to invest in new funds expected to invest but found new investments blocked "
+  ],
+  [
+   "ADV",
+   "Option to invest in mutual funds without a demat account Expected mutual fund investment without creating a demat account "
+  ],
+  [
+   "ADV",
+   "Reliable fund recommendations Recommended funds turned out not good vs expectations "
+  ],
+  [
+   "ADV",
+   "no demat account requirement for MF should be able to invest in MF without demat demat account friction"
+  ],
+  [
+   "FUND",
+   "better smallcap index options fund performance vs benchmark index fund availability"
+  ],
+  [
+   "ADV",
+   "seamless switch from regular to direct without tax impact wants to switch to direct plan without incurring tax or losing units regular to di"
+  ],
+  [
+   "ADV",
+   "Ability to switch from regular to direct plans without stopping SIPs. User wants to switch to direct plans but must stop and restart SIPs. s"
+  ],
+  [
+   "ADV",
+   "Ability to search and invest in regular plans. User cannot find regular plans in search. search limitations"
+  ],
+  [
+   "ADV",
+   "seamless fund switching accumulated units I need to redeem in whole but entire amount can I invest in another MF "
+  ],
+  [
+   "ADV",
+   "guidance on investment mode whether it will be better to invest in SIP or should I do it in lump sum "
+  ],
+  [
+   "FUND",
+   "advice on portfolio diversification and small cap strategy  "
+  ],
+  [
+   "FUND",
+   "understanding liquidity risk in small cap funds  "
+  ],
+  [
+   "ADV",
+   "how to invest in mutual funds  "
+  ],
+  [
+   "ADV",
+   "easy process to invest in direct plans for minors regular plans are less efficient than direct plans "
+  ],
+  [
+   "ADV",
+   "responsive customer support for fund switches expected switch to be effected quickly "
+  ],
+  [
+   "ADV",
+   "Competent support and streamlined KYC for NRIs to invest in direct mutual funds. Expected smooth NRI onboarding but faced repeated document "
+  ],
+  [
+   "ADV",
+   "ability to invest in new fund offers (NFOs) Wanted NFO investment option which is currently missing "
+  ],
+  [
+   "ADV",
+   "ability to invest in NFO through SIP expected to invest in NFO through SIP mode "
+  ],
+  [
+   "ADV",
+   "mutual fund investment without demat account Expected to invest in mutual funds without forced demat account creation "
+  ],
+  [
+   "ADV",
+   "ability to invest in mutual funds without opening a demat account should not need demat account just for mutual funds "
+  ],
+  [
+   "ADV",
+   "Reliable SIP setup functionality Expected to invest in SIP smoothly but unable to do so "
+  ],
+  [
+   "ADV",
+   "mutual fund investing without forced demat account creation Expected ability to invest in mutual funds without mandatory demat accounts "
+  ],
+  [
+   "ADV",
+   "add sip on hold function Lacks pause feature and category best funds view "
+  ],
+  [
+   "ADV",
+   "separate mutual fund investing without mandatory Demat account opening Wanted to invest in mutual funds without opening a Demat account "
+  ],
+  [
+   "ADV",
+   "Find option to invest in Flexi SIP Expected to find Flexi SIP option easily. "
+  ],
+  [
+   "ADV",
+   "invest in mutual funds without opening demat account demat account mandatory for mutual funds "
+  ],
+  [
+   "ADV",
+   "invest in existing external folios without creating new ones wants to use existing folios "
+  ],
+  [
+   "ADV",
+   "transparent and low-cost way to invest in international indices high fees and poor conversion rates on other platforms "
+  ],
+  [
+   "ADV",
+   "optimal and safe way to invest in international ETFs  "
+  ],
+  [
+   "FUND",
+   "Retail-friendly low NAV ETF products Platform lacks low NAV Nifty 50 ETF options ETF accessibility and pricing"
+  ],
+  [
+   "FUND",
+   " midcap performance vs index "
+  ],
+  [
+   "ADV",
+   "guidance on how to invest in index funds  "
+  ],
+  [
+   "FUND",
+   "Insights on quant funds  "
+  ],
+  [
+   "FUND",
+   "explanation of flexi cap funds  "
+  ]
+ ],
+ "manual_review": {
+  "reviewed": 42,
+  "true_violations": 0,
+  "date": "2026-10-29",
+  "finding": "All 42 regex flags restate the user's own request (e.g. 'invest in direct plans', 'invest without demat'). No AI-written field recommends or endorses a specific fund/stock or gives investment advice. 8 mention fund CATEGORIES (Nifty 50, small cap, flexi cap), not schemes.",
+  "category_mentions_not_schemes": [
+   0,
+   12,
+   18,
+   19,
+   37,
+   38,
+   40,
+   41
+  ],
+  "users_asking_for_advice": [
+   10,
+   17,
+   18,
+   39
+  ],
+  "correction_logged": "Regex guardrail check rejected: substring matching flagged 'uti' inside 'execution'/'resolution'; fixed with word boundaries; advice regex over-matches neutral 'invest in' -> human review is the arbiter."
+ }
+}

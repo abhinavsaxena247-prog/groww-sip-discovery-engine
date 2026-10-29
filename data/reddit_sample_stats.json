@@ -1,0 +1,31 @@
+{
+ "collected": 132264,
+ "after_personal_sip_filter": 15550,
+ "sample": 15550,
+ "strata": {
+  "r/mutualfunds|post": {
+   "pool": 10285,
+   "sampled": 10285
+  },
+  "r/IndiaInvestments|post": {
+   "pool": 397,
+   "sampled": 397
+  },
+  "r/personalfinanceindia|post": {
+   "pool": 3251,
+   "sampled": 3251
+  },
+  "r/personalfinanceindia|comment": {
+   "pool": 783,
+   "sampled": 783
+  },
+  "r/IndiaInvestments|comment": {
+   "pool": 117,
+   "sampled": 117
+  },
+  "r/mutualfunds|comment": {
+   "pool": 717,
+   "sampled": 717
+  }
+ }
+}
