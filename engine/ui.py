@@ -1,23 +1,37 @@
 """Shared look for every page: Groww-inspired palette (independent concept, not a Groww product)."""
 import streamlit as st
 
-GREEN, GREEN_DARK, BLUE, INK, MUTED, SURFACE, LINE, DRIFT = "#04B488", "#027F5F", "#5669FF", "#2C2E3A", "#5F6373", "#F2F5F7", "#DDE3E8", "#A3A8B4"
+GREEN, GREEN_DARK, BLUE, INK, MUTED, SURFACE, LINE, DRIFT = "#04B488", "#00875F", "#5367FF", "#44475B", "#6B6E80", "#F6F7F9", "#E7E8EC", "#A3A8B4"
 NOTICE = ("Independent student research for a NextLeap course. Not affiliated with Groww. Not investment advice: this engine describes what "
           "investors wrote in public comments and never recommends a fund, stock or action.")
 
 CSS = f"""
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-.block-container {{ padding-top: 2rem; max-width: 1100px; }}
-h1, h2, h3 {{ color: {INK}; letter-spacing: -0.01em; }}
-.nl-notice {{ background: {SURFACE}; border-radius: 10px; padding: 8px 12px; font-size: 0.85rem; color: {MUTED}; }}
-.nl-chip {{ display: inline-block; font-size: 0.78rem; padding: 2px 9px; margin: 2px 4px 2px 0; border-radius: 99px; background: #E9EEF1; color: {INK}; }}
-.nl-chip.ok {{ background: #E3F6F0; color: {GREEN_DARK}; }}
-.nl-chip.no {{ background: #ECEEFF; color: #3D4FD6; }}
-.nl-quote {{ border-left: 3px solid {GREEN}; background: {SURFACE}; padding: 8px 12px; border-radius: 0 8px 8px 0; margin: 6px 0; }}
-.nl-quote .meta {{ font-size: 0.8rem; color: {MUTED}; }}
-.nl-big {{ font-size: 2rem; font-weight: 800; color: {INK}; line-height: 1.1; }}
-.nl-card {{ border: 1px solid {LINE}; border-radius: 12px; padding: 14px 16px; height: 100%; }}
-.nl-card .ask {{ font-size: 0.85rem; color: {MUTED}; font-weight: 600; }}
+html, body, p, li, h1, h2, h3, h4, label, input, textarea, button, .stMarkdown, [data-testid="stSidebarNav"] span:not([data-testid="stIconMaterial"]), [data-testid="stMetricValue"], [data-testid="stCaptionContainer"] {{ font-family: "Inter", "GrowwSans", system-ui, sans-serif; }}
+[data-testid="stIconMaterial"] {{ font-family: "Material Symbols Rounded" !important; }}
+[data-testid="stDecoration"] {{ display: none; }}
+.block-container {{ padding-top: 1.6rem; max-width: 1100px; }}
+h1, h2, h3 {{ color: {INK} !important; letter-spacing: -0.015em; }}
+h1 {{ font-weight: 600 !important; font-size: 2.1rem !important; line-height: 1.2 !important; }}
+h2 {{ font-weight: 600 !important; font-size: 1.45rem !important; }}
+h3 {{ font-weight: 600 !important; }}
+p, li {{ color: {INK}; }}
+.stButton button {{ border-radius: 8px; border: 1px solid {LINE}; color: {INK}; font-weight: 500; background: #fff; }}
+.stButton button:hover {{ border-color: {GREEN}; color: {GREEN_DARK}; }}
+[data-testid="stSidebar"] {{ background: {SURFACE}; border-right: 1px solid {LINE}; }}
+[data-testid="stSidebarNav"] a span {{ color: {INK}; font-weight: 500; }}
+[data-testid="stChatMessage"] {{ border-radius: 12px; }}
+.nl-brand {{ display: flex; align-items: center; gap: 10px; font-weight: 600; color: {INK}; margin-bottom: 6px; }}
+.nl-brand i {{ width: 12px; height: 12px; border-radius: 50%; background: {GREEN}; display: inline-block; }}
+.nl-notice {{ background: {SURFACE}; border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; color: {MUTED}; }}
+.nl-chip {{ display: inline-block; font-size: 0.76rem; padding: 2px 10px; margin: 2px 4px 2px 0; border-radius: 99px; background: #EEF0F3; color: {INK}; }}
+.nl-chip.ok {{ background: #E5F7F1; color: {GREEN_DARK}; }}
+.nl-chip.no {{ background: #EEF0FF; color: #3F4FD9; }}
+.nl-quote {{ border-left: 3px solid {GREEN}; background: {SURFACE}; padding: 8px 12px; border-radius: 0 8px 8px 0; margin: 6px 0; color: {INK}; }}
+.nl-quote .meta {{ font-size: 0.78rem; color: {MUTED}; }}
+.nl-quote a {{ color: {GREEN_DARK}; }}
 </style>
 """
 
@@ -28,7 +42,7 @@ def page(title, icon="🔎"):
     except Exception:
         pass   # already set by the app entry point
     st.markdown(CSS, unsafe_allow_html=True)
-    st.markdown(f"<div class='nl-notice'>{NOTICE}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='nl-brand'><i></i>NL-Groww Discovery Engine</div><div class='nl-notice'>{NOTICE}</div>", unsafe_allow_html=True)
 
 
 def chips(checks):

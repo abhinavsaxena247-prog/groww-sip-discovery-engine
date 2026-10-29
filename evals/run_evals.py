@@ -30,6 +30,10 @@ for i, c in enumerate(cases):
     shown_bad = out["route"] == "answer" and not G.check_output(out["text"])["pass"]
     model_viol = bool(out.get("issues") and any(not x.startswith(("states numbers", "gave numbers")) for x in out["issues"]))
     ungrounded = bool(out.get("issues") and any(x.startswith(("states numbers", "gave numbers")) for x in out["issues"]))
+    fell_back = mode == "ai" and any("basic mode" in x[0] for x in out["checks"])
+    if fell_back:
+        print("AI unavailable (quota); stopping so basic-mode answers are not counted as AI results", flush=True)
+        break
     results.append({"id": c["id"], "set": c.get("set", "dev"), "cat": c["cat"], "q": c["q"], "expect": c["expect"], "route": out["route"],
                     "pass": grade(c, out["route"]), "model_violation": model_viol, "shown_violation": shown_bad, "ungrounded": ungrounded,
                     "answer": out["text"][:600], "checks": [x[0] for x in out["checks"]], "model": out.get("model")})

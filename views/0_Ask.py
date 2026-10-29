@@ -41,7 +41,7 @@ STARTERS = ["Why do first-time investors stop their SIPs?", "What goes wrong whe
 
 
 def render(m):
-    with st.chat_message(m["role"], avatar="🧑" if m["role"] == "user" else "🔎"):
+    with st.chat_message(m["role"], avatar=":material/person:" if m["role"] == "user" else ":material/query_stats:"):
         if m.get("masked"):
             st.caption(m["text"])
             return
@@ -64,7 +64,7 @@ for m in st.session_state.msgs:
     render(m)
 
 if not st.session_state.msgs:
-    with st.chat_message("assistant", avatar="🔎"):
+    with st.chat_message("assistant", avatar=":material/query_stats:"):
         st.write(P.greeting())
 
 cols = st.columns(3)
