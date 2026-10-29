@@ -12,7 +12,7 @@ CSS = f"""
 html, body, p, li, h1, h2, h3, h4, label, input, textarea, button, .stMarkdown, [data-testid="stSidebarNav"] span:not([data-testid="stIconMaterial"]), [data-testid="stMetricValue"], [data-testid="stCaptionContainer"] {{ font-family: "Inter", "GrowwSans", system-ui, sans-serif; }}
 [data-testid="stIconMaterial"] {{ font-family: "Material Symbols Rounded" !important; }}
 [data-testid="stDecoration"] {{ display: none; }}
-.block-container {{ padding-top: 1.6rem; max-width: 1100px; }}
+.block-container {{ padding-top: 3rem; max-width: 1100px; }}
 h1, h2, h3 {{ color: {INK} !important; letter-spacing: -0.015em; }}
 h1 {{ font-weight: 600 !important; font-size: 2.1rem !important; line-height: 1.2 !important; }}
 h2 {{ font-weight: 600 !important; font-size: 1.45rem !important; }}
@@ -32,6 +32,22 @@ p, li {{ color: {INK}; }}
 .nl-quote {{ border-left: 3px solid {GREEN}; background: {SURFACE}; padding: 8px 12px; border-radius: 0 8px 8px 0; margin: 6px 0; color: {INK}; }}
 .nl-quote .meta {{ font-size: 0.78rem; color: {MUTED}; }}
 .nl-quote a {{ color: {GREEN_DARK}; }}
+/* Groww-style accents: green brand bar, green outline buttons, green active nav, green focus */
+.nl-bar {{ display:flex; align-items:center; justify-content:space-between; background:#fff; border:1px solid {LINE}; border-top:4px solid {GREEN};
+          border-radius:10px; padding:10px 16px; margin-bottom:10px; }}
+.nl-bar .logo {{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.05rem; color:{INK}; }}
+.nl-bar .logo b {{ width:28px; height:28px; border-radius:50%; background:{GREEN}; display:inline-block; }}
+.nl-bar .tag {{ font-size:0.76rem; color:{GREEN_DARK}; background:#E5F7F1; border-radius:99px; padding:3px 10px; font-weight:500; }}
+.nl-notice {{ background:#F0FAF6 !important; border-left:3px solid {GREEN}; color:{INK} !important; }}
+.stButton button {{ border:1px solid {GREEN} !important; color:{GREEN_DARK} !important; background:#fff !important; }}
+.stButton button:hover {{ background:#E5F7F1 !important; }}
+.stButton button[kind="primary"] {{ background:{GREEN} !important; color:#fff !important; }}
+[data-testid="stSidebarNav"] a[aria-current="page"], [data-testid="stSidebarNavLink"][aria-current="page"] {{ background:#E5F7F1 !important; }}
+[data-testid="stSidebarNav"] a[aria-current="page"] span {{ color:{GREEN_DARK} !important; font-weight:600; }}
+[data-testid="stChatInput"] > div {{ border:1px solid {GREEN} !important; border-radius:10px; }}
+[data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {{ color:{GREEN_DARK} !important; }}
+[data-testid="stMetricValue"] {{ color:{GREEN_DARK}; }}
+.stTabs [aria-selected="true"] {{ color:{GREEN_DARK} !important; }}
 </style>
 """
 
@@ -42,7 +58,8 @@ def page(title, icon="🔎"):
     except Exception:
         pass   # already set by the app entry point
     st.markdown(CSS, unsafe_allow_html=True)
-    st.markdown(f"<div class='nl-brand'><i></i>NL-Groww Discovery Engine</div><div class='nl-notice'>{NOTICE}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='nl-bar'><div class='logo'><b></b>NL-Groww Discovery Engine</div><span class='tag'>Independent concept · Not investment advice</span></div>"
+                f"<div class='nl-notice'>{NOTICE}</div>", unsafe_allow_html=True)
 
 
 def chips(checks):
