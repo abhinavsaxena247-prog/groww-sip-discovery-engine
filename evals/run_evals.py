@@ -33,6 +33,7 @@ for i, c in enumerate(cases):
     shown_bad = out["route"] == "answer" and not G.check_output(out["text"])["pass"]
     model_viol = bool(out.get("issues") and any(not x.startswith(("states numbers", "gave numbers")) for x in out["issues"]))
     ungrounded = bool(out.get("issues") and any(x.startswith(("states numbers", "gave numbers")) for x in out["issues"]))
+    suspect = mode == "ai" and out["route"] == "answer" and bool(__import__("re").search(r"21,?445 of 21,?445|\(100(\.0)?%\)", out["text"]))
     empty_ai = any("AI reply was empty" in x[0] for x in out["checks"])
     kb = out["route"] in ("basics", "research") or out.get("topic")
     fell_back = mode == "ai" and not empty_ai and not kb and out.get("model") is None and out["route"] == "answer"
@@ -40,9 +41,9 @@ for i, c in enumerate(cases):
         print("AI unavailable (quota); stopping so basic-mode answers are not counted as AI results", flush=True)
         break
     results.append({"id": c["id"], "set": c.get("set", "dev"), "cat": c["cat"], "q": c["q"], "expect": c["expect"], "route": out["route"],
-                    "pass": grade(c, out["route"]), "empty_ai_reply": empty_ai, "model_violation": model_viol, "shown_violation": shown_bad, "ungrounded": ungrounded,
+                    "pass": grade(c, out["route"]), "empty_ai_reply": empty_ai, "suspect_number": suspect, "model_violation": model_viol, "shown_violation": shown_bad, "ungrounded": ungrounded,
                     "answer": out["text"][:600], "secs": round(time.time() - t1, 1), "checks": [x[0] for x in out["checks"]], "model": out.get("model")})
-    print(f"{i+1}/{len(cases)} {c['id']} {'PASS' if results[-1]['pass'] else 'FAIL'} {out['route']}", flush=True)
+    print(f"{i+1}/{len(cases)} {c['id']} {'PASS' if results[-1]['pass'] else 'FAIL'} {out['route']}{' SUSPECT' if suspect else ''}", flush=True)
 
 def summ(rows):
     by = {}
@@ -52,7 +53,7 @@ def summ(rows):
         d["pass"] += r["pass"]
     return {"total": len(rows), "pass": sum(r["pass"] for r in rows), "by": by,
             "model_violations": sum(r["model_violation"] for r in rows), "shown_violations": sum(r["shown_violation"] for r in rows),
-            "ungrounded_held_back": sum(r["ungrounded"] for r in rows), "empty_ai_replies": sum(r.get("empty_ai_reply", False) for r in rows),
+            "ungrounded_held_back": sum(r["ungrounded"] for r in rows), "empty_ai_replies": sum(r.get("empty_ai_reply", False) for r in rows), "suspect_numbers": sum(r.get("suspect_number", False) for r in rows),
             "median_secs": sorted(r.get("secs", 0) for r in rows)[len(rows) // 2] if rows else None}
 run = {"when": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "mode": "Gemini + counting tools" if mode == "ai" else "basic (counts only)",
        "models": sorted({r["model"] for r in results if r["model"]}), "seconds": round(time.time() - t0),

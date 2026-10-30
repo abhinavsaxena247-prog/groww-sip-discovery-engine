@@ -65,10 +65,39 @@ def load_json(name):
         return json.load(f)
 
 
+EXTRA_KEYS = {"dropoff_only", "year_min", "year_max", "min_severity", "keyword"}
+KEY_FIX = {"driver": "driver_any", "drivers": "driver_any", "event": "event_any", "events": "event_any", "check": "check_any", "checks": "check_any",
+           "outside": "outside_any", "sources": "source", "apps": "app", "first_time_investor": "first_time", "dropoff_type": "drop", "lifecycle_stage": "stage",
+           "year": "year_min"}
+
+
+def _norm_filters(f):
+    """Map near-miss filter names, reject unknown ones, and normalise value spelling, so a wrong filter never silently counts everything."""
+    C = corpus()
+    out = {}
+    for k, v in (f or {}).items():
+        k2 = KEY_FIX.get(k, k)
+        if k2 not in FIELD_ALIASES and k2 not in EXTRA_KEYS:
+            raise ValueError(f"Unknown filter '{k}'. Valid filters: {', '.join(list(FIELD_ALIASES) + sorted(EXTRA_KEYS))}")
+        col = FIELD_ALIASES.get(k2)
+        if col and col not in ("ft", "app") and v not in (None, "", []):
+            fixed = []
+            for x in (v if isinstance(v, list) else [v]):
+                s = str(x).strip().lower().replace(" ", "_").replace("-", "_")
+                if s not in C["dict"][col]:
+                    raise ValueError(f"Unknown value '{x}' for filter '{k2}'. Valid values: {', '.join(v2 for v2 in C['dict'][col] if v2)}")
+                fixed.append(s)
+            v = fixed
+        if k == "year":
+            out["year_max"] = v
+        out[k2] = v
+    return out
+
+
 def _matcher(f):
     C = corpus()
     ci, d = C["ci"], C["dict"]
-    f = f or {}
+    f = _norm_filters(f)
     tests = []
     for k, col in FIELD_ALIASES.items():
         v = f.get(k)
