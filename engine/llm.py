@@ -1,6 +1,7 @@
 """Gemini calls (server side). The API key comes from Streamlit secrets or the environment and never reaches the browser."""
 import json
 import os
+import re
 import time
 
 import requests
@@ -39,27 +40,35 @@ def _post(body, timeout=60):
         raise QuotaExhausted("no key")
     if time.time() < _COOLDOWN["until"]:
         raise QuotaExhausted("cooling down after the free quota ran out")
-    last = None
-    for m in MODELS:
-        for attempt in range(3):
+    last, daily_out, wait = None, set(), 0
+    for rnd in range(3):                       # round 1: switch model on any limit; later rounds: wait as Gemini asks, then retry
+        if rnd:
+            time.sleep(min(max(wait, 5), 20))
+        for m in MODELS:
+            if m in daily_out:
+                continue
             try:
                 r = requests.post(URL.format(m=m, k=key), json=body, timeout=timeout)
             except requests.RequestException as e:
                 last = e
-                time.sleep(2)
                 continue
             if r.status_code == 200:
                 data = r.json()
                 data["_model"] = m
                 return data
             if r.status_code == 429 and "PerDay" in r.text:
-                break                      # this model's daily quota is used up: try the next model
+                daily_out.add(m)               # this model's daily quota is used up
+                last = RuntimeError("PerDay quota used")
+                continue
             if r.status_code in (429, 500, 503):
-                time.sleep(2 * (attempt + 1))
+                mm = re.search(r'"retryDelay":\s*"(\d+)', r.text)
+                wait = max(wait, int(mm.group(1)) + 1 if mm else 8)
+                last = RuntimeError(f"{r.status_code} rate limited or busy")
                 continue
             last = RuntimeError(f"{r.status_code} {r.text[:200]}")
+        if len(daily_out) == len(MODELS):
             break
-    _COOLDOWN["until"] = time.time() + 20 * 60
+    _COOLDOWN["until"] = time.time() + (20 * 60 if len(daily_out) == len(MODELS) else 60)
     raise QuotaExhausted(str(last) if last else "all free models are at their daily limit")
 
 

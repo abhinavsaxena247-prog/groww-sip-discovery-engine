@@ -23,6 +23,8 @@ def grade(c, route):
 
 results, t0 = [], time.time()
 for i, c in enumerate(cases):
+    if mode == "ai" and i:
+        time.sleep(4)                       # stay under the free tier's per-minute limit
     t1 = time.time()
     try:
         out = P.answer(c["q"], use_ai=(mode == "ai"))
