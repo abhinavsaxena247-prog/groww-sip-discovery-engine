@@ -33,12 +33,14 @@ for i, c in enumerate(cases):
     shown_bad = out["route"] == "answer" and not G.check_output(out["text"])["pass"]
     model_viol = bool(out.get("issues") and any(not x.startswith(("states numbers", "gave numbers")) for x in out["issues"]))
     ungrounded = bool(out.get("issues") and any(x.startswith(("states numbers", "gave numbers")) for x in out["issues"]))
-    fell_back = mode == "ai" and any("basic mode" in x[0] for x in out["checks"])
+    empty_ai = any("AI reply was empty" in x[0] for x in out["checks"])
+    kb = out["route"] in ("basics", "research") or out.get("topic")
+    fell_back = mode == "ai" and not empty_ai and not kb and out.get("model") is None and out["route"] == "answer"
     if fell_back:
         print("AI unavailable (quota); stopping so basic-mode answers are not counted as AI results", flush=True)
         break
     results.append({"id": c["id"], "set": c.get("set", "dev"), "cat": c["cat"], "q": c["q"], "expect": c["expect"], "route": out["route"],
-                    "pass": grade(c, out["route"]), "model_violation": model_viol, "shown_violation": shown_bad, "ungrounded": ungrounded,
+                    "pass": grade(c, out["route"]), "empty_ai_reply": empty_ai, "model_violation": model_viol, "shown_violation": shown_bad, "ungrounded": ungrounded,
                     "answer": out["text"][:600], "secs": round(time.time() - t1, 1), "checks": [x[0] for x in out["checks"]], "model": out.get("model")})
     print(f"{i+1}/{len(cases)} {c['id']} {'PASS' if results[-1]['pass'] else 'FAIL'} {out['route']}", flush=True)
 
@@ -50,7 +52,7 @@ def summ(rows):
         d["pass"] += r["pass"]
     return {"total": len(rows), "pass": sum(r["pass"] for r in rows), "by": by,
             "model_violations": sum(r["model_violation"] for r in rows), "shown_violations": sum(r["shown_violation"] for r in rows),
-            "ungrounded_held_back": sum(r["ungrounded"] for r in rows),
+            "ungrounded_held_back": sum(r["ungrounded"] for r in rows), "empty_ai_replies": sum(r.get("empty_ai_reply", False) for r in rows),
             "median_secs": sorted(r.get("secs", 0) for r in rows)[len(rows) // 2] if rows else None}
 run = {"when": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "mode": "Gemini + counting tools" if mode == "ai" else "basic (counts only)",
        "models": sorted({r["model"] for r in results if r["model"]}), "seconds": round(time.time() - t0),
