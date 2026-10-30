@@ -75,11 +75,25 @@ show_run(os.path.join(data_dir, "eval_results_basic.json"), "Basic mode (rule ch
 if not had_ai:
     st.info("The full-pipeline run with the AI intent check and AI-written answers is scheduled for the next free Gemini quota window; results will appear here.")
 
+with st.expander("AI-mode run history (30 Oct): what each run found and what was fixed"):
+    st.markdown(
+        "- **Run 1:** 167 of 169 routed correctly, no unsafe output shown. Found: 9 empty AI replies (answered from counts instead), one answer claiming "
+        "\"21,445 of 21,445 comments\" matched (a missing filter; the number traced to the dataset total, so it was not caught), one over-cautious decline. "
+        "Fixes: re-ask on empty reply, hold back whole-dataset claims, counting tools reject unknown filters, no self-computed numbers.\n"
+        "- **Run 2:** 167 of 169, no unsafe output shown; empty replies down to 2. Found: \"sip vs lumpsum which is better\" answered (neutrally) instead of "
+        "declined; a quote containing a compound swear word. Fixes: advice backstop before the AI, broader swear-word rule.\n"
+        "- **Run 3:** 164 of 169, no unsafe output shown, 0 empty replies; median AI answer time about 10 seconds. All 5 misses were answers the output check "
+        "held back, 4 of them group comparisons where the AI put the measured item inside the group filter (\"203 of 203, 100%\"). Fix: a compare_share tool. "
+        "Re-check of those 5 after the fix: 4 answered correctly, 1 still held back (the AI added numbers itself).\n"
+        "- **Known limitation:** the output check confirms numbers trace to counts but cannot confirm the words around them; one answer described all "
+        "21,445 comments as \"comments about stopping\". Answers are labelled as AI tags on public comments, and the chart shows the counted base.")
+
 st.header("Question bank: SIP basics, the brief's questions and the project")
 st.write("After a user test showed \"what is sip\" got no answer, a second bank was written before building the knowledge layer: SIP basics (minimum amount, "
          "lumpsum or monthly, pausing, missed instalments, tax and more), the brief's discovery questions in different wordings, questions about the method and "
          "deliverables, and advice requests disguised as basics. A fresh held-out set was then written in new wording and run once before any further fix.")
-for name, label in (("bank_v3", "Bank v3 (131 questions; used to build and tune)"), ("bank_v4_holdout_FIRST", "Held-out bank v4, first run (50 questions, before concept matching)"),
+for name, label in (("bank_v3_ai", "Bank v3 with AI on (131 questions)"), ("bank_v4_holdout_ai", "Held-out bank v4 with AI on (50 questions)"),
+                    ("bank_v3", "Bank v3 (131 questions; used to build and tune)"), ("bank_v4_holdout_FIRST", "Held-out bank v4, first run (50 questions, before concept matching)"),
                     ("bank_v4_holdout", "Held-out bank v4, after concept matching (no longer a clean held-out score)")):
     p = os.path.join(D.DATA, f"bank_results_{name}.json")
     if os.path.exists(p):

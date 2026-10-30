@@ -1,0 +1,47 @@
+{
+ "note": "Re-check of the 5 run-3 hold-backs after adding compare_share (30 Oct)",
+ "results": [
+  {
+   "id": "S10",
+   "q": "Is the autopay problem specific to Groww or common across apps?",
+   "route": "answer",
+   "issues": null,
+   "text": "Investors report payment mandate failures across various platforms. Among the comments analyzed, 203 of 3,166 comments for Groww (6.4%) mention payment mandate failures, while 228 of 2,999 comments for other apps (7.6%) mention the same issue. These are AI-tagged observations from public comments and are directional.\n\nInvestors sometimes express frustration with these technical hurdles. One user n",
+   "model": "gemini-3.1-flash-lite"
+  },
+  {
+   "id": "S26",
+   "q": "Is it common for people to chod do their SIP after a few months?",
+   "route": "blocked_output",
+   "issues": [
+    "states numbers not found in the counted data (409, 12.3, 4)"
+   ],
+   "text": "I held this answer back because it failed a quality check (states numbers not found in the counted data (409, 12.3, 4)). Here is the counted data instead.",
+   "model": "gemini-3.1-flash-lite"
+  },
+  {
+   "id": "H04",
+   "q": "Are failed instalments more common in app reviews or on Reddit?",
+   "route": "answer",
+   "issues": null,
+   "text": "Failed instalments are more common in app reviews than on Reddit. Among the comments analyzed, 300 of 6,165 app store reviews (4.9%) mention lapsed or failed payments, compared to 115 of 8,675 Reddit comments (1.3%). These are AI-tagged observations from public discussions and are directional. For guidance on managing SIPs or payment mandates, please refer to resources from AMFI (amfiindia.com) or",
+   "model": "gemini-3.1-flash-lite"
+  },
+  {
+   "id": "H10",
+   "q": "Do YouTube commenters talk about returns differently from Play Store reviewers?",
+   "route": "answer",
+   "issues": null,
+   "text": "YouTube commenters and Play Store reviewers discuss returns differently. Among YouTube commenters, \"Returns, profit or loss\" is the most frequently tagged check, appearing in 293 of 2,854 comments (10.3%). In contrast, Play Store reviewers focus more on \"Portfolio value,\" which appears in 944 of 5,103 comments (18.5%), while \"Returns, profit or loss\" is mentioned in 401 of 5,103 comments (7.9%).\n\n",
+   "model": "gemini-3.1-flash-lite"
+  },
+  {
+   "id": "H40",
+   "q": "Do people say they stopped because the market crashed?",
+   "route": "answer",
+   "issues": null,
+   "text": "In the corpus of public investor comments, 94 of 21,445 comments about stopping or cancelling a SIP (0.4%) mention negative or volatile returns as a driver. These are AI-tagged observations of public sentiment and are directional. For guidance on market volatility and investment decisions, please refer to investor education resources at amfiindia.com or sebi.gov.in, or consult a SEBI-registered in",
+   "model": "gemini-3.1-flash-lite"
+  }
+ ]
+}
