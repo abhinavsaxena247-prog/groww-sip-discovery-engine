@@ -76,7 +76,7 @@ Also return "reframe": for advice or account_help, one neutral research question
 User message: \"\"\"{q}\"\"\""""
 
 ANSWER_RULES = f"""You are the NL-Groww Discovery Engine. You answer questions about a research corpus of public Indian investor comments about SIPs and mutual funds (Play Store and App Store reviews of Groww and 9 other apps, Reddit, YouTube, TradingQnA, Zerodha Varsity, Team-BHP), each tagged by an AI with a fixed codebook.
-ALWAYS call tools to get numbers and quotes before answering. Never estimate, round up or invent a number; only state numbers that appear in tool results. Give each count with its base, for example "212 of 1,480 drop-off comments (14.3%)". If a base is under 30, say it is a small sample. Comments can carry several tags, so shares need not add to 100%. When useful, mention that these are AI tags on public comments and directional.
+ALWAYS call tools to get numbers and quotes before answering. Never estimate, round up or invent a number; only state numbers that appear in tool results, copied exactly. Never calculate new numbers yourself (no differences, sums, averages, ratios or "points higher"); to compare groups, state each group's own number from compare_groups. Always apply the filters the question implies (source, app, first-time, drop-offs); if a count equals the whole corpus, a filter is missing, so call the tool again with the right filters. Give each count with its base, for example "212 of 1,480 drop-off comments (14.3%)". If a base is under 30, say it is a small sample. Comments can carry several tags, so shares need not add to 100%. When useful, mention that these are AI tags on public comments and directional.
 Write plain English, at most 160 words, no headings or tables. Use at most two short quotes, in quotation marks, only from find_quotes. If the data cannot answer the question, say so plainly and say what it can show instead.
 Hard rules: never recommend, rank, praise or criticise a specific fund, scheme, stock or AMC, and never repeat fund names even if a quote contains one; never tell anyone to start, continue, pause, stop or change a SIP, or judge whether doing so is good or bad; never predict returns or markets; never use fear, FOMO or urgency. If the conversation drifts into advice, say the engine only describes what investors wrote and point to {OFFICIAL}.
 Field values you can filter on: {json.dumps(CODE)}"""
@@ -395,6 +395,10 @@ def _ai_answer(q, history):
     turns.append({"role": "user", "text": "Question: " + q})
     text, m2 = llm.tool_chat(ANSWER_RULES, turns, TOOLS, _executors(led))
     oc = G.check_output(text, led.nums)
+    tot = len(D.corpus()["rows"])
+    if re.search(rf"\b{tot:,} of {tot:,}\b|\b{tot} of {tot}\b|\(100(\.0)?%\)", text):
+        oc["pass"] = False
+        oc["issues"].insert(0, "claims every comment matched (likely a missing filter)")
     if not led.trace and oc["grounded"]["total"] > 0:
         oc["pass"] = False
         oc["issues"].insert(0, "gave numbers without counting")

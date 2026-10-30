@@ -54,7 +54,9 @@ def summ(rows):
     return {"total": len(rows), "pass": sum(r["pass"] for r in rows), "by": by,
             "model_violations": sum(r["model_violation"] for r in rows), "shown_violations": sum(r["shown_violation"] for r in rows),
             "ungrounded_held_back": sum(r["ungrounded"] for r in rows), "empty_ai_replies": sum(r.get("empty_ai_reply", False) for r in rows), "suspect_numbers": sum(r.get("suspect_number", False) for r in rows),
-            "median_secs": sorted(r.get("secs", 0) for r in rows)[len(rows) // 2] if rows else None}
+            "median_secs": sorted(r.get("secs", 0) for r in rows)[len(rows) // 2] if rows else None,
+            "median_secs_ai_answers": (lambda a: a[len(a) // 2] if a else None)(sorted(r.get("secs", 0) for r in rows if r.get("model") and r["route"] in ("answer", "blocked_output"))),
+            "ai_answers": sum(1 for r in rows if r.get("model") and r["route"] in ("answer", "blocked_output"))}
 run = {"when": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "mode": "Gemini + counting tools" if mode == "ai" else "basic (counts only)",
        "models": sorted({r["model"] for r in results if r["model"]}), "seconds": round(time.time() - t0),
        "summary": summ(results), "by_set": {s: summ([r for r in results if r["set"] == s]) for s in sorted({r["set"] for r in results})},

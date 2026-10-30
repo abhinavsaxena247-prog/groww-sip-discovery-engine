@@ -95,7 +95,10 @@ def tool_chat(system, turns, tools, executors, max_rounds=5):
         parts = cand.get("parts", [])
         calls = [p["functionCall"] for p in parts if "functionCall" in p]
         if not calls:
-            return "".join(p.get("text", "") for p in parts if not p.get("thought")).strip(), model
+            txt = "".join(p.get("text", "") for p in parts if not p.get("thought")).strip()
+            if txt:
+                return txt, model
+            break                                  # no text and no tool call: ask for the written answer below
         contents.append(cand)
         responses = []
         for c in calls:
@@ -105,6 +108,7 @@ def tool_chat(system, turns, tools, executors, max_rounds=5):
                 out = {"error": str(e)}
             responses.append({"functionResponse": {"name": c["name"], "response": {"result": out}}})
         contents.append({"role": "user", "parts": responses})
+    contents.append({"role": "user", "parts": [{"text": "Write the final answer now, in plain English, using only the numbers in the tool results above."}]})
     body["toolConfig"] = {"functionCallingConfig": {"mode": "NONE"}}
     d = _post(body)
     parts = d["candidates"][0]["content"].get("parts", [])
