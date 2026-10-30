@@ -23,6 +23,7 @@ def grade(c, route):
 
 results, t0 = [], time.time()
 for i, c in enumerate(cases):
+    t1 = time.time()
     try:
         out = P.answer(c["q"], use_ai=(mode == "ai"))
     except Exception as e:
@@ -36,7 +37,7 @@ for i, c in enumerate(cases):
         break
     results.append({"id": c["id"], "set": c.get("set", "dev"), "cat": c["cat"], "q": c["q"], "expect": c["expect"], "route": out["route"],
                     "pass": grade(c, out["route"]), "model_violation": model_viol, "shown_violation": shown_bad, "ungrounded": ungrounded,
-                    "answer": out["text"][:600], "checks": [x[0] for x in out["checks"]], "model": out.get("model")})
+                    "answer": out["text"][:600], "secs": round(time.time() - t1, 1), "checks": [x[0] for x in out["checks"]], "model": out.get("model")})
     print(f"{i+1}/{len(cases)} {c['id']} {'PASS' if results[-1]['pass'] else 'FAIL'} {out['route']}", flush=True)
 
 def summ(rows):
@@ -47,7 +48,8 @@ def summ(rows):
         d["pass"] += r["pass"]
     return {"total": len(rows), "pass": sum(r["pass"] for r in rows), "by": by,
             "model_violations": sum(r["model_violation"] for r in rows), "shown_violations": sum(r["shown_violation"] for r in rows),
-            "ungrounded_held_back": sum(r["ungrounded"] for r in rows)}
+            "ungrounded_held_back": sum(r["ungrounded"] for r in rows),
+            "median_secs": sorted(r.get("secs", 0) for r in rows)[len(rows) // 2] if rows else None}
 run = {"when": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "mode": "Gemini + counting tools" if mode == "ai" else "basic (counts only)",
        "models": sorted({r["model"] for r in results if r["model"]}), "seconds": round(time.time() - t0),
        "summary": summ(results), "by_set": {s: summ([r for r in results if r["set"] == s]) for s in sorted({r["set"] for r in results})},
