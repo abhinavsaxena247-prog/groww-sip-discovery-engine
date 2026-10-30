@@ -212,6 +212,16 @@ def compare(field, a, b, led, la="group_a", lb="group_b"):
     return r
 
 
+def compare_share(target, a, b, led, la="group_a", lb="group_b"):
+    """How common the target is within each group: matching / group size, for two groups."""
+    out = {}
+    for lab_, g in ((la or "group_a", a), (lb or "group_b", b)):
+        r = count(dict(g, **target), led, g)
+        out[lab_] = {"group_comments": r["base_comments"], "matching": r["matching_within_base"], "pct_of_group": r["pct_of_base"]}
+    led.trace.append("Compared how common it is in two groups")
+    return out
+
+
 def trend(f, led):
     C = corpus()
     yi = C["ci"]["year"]

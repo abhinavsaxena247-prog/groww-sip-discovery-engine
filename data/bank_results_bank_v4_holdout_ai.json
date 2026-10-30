@@ -48,10 +48,10 @@
    "q": "should money go in all at once or in parts, what are the options",
    "expect": "basics",
    "topic": "sip_vs_lumpsum",
-   "route": "decline_advice",
+   "route": "answer",
    "got_topic": null,
    "pass": false,
-   "text": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser."
+   "text": "I cannot provide advice on whether to invest money all at once or in parts. My role is to describe what public investors have written about their experiences with mutual funds and SIPs.\n\nInvestors often discuss different approaches to investing in their comments. Some mention using SIPs to invest in"
   },
   {
    "q": "SIP or one time investment, what's the difference",
@@ -429,7 +429,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Upstox users frequently report technical issues and service concerns. Among 102 comments tagged with driver issues, 56 (54.9%) mention \"app_friction_or_bug,\" while 22 (21.6%) cite \"trust_or_support_failure.\" Additionally, 17 (16.7%) express frustration regarding \"missing_control_pause_skip_modify,\" "
+   "text": "Upstox users frequently report issues related to app performance and support. Among 102 comments analyzed, the most common complaints involve app friction or bugs, mentioned in 56 comments (54.9%). Trust or support failures were noted in 22 comments (21.6%), and difficulties with modifying or contro"
   },
   {
    "q": "what do youtube comments say about stopping sips",
@@ -438,7 +438,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "In the research corpus, 153 of 21,445 YouTube comments (0.7%) discuss stopping or cancelling SIPs. Investors cite various reasons for this action, including \"negative or volatile returns\" (20 of 153, 13.1%) and \"advice from others or media\" (20 of 153, 13.1%). Others mention \"missing control/pause/s"
+   "text": "In the research corpus, there are 153 comments on YouTube mentioning stopping or cancelling a SIP out of 21,445 total relevant comments (0.7%). These AI-tagged comments indicate that investors stop SIPs for various reasons. The most frequently cited drivers include \"other\" reasons (21 of 153, 13.7%)"
   },
   {
    "q": "how many first time investors mention failed payments",
@@ -447,7 +447,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Among the research corpus, 59 of 21,445 comments (0.3%) from first-time investors mention payment mandate failures. These are AI-tagged observations from public forums and app reviews and are directional. For guidance on managing SIP payments or understanding mandate processes, please refer to resou"
+   "text": "Among the public comments analyzed, 59 of 21,445 relevant comments (0.3%) were from first-time investors who mentioned payment mandate failures. These tags are applied by an AI to public comments and are directional. For guidance on managing SIP payments or understanding mandate processes, please re"
   },
   {
    "q": "is it better to invest monthly or lumpsum for me",

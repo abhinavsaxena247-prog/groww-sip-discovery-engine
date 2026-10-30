@@ -1,7 +1,7 @@
 {
  "name": "bank_v3",
  "mode": "ai",
- "pass": 129,
+ "pass": 131,
  "total": 131,
  "by": {
   "basics": [
@@ -13,7 +13,7 @@
    50
   ],
   "answer": [
-   7,
+   9,
    9
   ],
   "decline_advice": [
@@ -1005,16 +1005,16 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Among first-time investors, 110 of 21,445 drop-off comments (0.5%) specifically mention stopping or cancelling a SIP. When these investors explain their reasons, the most frequent driver is app friction or bugs, cited in 27 of 110 comments (24.5%). Other common reasons include trust or support failu"
+   "text": "First-time investors who stop their SIPs often cite technical issues. Among 110 relevant comments from first-time investors who stopped their SIPs, 27 (24.5%) mentioned app friction or bugs. Other reasons include trust or support failures (13 of 110, 11.8%) and returns falling below expectations (13"
   },
   {
    "q": "What goes wrong when Groww SIP payments fail?",
    "expect": "answer",
    "topic": null,
-   "route": "concept",
+   "route": "answer",
    "got_topic": null,
-   "pass": false,
-   "text": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed instalment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions"
+   "pass": true,
+   "text": "Investors discussing SIP payment failures on Groww often report issues with the auto-pay mandate. Among 203 comments tagged with payment mandate failure on the app, 119 (58.6%) specifically mention the payment lapsing or failing. Some users express frustration, noting, \"SIP auto pay fails everytime "
   },
   {
    "q": "How do Reddit and Play Store differ on why people stop?",
@@ -1023,7 +1023,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Investors on Reddit and the Play Store cite different reasons for stopping their SIPs. Play Store reviews are heavily driven by technical and service issues: 475 of 1,015 drop-off comments (46.8%) mention \"trust_or_support_failure\" and 443 (43.6%) cite \"app_friction_or_bug\".\n\nIn contrast, Reddit dis"
+   "text": "Investors on Reddit and the Play Store cite different reasons for stopping SIPs. Play Store reviews are heavily driven by technical and service issues: 475 of 1,015 comments (46.8%) mention \"trust or support failure,\" and 443 of 1,015 (43.6%) cite \"app bug or friction.\"\n\nIn contrast, Reddit discussi"
   },
   {
    "q": "Do people ask to pause instead of cancel?",
@@ -1032,7 +1032,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Investors sometimes express frustration regarding the lack of specific controls for managing their SIPs. In the research corpus, 151 of 21,445 relevant comments (0.7%) mention both the desire to pause or stop SIPs and difficulties with these controls.\n\nInvestors often look for flexibility, with some"
+   "text": "Investors do discuss pausing SIPs, though it is less common than stopping or cancelling them. Among 3,336 comments describing SIP drop-offs (skipping, pausing, reducing, stopping, or lapsing), 185 comments (5.5%) mention pausing, while 1,499 comments (44.9%) describe stopping or cancelling.\n\nSome in"
   },
   {
    "q": "what do people say about Groww customer support",
@@ -1041,16 +1041,16 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Investors discussing Groww's customer support have raised concerns regarding accessibility and responsiveness. In the research corpus, 753 of 21,445 comments (3.5%) tagged with \"trust_or_support_failure\" relate to Groww.\n\nUsers frequently mention difficulties in reaching assistance, with one reviewe"
+   "text": "In the research corpus, 753 of 3,166 Groww comments with a driver tag (23.8%) cite trust or support failure. Additionally, 547 of 21,445 total relevant comments (2.6%) mention investors reaching out to customer support. \n\nThe volume of comments regarding trust or support failure for Groww reached 29"
   },
   {
    "q": "how often do first time investors mention xirr",
    "expect": "answer",
    "topic": null,
-   "route": "blocked_output",
+   "route": "answer",
    "got_topic": null,
-   "pass": false,
-   "text": "I held this answer back because it failed a quality check (states numbers not found in the counted data (0.7)). Here is the counted data instead."
+   "pass": true,
+   "text": "First-time investors mention XIRR in 39 of 5,789 comments (0.7%). These are AI tags on public comments and are directional. Investors often discuss their portfolio performance and tracking tools, though specific mentions of XIRR by those identifying as new to investing remain infrequent in the data."
   },
   {
    "q": "log SIP kyun band karte hain?",
@@ -1068,7 +1068,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Zerodha Coin users frequently report technical issues. Among 1,232 comments, 539 mention app friction or bugs (43.8%), 150 cite trust or support failures (12.2%), and 142 note a lack of control to pause, skip, or modify investments (11.5%). Other reported issues include payment or mandate failures ("
+   "text": "Zerodha Coin users frequently report issues related to app functionality. Among 1,232 comments, 539 (43.8%) mention app friction or bugs. Other common concerns include trust or support failures (150 of 1,232, 12.2%) and difficulties in managing SIPs, such as missing controls to pause, skip, or modif"
   },
   {
    "q": "how have complaints about failed payments changed over time",
@@ -1077,7 +1077,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Public comments tagged with payment mandate failures show varying trends over time. In 2018, there were 19 of 563 relevant comments (3.4%), followed by 30 of 486 (6.2%) in 2019, 34 of 934 (3.6%) in 2020, 62 of 1,291 (4.8%) in 2021, 72 of 964 (7.5%) in 2022, 65 of 1,091 (6.0%) in 2023, 170 of 5,709 ("
+   "text": "Public investor comments regarding payment mandate failures show varying trends over time. In 2018, there were 19 of 563 relevant comments (3.4%), followed by 30 of 486 (6.2%) in 2019, 34 of 934 (3.6%) in 2020, 62 of 1,291 (4.8%) in 2021, 72 of 964 (7.5%) in 2022, 65 of 1,091 (6.0%) in 2023, 170 of "
   },
   {
    "q": "show me quotes about mandate failures",
@@ -1086,7 +1086,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Investors have reported various challenges regarding payment mandates. Some users expressed frustration when automated payments failed or were not reflected correctly, with one noting, \"My sip was deducted on exact date through auto pay on December 1 and 2. Now it shows unsuccessful.\" Others encount"
+   "text": "Investors have shared 667 comments regarding payment mandate failures, representing 3.1% of the 21,445 relevant comments in our corpus. These reports often involve issues with autopay functionality, unexpected debits, or failed transactions.\n\nCommon experiences include:\n* \"I paused the daily SIP but"
   },
   {
    "q": "What is the minimum SIP in the best fund?",
