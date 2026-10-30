@@ -27,7 +27,7 @@ ABUSE = [
     re.compile('\\bf+k\\s?(off|u|you)\\b'),
     re.compile('\\bmotherf\\w*'),
     re.compile('\\bmofo\\b'),
-    re.compile('\\bsh[i1]t+(ty|head)?\\b'),
+    re.compile('\\bsh[i1]t+\\w*'),
     re.compile('\\bbull\\s?sh[i1]t\\b'),
     re.compile('\\bbitch\\w*'),
     re.compile('\\bbastard\\w*'),

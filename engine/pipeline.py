@@ -66,6 +66,7 @@ Classify the user's message into exactly one intent:
 - "research": asks what investors say, do, feel, check, experience or need; reasons, patterns, comparisons across apps, sources, segments or time; quotes; questions about the data or method; product or research questions about the findings (for example what a product team should look at). Hinglish counts.
 - "concept": asks only what a general investing term or product means (for example "what is a demat account", "how does an index fund work"), not what investors say about it.
 - A personal story followed by a question about what OTHER investors say, do or experience (for example "I stopped my SIP after losing my job, do others say the same?") is "research", not advice: answer what others wrote.
+- Questions about what investors experience, complain about or what goes wrong (for example "what goes wrong when Groww SIP payments fail") are "research", even if they mention a SIP rule.
 - Questions about how SIPs and mutual funds work, their rules and options, or what is allowed (for example "can I pause my SIP", "is there a penalty for stopping", "what happens if a payment fails", "minimum SIP amount") are "concept", NOT advice.
 - "advice": asks what THEY should do with their money: which fund, app or amount; whether a fund is good or safe; whether to start, stop, pause, continue or switch; whether stopping is good or bad; return or market predictions; tax or allocation guidance.
 - "account_help": wants help with their own account, transaction, mandate or SIP.
@@ -99,8 +100,8 @@ FILTER = {"type": "OBJECT", "description": "All optional, combined with AND; a l
     "keyword": {"type": "STRING", "description": "words searched in the evidence quote and unmet-need phrase; separate alternatives with |"}}}
 FIELD_DESC = "one of: source, app, stage, event_any, drop, driver_any, check_any, outside_any, income, age, influencer"
 TOOLS = [
-    {"name": "count_comments", "description": "Count relevant tagged comments matching the filters. Returns matching_comments, total_relevant and share_pct.",
-     "parameters": {"type": "OBJECT", "properties": {"filters": FILTER}}},
+    {"name": "count_comments", "description": "Count relevant tagged comments matching the filters. Returns matching_comments, total_relevant and share_pct. To get a share within a group (for example among first-time investors, or among Reddit comments), also pass base_filters for that group; the result then adds base_comments, matching_within_base and pct_of_base.",
+     "parameters": {"type": "OBJECT", "properties": {"filters": FILTER, "base_filters": FILTER}}},
     {"name": "breakdown", "description": "Count each value of one field among comments matching the filters. Returns base_comments, small_sample and top values with n and pct_of_base.",
      "parameters": {"type": "OBJECT", "properties": {"field": {"type": "STRING", "description": FIELD_DESC}, "filters": FILTER, "top": {"type": "INTEGER"}}, "required": ["field"]}},
     {"name": "compare_groups", "description": "Break down one field for two groups side by side (for example first-time vs other investors, Groww vs other apps, Reddit vs Play Store).",
@@ -115,7 +116,7 @@ TOOLS = [
 
 def _executors(led):
     return {
-        "count_comments": lambda a: D.count(a.get("filters") or {}, led),
+        "count_comments": lambda a: D.count(dict(a.get("filters") or {}, **(a.get("base_filters") or {})) if a.get("base_filters") else (a.get("filters") or {}), led, a.get("base_filters")),
         "breakdown": lambda a: D.breakdown(str(a.get("field")), a.get("filters") or {}, led, a.get("top") or 8),
         "compare_groups": lambda a: D.compare(str(a.get("field")), a.get("group_a") or {}, a.get("group_b") or {}, led, a.get("label_a"), a.get("label_b")),
         "trend_by_year": lambda a: D.trend(a.get("filters") or {}, led),
@@ -252,6 +253,9 @@ def answer(q, history=None, use_ai=True):
         txt = REPLIES[v].format(kind=inp.get("kind", "detail")) if v == "pii" else REPLIES[v]
         return _result(rt, txt, [(f"Input check: {inp['reason'].lower()}", False), ("No AI call made", None)],
                        reframe=reframe_for(q) if v == "advice" else None, suggest=v == "off_topic")
+    ra = _rule_advice(q)
+    if ra:
+        return ra
     if use_ai and llm.ai_available():
         try:
             return _ai_answer(q, history or [])
@@ -337,18 +341,26 @@ def _definition(key, q):
                    followup=follow, topic=_gl_topic(key))
 
 
+def _rule_advice(q):
+    """Deterministic advice backstop, used in both modes (before the AI)."""
+    if re.search(r"\b(which|kaun|kaunsa|konsa)\b.{0,25}\b(better|best|accha|achha|sahi|safer|safe)\b|\b(better|best)\b.{0,15}\b(option|choice|for beginners)\b", q, re.I):
+        return _result("decline_advice", REPLIES["advice"], [("Input check passed", True), ("Rule check: asks which option is better, treated as advice", False), ("Not answered", None)],
+                       reframe=reframe_for(q))
+    if re.search(r"(₹\s?\d|\d[\d,]*\s?(rs|rupees|inr|k\b|thousand|hazaar|hazar))", q, re.I) and DECISION.search(q) and not THIRD.search(q):
+        return _result("decline_advice", REPLIES["advice"], [("Input check passed", True), ("Rule check: asks about an amount to invest, treated as advice", False), ("Not answered", None)],
+                       reframe=reframe_for(q))
+    return None
+
+
 BEHAVIOUR = re.compile(r"(stop|pause|skip|cancel|continu|drop|lapse|fail|why|kyun|reason|people|investor|users|log|comment|review|complain|check|worr|problem|issue|groww|zerodha|reddit|first)", re.I)
 
 
 def _basic(q):
     if GREET.search(q.strip()):
         return _result("greeting", greeting(), [("Input check passed", True), ("Greeting", True)])
-    if re.search(r"\b(which|kaun|kaunsa|konsa)\b.{0,25}\b(better|best|accha|achha|sahi|safer|safe)\b|\b(better|best)\b.{0,15}\b(option|choice|for beginners)\b", q, re.I):
-        return _result("decline_advice", REPLIES["advice"], [("Input check passed", True), ("Basic mode: asks which option is better, treated as advice", False), ("Not answered", None)],
-                       reframe=reframe_for(q))
-    if re.search(r"(₹\s?\d|\d[\d,]*\s?(rs|rupees|inr|k\b|thousand|hazaar|hazar))", q, re.I) and DECISION.search(q) and not THIRD.search(q):
-        return _result("decline_advice", REPLIES["advice"], [("Input check passed", True), ("Basic mode: asks about an amount to invest, treated as advice", False), ("Not answered", None)],
-                       reframe=reframe_for(q))
+    ra = _rule_advice(q)
+    if ra:
+        return ra
     if GL.CONCEPT_OPENER.search(GL._norm(q)) and len(GL._norm(q).split()) <= 7 and not BEHAVIOUR.search(q):
         if not GL.FINANCE.search(q):
             return _result("decline_offtopic", REPLIES["off_topic"], [("Input check passed", True), ("Off-topic (keyword check)", False)], suggest=True)
@@ -385,7 +397,7 @@ def _ai_answer(q, history):
                        reframe=it.get("reframe") or reframe_for(q), model=m1)
     if intent == "greeting":
         return _result("greeting", greeting(), base + [("Intent check: greeting", True)], model=m1)
-    if intent == "concept":
+    if intent == "concept" and GL.CONCEPT_OPENER.search(GL._norm(q)) and len(GL._norm(q).split()) <= 8:
         return _result("concept", REPLIES["concept"], base + [("Intent check: general term outside the glossary", None)],
                        followup="Why do first-time investors stop their SIPs?", model=m1)
     led = D.Ledger()

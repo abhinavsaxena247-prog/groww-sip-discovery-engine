@@ -158,15 +158,24 @@ class Ledger:
                 self.nums.append(float(x))
 
 
-def count(f, led):
+def count(f, led, base=None):
     C = corpus()
     m = _matcher(f)
     n = sum(1 for r in C["rows"] if m(r))
     tot = len(C["rows"])
     p = round(100 * n / tot, 1)
     led.note(n, tot, p)
+    out = {"matching_comments": n, "total_relevant": tot, "share_pct": p}
+    if base:                                   # share within a group, e.g. among first-time investors
+        mb = _matcher(base)
+        rows_b = [r for r in C["rows"] if mb(r)]
+        nb = len(rows_b)
+        nab = sum(1 for r in rows_b if m(r))
+        pb = round(100 * nab / max(nb, 1), 1)
+        led.note(nb, nab, pb)
+        out.update({"base_comments": nb, "matching_within_base": nab, "pct_of_base": pb})
     led.trace.append(f"Counted {n:,} matching comments")
-    return {"matching_comments": n, "total_relevant": tot, "share_pct": p}
+    return out
 
 
 def breakdown(field, f, led, top=8):
