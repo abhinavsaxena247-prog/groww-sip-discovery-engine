@@ -41,6 +41,11 @@ p, li {{ color: {INK}; }}
 .nl-bar .logo {{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.05rem; color:{INK}; }}
 .nl-bar .logo b {{ width:28px; height:28px; border-radius:50%; background:{GREEN}; display:inline-block; }}
 .nl-bar .tag {{ font-size:0.76rem; color:{GREEN_DARK}; background:#E5F7F1; border-radius:99px; padding:3px 10px; font-weight:500; }}
+@media (min-width: 768px) and (max-width: 768.98px) {{ [data-testid="stSidebar"][aria-expanded="true"] ~ section {{ position: relative !important; width: auto !important; flex: 1 1 0; min-width: 0; }} }}
+.st-key-clear button p {{ white-space: nowrap; }}
+.st-key-clear button {{ padding-left: 8px; padding-right: 8px; }}
+[data-testid="stBottomBlockContainer"] {{ max-width: 1100px; }}
+.nl-bar {{ flex-wrap: wrap; gap: 6px; }}
 .nl-sublabel {{ font-size:0.8rem; color:{MUTED}; font-weight:600; margin:10px 0 4px; text-transform:uppercase; letter-spacing:.05em; }}
 .nl-notice {{ background:#F0FAF6 !important; border-left:3px solid {GREEN}; color:{INK} !important; }}
 .stButton button {{ border:1px solid {GREEN} !important; color:{GREEN_DARK} !important; background:#fff !important; }}

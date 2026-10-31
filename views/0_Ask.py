@@ -97,7 +97,7 @@ else:
     button_row(nexts, f"f{len(st.session_state.msgs)}_", "Suggested next questions, based on what you just asked")
     button_row(S.popular(asked_qs, 3), f"p{len(st.session_state.msgs)}_", "Asked recently by other visitors")
 
-q = st.chat_input("Ask about SIP behaviour, for example: what do first-time investors on Groww check after starting?", max_chars=800) or clicked
+q = st.chat_input("Ask anything about SIPs", max_chars=800) or clicked
 if q:
     if st.session_state.asked >= MAX_Q:
         st.warning("You've reached the limit of 25 questions for this session. Reload the page to start a new session.")
@@ -118,7 +118,7 @@ if q:
             S.record(q, out["route"])              # typed questions only, and only if they passed every check
         st.rerun()
 
-c_left, c_right = st.columns([5, 1])
+c_left, c_right = st.columns([3, 1], vertical_alignment="center")
 c_left.caption("Mutual fund investments are subject to market risks, read all scheme related documents carefully. "
                "Numbers are AI tags on public comments and are directional; see Quality and evals for how they were checked.")
 if c_right.button("Clear chat", key="clear", type="primary", icon=":material/delete_sweep:", use_container_width=True, disabled=not st.session_state.msgs,
