@@ -155,7 +155,7 @@ def route(q):
         f["dropoff_only"] = True
     if re.search(r"(autopay|auto-pay|mandate|payments? fail|fail(ed|s|ing)? payment|debit|nach|instal+ments? fail|sip fail|payment issue|payment problem)", s):
         f["driver_any"] = ["payment_mandate_failure"]
-    elif re.search(r"(pause|skip|modify|change date|edit)", s):
+    elif re.search(r"(paus|skip|modify|change date|edit)", s):
         f["driver_any"] = ["missing_control_pause_skip_modify"]
     elif re.search(r"(job|income|salary|emergency|money tight|cash)", s):
         f["driver_any"] = ["cashflow_or_income_change", "emergency_or_goal_need_for_money"]
