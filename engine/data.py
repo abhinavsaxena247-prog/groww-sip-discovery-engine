@@ -194,7 +194,7 @@ def breakdown(field, f, led, top=8):
                     cnt[v] = cnt.get(v, 0) + 1
         else:
             v = vals[r[j]] if 0 <= r[j] < len(vals) else None
-            if v not in (None, "", "unclear", "forum", "youtube"):
+            if v not in (None, "", "unclear") and not (col == "app" and v in ("forum", "youtube")):  # placeholders only in the app field
                 cnt[v] = cnt.get(v, 0) + 1
     base = len(rows)
     out = [{"value": v, "label": lab(v), "n": n, "pct_of_base": round(100 * n / max(base, 1), 1)}

@@ -2,4 +2,4 @@ streamlit==1.39.0
 pandas==2.2.3
 altair==5.5.0
 requests==2.32.3
-# rebuilt 2026-10-31 to load golden-set results
+# rebuilt 2026-10-31 to load the source-breakdown fix
