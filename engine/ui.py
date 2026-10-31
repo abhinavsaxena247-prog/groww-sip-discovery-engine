@@ -45,6 +45,7 @@ p, li {{ color: {INK}; }}
 .nl-notice {{ background:#F0FAF6 !important; border-left:3px solid {GREEN}; color:{INK} !important; }}
 .stButton button {{ border:1px solid {GREEN} !important; color:{GREEN_DARK} !important; background:#fff !important; }}
 .stButton button:hover {{ background:#E5F7F1 !important; }}
+.stButton button:disabled {{ opacity: .45; border-color:{LINE} !important; color:{MUTED} !important; cursor:not-allowed; }}
 .stButton button[kind="primary"] {{ background:{GREEN} !important; color:#fff !important; }}
 [data-testid="stSidebarNav"] a[aria-current="page"], [data-testid="stSidebarNavLink"][aria-current="page"] {{ background:#E5F7F1 !important; }}
 [data-testid="stSidebarNav"] a[aria-current="page"] span {{ color:{GREEN_DARK} !important; font-weight:600; }}

@@ -96,12 +96,6 @@ else:
         nexts = [o_reframe] + nexts[:2]
     button_row(nexts, f"f{len(st.session_state.msgs)}_", "Suggested next questions, based on what you just asked")
     button_row(S.popular(asked_qs, 3), f"p{len(st.session_state.msgs)}_", "Asked recently by other visitors")
-    c_left, c_right = st.columns([5, 1])
-    c_left.caption("Mutual fund investments are subject to market risks, read all scheme related documents carefully. "
-                   "Numbers are AI tags on public comments and are directional.")
-    if c_right.button("Clear chat", key="clear", icon=":material/delete_sweep:", use_container_width=True, help="Remove this conversation and start again"):
-        st.session_state.msgs, st.session_state.history = [], []
-        st.rerun()
 
 q = st.chat_input("Ask about SIP behaviour, for example: what do first-time investors on Groww check after starting?", max_chars=800) or clicked
 if q:
@@ -124,6 +118,10 @@ if q:
             S.record(q, out["route"])              # typed questions only, and only if they passed every check
         st.rerun()
 
-if not st.session_state.msgs:
-    st.caption("Mutual fund investments are subject to market risks, read all scheme related documents carefully. "
+c_left, c_right = st.columns([5, 1])
+c_left.caption("Mutual fund investments are subject to market risks, read all scheme related documents carefully. "
                "Numbers are AI tags on public comments and are directional; see Quality and evals for how they were checked.")
+if c_right.button("Clear chat", key="clear", icon=":material/delete_sweep:", use_container_width=True, disabled=not st.session_state.msgs,
+                  help="Remove this conversation and start again"):
+    st.session_state.msgs, st.session_state.history = [], []
+    st.rerun()
