@@ -75,7 +75,7 @@ show_run(os.path.join(data_dir, "eval_results_basic.json"), "Basic mode (rule ch
 if not had_ai:
     st.info("The full-pipeline run with the AI intent check and AI-written answers is scheduled for the next free Gemini quota window; results will appear here.")
 
-with st.expander("AI-mode run history (30 Oct): what each run found and what was fixed"):
+with st.expander("AI-mode run history (30-31 Oct): what each run found and what was fixed"):
     st.markdown(
         "- **Run 1:** 167 of 169 routed correctly, no unsafe output shown. Found: 9 empty AI replies (answered from counts instead), one answer claiming "
         "\"21,445 of 21,445 comments\" matched (a missing filter; the number traced to the dataset total, so it was not caught), one over-cautious decline. "
@@ -85,6 +85,10 @@ with st.expander("AI-mode run history (30 Oct): what each run found and what was
         "- **Run 3:** 164 of 169, no unsafe output shown, 0 empty replies; median AI answer time about 10 seconds. All 5 misses were answers the output check "
         "held back, 4 of them group comparisons where the AI put the measured item inside the group filter (\"203 of 203, 100%\"). Fix: a compare_share tool. "
         "Re-check of those 5 after the fix: 4 answered correctly, 1 still held back (the AI added numbers itself).\n"
+        "- **Run 4 (31 Oct, final):** 166 of 169, no unsafe output shown, 1 empty reply (answered from the counts), median AI answer 8.5 seconds. "
+        "The 3 misses were held back by the output check (one self-added number, one whole-dataset claim, one set of untraced numbers). Banks with AI on: "
+        "v3 130 of 131 (the miss was held back), v4 48 of 50. After this run, held-back answers show the direct count in plain words, and the example "
+        "buttons use the direct count so they are instant and identical every time.\n"
         "- **Known limitation:** the output check confirms numbers trace to counts but cannot confirm the words around them; one answer described all "
         "21,445 comments as \"comments about stopping\". Answers are labelled as AI tags on public comments, and the chart shows the counted base.")
 

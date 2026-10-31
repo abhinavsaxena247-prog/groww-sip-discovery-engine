@@ -402,7 +402,7 @@
    "route": "research",
    "got_topic": "validation",
    "pass": false,
-   "text": "Quality is checked four ways. 1) A golden set of 26 comments sampled across themes is being hand-labelled; the agreement rate will be reported once the labels are in (status: awaiting human labels). 2) A guardrail review of all 27,709 AI-written fields found 198 keyword flags and 22 real issues (fun"
+   "text": "Quality is checked four ways. 1) A golden set of 27 comments, sampled across themes, sources, languages and guardrail cases, was hand-labelled without seeing the AI tags (25 scored; 2 practice items excluded). First-pass agreement: relevance 56%, main event 56%, drop-off type 72%, main reason 52%, o"
   },
   {
    "q": "explain how you built this engine",
@@ -429,7 +429,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Upstox users frequently report issues related to app performance and support. Among 102 comments analyzed, the most common complaints involve app friction or bugs, mentioned in 56 comments (54.9%). Trust or support failures were noted in 22 comments (21.6%), and difficulties with modifying or contro"
+   "text": "Based on AI-tagged public comments, Upstox users most frequently cite app friction or bugs, appearing in 56 of 102 Upstox comments (54.9%). Other notable pain points include trust or support failures (22 of 102, 21.6%) and missing controls to pause, skip, or modify SIPs (17 of 102, 16.7%). Users als"
   },
   {
    "q": "what do youtube comments say about stopping sips",
@@ -438,7 +438,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "In the research corpus, there are 153 comments on YouTube mentioning stopping or cancelling a SIP out of 21,445 total relevant comments (0.7%). These AI-tagged comments indicate that investors stop SIPs for various reasons. The most frequently cited drivers include \"other\" reasons (21 of 153, 13.7%)"
+   "text": "YouTube comments discussing stopped or cancelled SIPs appear in 153 of 21,445 YouTube comments (0.7%). Based on AI tags, the primary drivers mentioned in these discussions include other reasons in 21 of 153 comments (13.7%), negative or volatile returns in 20 of 153 comments (13.1%), and advice from"
   },
   {
    "q": "how many first time investors mention failed payments",
@@ -447,7 +447,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Among the public comments analyzed, 59 of 21,445 relevant comments (0.3%) were from first-time investors who mentioned payment mandate failures. These tags are applied by an AI to public comments and are directional. For guidance on managing SIP payments or understanding mandate processes, please re"
+   "text": "I counted 59 comments that match your question. The most common: payment failed or lapsed (36, 61.0%), started (20, 33.9%), stopped or cancelled (8, 13.6%). These are AI tags on public comments, so treat them as directional."
   },
   {
    "q": "is it better to invest monthly or lumpsum for me",

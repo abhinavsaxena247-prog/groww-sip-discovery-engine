@@ -100,7 +100,7 @@ if q:
         render(user_msg)                                   # show the question straight away
         with st.chat_message("assistant", avatar=":material/query_stats:"):
             with st.spinner("Checking your question and counting the comments…"):
-                out = P.answer(q, st.session_state.history, use_ai=ai_on)
+                out = P.answer(q, st.session_state.history, use_ai=ai_on and not clicked)   # example buttons use the direct count: instant and identical every time
         st.session_state.msgs += [user_msg, {"role": "assistant", "text": out["text"], "out": out}]
         if out["route"] in ("answer", "basics", "research"):
             st.session_state.history.append({"q": q, "a": out["text"]})

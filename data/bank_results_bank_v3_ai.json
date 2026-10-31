@@ -1,7 +1,7 @@
 {
  "name": "bank_v3",
  "mode": "ai",
- "pass": 131,
+ "pass": 130,
  "total": 131,
  "by": {
   "basics": [
@@ -13,7 +13,7 @@
    50
   ],
   "answer": [
-   9,
+   8,
    9
   ],
   "decline_advice": [
@@ -861,7 +861,7 @@
    "route": "research",
    "got_topic": "validation",
    "pass": true,
-   "text": "Quality is checked four ways. 1) A golden set of 26 comments sampled across themes is being hand-labelled; the agreement rate will be reported once the labels are in (status: awaiting human labels). 2) A guardrail review of all 27,709 AI-written fields found 198 keyword flags and 22 real issues (fun"
+   "text": "Quality is checked four ways. 1) A golden set of 27 comments, sampled across themes, sources, languages and guardrail cases, was hand-labelled without seeing the AI tags (25 scored; 2 practice items excluded). First-pass agreement: relevance 56%, main event 56%, drop-off type 72%, main reason 52%, o"
   },
   {
    "q": "what is the golden set",
@@ -870,7 +870,7 @@
    "route": "research",
    "got_topic": "validation",
    "pass": true,
-   "text": "Quality is checked four ways. 1) A golden set of 26 comments sampled across themes is being hand-labelled; the agreement rate will be reported once the labels are in (status: awaiting human labels). 2) A guardrail review of all 27,709 AI-written fields found 198 keyword flags and 22 real issues (fun"
+   "text": "Quality is checked four ways. 1) A golden set of 27 comments, sampled across themes, sources, languages and guardrail cases, was hand-labelled without seeing the AI tags (25 scored; 2 practice items excluded). First-pass agreement: relevance 56%, main event 56%, drop-off type 72%, main reason 52%, o"
   },
   {
    "q": "What guardrails does this engine have?",
@@ -960,7 +960,7 @@
    "route": "research",
    "got_topic": "limitations",
    "pass": true,
-   "text": "Main limitations: 1) Public comments over-represent complaints and people who write online, so shares describe what people write, not the whole investor base. 2) Tags are AI-made and directional until the hand-labelled golden set confirms them. 3) Few comments state income or age, so segment cuts ar"
+   "text": "Main limitations: 1) Public comments over-represent complaints and people who write online, so shares describe what people write, not the whole investor base. 2) Tags are AI-made; the hand-labelled golden set found 59% first-pass agreement, with the AI too generous about which forum comments are rel"
   },
   {
    "q": "How many drop-offs are involuntary?",
@@ -1005,16 +1005,16 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "First-time investors who stop their SIPs often cite technical issues. Among 110 relevant comments from first-time investors who stopped their SIPs, 27 (24.5%) mentioned app friction or bugs. Other reasons include trust or support failures (13 of 110, 11.8%) and returns falling below expectations (13"
+   "text": "Among 282 comments from first-time investors describing a SIP skipped, paused, reduced, or stopped, AI tags indicate that app bugs or friction are the most frequent driver, appearing in 89 of 282 comments (31.6%). Payment, mandate, or autopay failures follow in 53 of 282 comments (18.8%), and trust "
   },
   {
    "q": "What goes wrong when Groww SIP payments fail?",
    "expect": "answer",
    "topic": null,
-   "route": "answer",
+   "route": "blocked_output",
    "got_topic": null,
-   "pass": true,
-   "text": "Investors discussing SIP payment failures on Groww often report issues with the auto-pay mandate. Among 203 comments tagged with payment mandate failure on the app, 119 (58.6%) specifically mention the payment lapsing or failing. Some users express frustration, noting, \"SIP auto pay fails everytime "
+   "pass": false,
+   "text": "I held this answer back because it failed a quality check (claims every comment matched (likely a missing filter)). Here is the counted data instead."
   },
   {
    "q": "How do Reddit and Play Store differ on why people stop?",
@@ -1023,7 +1023,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Investors on Reddit and the Play Store cite different reasons for stopping SIPs. Play Store reviews are heavily driven by technical and service issues: 475 of 1,015 comments (46.8%) mention \"trust or support failure,\" and 443 of 1,015 (43.6%) cite \"app bug or friction.\"\n\nIn contrast, Reddit discussi"
+   "text": "Public comments show different reasons for stopping SIPs on Reddit versus the Play Store. On the Play Store, investors frequently cite technical and service issues: 475 of 1,015 drop-off comments (46.8%) mention \"trust or support failure,\" and 443 of 1,015 (43.6%) report \"app bug or friction.\"\n\nIn c"
   },
   {
    "q": "Do people ask to pause instead of cancel?",
@@ -1032,7 +1032,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Investors do discuss pausing SIPs, though it is less common than stopping or cancelling them. Among 3,336 comments describing SIP drop-offs (skipping, pausing, reducing, stopping, or lapsing), 185 comments (5.5%) mention pausing, while 1,499 comments (44.9%) describe stopping or cancelling.\n\nSome in"
+   "text": "Investors discuss both pausing and cancelling SIPs, though these actions are often mentioned in the context of stopping payments. Among 1,670 comments discussing these events, 185 (11.1%) specifically mention pausing, while 1,499 (89.8%) mention stopping or cancelling. These tags are based on AI ana"
   },
   {
    "q": "what do people say about Groww customer support",
@@ -1041,7 +1041,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "In the research corpus, 753 of 3,166 Groww comments with a driver tag (23.8%) cite trust or support failure. Additionally, 547 of 21,445 total relevant comments (2.6%) mention investors reaching out to customer support. \n\nThe volume of comments regarding trust or support failure for Groww reached 29"
+   "text": "Based on AI tags on public app store reviews, 753 of 21,445 Groww store comments (3.5%) mention trust or support failures. Reviewers frequently describe difficulty reaching representatives or long wait times when seeking help. As one user noted, \"No customer care line or chat support,\" while another"
   },
   {
    "q": "how often do first time investors mention xirr",
@@ -1050,7 +1050,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "First-time investors mention XIRR in 39 of 5,789 comments (0.7%). These are AI tags on public comments and are directional. Investors often discuss their portfolio performance and tracking tools, though specific mentions of XIRR by those identifying as new to investing remain infrequent in the data."
+   "text": "Based on AI tags on public comments, which are directional, first-time investors mention XIRR in 39 of 5,789 comments (0.7%). For comparison, non-first-time investors mention it in 349 of 5,463 comments (6.4%). \n\nIf you need guidance on mutual funds or investing concepts, please consult SEBI (sebi.g"
   },
   {
    "q": "log SIP kyun band karte hain?",
@@ -1068,7 +1068,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Zerodha Coin users frequently report issues related to app functionality. Among 1,232 comments, 539 (43.8%) mention app friction or bugs. Other common concerns include trust or support failures (150 of 1,232, 12.2%) and difficulties in managing SIPs, such as missing controls to pause, skip, or modif"
+   "text": "I counted 1,232 comments that match your question. The most common: app bug or friction (539, 43.8%), trust or support failure (150, 12.2%), no way to pause, skip or change (142, 11.5%). These are AI tags on public comments, so treat them as directional."
   },
   {
    "q": "how have complaints about failed payments changed over time",
@@ -1077,7 +1077,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Public investor comments regarding payment mandate failures show varying trends over time. In 2018, there were 19 of 563 relevant comments (3.4%), followed by 30 of 486 (6.2%) in 2019, 34 of 934 (3.6%) in 2020, 62 of 1,291 (4.8%) in 2021, 72 of 964 (7.5%) in 2022, 65 of 1,091 (6.0%) in 2023, 170 of "
+   "text": "To understand how complaints about failed payments have changed, we look at the share of comments tagged with \"payment_mandate_failure\" relative to all relevant comments in our corpus for each year.\n\nIn 2018, there were 19 of 563 comments (3.4%) related to this issue. This share was 30 of 486 (6.2%)"
   },
   {
    "q": "show me quotes about mandate failures",
@@ -1086,7 +1086,7 @@
    "route": "answer",
    "got_topic": null,
    "pass": true,
-   "text": "Investors have shared 667 comments regarding payment mandate failures, representing 3.1% of the 21,445 relevant comments in our corpus. These reports often involve issues with autopay functionality, unexpected debits, or failed transactions.\n\nCommon experiences include:\n* \"I paused the daily SIP but"
+   "text": "Investors have reported various challenges regarding payment mandates in public comments. Across the corpus, 667 of 21,445 relevant comments (3.1%) mention issues related to payment mandate failures.\n\nThese comments often describe frustration with the automation process or discrepancies in transacti"
   },
   {
    "q": "What is the minimum SIP in the best fund?",

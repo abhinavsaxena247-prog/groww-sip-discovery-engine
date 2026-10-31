@@ -426,7 +426,10 @@ def _ai_answer(q, history):
         out["checks"] = [c for c in out["checks"]] + [("AI reply was empty, so this answer is the direct count", None)]
         out["model"] = m2
         return out
-    if not oc["pass"]:
-        return _result("blocked_output", f"I held this answer back because it failed a quality check ({'; '.join(oc['issues'])}). Here is the counted data instead.",
-                       checks, breakdown=led.last_break, quotes=led.last_quotes, title="Counted breakdown", issues=oc["issues"], model=m2, model_text=text)
+    if not oc["pass"]:                      # the AI's wording failed the number or safety check: answer with the direct count instead
+        out = _basic(q)
+        out.update(route="blocked_output", issues=oc["issues"], model=m2, model_text=text,
+                   checks=base + [("Intent check: research question", True),
+                                  ("AI wording held back by the output check; showing the direct count", None)] + [c for c in out["checks"] if c[0] != "Input check passed"])
+        return out
     return _result("answer", text, checks, breakdown=led.last_break, quotes=led.last_quotes, title="Counted breakdown behind this answer", model=m2)
