@@ -28,7 +28,7 @@ BASICS = {
                    None, "What do first-time investors say about starting with a small amount?"),
     "sip_vs_lumpsum": ([r"\blump\s?-?sum\b", r"\bways?\s+to\s+invest\b", r"\bone[- ]time\b.{0,20}\b(invest|payment)", r"\bmonthly\b.{0,20}\b(or|vs|versus)\b.{0,20}\bonce\b"],
                        "There are two ways to put money into a mutual fund. A lumpsum is a single payment that buys units at one day's NAV. "
-                       "A SIP invests a fixed amount at regular intervals (usually monthly) through an automatic debit, so each instalment buys units at that day's NAV. "
+                       "A SIP invests a fixed amount at regular intervals (usually monthly) through an automatic debit, so each installment buys units at that day's NAV. "
                        "Neither is guaranteed to do better; which suits someone depends on their cash flow and goals, which this engine does not judge.",
                        ({"keyword": "lumpsum|lump sum"}, "mention a lumpsum"), "How do investors describe changes in their income affecting their SIP?"),
     "frequency": ([r"\b(weekly|daily|fortnightly|quarterly)\b.{0,30}\bsip\b|\bsip\b.{0,30}\b(weekly|daily|fortnightly|quarterly)\b", r"\bfrequenc(y|ies)\b", r"\bhow often\b.{0,20}\b(instal|debit|pay)"],
@@ -42,43 +42,43 @@ BASICS = {
     "start_sip": ([r"\bhow\s+(do|can|to)\s+(i\s+)?(start|begin|open|set ?up)\b.{0,20}\bsip\b", r"\bsteps?\b.{0,15}\b(start|begin|set ?up)\b.{0,15}\bsip\b",
                    r"\bsip\b.{0,15}\b(kaise|kese)\s+(shuru|start)", r"\bhow\s+to\s+invest\s+in\s+(a\s+)?sip\b"],
                   "Starting a SIP usually takes four steps: complete KYC once; choose a scheme and an amount; pick the frequency and date; and approve a payment "
-                  "mandate (UPI AutoPay or a bank e-mandate) so instalments are debited automatically. On Groww this is done from the mutual funds section of the app, "
+                  "mandate (UPI AutoPay or a bank e-mandate) so installments are debited automatically. On Groww this is done from the mutual funds section of the app, "
                   "and groww.in/help has the current steps. Choosing the scheme is a personal decision this engine does not advise on.",
                   ({"stage": ["starting_setup"]}, "are about setting up or starting a SIP"), "What goes wrong for investors while setting up their first SIP?"),
     "stop_sip": ([r"\b(can|how)\b.{0,15}\b(stop|cancel|close|end|discontinue)\b.{0,15}\bsip\b", r"\bpenalt(y|ies)\b.{0,25}\b(stop|cancel)", r"\b(stop|cancel)\w*\b.{0,15}\bsip\b.{0,15}\b(anytime|any time|penalt|charge)",
                   r"\bsip\b.{0,15}\b(band|cancel|stop)\s+(kaise|kese)", r"\bhow\s+to\s+(stop|cancel)\b"],
-                 "Yes. A SIP can be cancelled at any time, and fund houses do not charge a penalty for stopping. Cancelling stops future instalments only; "
+                 "Yes. A SIP can be cancelled at any time, and fund houses do not charge a penalty for stopping. Cancelling stops future installments only; "
                  "units already bought remain in the fund until you redeem them. On most apps it is done from the SIP's edit or manage option (on Groww: My SIPs, then the SIP). "
                  "If the next debit is already scheduled, the cancellation can take one cycle to apply. Redeeming the units is a separate step and may carry an exit load or tax.",
                  ({"event_any": ["stopped_cancelled"]}, "describe stopping or cancelling a SIP"), "Why do first-time investors stop their SIPs?"),
     "cancel_effect": ([r"\bwhat happens\b.{0,25}\b(money|units|investment)\b.{0,25}\b(stop|cancel)", r"\b(stop|cancel)\w*\b.{0,25}\bwhat happens\b.{0,20}\b(money|units|investment)",
                        r"\bmoney\b.{0,20}\bafter\b.{0,15}\b(stop|cancel)"],
-                      "Stopping a SIP only stops future instalments. The money already invested stays in the fund as units, and its value keeps moving with the fund's NAV "
+                      "Stopping a SIP only stops future installments. The money already invested stays in the fund as units, and its value keeps moving with the fund's NAV "
                       "until you redeem. Taking the money out is a separate step (redemption), which may carry an exit load or tax depending on how long the units were held.",
                       None, "Why do investors redeem or withdraw?"),
     "missed_instalment": ([r"\bmiss(ed)?\b.{0,20}\b(sip|instal|payment|debit)", r"\b(sip|instal+ment|payment|debit|autopay|mandate)\b.{0,20}\b(fail|bounce|bounced|decline)", r"\bbounce\b",
                            r"\b(3|three)\b.{0,20}\b(fail|miss|consecutive)", r"\binsufficient\s+(balance|funds)"],
-                          "If an instalment's debit fails, usually because of low balance or a mandate problem, no units are bought for that instalment. Fund houses generally "
-                          "do not charge a penalty, but your bank may charge a fee for a failed auto-debit. If several instalments in a row fail (commonly three), the fund house "
+                          "If an installment's debit fails, usually because of low balance or a mandate problem, no units are bought for that installment. Fund houses generally "
+                          "do not charge a penalty, but your bank may charge a fee for a failed auto-debit. If several installments in a row fail (commonly three), the fund house "
                           "may cancel the SIP. Units already bought are not affected.",
                           ({"driver_any": ["payment_mandate_failure"]}, "describe a payment, mandate or autopay failure"), "What goes wrong when Groww SIP payments fail?"),
     "pause_skip": ([r"\b(pause|skip|hold)\w*\b.{0,25}\b(sip|instal)", r"\bsip\b.{0,25}\b(pause|skip)", r"\bpause\s+(kaise|kese)", r"\bcan i pause\b", r"\bbreak\b.{0,15}\bsip\b"],
-                   "Many apps and fund houses let you pause or skip upcoming instalments instead of cancelling. On Groww, its help centre describes: My SIPs, choose the SIP, "
-                   "Edit SIP, then Skip instalment. How many instalments can be skipped, and how far ahead you must do it, differ by app and fund house. "
+                   "Many apps and fund houses let you pause or skip upcoming installments instead of cancelling. On Groww, its help centre describes: My SIPs, choose the SIP, "
+                   "Edit SIP, then Skip installment. How many installments can be skipped, and how far ahead you must do it, differ by app and fund house. "
                    "The SIP resumes after the pause.",
                    ({"driver_any": ["missing_control_pause_skip_modify"]}, "describe wanting a pause, skip or change option they could not find"), "Do people ask to pause instead of cancel?"),
     "modify_amount": ([r"\b(increase|decrease|reduce|change|modify|edit|lower|raise)\b.{0,20}\b(sip|amount|instal)", r"\bsip\b.{0,15}\bamount\b.{0,15}\b(change|kam|badh)"],
                       "Most apps let you change a SIP's amount by editing it; some handle it by cancelling and starting a new SIP. A step-up option can raise the amount "
-                      "automatically each year. The change usually applies from a later instalment.",
+                      "automatically each year. The change usually applies from a later installment.",
                       ({"event_any": ["reduced", "increased_stepup"]}, "describe reducing or increasing a SIP"), "What makes investors increase their SIP?"),
     "tax": ([r"\btax(ed|es|ation)?\b", r"\b(ltcg|stcg|capital gains?)\b"],
             "Tax applies when units are sold (redeemed), not when you invest. For equity-oriented funds (at least 65% in Indian shares), as of FY 2026-27: gains on units "
             "held 12 months or less are taxed at 20%; gains on units held longer are taxed at 12.5% on gains above ₹1.25 lakh in a financial year. In a SIP each "
-            "instalment counts separately, so its holding period starts on its own date. Debt-oriented funds bought after 1 April 2023 are taxed at your income slab. "
+            "installment counts separately, so its holding period starts on its own date. Debt-oriented funds bought after 1 April 2023 are taxed at your income slab. "
             "Tax rules change with Budgets, so check the latest rules or a tax professional.",
             None, "What do investors say about fees and charges?"),
     "elss_lockin": ([r"\belss\b.{0,30}\block", r"\block[- ]?in\b"],
-                    "ELSS funds have a three-year lock-in. In a SIP each instalment is locked for three years from its own date, so the last instalment unlocks three years "
+                    "ELSS funds have a three-year lock-in. In a SIP each installment is locked for three years from its own date, so the last installment unlocks three years "
                     "after it was invested. ELSS investments can be claimed under Section 80C only in the old tax regime.",
                     ({"keyword": "elss|tax sav|80c"}, "mention ELSS or tax saving"), "Why do first-time investors start a SIP?"),
     "nav_cutoff": ([r"\bcut[- ]?off\b", r"\bwhich nav\b", r"\bnav\b.{0,20}\b(get|apply|applicable|allot)", r"\b(units?|allotment)\b.{0,20}\b(when|late|delay|allot)"],
@@ -91,8 +91,8 @@ BASICS = {
                        "when it is high, so the average cost per unit evens out over time. It does not guarantee a profit or protect against losses.",
                        None, "What did investors expect from returns, and what did they describe happening?"),
     "compounding": ([r"\bcompound(ing)?\b(?!\s+annual)", r"\bpower of compounding\b"],
-                    "Compounding means gains can earn further gains: growth applies to the whole accumulated amount, not just what was put in. In a SIP each instalment "
-                    "compounds from its own date, so earlier instalments have longer to grow. Mutual fund returns are not fixed, so growth varies year to year and can be negative.",
+                    "Compounding means gains can earn further gains: growth applies to the whole accumulated amount, not just what was put in. In a SIP each installment "
+                    "compounds from its own date, so earlier installments have longer to grow. Mutual fund returns are not fixed, so growth varies year to year and can be negative.",
                     None, "What did investors expect from returns, and what did they describe happening?"),
     "redemption": ([r"\b(withdraw|redeem|redemption|take out)\w*\b", r"\bpaise\s+(nikal|wapas)"],
                    "Redemption means selling mutual fund units to get the money back. In an app it is done from the fund's page (Redeem or Withdraw). SEBI requires fund "
@@ -100,7 +100,7 @@ BASICS = {
                    ({"event_any": ["redeemed_withdrew"]}, "describe redeeming or withdrawing"), "Why do investors redeem or withdraw?"),
     "mandate_time": ([r"\bmandate\b.{0,30}\b(time|long|days|approv|pending|register)", r"\b(how long|time)\b.{0,30}\bmandate\b", r"\bautopay\b.{0,20}\b(time|long|approv|pending)"],
                      "A UPI AutoPay mandate is usually active as soon as you approve it in your UPI app. A bank e-mandate (via net banking or debit card) usually registers "
-                     "within a few working days, and a paper mandate can take a few weeks. Until it is approved, instalments may fail or need to be paid manually.",
+                     "within a few working days, and a paper mandate can take a few weeks. Until it is approved, installments may fail or need to be paid manually.",
                      ({"driver_any": ["payment_mandate_failure"]}, "describe a payment, mandate or autopay failure"), "What goes wrong when Groww SIP payments fail?"),
     "multiple_sips": ([r"\b(more than one|multiple|several|two|many)\s+sips?\b", r"\bsips?\b.{0,15}\bat (the )?same time\b"],
                       "Yes. You can run several SIPs at once, in the same fund or different funds, each with its own amount and date. Each SIP is tracked separately.",
@@ -151,7 +151,7 @@ BASICS = {
                        ({"driver_any": ["fees_or_hidden_charges"]}, "mention fees or hidden charges"), "What do investors say about fees and charges?"),
     "sip_calculator": ([r"\bcalculator\b", r"\b(calculate|calculation)\b.{0,20}\b(sip|return|maturity)"],
                        "A SIP calculator estimates a future value from three inputs: the monthly amount, the number of months and an assumed yearly return, applying compound "
-                       "growth to each instalment from its own date. The result is only as good as the assumed return, which is not guaranteed, so it shows a scenario, "
+                       "growth to each installment from its own date. The result is only as good as the assumed return, which is not guaranteed, so it shows a scenario, "
                        "not a forecast. This engine does not project returns.",
                        None, "What did investors expect from returns, and what did they describe happening?"),
 }
@@ -298,11 +298,11 @@ def research(topic, led):
                None, "What do investors want instead of cancelling?")
     elif topic == "metric":
         txt = ("The project's business metric is the share of first-time mutual fund investors who still have an active SIP 12 months after starting their first one. "
-               "An active SIP means at least one successful instalment in the last 30 days. This engine looks for what breaks that continuation; the metric itself is "
+               "An active SIP means at least one successful installment in the last 30 days. This engine looks for what breaks that continuation; the metric itself is "
                "broken down into product outcomes and behaviours in the next part of the project.")
         res = (txt, None, None, "What leads investors to pause, reduce or stop a SIP?")
     elif topic == "active_sip":
-        txt = ("For this project, an active SIP is one with at least one successful instalment in the last 30 days. So a SIP whose debits keep failing stops being "
+        txt = ("For this project, an active SIP is one with at least one successful installment in the last 30 days. So a SIP whose debits keep failing stops being "
                f"active even if the investor never cancelled it, which matters because {_n(inv)} of {_n(drops)} drop-off comments describe exactly that kind of lapse.")
         nums += [inv, drops]
         res = (txt, None, {"drop": ["involuntary"]}, "How many drop-offs are involuntary?")
@@ -441,7 +441,7 @@ def _eval_text(nums):
 
 # ------------------------------------------------------------------ matching
 def _norm(q):
-    s = q.lower().replace("’", "'")
+    s = q.lower().replace("’", "'").replace("instalment", "installment")
     s = re.sub(r"[?!.,;:\"“”]+", " ", s)
     return re.sub(r"\s+", " ", s).strip()
 

@@ -39,6 +39,7 @@ p, li {{ color: {INK}; }}
 .nl-bar .logo {{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.05rem; color:{INK}; }}
 .nl-bar .logo b {{ width:28px; height:28px; border-radius:50%; background:{GREEN}; display:inline-block; }}
 .nl-bar .tag {{ font-size:0.76rem; color:{GREEN_DARK}; background:#E5F7F1; border-radius:99px; padding:3px 10px; font-weight:500; }}
+.nl-sublabel {{ font-size:0.8rem; color:{MUTED}; font-weight:600; margin:10px 0 4px; text-transform:uppercase; letter-spacing:.05em; }}
 .nl-notice {{ background:#F0FAF6 !important; border-left:3px solid {GREEN}; color:{INK} !important; }}
 .stButton button {{ border:1px solid {GREEN} !important; color:{GREEN_DARK} !important; background:#fff !important; }}
 .stButton button:hover {{ background:#E5F7F1 !important; }}
@@ -79,15 +80,17 @@ def quote(q):
     st.markdown(f"<div class='nl-quote'>“{h.escape(q['quote'])}”<div class='meta'>{meta}{link}</div></div>", unsafe_allow_html=True)
 
 
-def bars(rows, label_col="label", value_col="n", title=None, color=GREEN, height=None):
+def bars(rows, label_col="label", value_col="n", title=None, color=GREEN, height=None, sort=True):
     import altair as alt
     import pandas as pd
     df = pd.DataFrame(rows)
     if df.empty:
         return
+    if title:   # title as text above the chart, so it never eats into the plot's height
+        st.markdown(f"<div style='font-weight:600;font-size:0.9rem;margin:4px 0 -6px'>{title}</div>", unsafe_allow_html=True)
     ch = (alt.Chart(df).mark_bar(color=color, cornerRadiusEnd=3)
-          .encode(x=alt.X(f"{value_col}:Q", title=None, scale=alt.Scale(domain=[0, float(df[value_col].max()) * 1.18 or 1])), y=alt.Y(f"{label_col}:N", sort="-x", title=None, axis=alt.Axis(labelLimit=320, labelOverlap=False)),
+          .encode(x=alt.X(f"{value_col}:Q", title=None, scale=alt.Scale(domain=[0, float(df[value_col].max()) * 1.18 or 1])), y=alt.Y(f"{label_col}:N", sort="-x" if sort else list(df[label_col]), title=None, axis=alt.Axis(labelLimit=320, labelOverlap=False)),
                   tooltip=[label_col, value_col] + (["pct_of_base"] if "pct_of_base" in df else []))
-          .properties(height=height or max(100, 34 * len(df) + 20), title=title or ""))
+          .properties(height=height or max(110, 36 * len(df) + 30)))
     text = ch.mark_text(align="left", dx=4, color=INK).encode(text=alt.Text(f"{value_col}:Q", format=","))
     st.altair_chart(ch + text, use_container_width=True)

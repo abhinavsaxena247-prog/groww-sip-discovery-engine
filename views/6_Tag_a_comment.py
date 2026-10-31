@@ -52,9 +52,10 @@ if st.button("Tag with AI", type="primary"):
 tags, src = st.session_state.get("tag_out", (ex[0]["tags"], f"Corpus tags for this {ex[0]['label'].lower()} ({ex[0]['model']})"))
 st.subheader(src)
 lst = lambda v: ", ".join(D.lab(x) for x in v) if v else "None"
-st.table({"Field": ["Relevant", "First-time investor", "Stage", "What happened", "Drop-off type", "Reasons", "Checks", "Outside the app", "Unmet need", "Evidence", "Severity"],
+import pandas as _pd
+st.dataframe(_pd.DataFrame({"Field": ["Relevant", "First-time investor", "Stage", "What happened", "Drop-off type", "Reasons", "Checks", "Outside the app", "Unmet need", "Evidence", "Severity"],
           "Tag": ["Yes" if tags.get("relevant") else "No", D.lab(tags.get("first_time_signal", "unclear")), D.lab(tags.get("lifecycle_stage", "unclear")),
                   lst(tags.get("event")), D.lab(tags.get("dropoff_type", "none")), lst(tags.get("drivers")), lst(tags.get("what_they_check")),
-                  lst(tags.get("outside_app_behaviour")), tags.get("unmet_need") or "None stated", tags.get("evidence_span") or "None", f"{tags.get('severity', 1)} of 3"]})
+                  lst(tags.get("outside_app_behaviour")), tags.get("unmet_need") or "None stated", tags.get("evidence_span") or "None", f"{tags.get('severity', 1)} of 3"]}), hide_index=True, use_container_width=True)
 oc = G.check_output(" ".join([tags.get("unmet_need", ""), tags.get("evidence_span", "")]))
 ui.chips([("Guardrail check passed: no fund named, no advice, no urgency" if oc["pass"] else "Guardrail flag: " + oc["issues"][0], oc["pass"])])

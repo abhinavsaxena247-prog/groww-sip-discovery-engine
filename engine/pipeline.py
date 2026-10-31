@@ -30,10 +30,10 @@ REPLIES = {
     "injection": "I can't change how I work or reveal my instructions. I only describe what investors wrote in public comments, and I never give investment advice.",
     "advice": f"I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try {OFFICIAL}.",
     "off_topic": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop.",
-    "account_help": "I can't see or fix anyone's account or transactions. For a failed instalment or mandate on your own SIP, your app's support can check it (for Groww: groww.in/help). I can show what other investors wrote when this happened to them.",
+    "account_help": "I can't see or fix anyone's account or transactions. For a failed installment or mandate on your own SIP, your app's support can check it (for Groww: groww.in/help). I can show what other investors wrote when this happened to them.",
     "too_long": "Please keep your question under 800 characters.",
     "empty": "Type a question first.",
-    "concept": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed instalment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions, AMFI's investor education site (amfiindia.com) is a good source.",
+    "concept": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed installment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions, AMFI's investor education site (amfiindia.com) is a good source.",
 }
 
 
@@ -200,6 +200,34 @@ def basic_answer(q, led):
     f, field, title = route(q)
     s = q.lower()
     E = D.engine_data()
+    if re.search(r"experienced|seasoned|first[- ]time (and|vs|versus) (other|experienced)", s):
+        base = {k: v for k, v in f.items() if k != "first_time"} or {"dropoff_only": True}
+        fld = field if field != "event_any" else "driver_any"
+        ra = D.breakdown(fld, dict(base, first_time=True), led, 6)
+        rb = D.breakdown(fld, dict(base, first_time=False), led, 6)
+        for r in (ra, rb):
+            r["values"] = [v for v in r["values"] if v["value"] not in ("other", "habit_or_automation_positive")]
+        top = lambda r: ", ".join(f"{v['label'].lower()} ({v['pct_of_base']}%)" for v in r["values"][:3]) or "no clear pattern"
+        txt = (f"Self-described first-time investors ({ra['base_comments']:,} comments): {top(ra)}. Experienced investors, who say they are not new ({rb['base_comments']:,} comments): {top(rb)}. "
+               "Comments that don't say either way are left out. These are AI tags on public comments, so treat them as directional.")
+        return txt, ra, D.quotes(dict(base, first_time=True), led, 2), "First-time investors"
+    if f.get("app") and re.search(r"(specific to|common across|other apps|vs other|compared to other|only on)", s):
+        app = f["app"][0]
+        target = {k: v for k, v in f.items() if k not in ("app",)} or {"dropoff_only": True}
+        stores = ["Groww", "Zerodha Coin", "Zerodha Kite", "Upstox", "Angel One", "MO Riise", "Paytm Money", "INDmoney", "ET Money", "Kuvera"]
+        a_name = next((x for x in stores if x.lower() == app.lower()), app)
+        others = [x for x in stores if x.lower() != app.lower()]
+        r = D.compare_share(target, {"app": [a_name]}, {"app": others}, led, a_name, "Other apps")
+        ga, gb = r[a_name], r["Other apps"]
+        txt = (f"In {a_name} store reviews, {ga['matching']:,} of {ga['group_comments']:,} comments ({ga['pct_of_group']}%) match; in the other nine apps' reviews it is "
+               f"{gb['matching']:,} of {gb['group_comments']:,} ({gb['pct_of_group']}%). " +
+               ("So it is not specific to " + a_name + "; it is common across apps." if abs(ga["pct_of_group"] - gb["pct_of_group"]) < 2 else
+                f"So it is {'more' if ga['pct_of_group'] > gb['pct_of_group'] else 'less'} common on {a_name} than elsewhere.") +
+               " These are AI tags on public comments, so treat them as directional.")
+        br = {"base_comments": ga["group_comments"] + gb["group_comments"], "plain": True,
+              "values": [{"value": a_name, "label": f"{a_name} (n={ga['group_comments']:,}): % of comments", "n": ga["pct_of_group"], "pct_of_base": ga["pct_of_group"]},
+                         {"value": "others", "label": f"Other apps (n={gb['group_comments']:,}): % of comments", "n": gb["pct_of_group"], "pct_of_base": gb["pct_of_group"]}]}
+        return txt, br, D.quotes(dict(target, app=[a_name]), led, 2), f"{a_name} vs other apps"
     if re.search(r"(need|needs|want|wish|ask(ing)? for|request)", s) and "driver_any" not in f:
         N = E["questions"]["q9"]["needs"]
         led.note(E["questions"]["q9"]["need_items"], *[n["n"] for n in N], *[n["pct_of_needs"] for n in N])

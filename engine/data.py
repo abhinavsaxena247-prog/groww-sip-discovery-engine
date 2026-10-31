@@ -18,7 +18,7 @@ L = {
     "cashflow_or_income_change": "Cash-flow or income change", "emergency_or_goal_need_for_money": "Needed the money",
     "advice_from_others_or_media": "Advice from others or media", "confusing_numbers_or_terms": "Confusing numbers or terms",
     "habit_or_automation_positive": "Habit or automation (keeps them going)", "other": "Other",
-    "returns_pl": "Returns, profit or loss", "portfolio_value": "Portfolio value", "instalment_status": "Whether the instalment went through",
+    "returns_pl": "Returns, profit or loss", "portfolio_value": "Portfolio value", "instalment_status": "Whether the installment went through",
     "nav": "NAV", "xirr": "XIRR", "fund_rank_or_category": "Fund rank or category",
     "customer_support": "Contact customer support", "amc_or_cams_kfintech": "Check AMC, CAMS or KFintech",
     "youtube_social": "YouTube or social media", "other_app_or_tracker": "Another app or tracker", "forum_reddit": "Forums or Reddit",
@@ -65,7 +65,20 @@ def load_json(name):
         return json.load(f)
 
 
-EXTRA_KEYS = {"dropoff_only", "year_min", "year_max", "min_severity", "keyword"}
+EXTRA_KEYS = {"dropoff_only", "year_min", "year_max", "min_severity", "keyword", "area"}
+# Opportunity areas exactly as scored in pipeline/stage4_opportunities.py (conditions joined with OR)
+AREA_DEFS = {
+    "A": ({"driver": ["payment_mandate_failure"]}, {"event": ["lapsed_failed_payment"]}, {"drop": ["involuntary"]}),
+    "B": ({"driver": ["missing_control_pause_skip_modify"]}, {"event": ["skipped", "paused", "reduced"]}),
+    "C": ({"driver": ["cashflow_or_income_change", "emergency_or_goal_need_for_money"]},),
+    "D": ({"driver": ["returns_below_expectation", "negative_or_volatile_returns", "confusing_numbers_or_terms", "goal_clarity_or_tracking"]},),
+    "E": ({"driver": ["trust_or_support_failure"]},),
+    "F": ({"driver": ["app_friction_or_bug"]},),
+    "G": ({"driver": ["fees_or_hidden_charges"]},),
+}
+AREA_NAMES = {"A": "SIP lapses without the investor deciding", "B": "No flexible control (pause, skip, modify)", "C": "Cash-flow shock or need for money",
+              "D": "Numbers and outcomes don't match expectations", "E": "Trust and support breakdowns", "F": "App bugs and general friction",
+              "G": "Fees and hidden charges"}
 KEY_FIX = {"driver": "driver_any", "drivers": "driver_any", "event": "event_any", "events": "event_any", "check": "check_any", "checks": "check_any",
            "outside": "outside_any", "sources": "source", "apps": "app", "first_time_investor": "first_time", "dropoff_type": "drop", "lifecycle_stage": "stage",
            "year": "year_min"}
@@ -77,6 +90,13 @@ def _norm_filters(f):
     out = {}
     for k, v in (f or {}).items():
         k2 = KEY_FIX.get(k, k)
+        if k2 == "area":
+            vals = [str(x).strip().upper()[:1] for x in (v if isinstance(v, list) else [v])]
+            bad = [x for x in vals if x not in AREA_DEFS]
+            if bad:
+                raise ValueError(f"Unknown area {bad}. Valid areas: " + ", ".join(f"{k} ({n})" for k, n in AREA_NAMES.items()))
+            out["area"] = vals
+            continue
         if k2 not in FIELD_ALIASES and k2 not in EXTRA_KEYS:
             raise ValueError(f"Unknown filter '{k}'. Valid filters: {', '.join(list(FIELD_ALIASES) + sorted(EXTRA_KEYS))}")
         col = FIELD_ALIASES.get(k2)
@@ -141,6 +161,20 @@ def _matcher(f):
         tests.append(lambda r, y=int(f["year_max"]): r[ci["year"]] and r[ci["year"]] <= y)
     if f.get("min_severity"):
         tests.append(lambda r, s=int(f["min_severity"]): r[ci["sev"]] >= s)
+    if f.get("area"):
+        conds = []
+        for a in f["area"]:
+            for cond in AREA_DEFS[a]:
+                (col, vals), = cond.items()
+                ids = [d[col].index(x) for x in vals if x in d[col]]
+                if col in MULTI:
+                    m = 0
+                    for i in ids:
+                        m |= 1 << i
+                    conds.append(lambda r, m=m, j=ci[col]: (r[j] & m) != 0)
+                else:
+                    conds.append(lambda r, ids=tuple(ids), j=ci[col]: r[j] in ids)
+        tests.append(lambda r, conds=tuple(conds): any(c(r) for c in conds))
     if f.get("keyword"):
         kws = [k.strip().lower() for k in str(f["keyword"]).split("|") if k.strip()]
         tests.append(lambda r: any(k in (r[ci["evidence"]] + " " + r[ci["need"]]).lower() for k in kws))

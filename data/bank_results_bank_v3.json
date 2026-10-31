@@ -78,7 +78,7 @@
    "route": "basics",
    "got_topic": "sip_vs_lumpsum",
    "pass": true,
-   "text": "There are two ways to put money into a mutual fund. A lumpsum is a single payment that buys units at one day's NAV. A SIP invests a fixed amount at regular intervals (usually monthly) through an automatic debit, so each instalment buys units at that day's NAV. Neither is guaranteed to do better; whi"
+   "text": "There are two ways to put money into a mutual fund. A lumpsum is a single payment that buys units at one day's NAV. A SIP invests a fixed amount at regular intervals (usually monthly) through an automatic debit, so each installment buys units at that day's NAV. Neither is guaranteed to do better; wh"
   },
   {
    "q": "difference between sip and lumpsum",
@@ -87,7 +87,7 @@
    "route": "basics",
    "got_topic": "sip_vs_lumpsum",
    "pass": true,
-   "text": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV).\n\nA lumpsum is a one-time investment of a larger a"
+   "text": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each installment buys fund units at that day's price (NAV).\n\nA lumpsum is a one-time investment of a larger "
   },
   {
    "q": "lumpsum vs sip",
@@ -96,7 +96,7 @@
    "route": "basics",
    "got_topic": "sip_vs_lumpsum",
    "pass": true,
-   "text": "A lumpsum is a one-time investment of a larger amount, as opposed to a SIP's regular instalments.\n\nA SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each inst"
+   "text": "A lumpsum is a one-time investment of a larger amount, as opposed to a SIP's regular installments.\n\nA SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each ins"
   },
   {
    "q": "Can a SIP be weekly or daily instead of monthly?",
@@ -132,7 +132,7 @@
    "route": "basics",
    "got_topic": "start_sip",
    "pass": true,
-   "text": "Starting a SIP usually takes four steps: complete KYC once; choose a scheme and an amount; pick the frequency and date; and approve a payment mandate (UPI AutoPay or a bank e-mandate) so instalments are debited automatically. On Groww this is done from the mutual funds section of the app, and groww."
+   "text": "Starting a SIP usually takes four steps: complete KYC once; choose a scheme and an amount; pick the frequency and date; and approve a payment mandate (UPI AutoPay or a bank e-mandate) so installments are debited automatically. On Groww this is done from the mutual funds section of the app, and groww"
   },
   {
    "q": "steps to start sip on groww",
@@ -141,7 +141,7 @@
    "route": "basics",
    "got_topic": "start_sip",
    "pass": true,
-   "text": "Starting a SIP usually takes four steps: complete KYC once; choose a scheme and an amount; pick the frequency and date; and approve a payment mandate (UPI AutoPay or a bank e-mandate) so instalments are debited automatically. On Groww this is done from the mutual funds section of the app, and groww."
+   "text": "Starting a SIP usually takes four steps: complete KYC once; choose a scheme and an amount; pick the frequency and date; and approve a payment mandate (UPI AutoPay or a bank e-mandate) so installments are debited automatically. On Groww this is done from the mutual funds section of the app, and groww"
   },
   {
    "q": "Can I stop my SIP anytime?",
@@ -150,7 +150,7 @@
    "route": "basics",
    "got_topic": "stop_sip",
    "pass": true,
-   "text": "Yes. A SIP can be cancelled at any time, and fund houses do not charge a penalty for stopping. Cancelling stops future instalments only; units already bought remain in the fund until you redeem them. On most apps it is done from the SIP's edit or manage option (on Groww: My SIPs, then the SIP). If t"
+   "text": "Yes. A SIP can be cancelled at any time, and fund houses do not charge a penalty for stopping. Cancelling stops future installments only; units already bought remain in the fund until you redeem them. On most apps it is done from the SIP's edit or manage option (on Groww: My SIPs, then the SIP). If "
   },
   {
    "q": "Is there a penalty for stopping a SIP?",
@@ -159,7 +159,7 @@
    "route": "basics",
    "got_topic": "stop_sip",
    "pass": true,
-   "text": "Yes. A SIP can be cancelled at any time, and fund houses do not charge a penalty for stopping. Cancelling stops future instalments only; units already bought remain in the fund until you redeem them. On most apps it is done from the SIP's edit or manage option (on Groww: My SIPs, then the SIP). If t"
+   "text": "Yes. A SIP can be cancelled at any time, and fund houses do not charge a penalty for stopping. Cancelling stops future installments only; units already bought remain in the fund until you redeem them. On most apps it is done from the SIP's edit or manage option (on Groww: My SIPs, then the SIP). If "
   },
   {
    "q": "how to cancel a sip",
@@ -168,7 +168,7 @@
    "route": "basics",
    "got_topic": "stop_sip",
    "pass": true,
-   "text": "Yes. A SIP can be cancelled at any time, and fund houses do not charge a penalty for stopping. Cancelling stops future instalments only; units already bought remain in the fund until you redeem them. On most apps it is done from the SIP's edit or manage option (on Groww: My SIPs, then the SIP). If t"
+   "text": "Yes. A SIP can be cancelled at any time, and fund houses do not charge a penalty for stopping. Cancelling stops future installments only; units already bought remain in the fund until you redeem them. On most apps it is done from the SIP's edit or manage option (on Groww: My SIPs, then the SIP). If "
   },
   {
    "q": "What happens to my money if I stop the SIP?",
@@ -177,7 +177,7 @@
    "route": "basics",
    "got_topic": "cancel_effect",
    "pass": true,
-   "text": "Stopping a SIP only stops future instalments. The money already invested stays in the fund as units, and its value keeps moving with the fund's NAV until you redeem. Taking the money out is a separate step (redemption), which may carry an exit load or tax depending on how long the units were held. G"
+   "text": "Stopping a SIP only stops future installments. The money already invested stays in the fund as units, and its value keeps moving with the fund's NAV until you redeem. Taking the money out is a separate step (redemption), which may carry an exit load or tax depending on how long the units were held. "
   },
   {
    "q": "What happens if I miss a SIP instalment?",
@@ -186,7 +186,7 @@
    "route": "basics",
    "got_topic": "missed_instalment",
    "pass": true,
-   "text": "If an instalment's debit fails, usually because of low balance or a mandate problem, no units are bought for that instalment. Fund houses generally do not charge a penalty, but your bank may charge a fee for a failed auto-debit. If several instalments in a row fail (commonly three), the fund house m"
+   "text": "If an installment's debit fails, usually because of low balance or a mandate problem, no units are bought for that installment. Fund houses generally do not charge a penalty, but your bank may charge a fee for a failed auto-debit. If several installments in a row fail (commonly three), the fund hous"
   },
   {
    "q": "what if my sip payment fails",
@@ -195,7 +195,7 @@
    "route": "basics",
    "got_topic": "missed_instalment",
    "pass": true,
-   "text": "If an instalment's debit fails, usually because of low balance or a mandate problem, no units are bought for that instalment. Fund houses generally do not charge a penalty, but your bank may charge a fee for a failed auto-debit. If several instalments in a row fail (commonly three), the fund house m"
+   "text": "If an installment's debit fails, usually because of low balance or a mandate problem, no units are bought for that installment. Fund houses generally do not charge a penalty, but your bank may charge a fee for a failed auto-debit. If several installments in a row fail (commonly three), the fund hous"
   },
   {
    "q": "is sip cancelled after 3 failed payments",
@@ -204,7 +204,7 @@
    "route": "basics",
    "got_topic": "missed_instalment",
    "pass": true,
-   "text": "If an instalment's debit fails, usually because of low balance or a mandate problem, no units are bought for that instalment. Fund houses generally do not charge a penalty, but your bank may charge a fee for a failed auto-debit. If several instalments in a row fail (commonly three), the fund house m"
+   "text": "If an installment's debit fails, usually because of low balance or a mandate problem, no units are bought for that installment. Fund houses generally do not charge a penalty, but your bank may charge a fee for a failed auto-debit. If several installments in a row fail (commonly three), the fund hous"
   },
   {
    "q": "bounce charges for sip",
@@ -213,7 +213,7 @@
    "route": "basics",
    "got_topic": "missed_instalment",
    "pass": true,
-   "text": "If an instalment's debit fails, usually because of low balance or a mandate problem, no units are bought for that instalment. Fund houses generally do not charge a penalty, but your bank may charge a fee for a failed auto-debit. If several instalments in a row fail (commonly three), the fund house m"
+   "text": "If an installment's debit fails, usually because of low balance or a mandate problem, no units are bought for that installment. Fund houses generally do not charge a penalty, but your bank may charge a fee for a failed auto-debit. If several installments in a row fail (commonly three), the fund hous"
   },
   {
    "q": "Can I pause my SIP?",
@@ -222,7 +222,7 @@
    "route": "basics",
    "got_topic": "pause_skip",
    "pass": true,
-   "text": "Many apps and fund houses let you pause or skip upcoming instalments instead of cancelling. On Groww, its help centre describes: My SIPs, choose the SIP, Edit SIP, then Skip instalment. How many instalments can be skipped, and how far ahead you must do it, differ by app and fund house. The SIP resum"
+   "text": "Many apps and fund houses let you pause or skip upcoming installments instead of cancelling. On Groww, its help centre describes: My SIPs, choose the SIP, Edit SIP, then Skip installment. How many installments can be skipped, and how far ahead you must do it, differ by app and fund house. The SIP re"
   },
   {
    "q": "how to skip a sip instalment on groww",
@@ -231,7 +231,7 @@
    "route": "basics",
    "got_topic": "pause_skip",
    "pass": true,
-   "text": "Many apps and fund houses let you pause or skip upcoming instalments instead of cancelling. On Groww, its help centre describes: My SIPs, choose the SIP, Edit SIP, then Skip instalment. How many instalments can be skipped, and how far ahead you must do it, differ by app and fund house. The SIP resum"
+   "text": "Many apps and fund houses let you pause or skip upcoming installments instead of cancelling. On Groww, its help centre describes: My SIPs, choose the SIP, Edit SIP, then Skip installment. How many installments can be skipped, and how far ahead you must do it, differ by app and fund house. The SIP re"
   },
   {
    "q": "sip pause kaise kare",
@@ -240,7 +240,7 @@
    "route": "basics",
    "got_topic": "pause_skip",
    "pass": true,
-   "text": "Many apps and fund houses let you pause or skip upcoming instalments instead of cancelling. On Groww, its help centre describes: My SIPs, choose the SIP, Edit SIP, then Skip instalment. How many instalments can be skipped, and how far ahead you must do it, differ by app and fund house. The SIP resum"
+   "text": "Many apps and fund houses let you pause or skip upcoming installments instead of cancelling. On Groww, its help centre describes: My SIPs, choose the SIP, Edit SIP, then Skip installment. How many installments can be skipped, and how far ahead you must do it, differ by app and fund house. The SIP re"
   },
   {
    "q": "Can I increase or decrease my SIP amount?",
@@ -249,7 +249,7 @@
    "route": "basics",
    "got_topic": "modify_amount",
    "pass": true,
-   "text": "Most apps let you change a SIP's amount by editing it; some handle it by cancelling and starting a new SIP. A step-up option can raise the amount automatically each year. The change usually applies from a later instalment. In this engine's data, 797 of 21,445 relevant public comments (3.7%) describe"
+   "text": "Most apps let you change a SIP's amount by editing it; some handle it by cancelling and starting a new SIP. A step-up option can raise the amount automatically each year. The change usually applies from a later installment. In this engine's data, 797 of 21,445 relevant public comments (3.7%) describ"
   },
   {
    "q": "what is step up sip",
@@ -258,7 +258,7 @@
    "route": "basics",
    "got_topic": "step_up",
    "pass": true,
-   "text": "A step-up (or top-up) SIP raises the instalment automatically at set intervals, for example by a fixed percentage each year. This is a general definition, not advice. In this engine's data, 680 of 21,445 relevant public comments (3.2%) describe increasing a SIP or using a step-up."
+   "text": "A step-up (or top-up) SIP raises the installment automatically at set intervals, for example by a fixed percentage each year. This is a general definition, not advice. In this engine's data, 680 of 21,445 relevant public comments (3.2%) describe increasing a SIP or using a step-up."
   },
   {
    "q": "How is SIP taxed?",
@@ -294,7 +294,7 @@
    "route": "basics",
    "got_topic": "elss_lockin",
    "pass": true,
-   "text": "ELSS funds have a three-year lock-in. In a SIP each instalment is locked for three years from its own date, so the last instalment unlocks three years after it was invested. ELSS investments can be claimed under Section 80C only in the old tax regime. In this engine's data, 225 of 21,445 relevant pu"
+   "text": "ELSS funds have a three-year lock-in. In a SIP each installment is locked for three years from its own date, so the last installment unlocks three years after it was invested. ELSS investments can be claimed under Section 80C only in the old tax regime. In this engine's data, 225 of 21,445 relevant "
   },
   {
    "q": "Which NAV do I get for my SIP instalment?",
@@ -330,7 +330,7 @@
    "route": "basics",
    "got_topic": "compounding",
    "pass": true,
-   "text": "Compounding means gains can earn further gains: growth applies to the whole accumulated amount, not just what was put in. In a SIP each instalment compounds from its own date, so earlier instalments have longer to grow. Mutual fund returns are not fixed, so growth varies year to year and can be nega"
+   "text": "Compounding means gains can earn further gains: growth applies to the whole accumulated amount, not just what was put in. In a SIP each installment compounds from its own date, so earlier installments have longer to grow. Mutual fund returns are not fixed, so growth varies year to year and can be ne"
   },
   {
    "q": "How do I withdraw money from my SIP?",
@@ -393,7 +393,7 @@
    "route": "basics",
    "got_topic": "mandate",
    "pass": true,
-   "text": "A mandate (e-mandate, NACH or UPI AutoPay) is the standing permission you give your bank so the SIP amount can be debited automatically on the due date. If the mandate is not approved, or the account lacks funds on that day, the instalment fails. This is a general definition, not advice. In this eng"
+   "text": "A mandate (e-mandate, NACH or UPI AutoPay) is the standing permission you give your bank so the SIP amount can be debited automatically on the due date. If the mandate is not approved, or the account lacks funds on that day, the installment fails. This is a general definition, not advice. In this en"
   },
   {
    "q": "how long does mandate approval take",
@@ -402,7 +402,7 @@
    "route": "basics",
    "got_topic": "mandate_time",
    "pass": true,
-   "text": "A UPI AutoPay mandate is usually active as soon as you approve it in your UPI app. A bank e-mandate (via net banking or debit card) usually registers within a few working days, and a paper mandate can take a few weeks. Until it is approved, instalments may fail or need to be paid manually. In this e"
+   "text": "A UPI AutoPay mandate is usually active as soon as you approve it in your UPI app. A bank e-mandate (via net banking or debit card) usually registers within a few working days, and a paper mandate can take a few weeks. Until it is approved, installments may fail or need to be paid manually. In this "
   },
   {
    "q": "Can I have more than one SIP?",
@@ -510,7 +510,7 @@
    "route": "basics",
    "got_topic": "sip_calculator",
    "pass": true,
-   "text": "A SIP calculator estimates a future value from three inputs: the monthly amount, the number of months and an assumed yearly return, applying compound growth to each instalment from its own date. The result is only as good as the assumed return, which is not guaranteed, so it shows a scenario, not a "
+   "text": "A SIP calculator estimates a future value from three inputs: the monthly amount, the number of months and an assumed yearly return, applying compound growth to each installment from its own date. The result is only as good as the assumed return, which is not guaranteed, so it shows a scenario, not a"
   },
   {
    "q": "what is sip",
@@ -519,7 +519,7 @@
    "route": "basics",
    "got_topic": "sip",
    "pass": true,
-   "text": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV). This is a general definition, not advice. In this"
+   "text": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each installment buys fund units at that day's price (NAV). This is a general definition, not advice. In thi"
   },
   {
    "q": "sip kya hai",
@@ -528,7 +528,7 @@
    "route": "basics",
    "got_topic": "sip",
    "pass": true,
-   "text": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV). This is a general definition, not advice. In this"
+   "text": "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. The amount is debited automatically from your bank account, and each installment buys fund units at that day's price (NAV). This is a general definition, not advice. In thi"
   },
   {
    "q": "what is NAV",
@@ -546,7 +546,7 @@
    "route": "basics",
    "got_topic": "xirr",
    "pass": true,
-   "text": "XIRR is a yearly return figure that accounts for money going in on different dates. Apps show it for SIPs because each instalment is invested at a different time, so a simple percentage gain can mislead. This is a general definition, not advice. In this engine's data, 596 of 21,445 relevant public c"
+   "text": "XIRR is a yearly return figure that accounts for money going in on different dates. Apps show it for SIPs because each installment is invested at a different time, so a simple percentage gain can mislead. This is a general definition, not advice. In this engine's data, 596 of 21,445 relevant public "
   },
   {
    "q": "what is a mutual fund",
@@ -636,7 +636,7 @@
    "route": "research",
    "got_topic": "q4",
    "pass": true,
-   "text": "First-time investors mostly check returns, profit or loss (332), whether the instalment went through (248), portfolio value (151); XIRR and NAV matter far less to them than to experienced investors (all investors: returns, profit or loss (2,211), portfolio value (1,990), whether the instalment went "
+   "text": "First-time investors mostly check returns, profit or loss (332), whether the installment went through (248), portfolio value (151); XIRR and NAV matter far less to them than to experienced investors (all investors: returns, profit or loss (2,211), portfolio value (1,990), whether the installment wen"
   },
   {
    "q": "what do people check after starting a sip",
@@ -645,7 +645,7 @@
    "route": "research",
    "got_topic": "q4",
    "pass": true,
-   "text": "First-time investors mostly check returns, profit or loss (332), whether the instalment went through (248), portfolio value (151); XIRR and NAV matter far less to them than to experienced investors (all investors: returns, profit or loss (2,211), portfolio value (1,990), whether the instalment went "
+   "text": "First-time investors mostly check returns, profit or loss (332), whether the installment went through (248), portfolio value (151); XIRR and NAV matter far less to them than to experienced investors (all investors: returns, profit or loss (2,211), portfolio value (1,990), whether the installment wen"
   },
   {
    "q": "What confuses or worries them inside the app?",
@@ -735,7 +735,7 @@
    "route": "research",
    "got_topic": "q9",
    "pass": true,
-   "text": "Across 16,001 comments where a need was recorded, the most repeated are: plain explanation of returns and figures (1,185); support that answers and resolves (1,042); instalments that go through, with clear alerts when they don't (998); faster, predictable redemption and allotment (929). About 1,919 "
+   "text": "Across 16,001 comments where a need was recorded, the most repeated are: plain explanation of returns and figures (1,185); support that answers and resolves (1,042); installments that go through, with clear alerts when they don't (998); faster, predictable redemption and allotment (929). About 1,919"
   },
   {
    "q": "what do investors want that they don't get",
@@ -744,7 +744,7 @@
    "route": "research",
    "got_topic": "q9",
    "pass": true,
-   "text": "Across 16,001 comments where a need was recorded, the most repeated are: plain explanation of returns and figures (1,185); support that answers and resolves (1,042); instalments that go through, with clear alerts when they don't (998); faster, predictable redemption and allotment (929). About 1,919 "
+   "text": "Across 16,001 comments where a need was recorded, the most repeated are: plain explanation of returns and figures (1,185); support that answers and resolves (1,042); installments that go through, with clear alerts when they don't (998); faster, predictable redemption and allotment (929). About 1,919"
   },
   {
    "q": "What is the business metric?",
@@ -753,7 +753,7 @@
    "route": "research",
    "got_topic": "metric",
    "pass": true,
-   "text": "The project's business metric is the share of first-time mutual fund investors who still have an active SIP 12 months after starting their first one. An active SIP means at least one successful instalment in the last 30 days. This engine looks for what breaks that continuation; the metric itself is "
+   "text": "The project's business metric is the share of first-time mutual fund investors who still have an active SIP 12 months after starting their first one. An active SIP means at least one successful installment in the last 30 days. This engine looks for what breaks that continuation; the metric itself is"
   },
   {
    "q": "what is the north star metric for this project",
@@ -762,7 +762,7 @@
    "route": "research",
    "got_topic": "metric",
    "pass": true,
-   "text": "The project's business metric is the share of first-time mutual fund investors who still have an active SIP 12 months after starting their first one. An active SIP means at least one successful instalment in the last 30 days. This engine looks for what breaks that continuation; the metric itself is "
+   "text": "The project's business metric is the share of first-time mutual fund investors who still have an active SIP 12 months after starting their first one. An active SIP means at least one successful installment in the last 30 days. This engine looks for what breaks that continuation; the metric itself is"
   },
   {
    "q": "What counts as an active SIP?",
@@ -771,7 +771,7 @@
    "route": "research",
    "got_topic": "active_sip",
    "pass": true,
-   "text": "For this project, an active SIP is one with at least one successful instalment in the last 30 days. So a SIP whose debits keep failing stops being active even if the investor never cancelled it, which matters because 963 of 3,336 drop-off comments describe exactly that kind of lapse."
+   "text": "For this project, an active SIP is one with at least one successful installment in the last 30 days. So a SIP whose debits keep failing stops being active even if the investor never cancelled it, which matters because 963 of 3,336 drop-off comments describe exactly that kind of lapse."
   },
   {
    "q": "What problem is this engine trying to solve?",

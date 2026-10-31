@@ -9,7 +9,7 @@ from engine import data as D
 TERMS = {
     "sip": (["sip", "sips", "systematic investment plan", "systematic investment plans", "sip investment", "sip in mutual fund", "sip in mutual funds"],
             "A SIP (Systematic Investment Plan) is a way of investing a fixed amount in a mutual fund at regular intervals, usually monthly. "
-            "The amount is debited automatically from your bank account, and each instalment buys fund units at that day's price (NAV).",
+            "The amount is debited automatically from your bank account, and each installment buys fund units at that day's price (NAV).",
             {"dropoff_only": True}, "describe a SIP being skipped, paused, stopped or lapsing",
             "Why do first-time investors stop their SIPs?"),
     "mutual_fund": (["mutual fund", "mutual funds", "mf", "mfs"],
@@ -24,7 +24,7 @@ TERMS = {
             "What do new investors check after starting?"),
     "xirr": (["xirr"],
              "XIRR is a yearly return figure that accounts for money going in on different dates. Apps show it for SIPs because each "
-             "instalment is invested at a different time, so a simple percentage gain can mislead.",
+             "installment is invested at a different time, so a simple percentage gain can mislead.",
              {"check_any": ["xirr"]}, "mention checking XIRR",
              "Do investors find numbers like XIRR confusing?"),
     "cagr": (["cagr", "compound annual growth rate"],
@@ -34,25 +34,25 @@ TERMS = {
              "What did investors expect from returns, and what did they describe happening?"),
     "mandate": (["mandate", "mandates", "e-mandate", "emandate", "e mandate", "autopay", "auto pay", "auto-pay", "upi autopay", "nach", "auto debit", "autodebit", "autopay mandate", "upi autopay mandate", "sip mandate", "e-mandate for sip", "nach mandate"],
                 "A mandate (e-mandate, NACH or UPI AutoPay) is the standing permission you give your bank so the SIP amount can be debited "
-                "automatically on the due date. If the mandate is not approved, or the account lacks funds on that day, the instalment fails.",
+                "automatically on the due date. If the mandate is not approved, or the account lacks funds on that day, the installment fails.",
                 {"driver_any": ["payment_mandate_failure"]}, "describe a payment, mandate or autopay failure",
                 "What goes wrong when Groww SIP payments fail?"),
     "step_up": (["step up", "step-up", "stepup", "step up sip", "step-up sip", "top up sip", "top-up sip", "topup sip"],
-                "A step-up (or top-up) SIP raises the instalment automatically at set intervals, for example by a fixed percentage each year.",
+                "A step-up (or top-up) SIP raises the installment automatically at set intervals, for example by a fixed percentage each year.",
                 {"event_any": ["increased_stepup"]}, "describe increasing a SIP or using a step-up",
                 "What makes investors increase their SIP?"),
     "pause": (["pause sip", "sip pause", "skip sip", "sip skip", "pausing a sip", "skipping a sip", "pause", "skip"],
-              "Many platforms let investors pause or skip SIP instalments for a period without cancelling the SIP. The options and limits "
+              "Many platforms let investors pause or skip SIP installments for a period without cancelling the SIP. The options and limits "
               "differ by app and fund house.",
               {"driver_any": ["missing_control_pause_skip_modify"]}, "describe wanting a pause, skip or change option they could not find",
               "Do people ask to pause instead of cancel?"),
-    "lapse": (["sip lapse", "lapsed sip", "lapse", "missed instalment", "missed installment", "failed instalment", "failed installment", "sip failure", "failed sip"],
-              "An instalment fails or is missed when the debit does not go through, usually because of low balance or a mandate problem. "
-              "If several instalments in a row fail, the fund house may cancel the SIP; the exact rule varies.",
+    "lapse": (["sip lapse", "lapsed sip", "lapse", "missed installment", "missed instalment", "failed installment", "failed instalment", "sip failure", "failed sip"],
+              "An installment fails or is missed when the debit does not go through, usually because of low balance or a mandate problem. "
+              "If several installments in a row fail, the fund house may cancel the SIP; the exact rule varies.",
               {"drop": ["involuntary"]}, "describe a SIP stopping without the investor choosing to",
               "Why do SIPs lapse without the investor deciding?"),
     "lumpsum": (["lumpsum", "lump sum", "lump-sum"],
-                "A lumpsum is a one-time investment of a larger amount, as opposed to a SIP's regular instalments.",
+                "A lumpsum is a one-time investment of a larger amount, as opposed to a SIP's regular installments.",
                 {"keyword": "lumpsum|lump sum"}, "mention a lumpsum",
                 "How do investors describe changes in their income affecting their SIP?"),
     "redemption": (["redemption", "redeem", "redeeming", "withdrawal", "withdraw"],
@@ -114,7 +114,7 @@ CONCEPT_OPENER = re.compile(r"^(?:what\s*(?:'s|is|are)|whats|define|meaning\s+of
 
 
 def _norm(q):
-    s = q.lower().strip()
+    s = q.lower().strip().replace("instalment", "installment")
     s = re.sub(r"[?!.。,;:\"“”]+", " ", s)
     return re.sub(r"\s+", " ", s).strip()
 

@@ -13,12 +13,8 @@ st.title("Read the evidence behind every number")
 st.write("Filter the 21,445 tagged comments and read the short verbatim span the AI picked to justify its tags. Usernames were never collected. "
          "Spans containing abuse, personal data or fund names are hidden.")
 
-AREAS = {"Any": {}, "SIP lapses without deciding": {"driver_any": ["payment_mandate_failure"]},
-         "No way to pause, skip or change": {"driver_any": ["missing_control_pause_skip_modify"]},
-         "Cash-flow or income change": {"driver_any": ["cashflow_or_income_change", "emergency_or_goal_need_for_money"]},
-         "Returns and expectations": {"driver_any": ["returns_below_expectation", "negative_or_volatile_returns", "confusing_numbers_or_terms", "goal_clarity_or_tracking"]},
-         "Trust and support": {"driver_any": ["trust_or_support_failure"]}, "App bugs and friction": {"driver_any": ["app_friction_or_bug"]},
-         "Fees and charges": {"driver_any": ["fees_or_hidden_charges"]}}
+AREAS = {"Any": {}}
+AREAS.update({f"{k}. {n}": {"area": [k]} for k, n in D.AREA_NAMES.items()})   # same definitions as the Opportunities page
 c1, c2, c3, c4 = st.columns(4)
 area = c1.selectbox("Area", list(AREAS), index=1)
 src = c2.multiselect("Source", [D.SRC[s] for s in D.SRC_ORDER])
