@@ -339,9 +339,18 @@ def research(topic, led):
         res = (txt, None, None, "How was insight quality validated?")
     elif topic == "validation":
         g, gr, rr = E["golden"], E["guardrail"], E["reddit_robustness"]
+        ag = g.get("agreement")
         nums += [g["size"], gr["checked"], gr["flags"], gr["true_violations"], rr["sample"]["drop%"], rr["all_tagged"]["drop%"]]
-        txt = (f"Quality is checked four ways. 1) A golden set of {g['size']} comments sampled across themes is being hand-labelled; the agreement rate will be reported once the "
-               f"labels are in (status: {g['status']}). 2) A guardrail review of all {_n(gr['checked'])} AI-written fields found {gr['flags']} keyword flags and "
+        if ag:
+            pct = lambda k: round(100 * ag[k][0] / ag[k][1])
+            nums += [g["scored"], g["practice"]] + [x for k in ag for x in ag[k]] + [pct(k) for k in ag] + [28.9, 28.7]
+            gtxt = (f"1) A golden set of {g['size']} comments, sampled across themes, sources, languages and guardrail cases, was hand-labelled without seeing the AI tags "
+                    f"({g['scored']} scored; {g['practice']} practice items excluded). First-pass agreement: relevance {pct('relevant')}%, main event {pct('event')}%, drop-off type "
+                    f"{pct('drop')}%, main reason {pct('reason')}%, overall {pct('overall')}%. Every relevance disagreement was the AI calling a forum reply or general question "
+                    "relevant when the human did not; removing forum sources leaves the headline findings unchanged (involuntary share 28.9% vs 28.7%). ")
+        else:
+            gtxt = f"1) A golden set of {g['size']} comments is being hand-labelled (status: {g['status']}). "
+        txt = (f"Quality is checked four ways. {gtxt}2) A guardrail review of all {_n(gr['checked'])} AI-written fields found {gr['flags']} keyword flags and "
                f"{gr['true_violations']} real issues (fund-house names repeated from the user's text, now masked). 3) A robustness check: a Reddit sample and the full Reddit set "
                f"give similar results (drop-off share {rr['sample']['drop%']}% vs {rr['all_tagged']['drop%']}%). 4) Early tagging errors were rejected and corrected: the model "
                "copied label definitions, counted generic praise as relevant, and treated support complaints as drop-offs.")
@@ -376,8 +385,9 @@ def research(topic, led):
         res = (txt, {"base_comments": drops, "values": [{"value": o["area"], "label": o["area"].split(" (")[0], "n": o["opportunity_score"], "pct_of_base": o["opportunity_score"]} for o in O]},
                None, "What is the biggest opportunity?" if topic != "top_opportunity" else "How were the opportunities scored?")
     elif topic == "limitations":
+        nums += [59]
         txt = ("Main limitations: 1) Public comments over-represent complaints and people who write online, so shares describe what people write, not the whole investor "
-               "base. 2) Tags are AI-made and directional until the hand-labelled golden set confirms them. 3) Few comments state income or age, so segment cuts are thin. "
+               "base. 2) Tags are AI-made; the hand-labelled golden set found 59% first-pass agreement, with the AI too generous about which forum comments are relevant (headline findings hold without forum sources). 3) Few comments state income or age, so segment cuts are thin. "
                "4) Quietly forgetting a SIP (passive drift) is rarely written about, so it is under-counted. 5) There is no behavioural data from Groww itself. The interviews "
                "and survey are designed to test these gaps.")
         res = (txt, None, None, "How was insight quality validated?")

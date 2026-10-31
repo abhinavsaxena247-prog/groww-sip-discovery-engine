@@ -115,6 +115,17 @@ with st.expander("What the held-out sets caught before the fixes"):
 
 st.header("Checks on the AI tagging behind the numbers")
 GR, RB = E["guardrail"], E["reddit_robustness"]
+G = E["golden"]; AG = G.get("agreement", {})
+if AG:
+    st.subheader("Golden set: human labels vs AI tags")
+    st.write(f"{G['size']} comments sampled across themes, sources, languages and guardrail cases, labelled by hand without seeing the AI tags "
+             f"({G['scored']} scored; {G['practice']} practice items walked through first and excluded). First pass, {G['status']}.")
+    ui.bars([{"label": lab, "n": round(100 * AG[k][0] / AG[k][1], 1)} for k, lab in (("relevant", "Relevant?"), ("event", "Main event"), ("drop", "Drop-off type"),
+             ("reason", "Main reason"), ("overall", "Overall"))], title="Agreement with the human labeller (%)")
+    st.markdown(f"- {G['finding']}\n- Some human 'not relevant' labels are first-person questions the codebook counts as relevant: definition-boundary cases.\n"
+                "- Robustness: involuntary share of drop-offs is 28.9% with all sources, 28.9% without forum sources and 28.7% with app stores and Reddit only, "
+                "and the top three reasons stay the same; the generous relevance filter inflates volume, not the conclusions.\n"
+                f"- AI guardrail violations on these {G['size']} items: {G['guardrail_violations']}.")
 st.markdown(f"- **Golden set:** {E['golden']['size']} comments hand-labelled to measure how often the AI tags agree with a human. Status: {E['golden']['status']}.\n"
             f"- **Guardrail scan of AI-written tagging fields:** all {GR['checked']:,} outputs checked; {GR['flags']} flagged by keyword and reviewed by hand. "
             f"No field recommends a fund or gives advice. **{GR['true_violations']} fields ({100*GR['true_violations']/GR['checked']:.2f}%) repeated a fund-house name** from the user's own text "

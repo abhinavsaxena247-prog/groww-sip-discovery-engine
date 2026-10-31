@@ -19,7 +19,7 @@ st.title("Almost a third of SIP drop-offs happen without the investor choosing t
 st.write(f"Of **{drops:,}** comments describing a SIP being skipped, paused, reduced, stopped or lapsing, **{inv:,} ({100*inv/drops:.1f}%)** "
          f"describe a lapse the investor did not choose: a failed debit, a broken mandate or autopay, or an app error. Among self-described "
          f"first-time investors it is **{fti} of {ftn} ({100*fti/ftn:.1f}%)**.")
-st.caption("AI tags on public comments: directional until the hand-labelled golden set confirms them. Interviews test these patterns next.")
+st.caption("AI tags on public comments. Hand-labelled golden set: 59% first-pass agreement; the AI is too generous about which forum comments count, but these headline shares hold without forum sources. Interviews test these patterns next.")
 
 df = pd.DataFrame([{"type": "Voluntary: chose to stop, skip, pause or reduce", "n": vol},
                    {"type": "Involuntary: lapsed without deciding", "n": inv},

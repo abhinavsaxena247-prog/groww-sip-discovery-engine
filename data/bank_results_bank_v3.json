@@ -861,7 +861,7 @@
    "route": "research",
    "got_topic": "validation",
    "pass": true,
-   "text": "Quality is checked four ways. 1) A golden set of 26 comments sampled across themes is being hand-labelled; the agreement rate will be reported once the labels are in (status: awaiting human labels). 2) A guardrail review of all 27,709 AI-written fields found 198 keyword flags and 22 real issues (fun"
+   "text": "Quality is checked four ways. 1) A golden set of 27 comments, sampled across themes, sources, languages and guardrail cases, was hand-labelled without seeing the AI tags (25 scored; 2 practice items excluded). First-pass agreement: relevance 56%, main event 56%, drop-off type 72%, main reason 52%, o"
   },
   {
    "q": "what is the golden set",
@@ -870,7 +870,7 @@
    "route": "research",
    "got_topic": "validation",
    "pass": true,
-   "text": "Quality is checked four ways. 1) A golden set of 26 comments sampled across themes is being hand-labelled; the agreement rate will be reported once the labels are in (status: awaiting human labels). 2) A guardrail review of all 27,709 AI-written fields found 198 keyword flags and 22 real issues (fun"
+   "text": "Quality is checked four ways. 1) A golden set of 27 comments, sampled across themes, sources, languages and guardrail cases, was hand-labelled without seeing the AI tags (25 scored; 2 practice items excluded). First-pass agreement: relevance 56%, main event 56%, drop-off type 72%, main reason 52%, o"
   },
   {
    "q": "What guardrails does this engine have?",
@@ -960,7 +960,7 @@
    "route": "research",
    "got_topic": "limitations",
    "pass": true,
-   "text": "Main limitations: 1) Public comments over-represent complaints and people who write online, so shares describe what people write, not the whole investor base. 2) Tags are AI-made and directional until the hand-labelled golden set confirms them. 3) Few comments state income or age, so segment cuts ar"
+   "text": "Main limitations: 1) Public comments over-represent complaints and people who write online, so shares describe what people write, not the whole investor base. 2) Tags are AI-made; the hand-labelled golden set found 59% first-pass agreement, with the AI too generous about which forum comments are rel"
   },
   {
    "q": "How many drop-offs are involuntary?",

@@ -402,7 +402,7 @@
    "route": "research",
    "got_topic": "validation",
    "pass": false,
-   "text": "Quality is checked four ways. 1) A golden set of 26 comments sampled across themes is being hand-labelled; the agreement rate will be reported once the labels are in (status: awaiting human labels). 2) A guardrail review of all 27,709 AI-written fields found 198 keyword flags and 22 real issues (fun"
+   "text": "Quality is checked four ways. 1) A golden set of 27 comments, sampled across themes, sources, languages and guardrail cases, was hand-labelled without seeing the AI tags (25 scored; 2 practice items excluded). First-pass agreement: relevance 56%, main event 56%, drop-off type 72%, main reason 52%, o"
   },
   {
    "q": "explain how you built this engine",
