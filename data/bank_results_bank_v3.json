@@ -591,7 +591,7 @@
    "route": "research",
    "got_topic": "q2",
    "pass": true,
-   "text": "Drop-off talk roughly doubles after the first quarter: 12.1% of comments about months 1 to 3 describe a drop-off (1,534 comments), against 23.2% for months 4 to 12 (960) and 26.5% beyond 12 months (5,719). Early comments are about starting and checking; later ones add stopping, redeeming and step-up"
+   "text": "What changes over time is why people drop off. Payment failures are 76% of drop-offs at setup (167 of 220), 41% in months 1 to 3 (76 of 186), 21% in months 4 to 12 (47 of 223) and 11% after a year (163 of 1,514). So early drop-offs are mostly SIPs failing without the investor deciding, and later one"
   },
   {
    "q": "how does behaviour change after the first few months of a sip",
@@ -600,7 +600,7 @@
    "route": "research",
    "got_topic": "q2",
    "pass": true,
-   "text": "Drop-off talk roughly doubles after the first quarter: 12.1% of comments about months 1 to 3 describe a drop-off (1,534 comments), against 23.2% for months 4 to 12 (960) and 26.5% beyond 12 months (5,719). Early comments are about starting and checking; later ones add stopping, redeeming and step-up"
+   "text": "What changes over time is why people drop off. Payment failures are 76% of drop-offs at setup (167 of 220), 41% in months 1 to 3 (76 of 186), 21% in months 4 to 12 (47 of 223) and 11% after a year (163 of 1,514). So early drop-offs are mostly SIPs failing without the investor deciding, and later one"
   },
   {
    "q": "What leads investors to pause, reduce or stop a SIP?",

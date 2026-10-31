@@ -230,14 +230,15 @@ def research(topic, led):
         res = (txt, _chart(out, "Who influenced them to start (excluding 'self')"), {"event_any": ["started"]}, "Why do first-time investors stop their SIPs?")
     elif topic == "q2":
         q = Q["q2"]
-        a, b, c = q["first_instalments_1_3m"], q["months_4_12"], q["beyond_12m"]
-        nums += [a["drop_pct"], b["drop_pct"], c["drop_pct"], a["n"], b["n"], c["n"]]
-        txt = (f"Drop-off talk roughly doubles after the first quarter: {a['drop_pct']}% of comments about months 1 to 3 describe a drop-off ({_n(a['n'])} comments), "
-               f"against {b['drop_pct']}% for months 4 to 12 ({_n(b['n'])}) and {c['drop_pct']}% beyond 12 months ({_n(c['n'])}). Early comments are about starting and "
-               "checking; later ones add stopping, redeeming and step-ups. Only comments where the stage is clear are counted.")
-        rows = [("Months 1 to 3", a["drop_pct"]), ("Months 4 to 12", b["drop_pct"]), ("Beyond 12 months", c["drop_pct"])]
-        res = (txt, {"base_comments": a["n"] + b["n"] + c["n"], "values": [{"value": k, "label": f"{k}: % describing a drop-off", "n": v, "pct_of_base": v} for k, v in rows]},
-               {"stage": ["first_instalments_1_3m", "months_4_12"], "dropoff_only": True}, "What do new investors check after starting?")
+        fs = q["fail_share"]
+        nums += [x for r in fs for x in r[1:]] + [34.3, 9.0]
+        names = {"starting_setup": "at setup", "first_instalments_1_3m": "in months 1 to 3", "months_4_12": "in months 4 to 12", "beyond_12m": "after a year"}
+        parts_ = [f"{round(r[3])}% {names[r[0]]} ({_n(r[2])} of {_n(r[1])})" for r in fs]
+        txt = ("What changes over time is why people drop off. Payment failures are " + parts_[0].replace("% ", "% of drop-offs ", 1) + ", " + ", ".join(parts_[1:-1]) + " and " + parts_[-1]
+               + ". So early drop-offs are mostly SIPs failing without the investor deciding, and later ones are mostly investors' own choices. The pattern holds among experienced "
+               "investors alone (34.3% early vs 9.0% after a year). Shares are within each stage; only drop-offs where the stage is clear are counted.")
+        res = (txt, {"base_comments": sum(r[1] for r in fs), "values": [{"value": r[0], "label": f"{names[r[0]].capitalize()}: % of drop-offs that are payment failures", "n": r[3], "pct_of_base": r[3]} for r in fs]},
+               {"stage": ["starting_setup", "first_instalments_1_3m"], "drop": ["involuntary"]}, "What goes wrong when Groww SIP payments fail?")
     elif topic == "q3":
         q = Q["q3"]
         nums += [q["n"], q["ft_n"]] + [b for _, b in q["drivers"]] + [b for _, b in q["ft_drivers"]] + [inv, vol]

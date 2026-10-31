@@ -57,9 +57,11 @@ with c1:
          "returns fell short of what people expected. The interviews ask what people expected when they started.")
 with c2:
     card("2. How behaviour changes after starting",
-         f"Drop-off talk roughly doubles after the first quarter: {q2['first_instalments_1_3m']['drop_pct']}% of month 1 to 3 comments describe a drop-off versus {q2['months_4_12']['drop_pct']}% in months 4 to 12.",
-         [(f"{nm} (n={q2[s]['n']:,}): % describing a drop-off", q2[s]["drop_pct"]) for s, nm in (("first_instalments_1_3m", "Months 1 to 3"), ("months_4_12", "Months 4 to 12"), ("beyond_12m", "After 12 months"))],
-         "In time order. Only comments where the stage is clear.", sort=False)
+         "What changes over time is why people drop off. Early on, SIPs mostly fail without the investor deciding: payment failures are 76% of drop-offs at setup and 41% in "
+         "months 1 to 3. Later, investors' own choices dominate: payment failures fall to 21% in months 4 to 12 and 11% after a year.",
+         [(f"{nm} ({n:,} drop-offs)", round(pct)) for (s, n, k, pct), nm in zip(q2["fail_share"], ("Setup", "Months 1 to 3", "Months 4 to 12", "After 12 months"))],
+         "% of each stage's drop-offs that are payment failures, in time order; drop-offs where the stage is clear. Shares within each stage, so they don't depend on who writes when. The pattern holds among experienced investors "
+         "alone (34% early vs 9% after a year) and in store reviews and forums separately (chi-square, p < 0.001).", sort=False)
 c1, c2 = st.columns(2)
 with c1:
     card("3. What leads to pausing, reducing or stopping",
@@ -90,7 +92,7 @@ with c2:
     seg = [(f"{pre[f]}: {lab(k)} (n={q8[f][k]['n']:,})", q8[f][k]["pct_dropoff"]) for f in order for k in order[f] if k in q8[f]]
     card("8. Differences across segments (% of comments describing a drop-off)",
          "Younger investors and students describe fewer drop-offs; salaried and variable-income writers name cash-flow changes as their top reason; "
-         "people who started on a friend's or family member's word describe more drop-offs than those influenced by social media.", seg,
+         "people who started on a friend's or family member's word describe more drop-offs than those influenced by social media (16% vs 10%), though that gap is weak within Reddit alone.", seg,
          "Grouped by income, age and who influenced them. Few comments state these, so cuts are thin; source of money is not stated often enough to count. Interviews fill these gaps.", sort=False)
 card("9. Unmet needs that appear consistently",
      "Clear explanation of returns, support that resolves, and installments that reliably go through are the most repeated asks.",

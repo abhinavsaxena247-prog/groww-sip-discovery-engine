@@ -90,7 +90,7 @@ if AG:
     st.markdown(f"- {GOLD['finding']}\n"
                 "- Some human \"not relevant\" labels are first-person questions the codebook counts as relevant: definition-boundary cases.\n"
                 "- Event and reason gaps are mostly cases where two readings fit, or the AI tagged extra reasons.\n"
-                "- Robustness: the involuntary share of drop-offs is 28.9% with all sources, 28.9% without forum sources and 28.7% with app stores and Reddit only, "
+                "- Robustness: the involuntary share of drop-offs is 28.9% with all sources, 29.1% without the forum sources (TradingQnA, Zerodha Varsity, Team-BHP) and 28.7% with app stores and Reddit only, "
                 "and the top three reasons stay the same; the generous relevance filter inflates volume, not the conclusions.\n"
                 f"- AI guardrail violations on these {GOLD['size']} items: {GOLD['guardrail_violations']}.\n"
                 "- With 25 items each comment moves a rate by 4 points, so per-question rates are approximate.")

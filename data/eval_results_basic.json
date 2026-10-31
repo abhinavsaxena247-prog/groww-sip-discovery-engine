@@ -1,8 +1,8 @@
 {
- "when": "2026-10-31 10:34 UTC",
+ "when": "2026-10-31 20:30 UTC",
  "mode": "basic (counts only)",
  "models": [],
- "seconds": 65,
+ "seconds": 53,
  "summary": {
   "total": 169,
   "pass": 169,
@@ -427,7 +427,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 910 comments that match your question. The most common: continued (395, 43.4%), stopped or cancelled (226, 24.8%), checked or tracked (218, 24.0%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 0.3,
+   "secs": 0.2,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -473,7 +473,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 1.0,
+   "secs": 0.7,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -496,7 +496,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "Share of relevant comments matching your question, by year: 2022: 155 of 964 (16.1%); 2023: 141 of 1,091 (12.9%); 2024: 482 of 5,709 (8.4%); 2025: 291 of 5,658 (5.1%); 2026: 292 of 4,183 (7.0%). Years with few comments are noisy.",
-   "secs": 0.7,
+   "secs": 0.4,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -565,7 +565,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 5,789 comments that match your question. The most common: self (4,627, 79.9%), social media (261, 4.5%), friend or family (220, 3.8%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 1.7,
+   "secs": 1.5,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -611,7 +611,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "Across 3,336 comments describing a SIP being skipped, paused, reduced, stopped or lapsing, the most common reasons are app bug or friction (876), trust or support failure (722), payment, mandate or autopay failure (593), returns below expectation (327). 963 of these drop-offs (28.9%) were not the investor's choice: a failed debit, mandate or app error. For self-described first-time investors (n=282) the top reasons are app bug or friction (89), payment, mandate or autopay failure (53), trust or support failure (47). Market falls are one reason among many, not the main one.",
-   "secs": 0.9,
+   "secs": 0.6,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -634,7 +634,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 4.9,
+   "secs": 4.4,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -703,7 +703,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "First-time investors mostly check returns, profit or loss (332), whether the installment went through (248), portfolio value (151); XIRR and NAV matter far less to them than to experienced investors (all investors: returns, profit or loss (2,211), portfolio value (1,990), whether the installment went through (1,819)). How often they check is rarely stated in public text, so the interviews cover frequency.",
-   "secs": 0.2,
+   "secs": 0.1,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -726,7 +726,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "3,906 comments describe starting a SIP (2,772 from self-described first-time investors). Most say they decided themselves (3,097); the visible outside triggers are friend or family (156), social media (156), app nudge (8). Expectations show up mostly as gaps later: 327 drop-off comments say returns fell short of what they expected.",
-   "secs": 0.9,
+   "secs": 0.8,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -1745,7 +1745,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 0.9,
+   "secs": 0.6,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -1768,7 +1768,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 1,479 comments that match your question. The most common: continued (495, 33.5%), checked or tracked (350, 23.7%), stopped or cancelled (298, 20.1%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 0.5,
+   "secs": 0.3,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -1814,7 +1814,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "Across 3,336 comments describing a SIP being skipped, paused, reduced, stopped or lapsing, the most common reasons are app bug or friction (876), trust or support failure (722), payment, mandate or autopay failure (593), returns below expectation (327). 963 of these drop-offs (28.9%) were not the investor's choice: a failed debit, mandate or app error. For self-described first-time investors (n=282) the top reasons are app bug or friction (89), payment, mandate or autopay failure (53), trust or support failure (47). Market falls are one reason among many, not the main one.",
-   "secs": 1.0,
+   "secs": 0.8,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -1837,7 +1837,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 3,166 comments that match your question. The most common: portfolio value (581, 18.4%), whether the installment went through (437, 13.8%), returns, profit or loss (214, 6.8%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 0.8,
+   "secs": 0.6,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -1969,7 +1969,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "Across 3,336 comments describing a SIP being skipped, paused, reduced, stopped or lapsing, the most common reasons are app bug or friction (876), trust or support failure (722), payment, mandate or autopay failure (593), returns below expectation (327). 963 of these drop-offs (28.9%) were not the investor's choice: a failed debit, mandate or app error. For self-described first-time investors (n=282) the top reasons are app bug or friction (89), payment, mandate or autopay failure (53), trust or support failure (47). Market falls are one reason among many, not the main one.",
-   "secs": 0.9,
+   "secs": 0.7,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -1992,7 +1992,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 3,166 comments that match your question. The most common: app bug or friction (1,118, 35.3%), trust or support failure (753, 23.8%), no way to pause, skip or change (254, 8.0%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 0.8,
+   "secs": 0.6,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -2015,7 +2015,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 5.2,
+   "secs": 4.1,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -2038,7 +2038,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 8,675 comments that match your question. The most common: returns below expectation (494, 5.7%), negative or volatile returns (452, 5.2%), goal clarity or tracking (379, 4.4%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 2.2,
+   "secs": 1.7,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -2061,7 +2061,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 429 comments that match your question. The most common: negative or volatile returns (14, 3.3%), cash-flow or income change (14, 3.3%), returns below expectation (11, 2.6%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 0.2,
+   "secs": 0.1,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -2084,7 +2084,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 6.1,
+   "secs": 4.6,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -2130,7 +2130,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 753 comments that match your question. The most common: redeemed or withdrew (229, 30.4%), stopped or cancelled (99, 13.1%), checked or tracked (94, 12.5%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 0.3,
+   "secs": 0.2,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -2153,7 +2153,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "Of 3,336 comments describing a drop-off, 2,343 were voluntary (the investor chose to stop, skip, pause or reduce), 963 (28.9%) were involuntary (a failed debit, broken mandate or app error stopped the SIP without the investor deciding), and 20 were passive drift. Among self-described first-time investors, 106 of 282 (37.6%) were involuntary.",
-   "secs": 0.3,
+   "secs": 0.2,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -2199,7 +2199,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 6.2,
+   "secs": 5.0,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -2222,7 +2222,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "First-time investors mostly check returns, profit or loss (332), whether the installment went through (248), portfolio value (151); XIRR and NAV matter far less to them than to experienced investors (all investors: returns, profit or loss (2,211), portfolio value (1,990), whether the installment went through (1,819)). How often they check is rarely stated in public text, so the interviews cover frequency.",
-   "secs": 0.2,
+   "secs": 0.1,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -2268,7 +2268,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "3,906 comments describe starting a SIP (2,772 from self-described first-time investors). Most say they decided themselves (3,097); the visible outside triggers are friend or family (156), social media (156), app nudge (8). Expectations show up mostly as gaps later: 327 drop-off comments say returns fell short of what they expected.",
-   "secs": 1.0,
+   "secs": 0.8,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -2841,7 +2841,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 3,336 comments that match your question. The most common: app bug or friction (876, 26.3%), trust or support failure (722, 21.6%), payment, mandate or autopay failure (593, 17.8%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 0.8,
+   "secs": 0.7,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -2864,7 +2864,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 102 comments that match your question. The most common: payment failed or lapsed (80, 78.4%), stopped or cancelled (20, 19.6%), switched platform (5, 4.9%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 0.1,
+   "secs": 0.0,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -2933,7 +2933,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 3,336 comments that match your question. The most common: self (1,986, 59.5%), friend or family (75, 2.2%), social media (51, 1.5%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 0.9,
+   "secs": 0.7,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -2956,7 +2956,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "3,906 comments describe starting a SIP (2,772 from self-described first-time investors). Most say they decided themselves (3,097); the visible outside triggers are friend or family (156), social media (156), app nudge (8). Expectations show up mostly as gaps later: 327 drop-off comments say returns fell short of what they expected.",
-   "secs": 1.2,
+   "secs": 0.7,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -3002,7 +3002,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 21,445 comments that match your question. The most common: reddit (8,675, 40.5%), play store (5,103, 23.8%), youtube (2,854, 13.3%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 5.5,
+   "secs": 4.3,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -3025,7 +3025,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 5.5,
+   "secs": 4.4,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -3071,7 +3071,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 21,445 comments that match your question. The most common: continued (4,763, 22.2%), started (3,906, 18.2%), checked or tracked (2,884, 13.4%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 5.1,
+   "secs": 4.2,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
@@ -3094,7 +3094,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I counted 21,445 comments that match your question. The most common: app bug or friction (3,292, 15.4%), trust or support failure (1,798, 8.4%), goal clarity or tracking (1,082, 5.0%). These are AI tags on public comments, so treat them as directional.",
-   "secs": 4.8,
+   "secs": 4.5,
    "checks": [
     "Input check passed",
     "Counted data only (basic mode)",
