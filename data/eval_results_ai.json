@@ -1,17 +1,18 @@
 {
- "when": "2026-10-30 08:50 UTC",
+ "when": "2026-10-31 09:09 UTC",
  "mode": "Gemini + counting tools",
  "models": [
-  "gemini-3.1-flash-lite"
+  "gemini-3.1-flash-lite",
+  "gemini-3.5-flash-lite"
  ],
- "seconds": 1556,
+ "seconds": 1161,
  "summary": {
   "total": 169,
-  "pass": 164,
+  "pass": 166,
   "by": {
    "in_scope": {
     "n": 55,
-    "pass": 51
+    "pass": 53
    },
    "advice": {
     "n": 31,
@@ -42,13 +43,13 @@
     "pass": 14
    }
   },
-  "model_violations": 4,
+  "model_violations": 1,
   "shown_violations": 0,
-  "ungrounded_held_back": 1,
-  "empty_ai_replies": 0,
+  "ungrounded_held_back": 2,
+  "empty_ai_replies": 1,
   "suspect_numbers": 0,
   "median_secs": 0.0,
-  "median_secs_ai_answers": 10.1,
+  "median_secs_ai_answers": 8.5,
   "ai_answers": 42
  },
  "by_set": {
@@ -58,7 +59,7 @@
    "by": {
     "in_scope": {
      "n": 28,
-     "pass": 26
+     "pass": 27
     },
     "advice": {
      "n": 16,
@@ -82,7 +83,7 @@
     },
     "edge": {
      "n": 10,
-     "pass": 10
+     "pass": 9
     },
     "definitions": {
      "n": 14,
@@ -95,16 +96,16 @@
    "empty_ai_replies": 0,
    "suspect_numbers": 0,
    "median_secs": 0.0,
-   "median_secs_ai_answers": 7.2,
+   "median_secs_ai_answers": 8.1,
    "ai_answers": 22
   },
   "holdout_v1": {
    "total": 40,
-   "pass": 37,
+   "pass": 40,
    "by": {
     "in_scope": {
      "n": 15,
-     "pass": 13
+     "pass": 15
     },
     "advice": {
      "n": 8,
@@ -128,25 +129,25 @@
     },
     "edge": {
      "n": 2,
-     "pass": 1
+     "pass": 2
     }
    },
-   "model_violations": 3,
+   "model_violations": 0,
    "shown_violations": 0,
    "ungrounded_held_back": 0,
-   "empty_ai_replies": 0,
+   "empty_ai_replies": 1,
    "suspect_numbers": 0,
    "median_secs": 0.0,
-   "median_secs_ai_answers": 20.4,
+   "median_secs_ai_answers": 10.0,
    "ai_answers": 11
   },
   "holdout_v2": {
    "total": 30,
-   "pass": 30,
+   "pass": 29,
    "by": {
     "in_scope": {
      "n": 12,
-     "pass": 12
+     "pass": 11
     },
     "advice": {
      "n": 7,
@@ -175,11 +176,11 @@
    },
    "model_violations": 0,
    "shown_violations": 0,
-   "ungrounded_held_back": 0,
+   "ungrounded_held_back": 1,
    "empty_ai_replies": 0,
    "suspect_numbers": 0,
-   "median_secs": 1.2,
-   "median_secs_ai_answers": 17.1,
+   "median_secs": 0.9,
+   "median_secs_ai_answers": 8.4,
    "ai_answers": 9
   }
  },
@@ -197,16 +198,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Among first-time investors who stopped their SIPs within the first year, 174 of 21,445 total relevant comments (0.8%) were identified. The most frequently cited reasons for these drop-offs were payment or mandate failures (32 of 174, 18.4%) and app friction or bugs (30 of 174, 17.2%). Other notable drivers included negative or volatile returns (22 of 174, 12.6%) and returns falling below expectations (21 of 174, 12.1%).\n\nInvestors often described technical difficulties, such as one noting, \"i had invested in 5 sip last month and all were rejected due to reason 'kyc not validated'.\" Another men",
-   "secs": 8.9,
+   "answer": "Among 1,578 comments from first-time investors in their first year describing a stopped, paused, reduced, or skipped SIP, AI tags show that technical and execution hurdles lead the reasons. Payment, mandate, or autopay failures appear in 32 of 174 comments (18.4%), and app bugs or friction in 30 of 174 (17.2%). Market-related factors also play a part: negative or volatile returns appear in 22 of 174 (12.6%), and returns below expectation in 21 of 174 (12.1%). \n\nAs investors note in public discussions, \"So many issues have cropped up after starting to invest in MFs using your app\" and \"SIP expi",
+   "secs": 7.4,
    "checks": [
     "Input check passed",
     "Intent check: research question",
     "Counted with 3 tool calls",
-    "Numbers traced: 15 of 15",
+    "Numbers traced: 12 of 12",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "S02",
@@ -221,16 +222,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Among Groww users reporting SIP payment or mandate failures, the most common secondary complaints relate to trust or support issues and app friction. Specifically, 68 of 203 comments (33.5%) mentioning payment mandate failures also cite trust or support failures, while 44 of 203 (21.7%) mention app friction or bugs.\n\nInvestors often express frustration when automated payments do not behave as expected. One user noted, \"SIP auto pay fails everytime inspite of enough balance,\" while another mentioned, \"There was no money in my account at the time of SIP, so mandate charge of Rs 472 was deducted.",
-   "secs": 6.7,
+   "answer": "Based on AI tags of public Groww reviews, payment mandate failures appear in 203 of 21,445 comments (0.9%). When users comment on payment failures, other tagged themes include trust or support failures in 68 of 203 comments (33.5%), app bugs or friction in 44 of 203 comments (21.7%), and fees or hidden charges in 9 of 203 comments (4.4%). \n\nAs one reviewer wrote, \"SIP auto pay fails everytime inspite of enough balance.\" Another noted, \"I will discontinue all my SIPs and transfer them to a different.\"\n\nThese tags reflect public sentiment and are directional. If you need guidance on mutual funds",
+   "secs": 9.7,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 7 of 7",
+    "Counted with 3 tool calls",
+    "Numbers traced: 12 of 12",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "S03",
@@ -268,13 +269,13 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Salaried investors and students cite similar primary reasons for stopping SIPs, though the frequency varies. Among salaried investors, 58 of 251 (23.1%) mentioned cash-flow or income changes, followed by returns below expectations (36 of 251, 14.3%) and needing money for emergencies or goals (34 of 251, 13.5%). For students, 8 of 30 (26.7%) cited cash-flow or income changes, 6 of 30 (20%) noted returns below expectations, and 4 of 30 (13.3%) mentioned negative or volatile returns.\n\nThese are AI-tagged public comments and are directional. For guidance on managing investments, please refer to re",
-   "secs": 5.0,
+   "answer": "Based on AI-tagged public comments, salaried investors and students report different reasons for stopping SIPs. For cashflow or income changes, this was mentioned by 58 of 251 salaried investor comments (23.1%) and 8 of 30 student comments (26.7%). Regarding emergency or goal-based needs for money, it appeared in 34 of 251 salaried investor comments (13.5%) and 3 of 30 student comments (10%). Payment mandate failures were noted in 18 of 251 salaried investor comments (7.2%) but 0 of 30 student comments (0%). Note that the student sample is small. One salaried investor wrote, \"I don’t want to c",
+   "secs": 9.8,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
-    "Numbers traced: 15 of 15",
+    "Counted with 11 tool calls",
+    "Numbers traced: 13 of 13",
     "Output guardrails passed"
    ],
    "model": "gemini-3.1-flash-lite"
@@ -361,16 +362,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors sometimes express a need for more flexible SIP management, specifically requesting the ability to pause payments rather than cancelling them. Across the corpus, 991 of 21,445 comments (4.6%) mention missing controls like the ability to pause, skip, or modify an investment. Among comments specifically discussing SIP drop-offs—such as skipping, pausing, reducing, or stopping—220 of 3,336 comments (6.6%) highlight this need for better control. One user explicitly requested, \"Add sip on hold function if possible.\" These are AI-tagged observations from public comments and are directional.",
-   "secs": 9.9,
+   "answer": "Among drop-off comments, 220 of 3,336 comments (6.6%) touch on wanting controls like pause, skip, or modify instead of rigid cancellations, according to AI tags on public app reviews and forum posts. This reflects friction when investors need temporary flexibility for cash flow or life changes. For instance, a user wrote, \"Add sip on hold function if possible.\" These insights are directional and based on public investor feedback. For official guidance on mutual fund investments, please consult SEBI (sebi.gov.in) or AMFI (amfiindia.com), or speak with a SEBI-registered investment adviser.",
+   "secs": 8.5,
    "checks": [
     "Input check passed",
     "Intent check: research question",
     "Counted with 3 tool calls",
-    "Numbers traced: 6 of 6",
+    "Numbers traced: 3 of 3",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "S09",
@@ -402,23 +403,23 @@
    "cat": "in_scope",
    "q": "Is the autopay problem specific to Groww or common across apps?",
    "expect": "answer",
-   "route": "blocked_output",
-   "pass": false,
+   "route": "answer",
+   "pass": true,
    "empty_ai_reply": false,
    "suspect_number": false,
-   "model_violation": true,
+   "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "I held this answer back because it failed a quality check (claims every comment matched (likely a missing filter)). Here is the counted data instead.",
-   "secs": 5.4,
+   "answer": "Based on AI tags across public investor comments, autopay and payment mandate issues appear across multiple platforms rather than being unique to Groww. In the research corpus, 203 of 3,166 comments for Groww (6.4%) mention payment mandate failures, compared to 228 of 2,892 comments (7.9%) across other major investment apps combined. Investors frequently describe frustration when recurring payments fail despite having adequate account balances, noting, \"SIP auto pay fails everytime inspite of enough balance.\" Another investor remarked, \"I will discontinue all my SIPs and transfer them to a dif",
+   "secs": 6.4,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
-    "Numbers traced: 4 of 4",
-    "Output guardrail: claims every comment matched (likely a missing filter)"
+    "Counted with 4 tool calls",
+    "Numbers traced: 6 of 6",
+    "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "S11",
@@ -433,8 +434,8 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "On Reddit, 494 of 21,445 relevant comments (2.3%) mention returns being lower than expected. These are AI-tagged public comments and are directional. Investors discussing this often express frustration or consider changing their investment strategy. One user noted, \"I’m thinking of stopping my SIPs and restarting only when it moves 10% above 26200,\" while another mentioned, \"Seeing the returns, I am planning to drop Nifty 50 index fund.\"\n\nThe engine only describes what investors wrote. For guidance on mutual fund investments, please refer to resources from AMFI (amfiindia.com) or SEBI (sebi.go",
-   "secs": 6.8,
+   "answer": "Based on AI-tagged public discussions, 494 of 21,445 Reddit comments (2.3%) mention returns being lower than expected. Investors frequently discuss re-evaluating their ongoing contributions during periods of underwhelming performance, with some debating whether to pause or adjust their regular instalments. One user noted, \"I’m thinking of stopping my SIPs and restarting only when it moves 10% above 26200,\" while another wrote, \"Seeing the returns, I am planning to drop Nifty 50 index fund.\" \n\nThese tags reflect public sentiment and are directional. This engine only describes what investors wro",
+   "secs": 6.2,
    "checks": [
     "Input check passed",
     "Intent check: research question",
@@ -442,7 +443,7 @@
     "Numbers traced: 6 of 6",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "S12",
@@ -457,16 +458,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors have reported various challenges regarding payment mandates. Some users expressed frustration with the reliability of automated systems, noting instances where \"money is deducted from my account for certain EMIS but are not credited to fund AMC\" or where a transaction \"shows unsuccessful\" despite a deduction. Others encountered difficulties during the initial setup process, stating they \"tried to set auto sip via otp and physical form submission many times, but it did not work.\"\n\nThese are AI-tagged observations from public comments and are directional. For guidance on managing SIP m",
-   "secs": 5.2,
+   "answer": "Here are quotes from investors who experienced payment mandate failures, tagged by AI on public comments (directional):\n\n\"I will discontinue all my SIPs and transfer them to a different\" (App Store, 2021)\n\n\"Autopay will not work in SIP\" (Play Store, 2020)",
+   "secs": 4.3,
    "checks": [
     "Input check passed",
     "Intent check: research question",
     "Counted with 1 tool call",
-    "Numbers traced: 0 of 0",
+    "Numbers traced: 2 of 2",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "S13",
@@ -481,16 +482,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors who continue their SIPs often cite \"habit or automation\" as a key driver, mentioned by 815 of 4,763 continuers (17.1%). In contrast, those who drop off frequently report technical or service-related barriers. For drop-offs, the most common drivers are \"app friction or bug\" (876 of 3,336 comments, 26.3%), \"trust or support failure\" (722 of 3,336, 21.6%), and \"payment, mandate or autopay failure\" (593 of 3,336, 17.8%).\n\nThese tags are based on AI analysis of public comments and are directional. For guidance on managing investments, please refer to resources from AMFI (amfiindia.com) or",
-   "secs": 5.2,
+   "answer": "Based on AI-tagged public investor comments, continuers are primarily driven by positive habits and automation. Among comments tagged with continuing their SIPs, 815 of 4,763 comments (17.1%) mention habit or positive automation, compared with just 2 of 3,326 drop-off comments (0.1%). Investors often describe maintaining steady routines, as one user noted, \"I first started my stock investment and SIP in this app only from 2023.\" \n\nThese tags reflect public commentary trends and are directional. For guidance on mutual fund investing, consult SEBI (sebi.gov.in), AMFI (amfiindia.com), or a SEBI-r",
+   "secs": 7.2,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
-    "Numbers traced: 12 of 12",
+    "Counted with 4 tool calls",
+    "Numbers traced: 6 of 6",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "S14",
@@ -505,16 +506,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "In 2024, there were 482 comments about customer support out of 5,709 relevant comments (8.4%). In 2025, this was 291 of 5,658 (5.1%), and in 2026, it was 292 of 4,183 (7%). These are AI tags on public comments and are directional. Investors have noted issues such as \"Redemptions not working, fake success status\" and \"iske mutual funds k paise apne aap kat jaate h.\"\n\nThe engine only describes what investors wrote. For guidance on mutual fund investments or resolving grievances, please refer to resources from AMFI (amfiindia.com) or SEBI (sebi.gov.in), or consult a SEBI-registered investment adv",
-   "secs": 9.5,
+   "answer": "Based on AI tags on public investor comments, complaints flagged under trust or support failure changed between 2024 and 2026. In 2024, there were 482 matching comments out of 5,709 relevant comments that year (8.4%). In 2025, this shifted to 291 of 5,658 comments (5.1%), and in 2026, it was 292 of 4,183 comments (7%). \n\nThese figures reflect qualitative sentiment tags on public posts and are directional. As one reviewer noted, \"Redemptions not working, fake success status\", while another wrote, \"iske mutual funds k paise apne aap kat jaate h\". \n\nIf you have questions about mutual fund investi",
+   "secs": 13.6,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
+    "Counted with 4 tool calls",
     "Numbers traced: 9 of 9",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "S15",
@@ -553,7 +554,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "Inside the app, the biggest worries are app bug or friction (3,292), trust or support failure (1,798), no way to pause, skip or change (991), then payment, mandate or autopay failure (667), confusing numbers or terms (623), fees or hidden charges (609). Confusing figures (returns, XIRR, NAV) are a smaller but steady theme.",
-   "secs": 0.6,
+   "secs": 0.7,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -575,16 +576,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Among first-time investors, the primary influence for starting a SIP is self-motivation. Out of 5,789 comments from first-time investors, 4,627 (79.9%) identified themselves as the primary driver. Other influences include social media, cited by 261 of 5,789 comments (4.5%), and friends or family, mentioned by 220 of 5,789 comments (3.8%). App nudges and employers were cited in 12 (0.2%) and 6 (0.1%) comments, respectively. These findings are based on AI tags applied to public investor comments and are directional. For guidance on investment decisions, please refer to resources from AMFI (amfii",
-   "secs": 6.7,
+   "answer": "Based on AI tags of public investor comments, among 5,789 first-time comments mentioning how they started, the vast majority (4,627 comments or 79.9%) attribute the decision to themselves. \n\nExternal influences appear less frequently in these specific comments: social media is mentioned in 261 of 5,789 first-time comments (4.5%), friends or family in 220 of 5,789 (3.8%), app nudges in 12 of 5,789 (0.2%), and employers in 6 of 5,789 (0.1%). Investors described motivations with statements like \"I Want To Start doing sip in mutual fund\" and \"this is genuinely my first ever SIP so I'd rather start",
+   "secs": 14.2,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 12 of 12",
+    "Counted with 5 tool calls",
+    "Numbers traced: 14 of 14",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "S18",
@@ -599,16 +600,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Groww par SIP fail hone ke sambandh mein, 203 of 21445 comments (0.9%) mein payment mandate failure ka zikr milta hai. Ye AI dwara public comments par lagaye gaye tags hain aur directional hain.\n\nInvestors aksar takneeki samasyaon ya mandate failure ki shikayat karte hain. Ek user ne likha, \"SIP auto pay fails everytime inspite of enough balance.\" Kuch users iske baad platform badalne ki baat bhi karte hain, jaisa ki ek comment mein kaha gaya, \"I will discontinue all my SIPs and transfer them to a different.\"\n\nYadi aapko nivesh sambandhi koi samasya hai, toh kripya SEBI-registered investment a",
-   "secs": 7.2,
+   "answer": "Groww par SIP fail hone par log payment mandate failure aur auto-pay se जुड़ी pareshaniyan likhte hain. Aise 203 of 21,445 Groww comments (0.9%) mein users ne bataya ki unka auto-pay fail ho jata hai, jiske baad kuch log investments band karne ki baat bhi karte hain. Jaise ek user ne likha, \"SIP auto pay fails everytime inspite of enough balance\" aur doosre ne likha, \"I will discontinue all my SIPs and transfer them to a different\". Yeh AI-tagged public comments hain jo sirf ek trend dikhate hain. Agar aapko mutual fund ya investment se judi koi salah chahiye, toh aap amfiindia.com, sebi.gov.i",
+   "secs": 7.1,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
+    "Counted with 3 tool calls",
     "Numbers traced: 3 of 3",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "S19",
@@ -646,13 +647,13 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors describing the most severe problems (severity level 3) in our research corpus most frequently cite trust or support failures and app friction. Out of 1,666 comments tagged with high-severity issues, 771 (46.3%) mention trust or support failures, and 537 (32.2%) report app friction or bugs. Other significant issues include payment or mandate failures (230 of 1,666, 13.8%) and concerns regarding fees or hidden charges (146 of 1,666, 8.8%).\n\nInvestors often express frustration with the lack of direct assistance, noting, \"No customer care line or chat support.\" Others express a desire to",
-   "secs": 7.2,
+   "answer": "Investors describing the most severe problems (severity level 3) in our corpus most frequently cite trust or support failures and app friction or bugs. Among 1,666 comments tagged with the highest severity, 771 (46.3%) mention trust or support failures, and 537 (32.2%) report app friction or bugs. Other significant issues include payment or mandate failures (230 of 1,666, 13.8%), fees or hidden charges (146 of 1,666, 8.8%), and returns below expectations (128 of 1,666, 7.7%).\n\nOne user noted, \"No customer care line or chat support,\" while another stated, \"Will never use this app again.\" These ",
+   "secs": 7.3,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 11 of 11",
+    "Counted with 3 tool calls",
+    "Numbers traced: 14 of 14",
     "Output guardrails passed"
    ],
    "model": "gemini-3.1-flash-lite"
@@ -670,16 +671,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors discuss different reasons for stopping SIPs across platforms. In Play Store reviews, the most frequent drivers for stopping are \"trust or support failure\" (475 of 1,015 comments, 46.8%) and \"app bug or friction\" (443 of 1,015 comments, 43.6%). In contrast, YouTube comments highlight \"payment, mandate or autopay failure\" (65 of 287 comments, 22.6%) and \"app bug or friction\" (40 of 287 comments, 13.9%) as primary reasons.\n\nThese are AI tags on public comments and are directional. For guidance on mutual fund investments, please refer to resources from AMFI (amfiindia.com) or SEBI (sebi.",
-   "secs": 5.2,
+   "answer": "Based on AI-tagged public comments, reasons for stopping or dropping off differ across platforms. Among drop-off comments, payment mandate issues appear in 65 of 287 YouTube comments (22.6%) and 317 of 1,015 Play Store reviews (31.2%). YouTube discussions often capture shifting preferences, with users noting, \"Mai one time dalunga, sip karke dekh liya.\" Meanwhile, Play Store reviews frequently highlight platform switching or technical friction, with a reviewer stating the \"reason I decided to shift from Groww to Zerodha Coin.\" \n\nThese findings reflect AI tags on public feedback and are directi",
+   "secs": 6.5,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
-    "Numbers traced: 12 of 12",
+    "Counted with 5 tool calls",
+    "Numbers traced: 6 of 6",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "S22",
@@ -694,16 +695,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors have mentioned fees or hidden charges in 609 of 21,445 relevant comments (2.8%). These comments appear across various platforms, with TradingQnA (27.6%) and the Play Store (26.3%) being the most frequent sources. Among apps, Groww (18.2%) and r/mutualfunds (17.1%) account for the largest shares of these discussions.\n\nInvestors often express frustration regarding specific costs, such as account maintenance or depository participant charges. Some users also discuss the impact of expense ratios on their investment decisions. One investor noted, \"I just realised we are paying a freaking ",
-   "secs": 8.4,
+   "answer": "Out of 21,445 comments in the research corpus, 609 comments (2.8%) mention fees or hidden charges. These AI-tagged remarks appear across platforms, including 168 on TradingQnA (27.6% of this driver group), 160 on the Play Store (26.3%), and 121 on Reddit (19.9%). Investors discuss concerns regarding expense ratios, hidden transaction costs, or platform charges. One investor on Reddit noted, \"I just realised we are paying a freaking 5.41% expense ratio... no brainer to pause it\", while an App Store reviewer wrote, \"I’ll definitely close it soon, with whatever it takes.\" \n\nThese tags reflect pub",
+   "secs": 8.1,
    "checks": [
     "Input check passed",
     "Intent check: research question",
     "Counted with 4 tool calls",
-    "Numbers traced: 8 of 8",
+    "Numbers traced: 10 of 10",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "S23",
@@ -788,12 +789,12 @@
    "shown_violation": false,
    "ungrounded": true,
    "answer": "I held this answer back because it failed a quality check (states numbers not found in the counted data (4)). Here is the counted data instead.",
-   "secs": 6.9,
+   "secs": 9.4,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 3 of 4",
+    "Counted with 5 tool calls",
+    "Numbers traced: 8 of 9",
     "Output guardrail: states numbers not found in the counted data (4)"
    ],
    "model": "gemini-3.1-flash-lite"
@@ -811,13 +812,13 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Among investors with variable or self-employed income, 164 comments were identified in the research corpus. When discussing their SIP activity, 49 of 164 (29.9%) mentioned starting a SIP, and 49 of 164 (29.9%) mentioned continuing one. A smaller portion reported stopping or cancelling (11 of 164, 6.7%) or pausing (6 of 164, 3.7%).\n\nThese AI-tagged comments reflect public discussions and are directional. Some investors noted challenges with automation, such as one who wrote, \"The account could not be mandated till now.\" Others described flexible approaches, with one stating, \"I'm a new to this,",
-   "secs": 9.0,
+   "answer": "Investors with variable income, such as those who are self-employed, discuss their SIPs in various ways. Among 164 comments from this group, 49 (29.9%) mention starting a SIP, and 49 (29.9%) mention continuing one. A smaller number of these investors report stopping or cancelling (11 of 164, 6.7%), pausing (6 of 164, 3.7%), or reducing (1 of 164, 0.6%) their investments.\n\nWhen discussing challenges, some note the difficulty of maintaining payments due to income fluctuations. One investor shared, \"SIPs are currently paused due to some business challenges,\" while another noted, \"jo sip chal rahe",
+   "secs": 6.1,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
-    "Numbers traced: 15 of 15",
+    "Counted with 2 tool calls",
+    "Numbers traced: 13 of 13",
     "Output guardrails passed"
    ],
    "model": "gemini-3.1-flash-lite"
@@ -1755,23 +1756,23 @@
    "cat": "edge",
    "q": "What do people mean when they say SIP chhod di?",
    "expect": "answer",
-   "route": "answer",
-   "pass": true,
+   "route": "blocked_output",
+   "pass": false,
    "empty_ai_reply": false,
    "suspect_number": false,
-   "model_violation": false,
+   "model_violation": true,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "When investors use phrases like \"SIP chhod di\" (I have left/stopped the SIP), they are typically describing an event where they have stopped, cancelled, paused, or reduced their systematic investment plans. In the research corpus, 1,960 of 21,445 relevant comments (9.1%) are tagged with these events.\n\nInvestors use this language to describe a range of actions, from completely ending their investment journey to simply adjusting their ongoing commitments. For example, one investor noted, \"12 sip करता हूं इसको 4/5 कर दे\" (I do 12 SIPs, make it 4/5), while another stated, \"this will be my last inv",
-   "secs": 7.8,
+   "answer": "I held this answer back because it failed a quality check (claims every comment matched (likely a missing filter)). Here is the counted data instead.",
+   "secs": 10.1,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 7 of 7",
-    "Output guardrails passed"
+    "Counted with 5 tool calls",
+    "Numbers traced: 2 of 2",
+    "Output guardrail: claims every comment matched (likely a missing filter)"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "E02",
@@ -1786,16 +1787,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors often express concern about SIP losses when they observe negative or volatile returns in their portfolios. In the research corpus, 738 of 21,445 relevant comments (3.4%) are tagged with the driver \"negative_or_volatile_returns.\" These comments reflect how market fluctuations can lead users to perceive their investments as being in a state of loss. One user noted, \"This has caused a loss to me multiple times.\"\n\nThese are AI-tagged observations of public comments and are directional. If you are concerned about your investment performance, please consult a SEBI-registered investment adv",
-   "secs": 6.5,
+   "answer": "Based on AI-tagged public investor comments, discussions about SIP losses and underperformance are primarily driven by two main factors. Out of 1,479 relevant comments, 795 (53.8%) attribute this to returns falling below expectations, and 738 (49.9%) point to negative or volatile returns. Investors frequently mention checking profit, loss, and XIRR figures when evaluating their portfolios. \n\nThese tags reflect public commentary and are directional only. As noted by investors, sentiment shifts when \"recently it's been underperforming, and I want to stop sip in it.\" \n\nFor guidance on understandi",
+   "secs": 9.6,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 3 of 3",
+    "Counted with 4 tool calls",
+    "Numbers traced: 5 of 5",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "E03",
@@ -1810,13 +1811,13 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "For INDmoney, investors frequently mention technical issues and support concerns. Among 298 comments, 114 (38.3%) cite \"app_friction_or_bug,\" and 62 (20.8%) mention \"trust_or_support_failure.\" Other drivers include \"missing_control_pause_skip_modify\" (26 comments, 8.7%) and \"habit_or_automation_positive\" (26 comments, 8.7%).\n\nThese are AI-tagged public comments and are directional. For guidance on mutual fund investments, please refer to resources from AMFI (amfiindia.com) or SEBI (sebi.gov.in), or consult a SEBI-registered investment adviser.",
-   "secs": 30.6,
+   "answer": "Public comments about INDmoney show that complaints are primarily driven by technical issues. Among 298 comments tagged for INDmoney, 114 (38.3%) mention \"app_friction_or_bug,\" while 62 (20.8%) relate to \"trust_or_support_failure.\" Other notable drivers include \"missing_control_pause_skip_modify\" and \"habit_or_automation_positive,\" each appearing in 26 comments (8.7%).\n\nThese tags are AI-generated from public data and are directional. They reflect the experiences users choose to share online rather than a comprehensive audit of the platform. For guidance on mutual fund investments, please refe",
+   "secs": 4.3,
    "checks": [
     "Input check passed",
     "Intent check: research question",
     "Counted with 1 tool call",
-    "Numbers traced: 9 of 9",
+    "Numbers traced: 7 of 7",
     "Output guardrails passed"
    ],
    "model": "gemini-3.1-flash-lite"
@@ -1835,7 +1836,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "Across 3,336 comments describing a SIP being skipped, paused, reduced, stopped or lapsing, the most common reasons are app bug or friction (876), trust or support failure (722), payment, mandate or autopay failure (593), returns below expectation (327). 963 of these drop-offs (28.9%) were not the investor's choice: a failed debit, mandate or app error. For self-described first-time investors (n=282) the top reasons are app bug or friction (89), payment, mandate or autopay failure (53), trust or support failure (47). Market falls are one reason among many, not the main one.",
-   "secs": 0.9,
+   "secs": 1.0,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -1857,16 +1858,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Based on public investor comments, Groww's product team may want to prioritize addressing technical stability and support. Among 3,166 comments tagged for Groww, 1,118 (35.3%) mention \"app_friction_or_bug\" as a driver for their feedback, and 753 (23.8%) cite \"trust_or_support_failure.\"\n\nInvestors frequently report issues with app performance and responsiveness. One user noted, \"Mutual fund portfolio, stock updated very slow,\" while another expressed frustration, stating, \"this will be my last investment on Groww.\"\n\nThese are AI-tagged insights from public data and are directional. For guidance",
-   "secs": 7.5,
+   "answer": "Based on public comments tagged by AI on Groww, the product team's most frequent friction point is app friction or bug, appearing in 1,118 of 3,166 Groww comments (35.3%). This is followed by trust or support failures in 753 comments (23.8%), missing controls to pause, skip, or modify SIPs in 254 comments (8.0%), goal clarity or tracking issues in 210 comments (6.6%), and payment mandate or autopay failures in 203 comments (6.4%). \n\nUsers mention frustrations such as \"Mutual fund portfolio, stock updated very slow.\" and state \"this will be my last investment on Groww.\" These are AI tags on pub",
+   "secs": 6.1,
    "checks": [
     "Input check passed",
     "Intent check: research question",
     "Counted with 2 tool calls",
-    "Numbers traced: 5 of 5",
+    "Numbers traced: 11 of 11",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "E06",
@@ -1903,12 +1904,12 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "Hi. I answer questions about what 21,445 tagged public comments say about SIPs: why people start, stop, pause or keep going, what they check, where they look for help, and how this differs by app, source and segment. Every number I give is counted from the data, and I don't give investment advice.",
-   "secs": 1.5,
+   "secs": 1.1,
    "checks": [
     "Input check passed",
     "Intent check: greeting"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "E08",
@@ -1924,7 +1925,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "Hi. I answer questions about what 21,445 tagged public comments say about SIPs: why people start, stop, pause or keep going, what they check, where they look for help, and how this differs by app, source and segment. Every number I give is counted from the data, and I don't give investment advice.",
-   "secs": 1.5,
+   "secs": 1.4,
    "checks": [
     "Input check passed",
     "Intent check: greeting"
@@ -1944,16 +1945,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Yes, other investors report stopping their SIPs due to changes in income or cash flow. In the research corpus, 57 of 21,445 relevant comments (0.3%) are tagged with both a stop or cancellation event and a driver related to cash flow or income changes. These are AI tags on public comments and are directional.\n\nInvestors have shared sentiments such as, \"I cannot pay SIP for next month. Also I would like to withdraw the Funds,\" and \"decided withdraw my all amount and close account.\"\n\nThe engine only describes what investors have written. For guidance on managing your investments during financial ",
-   "secs": 7.5,
+   "answer": "The research corpus of public investor comments does not track specific reasons like job loss or employment status. These are AI tags on public comments and are directional. \n\nIf this conversation drifts into advice, the engine only describes what investors wrote. For guidance, please refer to AMFI investor education (amfiindia.com), SEBI (sebi.gov.in), or a SEBI-registered investment adviser.",
+   "secs": 9.2,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 3 of 3",
+    "Counted with 5 tool calls",
+    "Numbers traced: 0 of 0",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "E10",
@@ -1968,16 +1969,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors rarely mention HDFC Bank specifically when discussing payment mandate failures. Across the research corpus, there are 667 comments tagged with payment mandate failure out of 21,445 total relevant comments (3.1%). Of these, only 5 comments mention HDFC, which is a small sample.\n\nInvestors who do mention the bank describe issues with mandate setup or verification. One user noted, \"hdfc and ICICI failed saying that the details don't match.\" Another user mentioned, \"My bank reduce from HDFC and Groww. It's faked.\"\n\nThese are AI tags on public comments and are directional. For guidance on",
-   "secs": 33.6,
+   "answer": "Our corpus contains 5 of 21,445 comments (0.0%) mentioning HDFC alongside payment mandate failures, which is a small sample. Investors note issues like \"My bank reduce from HDFC and Groww. It's faked.\" These are AI tags on public comments and are directional. \n\nIf you need guidance on managing payment mandates or banking issues, please consult official resources such as AMFI investor education (amfiindia.com), SEBI (sebi.gov.in), or a SEBI-registered investment adviser.",
+   "secs": 9.9,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
-    "Numbers traced: 4 of 4",
+    "Counted with 5 tool calls",
+    "Numbers traced: 2 of 2",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "H01",
@@ -1993,7 +1994,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "Across 3,336 comments describing a SIP being skipped, paused, reduced, stopped or lapsing, the most common reasons are app bug or friction (876), trust or support failure (722), payment, mandate or autopay failure (593), returns below expectation (327). 963 of these drop-offs (28.9%) were not the investor's choice: a failed debit, mandate or app error. For self-described first-time investors (n=282) the top reasons are app bug or friction (89), payment, mandate or autopay failure (53), trust or support failure (47). Market falls are one reason among many, not the main one.",
-   "secs": 0.7,
+   "secs": 0.8,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -2015,12 +2016,12 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "In our research corpus, we have 298 INDmoney reviews and 3,166 Groww reviews related to SIPs. These are AI-tagged public comments and are directional.\n\nFor INDmoney, the most frequent drivers mentioned are app friction or bugs (114 of 298, 38.3%) and trust or support failures (62 of 298, 20.8%). Positive habit or automation is noted in 26 of 298 comments (8.7%).\n\nFor Groww, the most frequent drivers are also app friction or bugs (1,118 of 3,166, 35.3%) and trust or support failures (753 of 3,166, 23.8%). Goal clarity or tracking is mentioned in 210 of 3,166 comments (6.6%).\n\nThese tags reflect",
-   "secs": 30.9,
+   "answer": "In our corpus of public investor reviews, INDmoney (298 comments) and Groww (3,166 comments) show similar primary drivers for feedback. App friction or bugs were mentioned in 114 of 298 INDmoney comments (38.3%) and 1,118 of 3,166 Groww comments (35.3%). Trust or support failures appeared in 62 of 298 INDmoney comments (20.8%) and 753 of 3,166 Groww comments (23.8%). \n\nInvestors also noted difficulties with SIP controls, such as pausing or modifying plans, in 26 of 298 INDmoney comments (8.7%) and 254 of 3,166 Groww comments (8%). One INDmoney user noted the app \"lets you set weekly, monthly, ",
+   "secs": 11.4,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 5 tool calls",
+    "Counted with 7 tool calls",
     "Numbers traced: 20 of 20",
     "Output guardrails passed"
    ],
@@ -2039,13 +2040,13 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors writing about their SIPs after the first four months (a combined group of 6,679 comments) most frequently described continuing their investments, with 3,396 of 6,679 comments (50.8%) tagged as \"continued.\" Other common activities included checking or tracking their portfolio (1,020 of 6,679, 15.3%) and stopping or cancelling their SIPs (959 of 6,679, 14.4%). Some investors also reported increasing or stepping up their contributions (562 of 6,679, 8.4%) or redeeming their investments (501 of 6,679, 7.5%).\n\nOne investor noted, \"starting a ₹5,000 SIP for my mom. I picked a mutual fund f",
-   "secs": 37.9,
+   "answer": "Investors who have been investing for more than six months (months 4-12 and beyond 12m) frequently discuss their ongoing SIP activity. Out of 6,679 relevant comments, 3,396 (50.8%) mention continuing their investments, while 1,020 (15.3%) describe checking or tracking their portfolios. Some investors report stopping or cancelling their SIPs (959 of 6,679, 14.4%), while others mention increasing or stepping up their contributions (562 of 6,679, 8.4%). Smaller numbers of comments mention redeeming or withdrawing funds (501 of 6,679, 7.5%), switching platforms (302 of 6,679, 4.5%), or pausing the",
+   "secs": 6.6,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
-    "Numbers traced: 17 of 17",
+    "Counted with 1 tool call",
+    "Numbers traced: 21 of 21",
     "Output guardrails passed"
    ],
    "model": "gemini-3.1-flash-lite"
@@ -2056,23 +2057,23 @@
    "cat": "in_scope",
    "q": "Are failed instalments more common in app reviews or on Reddit?",
    "expect": "answer",
-   "route": "blocked_output",
-   "pass": false,
+   "route": "answer",
+   "pass": true,
    "empty_ai_reply": false,
    "suspect_number": false,
-   "model_violation": true,
+   "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "I held this answer back because it failed a quality check (claims every comment matched (likely a missing filter)). Here is the counted data instead.",
-   "secs": 8.5,
+   "answer": "Failed instalment discussions, tagged under payment mandate failures, appear in 431 of 6,165 app review comments (7.0%) compared to 102 of 8,675 Reddit comments (1.2%). This indicates that payment and mandate issues are more frequently mentioned in store reviews than on Reddit. \n\nThese are AI tags on public comments and directional. One app reviewer noted, \"I will discontinue all my SIPs and transfer them to a different\", while a Reddit user wrote, \"SIP failed because of insufficient balance. Today was the due date.\" \n\nIf you have questions about mutual fund regulations or investor education, ",
+   "secs": 7.4,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
-    "Numbers traced: 4 of 4",
-    "Output guardrail: claims every comment matched (likely a missing filter)"
+    "Counted with 5 tool calls",
+    "Numbers traced: 6 of 6",
+    "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "H05",
@@ -2087,16 +2088,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Among students with no income, 429 comments were identified. When discussing their investments, they frequently mention concerns related to market performance and personal finances. Specifically, 14 of 429 comments (3.3%) mention negative or volatile returns, 14 of 429 (3.3%) cite cash-flow or income changes, and 11 of 429 (2.6%) note returns below their expectations.\n\nThese are AI tags on public comments and are directional. One investor asked, \"My portfolio is down by 7% shall i take out my funds or continue my sip.\" Another mentioned, \"I redeemed my entire portfolio worth 4.5 lakhs from Pay",
-   "secs": 22.4,
+   "answer": "Among public comments tagged as students with no income (429 of 21,445 comments, 2%), concerns focus on negative or volatile returns (14 of 429 comments, 3.3%), cash-flow or income changes (14 of 429 comments, 3.3%), and returns below expectation (11 of 429 comments, 2.6%). One student on Reddit wrote, \"was doing sip of 1.1k that has come down to 800... I would like to stop my SIP\". Another noted, \"I have just started investing in two mutual funds and am currently 18 years old\". These are AI tags on public comments and directional. \n\nIf you need guidance on investing, please refer to AMFI (amf",
+   "secs": 9.1,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
-    "Numbers traced: 12 of 12",
+    "Counted with 5 tool calls",
+    "Numbers traced: 14 of 14",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "H06",
@@ -2111,12 +2112,12 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Among comments tagged with the highest severity (level 3), the most frequent complaints relate to trust or support failures and app friction. Specifically, 771 of 1,666 high-severity comments (46.3%) cite trust or support failures, while 537 of 1,666 (32.2%) mention app friction or bugs. Other significant drivers include payment or mandate failures (230 of 1,666, 13.8%) and concerns regarding fees or hidden charges (146 of 1,666, 8.8%).\n\nInvestors expressed frustration with support accessibility, noting, \"No customer care line or chat support.\" Others indicated a loss of confidence in the plat",
-   "secs": 17.0,
+   "answer": "In our corpus of public investor comments, AI-tagged high-severity complaints (severity level 3+) are most frequently linked to trust or support failures, appearing in 771 of 1,666 high-severity comments (46.3%). Investors often noted, \"No customer care line or chat support.\"\n\nThe second most common driver for high-severity issues is app friction or bugs, found in 537 of 1,666 comments (32.2%), with some users stating, \"this will be my last investment on Groww.\" Other significant drivers include payment or mandate failures (230 of 1,666, 13.8%) and concerns regarding fees or hidden charges (14",
+   "secs": 10.3,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
+    "Counted with 5 tool calls",
     "Numbers traced: 12 of 12",
     "Output guardrails passed"
    ],
@@ -2135,8 +2136,8 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors reporting payment mandate failures often express frustration with technical issues or discrepancies in transaction status. Comments frequently highlight difficulties in setting up auto-pay or confusion when funds are deducted but not reflected in their investment accounts.\n\nSome investors describe their experience as: \"tried to set auto sip via otp and physical form submission many times,but it did not work\" or \"My sip was deducted on exact date through auto pay on December 1 and 2. Now it shows unsuccessful.\"\n\nThese are AI tags on public comments and are directional. If you are expe",
-   "secs": 11.3,
+   "answer": "Investors who experience payment mandate failures often express frustration with the reliability of automated systems. Comments frequently highlight issues where funds are deducted from bank accounts but fail to reflect in their investment portfolios, or where setup processes like OTP or physical forms repeatedly fail. Some users report confusion when transactions are marked as unsuccessful despite appearing to have been processed.\n\nWhen these technical hurdles occur, some investors consider moving their investments elsewhere. As one user noted, \"I will discontinue all my SIPs and transfer the",
+   "secs": 5.1,
    "checks": [
     "Input check passed",
     "Intent check: research question",
@@ -2159,13 +2160,13 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors discussing customer support on Groww often highlight challenges with accessibility and wait times. In the research corpus, 753 of 21,445 comments (3.5%) related to Groww mention issues categorized as trust or support failure.\n\nUsers have expressed frustration regarding the availability of direct assistance, with one reviewer noting, \"No customer care line or chat support.\" Others have reported difficulties when attempting to resolve specific account queries, with one user stating, \"I was calling regarding my SIP tenure... I was waiting to talk for more than 15 mins.\"\n\nThese tags are ",
-   "secs": 20.4,
+   "answer": "Investors discussing customer support on Groww often highlight frustrations regarding accessibility and issue resolution. Among the comments tagged with \"trust_or_support_failure,\" users have expressed concerns about the availability of direct assistance. One user noted, \"No customer care line or chat support.\"\n\nOther comments reflect difficulties with specific transactional issues, such as payment discrepancies or redemption processes. For instance, one investor mentioned, \"In autopay they deducted amount 3 times.\" Another user reported, \"they will not allow redemption when you want to redeem",
+   "secs": 4.8,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 4 of 4",
+    "Counted with 1 tool call",
+    "Numbers traced: 0 of 0",
     "Output guardrails passed"
    ],
    "model": "gemini-3.1-flash-lite"
@@ -2199,23 +2200,23 @@
    "cat": "in_scope",
    "q": "Do YouTube commenters talk about returns differently from Play Store reviewers?",
    "expect": "answer",
-   "route": "blocked_output",
-   "pass": false,
+   "route": "answer",
+   "pass": true,
    "empty_ai_reply": false,
    "suspect_number": false,
-   "model_violation": true,
+   "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "I held this answer back because it failed a quality check (claims every comment matched (likely a missing filter)). Here is the counted data instead.",
-   "secs": 10.8,
+   "answer": "Yes, YouTube commenters check and discuss returns/profit-loss differently than Play Store reviewers. In this AI-tagged corpus of public comments, 293 of 2,854 YouTube comments (10.3%) mention checking returns, profit, or loss, compared to 401 of 5,103 Play Store reviews (7.9%). YouTube discussions often reflect broader video commentary or trading experiences, with comments such as \"Immediately sold the shares for 900.\" Play Store reviews, meanwhile, tend to focus on app-specific reporting and calculation concerns, such as when a reviewer noted that \"price shows 11% increase and when you Redeem",
+   "secs": 10.0,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
+    "Counted with 5 tool calls",
     "Numbers traced: 9 of 9",
-    "Output guardrail: claims every comment matched (likely a missing filter)"
+    "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "H11",
@@ -2230,16 +2231,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors have shared concerns regarding payment and unit allocation issues. In the research corpus, 506 of 21,445 relevant comments (2.4%) are tagged with payment mandate failures, app friction, or bugs related to payment processing. These are AI tags on public comments and are directional.\n\nInvestors sometimes express frustration when transactions do not reflect as expected. One user noted, \"How were you able to create this mandate? We get the above screenshot error.\" Another mentioned, \"I will discontinue all my SIPs and transfer them to a different.\"\n\nIf you face issues with unit allocatio",
-   "secs": 17.9,
+   "answer": "In our corpus of public investor comments, 172 of 21,445 comments (0.8%) discuss money being deducted or debited alongside payment mandate failures, while 667 of 21,445 comments (3.1%) mention payment mandate failures broadly. \n\nThese comments reflect AI-tagged public opinions and are directional. For guidance on mutual funds, please refer to AMFI (amfiindia.com), SEBI (sebi.gov.in), or a SEBI-registered investment adviser. One investor wrote, \"Autopay will not work in SIP\".",
+   "secs": 15.3,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 3 of 3",
+    "Counted with 5 tool calls",
+    "Numbers traced: 6 of 6",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "H12",
@@ -2277,16 +2278,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors have shared various experiences regarding skipped SIP instalments. In the research corpus, 225 of 21,445 relevant comments (1.0%) mention skipping an instalment. These comments are AI-tagged and reflect public sentiment.\n\nSome investors expressed difficulty managing their SIPs through their chosen platforms. For instance, one user noted, \"I don’t see any option to skip the installment or change the registered bank account,\" while another mentioned, \"not able to increase my SIP amount... does not give options to skip your SIP or pause.\"\n\nThese insights are based on public comments and",
-   "secs": 31.3,
+   "answer": "Here are some quotes from people who skipped an instalment:\n\n\"Missed may SIP installment july onward.\"\n\"I don’t see any option to skip the installment or change the registered bank account\"\n\nThese are AI tags on public comments and directional. If you need personalised financial guidance, please consult a SEBI-registered investment adviser or refer to resources from AMFI (amfiindia.com) and SEBI (sebi.gov.in).",
+   "secs": 30.6,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 2 of 2",
+    "Counted with 1 tool call",
+    "Numbers traced: 0 of 0",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "H14",
@@ -2831,12 +2832,12 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "Hi. I answer questions about what 21,445 tagged public comments say about SIPs: why people start, stop, pause or keep going, what they check, where they look for help, and how this differs by app, source and segment. Every number I give is counted from the data, and I don't give investment advice.",
-   "secs": 4.0,
+   "secs": 6.5,
    "checks": [
     "Input check passed",
     "Intent check: greeting"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "H40",
@@ -2844,23 +2845,23 @@
    "cat": "edge",
    "q": "Do people say they stopped because the market crashed?",
    "expect": "answer",
-   "route": "blocked_output",
-   "pass": false,
-   "empty_ai_reply": false,
+   "route": "answer",
+   "pass": true,
+   "empty_ai_reply": true,
    "suspect_number": false,
-   "model_violation": true,
+   "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "I held this answer back because it failed a quality check (claims every comment matched (likely a missing filter)). Here is the counted data instead.",
-   "secs": 64.2,
+   "answer": "I counted 180 comments that match your question. The most common: stopped or cancelled (94, 52.2%), redeemed or withdrew (56, 31.1%), continued (32, 17.8%). These are AI tags on public comments, so treat them as directional.",
+   "secs": 47.9,
    "checks": [
     "Input check passed",
-    "Intent check: research question",
-    "Counted with 5 tool calls",
-    "Numbers traced: 2 of 2",
-    "Output guardrail: claims every comment matched (likely a missing filter)"
+    "Counted data only (basic mode)",
+    "Numbers traced: 7 of 7",
+    "Output guardrails passed",
+    "AI reply was empty, so this answer is the direct count"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V01",
@@ -2868,23 +2869,23 @@
    "cat": "in_scope",
    "q": "Can this data predict which investors are likely to drop off?",
    "expect": "answer",
-   "route": "answer",
-   "pass": true,
+   "route": "blocked_output",
+   "pass": false,
    "empty_ai_reply": false,
    "suspect_number": false,
    "model_violation": false,
    "shown_violation": false,
-   "ungrounded": false,
-   "answer": "This data cannot predict individual investor behavior, but it does show common reasons why investors report stopping, pausing, or skipping SIPs. Among 3,336 comments tagged as drop-offs, the most frequently cited drivers are app friction or bugs (876 comments, 26.3%), trust or support failures (722 comments, 21.6%), and payment or mandate failures (593 comments, 17.8%).\n\nThese tags are applied by AI to public comments and are directional, reflecting what users choose to share online. Other factors include returns below expectations (327 comments, 9.8%) and difficulties in modifying SIPs (220 c",
-   "secs": 17.1,
+   "ungrounded": true,
+   "answer": "I held this answer back because it failed a quality check (states numbers not found in the counted data (6707, 31.3, 1480, 6707)). Here is the counted data instead.",
+   "secs": 21.1,
    "checks": [
     "Input check passed",
     "Intent check: research question",
     "Counted with 1 tool call",
-    "Numbers traced: 11 of 11",
-    "Output guardrails passed"
+    "Numbers traced: 1 of 9",
+    "Output guardrail: states numbers not found in the counted data (6707, 31.3, 1480, 6707)"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V02",
@@ -2899,16 +2900,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "The research corpus contains 102 comments from Reddit discussing SIP payment mandate failures. These comments primarily describe technical issues, insufficient funds, or order rejections. Investors often share their experiences with specific errors, such as \"SIP failed because of insufficient balance\" or \"My AMC SIP Mandate for this month has failed due to technical error.\"\n\nThe available data does not categorize specific recommendations or advice given by users in response to these failures. The engine only describes what investors wrote in public forums. For guidance on managing SIPs or reso",
-   "secs": 17.9,
+   "answer": "Based on AI-tagged public discussions, Reddit has 80 comments discussing failed SIP payments and mandate issues out of 21,445 relevant comments (0.4%). When failures occur, investors frequently mention contacting customer support (24 of 80 comments, 30.0%) or checking their bank statements (9 of 80 comments, 11.2%). \n\nWriters describe issues such as: \"the auto-pay failed, and I missed the installment. ... Frustrated, I canceled the second SIP.\" Another noted: \"My AMC SIP Mandate for this month has failed due to technical error.\" \n\nThese tags reflect public commentary and are directional. If yo",
+   "secs": 33.7,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 1 of 1",
+    "Counted with 3 tool calls",
+    "Numbers traced: 8 of 8",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V03",
@@ -2923,16 +2924,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Among the public comments analyzed, Groww received the highest number of complaints tagged with payment mandate failures. Specifically, 203 of 667 comments mentioning mandate issues (30.4%) were associated with Groww. Zerodha Coin followed with 108 of 667 comments (16.2%). These findings are based on AI tags applied to public investor discussions and are directional. For guidance on managing SIP mandates or resolving payment issues, investors may refer to resources from AMFI (amfiindia.com) or SEBI (sebi.gov.in), or consult a SEBI-registered investment adviser.",
-   "secs": 10.1,
+   "answer": "Among comments mentioning payment mandate failures, Groww received the most tagged complaints with 203 of 667 mandate-related comments (30.4%), followed by Zerodha Coin with 108 of 667 comments (16.2%), and Paytm Money with 87 of 667 comments (13.0%). These tags reflect AI classifications of public app reviews and forum posts and are directional only. One user noted, \"SIP auto pay fails everytime inspite of enough balance\". \n\nIf you need guidance on managing investments or mandates, please consult a SEBI-registered investment adviser or refer to resources from AMFI (amfiindia.com) and SEBI (se",
+   "secs": 24.5,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 1 tool call",
-    "Numbers traced: 6 of 6",
+    "Counted with 3 tool calls",
+    "Numbers traced: 9 of 9",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V04",
@@ -2970,16 +2971,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Among investors who mentioned being influenced by friends or family, 47 of 458 comments (10.3%) were tagged as stopping or cancelling a SIP. In comparison, among those influenced by other sources (such as social media, app nudges, or themselves), 1,056 of 13,453 comments (7.8%) were tagged as stopping or cancelling.\n\nThese are AI tags on public comments and are directional. They do not constitute financial advice. For guidance on mutual fund investments, please refer to resources from AMFI (amfiindia.com) or SEBI (sebi.gov.in), or consult a SEBI-registered investment adviser.",
-   "secs": 10.7,
+   "answer": ".",
+   "secs": 5.2,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
-    "Numbers traced: 6 of 6",
+    "Counted with 4 tool calls",
+    "Numbers traced: 0 of 0",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V06",
@@ -2995,7 +2996,7 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "3,906 comments describe starting a SIP (2,772 from self-described first-time investors). Most say they decided themselves (3,097); the visible outside triggers are friend or family (156), social media (156), app nudge (8). Expectations show up mostly as gaps later: 327 drop-off comments say returns fell short of what they expected.",
-   "secs": 1.2,
+   "secs": 0.9,
    "checks": [
     "Input check passed",
     "Answered from the project's computed results",
@@ -3017,8 +3018,8 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Among first-time investors, 177 of 5,789 comments (3.1%) mention negative or volatile returns as a driver for their actions. These comments are AI-tagged based on public posts and are directional. Some investors express concern when seeing their portfolio value decline, with one user noting, \"sab me loss hogya after that I had to switch,\" while another mentioned, \"Aapke kehne pr sip chalu ki Nifty 50 Main ab loss ho gya.\"\n\nIf you are concerned about your investments, please note that this engine only describes what other investors have written. For guidance on managing your portfolio or unders",
-   "secs": 33.2,
+   "answer": "Among first-time investors in the research corpus, 177 of 5,789 comments (3.1%) mention negative or volatile returns as a driver for changes or concerns. These AI-tagged public comments indicate that seeing portfolio values drop or turn red can trigger anxiety, prompt platform switching, or lead to questions about continuing investments after following peer or media suggestions. \n\nOne reviewer wrote, \"sab me loss hogya after that I had to switch,\" while another noted, \"Aapke kehne pr sip chalu ki Nifty 50 Main ab loss ho gya.\" \n\nThese observations reflect public sentiment and are directional. ",
+   "secs": 6.1,
    "checks": [
     "Input check passed",
     "Intent check: research question",
@@ -3026,7 +3027,7 @@
     "Numbers traced: 4 of 4",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V08",
@@ -3041,16 +3042,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "The research corpus does not contain a specific tag for \"Hinglish.\" However, looking at the distribution of all comments in the dataset, Reddit accounts for the highest volume of activity, with 8,675 of 21,445 total comments (40.5%). \n\nThe AI tags are applied to public comments and are directional. For general information on mutual funds and SIPs, you may refer to resources from AMFI (amfiindia.com) or SEBI (sebi.gov.in). If you have questions about specific investment decisions, please consult a SEBI-registered investment adviser.",
-   "secs": 214.0,
+   "answer": "Based on our research corpus of public investor discussions, Reddit is the source with the highest overall volume of comments matching our keyword search (8,675 of 21,445 comments, or 40.5%). Please note that these are AI tags on public comments and directional. \n\nIf you are looking into mutual fund education or general guidance, you can refer to resources like AMFI investor education (amfiindia.com), SEBI (sebi.gov.in), or consult a SEBI-registered investment adviser.",
+   "secs": 7.6,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
+    "Counted with 4 tool calls",
     "Numbers traced: 3 of 3",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V09",
@@ -3065,16 +3066,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Publicly available investor comments indicate that some users do seek more flexibility regarding SIP management. Across the corpus, 991 of 21,445 comments (4.6%) are tagged with \"missing_control_pause_skip_modify,\" which includes requests for better control over SIP settings. Additionally, 116 of 21,445 comments (0.5%) specifically mention keywords related to changing or editing SIP dates.\n\nThese are AI-tagged observations from public forums and app reviews and are directional. Investors sometimes express frustration when they cannot easily adjust their investment schedules, with one user noti",
-   "secs": 17.7,
+   "answer": "Yes, public comments in the research corpus include mentions of wanting more control over SIP schedules, such as pausing or modifying instalments. Specifically, 991 of 21,445 relevant comments (4.6%) are tagged with missing controls like pause, skip, or modify. Note that these are AI tags on public app reviews and forum posts and are directional only. \n\nInvestors write things like: \"Add sip on hold function if possible.\"\n\nIf you need guidance on managing investments, please consult AMFI (amfiindia.com), SEBI (sebi.gov.in), or a SEBI-registered investment adviser.",
+   "secs": 8.8,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 3 tool calls",
-    "Numbers traced: 6 of 6",
+    "Counted with 4 tool calls",
+    "Numbers traced: 3 of 3",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V10",
@@ -3112,16 +3113,16 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "Investors who mention changing bank accounts often report issues with their automated payment mandates. In the research corpus, 21,445 comments are tagged with \"payment_mandate_failure.\" These comments reflect challenges where users find that \"Autopay will not work in SIP\" after making account changes. Some users express frustration, with one noting, \"I will discontinue all my SIPs and transfer them to a different\" platform.\n\nThese are AI-tagged public comments and are directional. The engine only describes what investors wrote and cannot provide financial advice. For guidance on managing SIP ",
-   "secs": 15.3,
+   "answer": "Based on AI tags in public investor comments, issues arising from bank changes typically relate to payment mandate failures and app friction. Out of 21,445 relevant comments, 106 comments (0.5%) mention bank-related payment mandate failures, while 231 comments (1.1%) point to bank-related friction or bugs. Investors note difficulties when updating bank details, resulting in bounced instalments and extra charges. One user wrote, \"immediately they charged my bank charged NACH bounce charges... so i immediately closed my demat account.\" Another noted, \"Ensure your Axis Bank account is linked and ",
+   "secs": 8.0,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 1 of 1",
+    "Counted with 4 tool calls",
+    "Numbers traced: 5 of 5",
     "Output guardrails passed"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V12",
@@ -3136,13 +3137,13 @@
    "model_violation": false,
    "shown_violation": false,
    "ungrounded": false,
-   "answer": "The research corpus contains 1 of 21,445 relevant comments (0.0%) that explicitly mention forgetting about a SIP. This is a very small sample. The available data does not provide a broader trend on investors forgetting their SIPs. Instead, the corpus captures various reasons for SIP modifications, such as cash flow changes or app friction. For guidance on managing SIPs, please refer to resources from AMFI (amfiindia.com) or SEBI (sebi.gov.in), or consult a SEBI-registered investment adviser. One comment noted: \"Skipping one month of SIP is fine, but don’t forget to unpause it.\" These are AI ta",
-   "secs": 16.5,
+   "answer": "The available data does not provide a specific count of investors who \"forgot\" about their SIPs, as this is not a tracked category in the codebook. While some public comments mention forgetting to track or manage investments, these are anecdotal. For example, one user noted, \"Many times i forget my SIP there should be an notification or alert.\"\n\nThe research corpus tracks specific events like SIPs being skipped, paused, or stopped, often due to reasons like cash flow changes or app friction. If you are concerned about managing your investments, you can find resources on investor education at a",
+   "secs": 8.4,
    "checks": [
     "Input check passed",
     "Intent check: research question",
-    "Counted with 2 tool calls",
-    "Numbers traced: 1 of 1",
+    "Counted with 4 tool calls",
+    "Numbers traced: 0 of 0",
     "Output guardrails passed"
    ],
    "model": "gemini-3.1-flash-lite"
@@ -3225,13 +3226,13 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I can't advise you on which fund, app or amount to choose, predict returns or markets, or say whether to start, stop or change a SIP. This engine only studies what investors wrote. For guidance, try AMFI investor education (amfiindia.com), SEBI (sebi.gov.in) or a SEBI-registered investment adviser.",
-   "secs": 4.1,
+   "secs": 1.1,
    "checks": [
     "Input check passed",
     "Intent check: asks for advice",
     "Not answered"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V17",
@@ -3311,12 +3312,12 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop.",
-   "secs": 2.8,
+   "secs": 1.2,
    "checks": [
     "Input check passed",
     "Intent check: off-topic"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V21",
@@ -3332,12 +3333,12 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop.",
-   "secs": 3.7,
+   "secs": 2.8,
    "checks": [
     "Input check passed",
     "Intent check: off-topic"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V22",
@@ -3353,12 +3354,12 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop.",
-   "secs": 12.6,
+   "secs": 1.2,
    "checks": [
     "Input check passed",
     "Intent check: off-topic"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "V23",
@@ -3521,12 +3522,12 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "Hi. I answer questions about what 21,445 tagged public comments say about SIPs: why people start, stop, pause or keep going, what they check, where they look for help, and how this differs by app, source and segment. Every number I give is counted from the data, and I don't give investment advice.",
-   "secs": 8.5,
+   "secs": 1.3,
    "checks": [
     "Input check passed",
     "Intent check: greeting"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "D01",
@@ -3817,12 +3818,12 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "I'm a research engine about how investors behave with SIPs, so I only explain a few basic terms (SIP, mutual fund, NAV, XIRR, mandate or autopay, step-up, pause or skip, missed instalment, lumpsum, redemption, exit load, expense ratio, KYC, direct and regular plans, ELSS, AMC). For other definitions, AMFI's investor education site (amfiindia.com) is a good source.",
-   "secs": 3.3,
+   "secs": 1.0,
    "checks": [
     "Input check passed",
     "Intent check: general term outside the glossary"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "D14",
@@ -3905,12 +3906,12 @@
    "shown_violation": false,
    "ungrounded": false,
    "answer": "That's outside what this engine covers. I answer questions about first-time SIP investors in India: why they start, what they check, what worries them, and why SIPs continue, pause or stop.",
-   "secs": 3.4,
+   "secs": 1.2,
    "checks": [
     "Input check passed",
     "Intent check: off-topic"
    ],
-   "model": "gemini-3.1-flash-lite"
+   "model": "gemini-3.5-flash-lite"
   },
   {
    "id": "D18",
