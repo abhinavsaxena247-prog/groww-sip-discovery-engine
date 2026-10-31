@@ -46,7 +46,10 @@ p, li {{ color: {INK}; }}
 .stButton button {{ border:1px solid {GREEN} !important; color:{GREEN_DARK} !important; background:#fff !important; }}
 .stButton button:hover {{ background:#E5F7F1 !important; }}
 .stButton button:disabled {{ opacity: .45; border-color:{LINE} !important; color:{MUTED} !important; cursor:not-allowed; }}
-.stButton button[kind="primary"] {{ background:{GREEN} !important; color:#fff !important; }}
+.stButton button[kind="primary"] {{ background:#027F5F !important; border-color:#027F5F !important; color:#fff !important; }}
+.stButton button[kind="primary"] p, .stButton button[kind="primary"] span {{ color:#fff !important; }}
+.stButton button[kind="primary"]:hover {{ background:#00664C !important; border-color:#00664C !important; }}
+.stButton button[kind="primary"]:disabled {{ opacity:1; background:#A9D9C9 !important; border-color:#A9D9C9 !important; }}
 [data-testid="stSidebarNav"] a[aria-current="page"], [data-testid="stSidebarNavLink"][aria-current="page"] {{ background:#E5F7F1 !important; }}
 [data-testid="stSidebarNav"] a[aria-current="page"] span {{ color:{GREEN_DARK} !important; font-weight:600; }}
 [data-testid="stChatInput"] > div {{ border:1px solid {GREEN} !important; border-radius:10px; }}

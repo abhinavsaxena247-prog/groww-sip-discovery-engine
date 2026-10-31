@@ -121,7 +121,7 @@ if q:
 c_left, c_right = st.columns([5, 1])
 c_left.caption("Mutual fund investments are subject to market risks, read all scheme related documents carefully. "
                "Numbers are AI tags on public comments and are directional; see Quality and evals for how they were checked.")
-if c_right.button("Clear chat", key="clear", icon=":material/delete_sweep:", use_container_width=True, disabled=not st.session_state.msgs,
+if c_right.button("Clear chat", key="clear", type="primary", icon=":material/delete_sweep:", use_container_width=True, disabled=not st.session_state.msgs,
                   help="Remove this conversation and start again"):
     st.session_state.msgs, st.session_state.history = [], []
     st.rerun()
