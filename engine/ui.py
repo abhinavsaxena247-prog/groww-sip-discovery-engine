@@ -12,7 +12,9 @@ CSS = f"""
 html, body, p, li, h1, h2, h3, h4, label, input, textarea, button, .stMarkdown, [data-testid="stSidebarNav"] span:not([data-testid="stIconMaterial"]), [data-testid="stMetricValue"], [data-testid="stCaptionContainer"] {{ font-family: "Inter", "GrowwSans", system-ui, sans-serif; }}
 [data-testid="stIconMaterial"] {{ font-family: "Material Symbols Rounded" !important; }}
 [data-testid="stDecoration"] {{ display: none; }}
-@media (min-width: 768px) {{ [data-testid="stSidebarCollapseButton"], [data-testid="stSidebarCollapsedControl"] {{ display: none !important; }} }}
+@media (min-width: 1200px) {{ [data-testid="stSidebarCollapseButton"] {{ display: none !important; }} }}
+@media (min-width: 768px) and (max-width: 1199px) {{ [data-testid="stSidebar"][aria-expanded="true"] {{ min-width: 230px !important; max-width: 230px !important; }}
+  .stButton button p {{ font-size: 0.88rem; }} }}
 .block-container {{ padding-top: 4.2rem; max-width: 1100px; }}
 h1, h2, h3 {{ color: {INK} !important; letter-spacing: -0.015em; }}
 h1 {{ font-weight: 600 !important; font-size: 2.1rem !important; line-height: 1.2 !important; }}

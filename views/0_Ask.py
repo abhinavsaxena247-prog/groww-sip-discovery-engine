@@ -68,7 +68,7 @@ starters_box = st.empty()
 clicked = None
 
 
-def button_row(items, key, label=None, cols=3):
+def button_row(items, key, label=None, cols=2):
     global clicked
     if not items:
         return
