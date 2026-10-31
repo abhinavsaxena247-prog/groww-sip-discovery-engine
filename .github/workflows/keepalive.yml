@@ -1,0 +1,35 @@
+name: Keep the discovery engine awake
+# Streamlit Community Cloud puts apps to sleep after a period without visitors.
+# This visits the app every 6 hours and clicks the wake-up button if the app is asleep.
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install playwright==1.47.0 && python -m playwright install --with-deps chromium
+      - name: Visit and wake if needed
+        run: |
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          URL = "https://nl-groww-discovery-engine.streamlit.app/"
+          with sync_playwright() as p:
+              b = p.chromium.launch()
+              pg = b.new_page()
+              pg.goto(URL, timeout=90000)
+              pg.wait_for_timeout(8000)
+              btn = pg.get_by_role("button", name="Yes, get this app back up!")
+              if btn.count():
+                  btn.first.click()
+                  print("App was asleep: wake-up clicked")
+                  pg.wait_for_timeout(60000)
+              else:
+                  print("App was awake")
+              b.close()
+          PY
