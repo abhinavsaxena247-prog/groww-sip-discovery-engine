@@ -11,6 +11,7 @@ from engine import ui
 ui.page("Quality and evals", "✅")
 E = D.engine_data()
 GOLD, GR, RB = E["golden"], E["guardrail"], E["reddit_robustness"]
+G13 = E.get("golden_v13")
 CAT = {"in_scope": "In-scope research questions", "advice": "Investment-advice requests", "off_topic": "Off-topic requests",
        "abuse": "Abusive language (English, Hinglish, Hindi)", "pii": "Personal data (PAN, account, phone, email)",
        "injection": "Attempts to override the rules", "edge": "Edge cases (slang, greetings, borderline)", "definitions": "Basic terms (what is a SIP, NAV, XIRR...)"}
@@ -52,7 +53,11 @@ def tiles(items):
 
 top = []
 if AG:
-    top.append(("Golden-set agreement", f"{round(100 * AG['overall'][0] / AG['overall'][1])}%", f"{GOLD['scored']} comments labelled by hand"))
+    if G13:
+        top.append(("Golden-set agreement", f"{round(100 * AG['overall'][0] / AG['overall'][1])}%",
+                    f"tags behind the findings; a fixed prompt scores {G13['v13']['overall']}% on the same {GOLD['scored']} items (75% before the fix in the same re-run)"))
+    else:
+        top.append(("Golden-set agreement", f"{round(100 * AG['overall'][0] / AG['overall'][1])}%", f"{GOLD['scored']} comments labelled by hand"))
 if ai:
     top += [("Chat eval with AI", f"{ai['summary']['pass']} of {ai['summary']['total']}", "final run, 31 Oct"),
             ("Unsafe answers shown", ai["summary"]["shown_violations"], "in every AI run")]
@@ -68,6 +73,11 @@ cases = [
      "Full run tagged 27,678 comments with the corrected prompt."),
     ("Golden set, 31 Oct", "All 11 relevance disagreements were the AI marking forum replies, staff answers and regulatory questions as investors' own experiences.",
      "Re-ran the headline findings without forum sources.", "Involuntary share 28.9% vs 28.7%; top three reasons unchanged. Limitation recorded."),
+    ("Golden set, prompt fix, 1 Nov", "The relevance rule was still too generous: forum replies, staff answers and general questions counted as investors' "
+     "own experiences (11 of 25 relevance decisions disagreed with the human labels).", "Prompt v1.3 tightens only the relevance rule; re-tagged the same "
+     "27 golden comments with v1.3 and, for a fair baseline, with the unchanged v1.2 prompt in identical batches.", "Relevance disagreements fell from 11 to 2; "
+     "overall agreement 75% (v1.2 re-run) to 83% (v1.3). One new miss: a general app review from a long-time user is now marked not relevant. Same items as the "
+     "diagnosis, so the score is optimistic; corpus tags stay v1.2."),
     ("Chat, AI eval run 1", "\"Can this data predict which investors will drop off?\" got \"21,445 of 21,445 comments (100%) capture drop-off events\"; the true "
      "figure is 3,336. The AI had passed a filter name the counting tool silently ignored.", "Counting tools now reject unknown filters with an error the AI can "
      "correct; whole-dataset claims are held back.", "Not repeated in later runs; such answers are now replaced by the direct count."),
@@ -94,7 +104,23 @@ if AG:
                 "and the top three reasons stay the same; the generous relevance filter inflates volume, not the conclusions.\n"
                 f"- AI guardrail violations on these {GOLD['size']} items: {GOLD['guardrail_violations']}.\n"
                 "- With 25 items each comment moves a rate by 4 points, so per-question rates are approximate.")
-    st.caption("Every item, label and disagreement: NL-Groww_Golden_Set_Results.xlsx in the project repository (data folder).")
+    if G13:
+        st.subheader("After the prompt fix (v1.3, 1 Nov)")
+        rows_ = [("First pass (corpus tags)", G13["first_pass"]), ("Same prompt re-run today", G13["rerun_v12"]), ("Relevance rule fixed (v1.3)", G13["v13"])]
+        st.dataframe(pd.DataFrame([{"Run": n, "Relevant": f"{r['relevant']}/25", "Event": f"{r['event']}/25", "Drop-off": f"{r['drop']}/25",
+                                    "Reason": f"{r['reason']}/25", "Overall": f"{r['overall']}%"} for n, r in rows_]), hide_index=True, use_container_width=True)
+        stb = G13["stability"]
+        st.markdown(f"- **Run-to-run variation:** re-running the unchanged prompt changed {stb['relevance_changed_same_prompt']} of {stb['items']} relevance decisions. "
+                    "The first pass mixed two Gemini Lite models after free-quota fallbacks (13 items each), and so does the corpus "
+                    f"({G13['corpus_models']['gemini-3.5-flash-lite']:,} vs {G13['corpus_models']['gemini-3.1-flash-lite']:,} tags), so part of the first-pass gap is "
+                    "model and run noise, not the prompt. Checked on the corpus: the two models differ on levels (for example, Play Store comments judged relevant: "
+                    "88% vs 67%), but every headline direction holds within each model: payment failures are about 76% of setup drop-offs under both and 11% after a year, "
+                    "and first-time investors' drop-offs are payment failures more often than experienced investors' in every source.\n"
+                    f"- **Effect of the fix:** {G13['rerun_v12']['overall']}% → {G13['v13']['overall']}% against a like-for-like baseline; relevance disagreements "
+                    f"{G13['relevance_disagreements']['first_pass']} → {G13['relevance_disagreements']['v13']}.\n"
+                    f"- **New miss:** {G13['new_failure']}\n"
+                    f"- **Caveat:** {G13['caveat']} Guardrail violations in v1.3 outputs: {G13['v13']['guardrail_violations']}.")
+    st.caption("Every item, label and disagreement: NL-Groww_Golden_Set_Results.xlsx in the project repository (data folder), sheet 'Prompt fix v1.3' for the re-run.")
 
 st.header("Guardrail scan of every tagging output")
 st.markdown(f"All {GR['checked']:,} AI-written tagging fields were checked: {GR['flags']} flagged by keyword and reviewed by hand. No field recommends a fund "

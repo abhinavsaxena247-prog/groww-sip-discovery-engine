@@ -58,6 +58,7 @@ st.markdown(f"""
 - Most comments do not state whether the writer is a first-time investor, their income or their age, so segment cuts rest on a few thousand items.
 - Groww-specific items ({F['groww']:,}) come only from app reviews; community posts rarely name the app.
 - {R['cleaned'] - R['tagged']:,} cleaned Reddit items are untagged because the free AI quota ran out, and {F['cleaned_by_source']['youtube'] - F['tagged_by_source']['youtube']} YouTube comments were not tagged; a sample-versus-full check on Reddit showed near-identical shares.
+- The corpus was tagged by two Gemini Lite models, about half each, after free-quota fallbacks; they differ on levels but every headline direction holds within each model (Quality and evals).
 - Opportunity scores depend on two analyst judgements (fixability and fit with the brief's rules), shown per row.
 """)
 st.caption("Code for every stage is in the project repository: pipeline/ (collection and analysis), engine/ (guardrails, counting tools, AI calls), evals/ (eval runner).")
