@@ -518,5 +518,181 @@
   "source_id": "724de1ff-124d-48b7-b2b1-c714021327a5",
   "text": "Unable to pay SIP amount as it shows all app permission and window stuck on that part unable to proceed",
   "set": "holdout_v1.2"
+ },
+ {
+  "id": "GS-F01",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "62090bb0-7c42-41cf-bebf-d2cc3619ce80",
+  "text": "my mandate keeps getting rejected all the time.. had to cancel the SIP finally.. was really excited to use the app and start investing.. but could not because of thr mandate.. would surely start investing if my mandate gets approved",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F02",
+  "type": "real",
+  "source": "app_store",
+  "source_id": "4184421421",
+  "text": "Was good till you removed the option to pay via debit card. I’m unable to pay via BHIM and BHIM sbi pay.\nI’m unable to pay via net banking.\nAfter many complains I’m not getting a satisfactory reply. And today was the date for my sip. I couldn’t invest in that sip anymore.\nIt’s really saddening.\nI really regret my decision to invest via this app now.",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F03",
+  "type": "real",
+  "source": "app_store",
+  "source_id": "12433841892",
+  "text": "payments not working. SIP payments not working. It redirects user on cashier page but then no prompt comes in google pay. Whereas it works from browser perfectly well.",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F04",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "3fe78d2b-249b-4c09-864d-c2e5f1933eec",
+  "text": "Very wrost application, my sip balance cut 2 times in a months, 1 months already done, but still now i am waiting for return my money, customer care service also call Many times they told me wait for 1 months, what is this 2 months wait for 1 sip balance return",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F05",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "07cc8fde-a222-4581-8ee3-11c6d48f5fc1",
+  "text": "kya matlab autopay ka jab khud hi pay krna pdta hai",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F06",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "640e820b-548f-4834-bc51-afb2f5a65611",
+  "text": "Some SIPs for the month of Aug have been failed, rest one of the best app.",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F07",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "e8c7241a-14a2-45c4-a7fd-9eb0c6051d02",
+  "text": "I could not pay my sip amount..even i do have amount in account.. Is there link will u send and today is sip paying date.. Please help in priority...",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F08",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "9a999018-2dd2-49b6-aef1-50beec108196",
+  "text": "Dear admin.... Is any issue here ? i could not payment my sip today at 1.50 onward",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F09",
+  "type": "real",
+  "source": "reddit",
+  "source_id": "rd_1jy0qr7",
+  "text": "SIP not deducted. My sbi sip is to be debited on 5 of every month but it hasn’t this month even though i had more than the required amount in my account. What could be the possible reason? Also i got the intimation mail about my due investment on 2nd of april.",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F10",
+  "type": "real",
+  "source": "youtube",
+  "source_id": "yt_UgzQVXx0jO9sda7Z7bl4AaABAg",
+  "text": "Maine 2000 ka sip kiya but sip miss ho gay aur bank ne 295 ka charge kat liya phir bhi maine shaam tak account me paise dal diya to kya miss sip pay ho jayega kya",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F11",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "342cba84-e9b8-4e08-b21f-22eddaf933ea",
+  "text": "Very worst experience. This app have so much bugs that created multiple mandate automatically. Please fix this bug",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F12",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "3a29018c-54d6-49ea-b643-871f4514f883",
+  "text": "Sip registration is not completed by coin app .all time your account is not in regular position but my bank account is up to date everything possible. I deactivate my account this platform soon.",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F13",
+  "type": "real",
+  "source": "youtube",
+  "source_id": "yt_Ugyg1AS7TSmweXwrHq94AaABAg",
+  "text": "mene kl 1sip miss kr di autopay .. kya m use next day fill nhi kr skta?",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F14",
+  "type": "real",
+  "source": "tradingqna",
+  "source_id": "tq_255382",
+  "text": "Harsh_Parekh: They started initiation of refunds yesterday, your blocked amount should be released by Mandate End Date, which is 10th October.",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F15",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "0d0fa2af-d08f-45dc-8fd5-874c42248881",
+  "text": "Didn't deduct money from account during execution of sip payments",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F16",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "3508aed4-3cfa-4914-bfa7-c4d0003d08be",
+  "text": "Worst app auto payment never sets up on time",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F17",
+  "type": "real",
+  "source": "reddit",
+  "source_id": "rd_1fqps15",
+  "text": "what are the consequences to miss SIP ?. HDFC defense fund. 10000 SIP . i have mandate in sbi netbanking . i had already balance fund.\n\ndo this missed payment occurs any charges to me? its AMC sip",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F18",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "2ca7bc77-91ad-4dad-94d9-82dec893fa4a",
+  "text": "The Customer service seems to be on a decline. Have tried using the Grow Wallet for 2 months now - keeps declining my SIPs. Their service team is very laid back and only keeps creating tickets. Plan to move out soon!",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F19",
+  "type": "real",
+  "source": "app_store",
+  "source_id": "14269049091",
+  "text": "Irregular service. The SIP amount doesn’t get deducted from account regularly.  At times investment is deducted but not invested, which later gets rejected, but refund is an issue. The customer care contact takes minimum of 30 mins to get through if one is lucky",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F20",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "ebb276d0-861a-4ab6-b07a-0d7df9cc4977",
+  "text": "I bought 2 sip from coin o 14 th March which already rejected but I did not received my amount which already deducted in my account.",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F21",
+  "type": "real",
+  "source": "youtube",
+  "source_id": "yt_UgyOLr7JiSYM0d9xy-V4AaABAg",
+  "text": "SIP start ho gayi hai or paise bhi cut gaye hai lekin auto-pay start nahi ho rha hai baar baar failed hora hai debit card se or net banking se bhi 😢😢",
+  "set": "facts_v3_test"
+ },
+ {
+  "id": "GS-F22",
+  "type": "real",
+  "source": "play_store",
+  "source_id": "eea2d813-0e38-40ba-b02f-38fe7ed8ba0c",
+  "text": "Invested in NPS and a MF but the transactions have been billed and registered as failed. No customer help support line either. The apps says I will get a refund but theres no message sent to me regarding the refun Edit: where is your helpline? How do I reach out to representatives. Customer service on the app just redirects to failed transaction page",
+  "set": "facts_v3_test"
  }
 ]

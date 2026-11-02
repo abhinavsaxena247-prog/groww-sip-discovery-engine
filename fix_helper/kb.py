@@ -87,8 +87,25 @@ REASONS = {
         "next": [("Before changing a SIP, check that the new amount fits within your AutoPay limit.", G),
                  ("If the app and the fund house show different statuses, contact Groww support with the date of the change.", G)],
     },
+    "failed_after_change": {
+        "title": "Your installment failed after you changed the SIP",
+        "means": "After an amount or date change, the new amount can be above your AutoPay limit, or the updated AutoPay can still be waiting for approval, so the debit doesn't go through.",
+        "now": [("Check your AutoPay limit in the app and compare it with the new installment amount.", G),
+                ("Pay this installment with \u201cPay one-time\u201d: My SIPs \u2192 choose the SIP \u2192 Pay one-time.", "S1"),
+                ("If the limit is lower than the new amount, set up an AutoPay with a higher limit before the next date.", G)],
+        "next": [("Before changing a SIP, check that the new amount fits within your AutoPay limit (use \u201cCheck a change\u201d).", G)],
+        "context": ("For mutual fund recurring payments, RBI allows UPI AutoPay up to \u20b91,00,000 without extra authentication (press report).", "S5"),
+    },
+    "debited_not_invested": {
+        "title": "Money left your account but the installment didn't go through",
+        "means": "The debit happened but the installment was marked failed or not allotted, so the amount should come back to your bank account.",
+        "now": [("Check your bank statement over the next few working days for the amount coming back.", G),
+                ("If it hasn't come back, contact Groww support from the app with the date and amount.", G),
+                ("Pay this month's installment with \u201cPay one-time\u201d if you want to keep the SIP on track.", "S1")],
+        "next": [("Keep the balance ready in your linked account 4 days before the installment date.", "S1")],
+    },
 }
 LABELS = {"still_processing": "Still processing", "autopay_not_setup": "AutoPay not set up or not approved",
           "mandate_stopped": "Mandate expired, paused or cancelled", "above_limit": "Amount above the AutoPay limit",
           "low_balance": "Not enough balance", "bank_declined": "Bank declined or technical error", "app_error": "App-side error",
-          "cancelled_after_failures": "SIP cancelled after repeated failures", "cancelled_after_change": "SIP cancelled after a change", "unclear": "Unclear / not a failure"}
+          "cancelled_after_failures": "SIP cancelled after repeated failures", "cancelled_after_change": "SIP cancelled after a change", "failed_after_change": "Failed after a SIP change", "debited_not_invested": "Debited but not invested", "unclear": "Unclear / not a failure"}

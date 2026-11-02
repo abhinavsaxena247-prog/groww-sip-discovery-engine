@@ -55,9 +55,9 @@ p, li { color:#44475B; }
 </style>"""
 NOTICE = "Independent concept by a NextLeap student. Not affiliated with Groww. Not investment advice: it explains what happened to a payment and never recommends a fund or tells you whether to continue."
 RISK = "Mutual fund investments are subject to market risks, read all scheme related documents carefully."
-EXAMPLES = ["Your SIP installment is in progress. We will update you once the payment is confirmed.",
+EXAMPLES = ["My SIP failed this month and I don't know why",
             "I increased my SIP amount last week and now the autopay failed",
-            "SIP installment failed. Reason: AutoPay mandate not approved by bank.",
+            "Your SIP installment is in progress. We will update you once the payment is confirmed.",
             "autopay fail ho gaya, bank mein balance kam tha"]
 
 def header():
@@ -82,29 +82,32 @@ def checks_html(checks):
     tick, dot = "\u2713 ", "\u25cf "
     return "<div class='checks'>" + "".join("<span class='chk" + ("" if ok else " no") + "'>" + (tick if ok else dot) + esc(t) + "</span>" for t, ok in checks) + "</div>"
 
-def show_result(text, r):
-    st.markdown(f"<div class='msg'><small>Your message</small>“{esc(text)}”</div>", unsafe_allow_html=True)
+def show_result(text, r, echo=True, how=""):
+    if echo:
+        st.markdown(f"<div class='msg'><small>Your message</small>“{esc(text)}”</div>", unsafe_allow_html=True)
     if r["kind"] == "answer":
         kb = REASONS[r["reason"]]
-        why = f"Why we think so: your message says “{esc(r['evidence'])}”." if r.get("evidence") else ""
+        why = f"Why we think so: your message says “{esc(r['evidence'])}”." if r.get("evidence") else esc(how)
         ctx = ""
         if kb.get("context"):
             t, s = kb["context"]; name, url = SOURCES[s]
             ctx = f"<p class='src'>{esc(t)} <a href='{url}' target='_blank'>[source]</a></p>"
         conf = r["confidence"]
         st.markdown(f"""<div class='card'><div class='lab'>Likely reason</div><div class='reason'>{esc(kb['title'])}</div>
-<span class='conf {'medium' if conf=='medium' else ''}'>Confidence: {conf.capitalize()}</span>
+<span class='conf'>Reason found</span>
 <div class='why'>{why}</div>
 <div class='grid'><div class='blk'><h4>What it means</h4>{esc(kb['means'])}</div>
 <div class='blk'><h4>What to do now</h4><ol>{steps_html(kb['now'])}</ol></div>
 <div class='blk'><h4>How to avoid it next time</h4><ul>{steps_html(kb['next'])}</ul></div></div>
-{ctx}<p class='src'>Steps are written in advance from official help pages; the AI only picks the reason.</p>
+{ctx}<p class='src'>The AI only notes what you said; fixed rules pick the reason; the steps are written in advance from official help pages.</p>
 {checks_html(r['checks'])}</div>""", unsafe_allow_html=True)
         st.caption("This explains your payment, not your investment. It won't suggest a fund or tell you whether to continue.")
     elif r["kind"] == "fallback":
-        st.markdown(f"""<div class='card fb'><div class='lab'>Not sure</div><div class='reason'>I'm not sure what happened from this message</div>
-<div class='why'>Rather than guess, here's where to check. Groww's help page explains the common reasons an installment fails
-(AutoPay not set up, not enough balance, AutoPay not approved), and how to pay a missed installment with “Pay one-time”.</div>
+        st.markdown(f"""<div class='card fb'><div class='lab'>Not sure</div><div class='reason'>I can't tell the reason yet, so I won't guess</div>
+<div class='why'>Three checks cover most failed installments:<ol><li>In the app, open My SIPs and check the installment's status and any reason shown.</li>
+<li>Check your AutoPay is active and its limit covers the installment amount.</li>
+<li>Make sure the linked bank account had enough balance on the debit date.</li></ol>
+You can pay a missed installment with “Pay one-time”. Groww's help page explains the common reasons.</div>
 <p><a href='{GROWW_HELP}' target='_blank'>Open Groww help: why did my installment fail</a></p>
 <p class='src'>Tip: paste the exact status or SMS text if you have it. You can also contact Groww support from the app's help section.</p>
 {checks_html(r['checks'])}</div>""", unsafe_allow_html=True)
@@ -121,23 +124,88 @@ def show_result(text, r):
     if r.get("mode") == "basic":
         st.caption("The AI is busy right now, so this used simple rules. Rules only answer when the message states the cause clearly.")
 
+FACT_LABEL = {
+    "app_status": ("App shows", {"in_progress": "In progress / pending", "failed": "Failed", "sip_cancelled": "SIP cancelled"}),
+    "debited": ("Money taken", {"yes": "Yes", "no": "No", "refunded": "Taken, then returned"}),
+    "recent_change": ("Changed the SIP recently", {"yes": "Yes", "no": "No"}),
+    "stated_cause": ("Reason given", {"low_balance": "Not enough balance", "over_limit": "Above the AutoPay limit", "mandate_not_ready": "AutoPay not set up or approved",
+                                      "mandate_stopped": "AutoPay expired or cancelled", "bank_error": "Bank or technical error", "app_error": "App error"}),
+}
+
+def facts_html(facts, ev, answers):
+    rows = []
+    for k, (name, vals) in FACT_LABEL.items():
+        v = answers.get(k, facts.get(k))
+        if v in vals:
+            src = "you told me" if k in answers else (f"from your message: \u201c{esc(ev.get(k, ''))}\u201d" if ev.get(k) else "from your message")
+            rows.append(f"<li><b>{esc(name)}:</b> {esc(vals[v])} <span class='src'>({src})</span></li>")
+        elif k in answers:
+            shown = "no reason given" if v == "none" else "not sure"
+            rows.append(f"<li><b>{esc(name)}:</b> {shown} <span class='src'>(you told me)</span></li>")
+    return "<ul>" + "".join(rows) + "</ul>" if rows else "<p class='src'>Nothing specific yet.</p>"
+
+def reset_flow():
+    for k in ("fx_read", "fx_answers", "fx_asked"):
+        st.session_state.pop(k, None)
+
 def page_helper():
     header()
     st.title("What happened to my SIP installment?")
-    st.write("Paste the status you see in the app, a bank SMS, or describe it in your own words (English or Hinglish).")
+    st.write("Tell me in your own words, or paste the app status or bank SMS (English or Hinglish). "
+             "I'll note what you said, ask up to 3 quick questions for anything missing, then show the fix.")
     st.caption("Don't paste PAN, account or phone numbers. Nothing is stored.")
     if "fx_text" not in st.session_state:
         st.session_state.fx_text = ""
     cols = st.columns(2)
     for i, ex in enumerate(EXAMPLES):
-        if cols[i % 2].button(ex if len(ex) < 60 else ex[:57] + "…", key=f"ex{i}", use_container_width=True):
+        if cols[i % 2].button(ex if len(ex) < 60 else ex[:57] + "\u2026", key=f"ex{i}", use_container_width=True):
             st.session_state.fx_text = ex
-    text = st.text_area("Your message", key="fx_text", height=110, max_chars=800, placeholder="For example: Autopay failed after I increased my SIP")
-    if st.button("Explain what happened", type="primary", use_container_width=True) and text.strip():
-        with st.spinner("Reading your message…"):
-            st.session_state.fx_last = (text, core.explain(text))
-    if st.session_state.get("fx_last"):
-        show_result(*st.session_state.fx_last)
+            reset_flow()
+    text = st.text_area("What happened?", key="fx_text", height=100, max_chars=800, placeholder="For example: my SIP failed this month and I don't know why")
+    b1, b2 = st.columns([3, 1])
+    if b1.button("Continue", type="primary", use_container_width=True) and text.strip():
+        reset_flow()
+        with st.spinner("Reading your message\u2026"):
+            st.session_state.fx_read = (text, core.read_facts(text))
+        st.session_state.fx_answers, st.session_state.fx_asked = {}, []
+    if b2.button("Start over", key="clear", use_container_width=True):
+        reset_flow()
+        st.session_state.fx_text = ""
+        st.rerun()
+    if not st.session_state.get("fx_read"):
+        st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
+        return
+    text, r = st.session_state.fx_read
+    st.markdown(f"<div class='msg'><small>Your message</small>\u201c{esc(text)}\u201d</div>", unsafe_allow_html=True)
+    if r["kind"] != "facts":
+        show_result(text, r, echo=False)
+        st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
+        return
+    answers, asked = st.session_state.fx_answers, st.session_state.fx_asked
+    merged = dict(r["facts"]); merged.update(answers)
+    kind, val = core.decide(merged, skip=set(asked))
+    if kind == "ask" and len(asked) >= core.MAX_QUESTIONS:
+        kind, val = "fallback", None
+    st.markdown(f"<div class='card fb'><div class='lab'>What I understood</div>{facts_html(r['facts'], r['evidence'], answers)}</div>", unsafe_allow_html=True)
+    if kind == "ask":
+        q, opts = core.QUESTIONS[val]
+        st.markdown(f"<div class='lab' style='margin-top:14px'>Question {len(asked) + 1} of up to {core.MAX_QUESTIONS}</div><div class='reason' style='font-size:1.15rem'>{esc(q)}</div>", unsafe_allow_html=True)
+        oc = st.columns(2)
+        for i, (code, label) in enumerate(opts):
+            if oc[i % 2].button(label, key=f"q_{val}_{code}", use_container_width=True):
+                answers[val] = code
+                asked.append(val)
+                st.rerun()
+        st.caption("Not sure is a fine answer. You can check the status under My SIPs in the app, and your bank SMS.")
+    elif kind == "reason":
+        res = {"kind": "answer", "reason": val, "label": core.LABELS.get(val, val), "evidence": "",
+               "confidence": "high" if not answers else "medium", "mode": r.get("mode"),
+               "checks": r["checks"] + [("Reason picked by fixed rules from the facts above", True), ("Fix steps from checked sources", True), ("Output guardrails passed", True)]}
+        show_result(text, res, echo=False, how="Based on the facts above" + (" and your answers." if answers else "."))
+    else:
+        show_result(text, {"kind": "fallback", "checks": r["checks"] + [("Not enough facts to name a reason, so no guess", True)], "mode": r.get("mode")}, echo=False)
+    if r.get("mode") == "basic":
+        st.caption("The AI is busy right now, so simple rules read your message. The questions still work.")
     st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
 
 def page_change():
@@ -166,10 +234,11 @@ def page_quality():
             c.markdown(f"<div class='tile'><div class='v'>{esc(v)}</div><div class='t'>{esc(t)}</div></div>", unsafe_allow_html=True)
         st.write(R.get("summary", ""))
     else:
-        st.info("Eval results appear here after the helper is scored against human labels. Targets set before building: reason correct at least 80% of the time, unclear messages fall back at least 90% of the time, guardrail violations = 0.")
+        st.info("Eval results appear here after the helper is scored against human labels on a fresh test set. Targets set before labelling: each fact read correctly at least 85% of the time; when the message doesn't pin down a reason, the helper asks or falls back at least 90% of the time; guardrail violations = 0.")
     st.markdown("- **Golden set:** real failure messages from public comments, common status wordings and guardrail tests, labelled by a person without seeing the AI's answer.\n"
                 "- **Guards:** personal data is blocked before any AI call; advice, off-topic and rule-override requests are declined; the AI's quoted evidence must appear in the message.\n"
-                "- **Fix steps:** written in advance from Groww help and other official pages; the AI only picks the reason, so it can't invent steps.")
+                "- **How it decides:** the AI only notes facts your message states (each backed by your own words); fixed rules pick the reason; it asks up to 3 questions for anything missing.\n"
+                "- **Fix steps:** written in advance from Groww help and other official pages, so the AI can't invent steps.")
     st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
 
 pg = st.navigation([st.Page(page_helper, title="What happened?", icon=":material/help:", default=True),
