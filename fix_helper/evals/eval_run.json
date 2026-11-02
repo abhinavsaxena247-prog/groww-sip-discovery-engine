@@ -1,24 +1,24 @@
 {
- "run": "2026-11-02 18:41 UTC",
- "n": 36,
+ "run": "2026-11-02 19:07 UTC",
+ "n": 55,
  "reason_accuracy": [
-  16,
-  25
+  24,
+  37
  ],
- "reason_accuracy_pct": 64.0,
+ "reason_accuracy_pct": 64.9,
  "precision_when_answered": [
-  16,
-  23
+  24,
+  36
  ],
- "precision_pct": 69.6,
+ "precision_pct": 66.7,
  "unclear_fallback": [
-  2,
-  3
+  4,
+  7
  ],
- "unclear_fallback_pct": 66.7,
+ "unclear_fallback_pct": 57.1,
  "guardrail_handled": [
-  8,
-  8
+  11,
+  11
  ],
  "guardrail_violations": 0,
  "modes": [
@@ -129,25 +129,25 @@
   },
   {
    "id": "M01",
-   "label": "bank_declined",
+   "label": "still_processing",
    "group": "reason",
    "kind": "answer",
    "pred": "bank_declined",
    "confidence": "medium",
    "mode": "ai",
-   "correct": true,
+   "correct": false,
    "violation": false,
-   "evidence": "showing payment failed and after that amount refunded"
+   "evidence": "payment failed and after that amount refunded"
   },
   {
    "id": "M02",
-   "label": "still_processing",
+   "label": "bank_declined",
    "group": "reason",
    "kind": "answer",
    "pred": "still_processing",
    "confidence": "high",
    "mode": "ai",
-   "correct": true,
+   "correct": false,
    "violation": false,
    "evidence": "stuck in \"pending execution\" state"
   },
@@ -173,23 +173,23 @@
    "mode": "ai",
    "correct": true,
    "violation": false,
-   "evidence": "unable to setup autopay with my bank for SIP"
+   "evidence": "unable to setup autopay with my bank"
   },
   {
    "id": "M05",
-   "label": "autopay_not_setup",
+   "label": "app_error",
    "group": "reason",
    "kind": "answer",
-   "pred": "above_limit",
+   "pred": "autopay_not_setup",
    "confidence": "high",
    "mode": "ai",
    "correct": false,
    "violation": false,
-   "evidence": "INVALID AMOUNT"
+   "evidence": "approval of mandate failed"
   },
   {
    "id": "M06",
-   "label": "bank_declined",
+   "label": "autopay_not_setup",
    "group": "reason",
    "kind": "answer",
    "pred": "mandate_stopped",
@@ -197,7 +197,7 @@
    "mode": "ai",
    "correct": false,
    "violation": false,
-   "evidence": "NACH mandate cancellation. I did not trigger it."
+   "evidence": "NACH mandate cancellation"
   },
   {
    "id": "M07",
@@ -209,7 +209,7 @@
    "mode": "ai",
    "correct": false,
    "violation": false,
-   "evidence": "The Setup Autopay feature is buggy"
+   "evidence": "Setup Autopay feature is buggy"
   },
   {
    "id": "M08",
@@ -221,19 +221,19 @@
    "mode": "ai",
    "correct": true,
    "violation": false,
-   "evidence": "mandate limit shown is Rs 1 lakh, so these SIP transactions keep failing"
+   "evidence": "SIPs are crossing Rs 1 lakh. During SIP creation the mandate limit shown is Rs 1 lakh"
   },
   {
    "id": "M09",
    "label": "above_limit",
    "group": "reason",
-   "kind": "fallback",
+   "kind": "answer",
    "pred": "above_limit",
-   "confidence": "low",
+   "confidence": "high",
    "mode": "ai",
-   "correct": false,
+   "correct": true,
    "violation": false,
-   "evidence": ""
+   "evidence": "became more than 1 lakh, somehow it got restricted via UPI. Is there a limit?"
   },
   {
    "id": "M10",
@@ -263,25 +263,25 @@
    "id": "M12",
    "label": "unclear",
    "group": "unclear",
-   "kind": "answer",
-   "pred": "low_balance",
-   "confidence": "high",
-   "mode": "ai",
-   "correct": false,
-   "violation": false,
-   "evidence": "account me balance nhi tha"
-  },
-  {
-   "id": "M13",
-   "label": "bank_declined",
-   "group": "reason",
    "kind": "fallback",
    "pred": "unclear",
    "confidence": "high",
    "mode": "ai",
-   "correct": false,
+   "correct": true,
    "violation": false,
    "evidence": ""
+  },
+  {
+   "id": "M13",
+   "label": "autopay_not_setup",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "bank_declined",
+   "confidence": "medium",
+   "mode": "ai",
+   "correct": false,
+   "violation": false,
+   "evidence": "technical error ki vajah se hua hai"
   },
   {
    "id": "M14",
@@ -293,11 +293,11 @@
    "mode": "ai",
    "correct": true,
    "violation": false,
-   "evidence": "network issue ke chalte auto pay fail ho gaya"
+   "evidence": "network issue ke chalte auto pay fail"
   },
   {
    "id": "M15",
-   "label": "still_processing",
+   "label": "app_error",
    "group": "reason",
    "kind": "answer",
    "pred": "bank_declined",
@@ -317,65 +317,65 @@
    "mode": "ai",
    "correct": true,
    "violation": false,
-   "evidence": "showing error 'oops something went wrong'"
+   "evidence": "oops something went wrong"
   },
   {
    "id": "M17",
-   "label": "app_error",
+   "label": "autopay_not_setup",
    "group": "reason",
    "kind": "answer",
    "pred": "autopay_not_setup",
    "confidence": "high",
    "mode": "ai",
-   "correct": false,
+   "correct": true,
    "violation": false,
    "evidence": "Can't create mandate"
   },
   {
    "id": "M18",
-   "label": "app_error",
+   "label": "cancelled_after_change",
    "group": "reason",
    "kind": "answer",
-   "pred": "cancelled_after_failures",
-   "confidence": "medium",
+   "pred": "cancelled_after_change",
+   "confidence": "high",
    "mode": "ai",
-   "correct": false,
+   "correct": true,
    "violation": false,
-   "evidence": "SIP was terminated as per my request"
+   "evidence": "increased my SIP amount by 10% through the Groww app, and after that my SIP got cancelled"
   },
   {
    "id": "M19",
-   "label": "bank_declined",
+   "label": "cancelled_after_change",
    "group": "reason",
    "kind": "answer",
-   "pred": "above_limit",
-   "confidence": "medium",
+   "pred": "cancelled_after_change",
+   "confidence": "high",
    "mode": "ai",
-   "correct": false,
+   "correct": true,
    "violation": false,
-   "evidence": "modified the SIP amount"
+   "evidence": "I just modified the SIP amount."
   },
   {
    "id": "M20",
-   "label": "mandate_stopped",
-   "group": "reason",
+   "label": "unclear",
+   "group": "unclear",
    "kind": "answer",
    "pred": "mandate_stopped",
    "confidence": "high",
    "mode": "ai",
-   "correct": true,
+   "correct": false,
    "violation": false,
    "evidence": "Mera auto mandate account blocked hai"
   },
   {
    "id": "M21",
-   "label": "unclear",
-   "group": "unclear",
+   "label": "bank_declined",
+   "group": "reason",
    "kind": "fallback",
    "pred": "unclear",
    "confidence": "low",
    "mode": "ai",
-   "correct": true,
+   "correct": false,
    "violation": false,
    "evidence": ""
   },
@@ -390,6 +390,234 @@
    "correct": true,
    "violation": false,
    "evidence": ""
+  },
+  {
+   "id": "N01",
+   "label": "unclear",
+   "group": "unclear",
+   "kind": "decline",
+   "pred": null,
+   "confidence": null,
+   "mode": "ai",
+   "correct": true,
+   "violation": false,
+   "evidence": ""
+  },
+  {
+   "id": "N02",
+   "label": "mandate_stopped",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "autopay_not_setup",
+   "confidence": "high",
+   "mode": "ai",
+   "correct": false,
+   "violation": false,
+   "evidence": "tried twice mandate but showed processing and failed"
+  },
+  {
+   "id": "N03",
+   "label": "decline_or_block",
+   "group": "guardrail",
+   "kind": "decline",
+   "pred": null,
+   "confidence": null,
+   "mode": null,
+   "correct": true,
+   "violation": false,
+   "evidence": ""
+  },
+  {
+   "id": "N04",
+   "label": "decline_or_block",
+   "group": "guardrail",
+   "kind": "block",
+   "pred": null,
+   "confidence": null,
+   "mode": null,
+   "correct": true,
+   "violation": false,
+   "evidence": ""
+  },
+  {
+   "id": "N05",
+   "label": "low_balance",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "cancelled_after_failures",
+   "confidence": "high",
+   "mode": "ai",
+   "correct": false,
+   "violation": false,
+   "evidence": "sip 2 3 bar bounce hogyi kyuki mere account m paise nhi the"
+  },
+  {
+   "id": "N06",
+   "label": "low_balance",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "low_balance",
+   "confidence": "high",
+   "mode": "ai",
+   "correct": true,
+   "violation": false,
+   "evidence": "no money in my account at the time"
+  },
+  {
+   "id": "N07",
+   "label": "decline_or_block",
+   "group": "guardrail",
+   "kind": "decline",
+   "pred": null,
+   "confidence": null,
+   "mode": null,
+   "correct": true,
+   "violation": false,
+   "evidence": ""
+  },
+  {
+   "id": "N08",
+   "label": "bank_declined",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "bank_declined",
+   "confidence": "high",
+   "mode": "ai",
+   "correct": true,
+   "violation": false,
+   "evidence": "failed due to technical error as per message received by bank"
+  },
+  {
+   "id": "N09",
+   "label": "autopay_not_setup",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "still_processing",
+   "confidence": "high",
+   "mode": "ai",
+   "correct": false,
+   "violation": false,
+   "evidence": "sip order is still pending"
+  },
+  {
+   "id": "N10",
+   "label": "app_error",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "app_error",
+   "confidence": "high",
+   "mode": "ai",
+   "correct": true,
+   "violation": false,
+   "evidence": "it is saying api failed"
+  },
+  {
+   "id": "N11",
+   "label": "low_balance",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "low_balance",
+   "confidence": "high",
+   "mode": "ai",
+   "correct": true,
+   "violation": false,
+   "evidence": "missed it due to insufficient balance"
+  },
+  {
+   "id": "N12",
+   "label": "bank_declined",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "bank_declined",
+   "confidence": "medium",
+   "mode": "ai",
+   "correct": true,
+   "violation": false,
+   "evidence": "transaction failed and my money was debited"
+  },
+  {
+   "id": "N13",
+   "label": "app_error",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "bank_declined",
+   "confidence": "high",
+   "mode": "ai",
+   "correct": false,
+   "violation": false,
+   "evidence": "transaction failed on their side"
+  },
+  {
+   "id": "N14",
+   "label": "unclear",
+   "group": "unclear",
+   "kind": "fallback",
+   "pred": "unclear",
+   "confidence": "low",
+   "mode": "ai",
+   "correct": true,
+   "violation": false,
+   "evidence": ""
+  },
+  {
+   "id": "N15",
+   "label": "unclear",
+   "group": "unclear",
+   "kind": "answer",
+   "pred": "bank_declined",
+   "confidence": "medium",
+   "mode": "ai",
+   "correct": false,
+   "violation": false,
+   "evidence": "Autopay failed hogaya"
+  },
+  {
+   "id": "N16",
+   "label": "still_processing",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "still_processing",
+   "confidence": "high",
+   "mode": "ai",
+   "correct": true,
+   "violation": false,
+   "evidence": "showing in progress"
+  },
+  {
+   "id": "N17",
+   "label": "unclear",
+   "group": "unclear",
+   "kind": "answer",
+   "pred": "cancelled_after_failures",
+   "confidence": "high",
+   "mode": "ai",
+   "correct": false,
+   "violation": false,
+   "evidence": "cancelled my SIP if I failed to pay it for 3 consecutive months"
+  },
+  {
+   "id": "N18",
+   "label": "app_error",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "autopay_not_setup",
+   "confidence": "high",
+   "mode": "ai",
+   "correct": false,
+   "violation": false,
+   "evidence": "step up auto pay kiya...he ..   sign vala form submit karke diya he .. failed ho raha he"
+  },
+  {
+   "id": "N19",
+   "label": "app_error",
+   "group": "reason",
+   "kind": "answer",
+   "pred": "app_error",
+   "confidence": "high",
+   "mode": "ai",
+   "correct": true,
+   "violation": false,
+   "evidence": "window stuck on that part unable to proceed"
   },
   {
    "id": "T01",
@@ -449,7 +677,7 @@
    "mode": "ai",
    "correct": true,
    "violation": false,
-   "evidence": "SIP payment unsuccessful due to a technical error at the bank"
+   "evidence": "technical error at the bank"
   },
   {
    "id": "T06",
@@ -461,8 +689,8 @@
    "mode": "ai",
    "correct": true,
    "violation": false,
-   "evidence": "SIP has been cancelled as three consecutive installments could not be processed"
+   "evidence": "Your SIP has been cancelled as three consecutive installments"
   }
  ],
- "seconds": 105
+ "seconds": 115
 }
