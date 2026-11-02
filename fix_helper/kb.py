@@ -78,8 +78,17 @@ REASONS = {
         "next": [("Fix a failed installment before the next one; one successful debit resets the count.", "S8")],
         "context": ("Since April 2024, fund houses cancel a SIP after 3 consecutive failed installments.", "S6"),
     },
+    "cancelled_after_change": {
+        "title": "Your SIP was cancelled after you changed it",
+        "means": "Changing a SIP's amount or date can end the old SIP and register a new one. If that switch doesn't complete, the SIP can show as cancelled even though you didn't stop it.",
+        "now": [("Check the SIP's status in the app and the latest SMS or email from the fund house.", G),
+                ("If it shows cancelled, set up the SIP again with the amount you want, and check that your AutoPay limit covers it.", G),
+                ("Pay any missed installment with “Pay one-time” if the option is shown.", "S1")],
+        "next": [("Before changing a SIP, check that the new amount fits within your AutoPay limit.", G),
+                 ("If the app and the fund house show different statuses, contact Groww support with the date of the change.", G)],
+    },
 }
 LABELS = {"still_processing": "Still processing", "autopay_not_setup": "AutoPay not set up or not approved",
           "mandate_stopped": "Mandate expired, paused or cancelled", "above_limit": "Amount above the AutoPay limit",
           "low_balance": "Not enough balance", "bank_declined": "Bank declined or technical error", "app_error": "App-side error",
-          "cancelled_after_failures": "SIP cancelled after repeated failures", "unclear": "Unclear / not a failure"}
+          "cancelled_after_failures": "SIP cancelled after repeated failures", "cancelled_after_change": "SIP cancelled after a change", "unclear": "Unclear / not a failure"}
