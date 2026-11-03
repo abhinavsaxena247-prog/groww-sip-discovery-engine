@@ -147,7 +147,7 @@ QUESTIONS = {
                       [("yes", "Yes, I changed it"), ("no", "No changes"), ("not_said", "Not sure")]),
     "stated_cause": ("Does the app or your bank SMS give a reason?",
                      [("low_balance", "Not enough balance"), ("over_limit", "Above the AutoPay limit"), ("mandate_not_ready", "AutoPay not set up or not approved"),
-                      ("mandate_stopped", "AutoPay expired or cancelled"), ("bank_error", "Bank or technical error"), ("none", "No reason given")]),
+                      ("mandate_stopped", "AutoPay expired or cancelled"), ("bank_error", "Bank or technical error"), ("none", "No reason given"), ("not_said", "Not sure")]),
     "debited": ("Was money taken from your bank account for this installment?",
                 [("yes", "Yes"), ("no", "No"), ("refunded", "Taken, then returned"), ("not_said", "Not sure")]),
 }
