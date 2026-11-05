@@ -792,7 +792,7 @@
    ],
    "got": [
     "reason",
-    "debited_not_invested"
+    "autopay_not_setup"
    ],
    "pass": true
   },

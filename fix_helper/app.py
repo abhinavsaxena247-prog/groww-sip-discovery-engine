@@ -56,6 +56,7 @@ p, li { color:#44475B; }
 .src { font-size:.78rem; color:#55586A; }
 .src a, .blk a { color:#027F5F; }
 .gg { font-size:.72rem; color:#55586A; border:1px solid #C9CCD5; border-radius:99px; padding:0 6px; margin-left:4px; white-space:nowrap; }
+[data-testid="stSidebarNav"] a[href$="/quality"] { display:none; }
 .checks { margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; }
 .chk { font-size:.78rem; border-radius:99px; padding:3px 10px; background:#E5F7F1; color:#00664C; }
 .chk.no { background:#F2F5F7; color:#44475B; }
@@ -99,12 +100,13 @@ def steps_html(items):
     for text, src in items:
         if src:
             name, url = SOURCES[src]
-            out.append(f"<li>{esc(text)} <a href='{url}' target='_blank' title='{esc(name)}'>[source]</a></li>")
+            out.append(f"<li>{esc(text)} <a href='{url}' target='_blank' title='{esc(name)}'>Learn more</a></li>")
         else:
-            out.append(f"<li>{esc(text)} <span class='gg'>general guidance</span></li>")
+            out.append(f"<li>{esc(text)}</li>")
     return "".join(out)
 
 def checks_html(checks):
+    return ""  # internal checks stay out of the investor's view (they are on the Quality page)
     tick, dot = "\u2713 ", "\u25cf "
     return "<div class='checks'>" + "".join("<span class='chk" + ("" if ok else " no") + "'>" + (tick if ok else dot) + esc(t) + "</span>" for t, ok in checks) + "</div>"
 
@@ -117,16 +119,14 @@ def show_result(text, r, echo=True, how=""):
         ctx = ""
         if kb.get("context"):
             t, s = kb["context"]; name, url = SOURCES[s]
-            ctx = f"<p class='src'>{esc(t)} <a href='{url}' target='_blank'>[source]</a></p>"
+            ctx = f"<p class='src'>{esc(t)} <a href='{url}' target='_blank'>Learn more</a></p>"
         conf = r["confidence"]
         st.markdown(f"""<div class='card'><div class='lab'>Likely reason</div><div class='reason'>{esc(kb['title'])}</div>
-<span class='conf'>Reason found</span>
 <div class='why'>{why}</div>
 <div class='grid'><div class='blk'><h4>What it means</h4>{esc(kb['means'])}</div>
 <div class='blk'><h4>What to do now</h4><ol>{steps_html(kb['now'])}</ol></div>
 <div class='blk'><h4>How to avoid it next time</h4><ul>{steps_html(kb['next'])}</ul></div></div>
-{ctx}<p class='src'>The AI only notes what you said; fixed rules pick the reason; the steps are written in advance from official help pages.</p>
-{checks_html(r['checks'])}</div>""", unsafe_allow_html=True)
+{ctx}</div>""", unsafe_allow_html=True)
         st.caption("This explains your payment, not your investment. It won't suggest a fund or tell you whether to continue.")
     elif r["kind"] == "fallback":
         st.markdown(f"""<div class='card fb'><div class='lab'>Not sure</div><div class='reason'>I can't tell the reason yet, so I won't guess</div>
@@ -150,8 +150,6 @@ You can pay a missed installment with “Pay one-time”. Groww's help page expl
         show_help(r)
     else:
         st.markdown(f"<div class='card fb'><div class='lab'>Check your message</div><div class='why'>{esc(r['why'])}</div>{checks_html(r['checks'])}</div>", unsafe_allow_html=True)
-    if r.get("mode") == "basic":
-        st.caption("The AI is busy right now, so this used simple rules. Rules only answer when the message states the cause clearly.")
 
 FACT_LABEL = {
     "app_status": ("App shows", {"in_progress": "In progress / pending", "failed": "Failed", "sip_cancelled": "SIP cancelled"}),
@@ -166,12 +164,10 @@ def facts_html(facts, ev, answers):
     for k, (name, vals) in FACT_LABEL.items():
         v = answers.get(k, facts.get(k))
         if v in vals:
-            src = ("you confirmed" if v == facts.get(k) else "you told me") if k in answers else (f"from your message: \u201c{esc(ev.get(k, ''))}\u201d" if ev.get(k) else "from your message")
-            rows.append(f"<li><b>{esc(name)}:</b> {esc(vals[v])} <span class='src'>({src})</span></li>")
+            rows.append(f"<li><b>{esc(name)}:</b> {esc(vals[v])}</li>")
         elif k in answers:
             shown = "no reason given" if v == "none" else "not sure"
-            who = "you confirmed" if v == facts.get(k) else "you told me"
-            rows.append(f"<li><b>{esc(name)}:</b> {shown} <span class='src'>({who})</span></li>")
+            rows.append(f"<li><b>{esc(name)}:</b> {shown}</li>")
     return "<ul>" + "".join(rows) + "</ul>" if rows else "<p class='src'>Nothing specific yet.</p>"
 
 def start_over():
@@ -179,7 +175,7 @@ def start_over():
     st.session_state.fx_text = ""
 
 def reset_flow():
-    for k in ("fx_read", "fx_answers", "fx_asked", "fx_confirmed", "fx_qn", "fx_guide"):
+    for k in ("fx_read", "fx_answers", "fx_asked", "fx_confirmed", "fx_qn", "fx_guide", "fx_editing", "fx_tile", "fx_edit_err"):
         st.session_state.pop(k, None)
 
 def help_lines_html(lines):
@@ -187,9 +183,9 @@ def help_lines_html(lines):
     for text, src in lines:
         if src:
             name, url = HELP.H[src]
-            out.append(f"<li>{esc(text)} <a href='{url}' target='_blank' title='{esc(name)}'>[source]</a></li>")
+            out.append(f"<li>{esc(text)} <a href='{url}' target='_blank' title='{esc(name)}'>Learn more</a></li>")
         else:
-            out.append(f"<li>{esc(text)} <span class='gg'>general guidance</span></li>")
+            out.append(f"<li>{esc(text)}</li>")
     return "<ul>" + "".join(out) + "</ul>"
 
 def show_help(r):
@@ -228,6 +224,46 @@ def open_topic(label, topic):
     reset_flow()
     st.session_state.fx_read = (label, {"kind": "help", "topic": topic, "can_continue": False,
                                         "checks": [("Answer from checked sources", True)]})
+    st.session_state.fx_tile = True
+
+def start_edit():
+    tile = st.session_state.get("fx_tile")
+    st.session_state.fx_edit = "" if tile else st.session_state.fx_read[0]
+    st.session_state.fx_editing = True
+    st.session_state.pop("fx_edit_err", None)
+
+def cancel_edit():
+    st.session_state.fx_editing = False
+    st.session_state.pop("fx_edit_err", None)
+
+def apply_edit():
+    t = (st.session_state.get("fx_edit") or "").strip()
+    if not t:
+        st.session_state.fx_edit_err = "Type your message first, or tap Cancel."
+        return
+    reset_flow()
+    st.session_state.fx_text = t
+    with st.spinner("Reading your message\u2026"):
+        st.session_state.fx_read = (t, core.read_facts(t))
+    st.session_state.fx_answers, st.session_state.fx_asked = {}, []
+
+def message_card(text):
+    if st.session_state.get("fx_editing"):
+        st.text_area("Edit your message, or write a new one", key="fx_edit", height=100, max_chars=800)
+        err = st.session_state.get("fx_edit_err")
+        if err:
+            st.warning(err)
+        c1, c2 = st.columns(2)
+        c1.button("Cancel", key="ed_cancel", use_container_width=True, on_click=cancel_edit)
+        c2.button("Update", key="ed_go", type="primary", use_container_width=True, on_click=apply_edit)
+        st.caption("Your answers so far are cleared and I'll read the new message from the start. Don't include PAN, Aadhaar, account or phone numbers.")
+        return
+    lab = "You chose" if st.session_state.get("fx_tile") else "Your message"
+    shown = esc(text) if st.session_state.get("fx_tile") else f"\u201c{esc(text)}\u201d"
+    c1, c2 = st.columns([4, 1], vertical_alignment="center")
+    c1.markdown(f"<div class='msg'><small>{lab}</small>{shown}</div>", unsafe_allow_html=True)
+    c2.button("Edit" if not st.session_state.get("fx_tile") else "Type instead", key="ed_open", use_container_width=True, on_click=start_edit,
+              help="Change your message or write a new one")
 
 def go_back():
     asked, answers = st.session_state.get("fx_asked", []), st.session_state.get("fx_answers", {})
@@ -287,9 +323,9 @@ def guide(reason):
         c2.button("Done", key="g_done", type="primary", use_container_width=True, on_click=start_over)
         return
     text, src = steps[i]
-    link = f" <a href='{SOURCES[src][1]}' target='_blank'>[source]</a>" if src else " <span class='gg'>general guidance</span>"
-    st.markdown(f"<div class='card'><div class='lab'>Step {i + 1} of {len(steps)}</div><div class='reason' style='font-size:1.3rem'>{esc(text)}</div>"
-                f"<p class='src'>{link}</p></div>", unsafe_allow_html=True)
+    link = f"<a href='{SOURCES[src][1]}' target='_blank'>Learn more on Groww Help</a>" if src else ""
+    st.markdown(f"<div class='card'><div class='lab'>Step {i + 1} of {len(steps)}</div><div class='reason' style='font-size:1.3rem'>{esc(text)}</div>" +
+                (f"<p class='src'>{link}</p>" if link else "") + "</div>", unsafe_allow_html=True)
     read_aloud(f"Step {i + 1} of {len(steps)}. {text}", key=f"ra{i}")
     c1, c2 = st.columns(2)
     c1.button("\u2190 Back", key=f"g_back{i}", use_container_width=True, disabled=i == 0, on_click=lambda: st.session_state.update(fx_guide=max(0, i - 1)))
@@ -335,7 +371,7 @@ def page_helper():
         return
     st.button("\u2190 Ask something else", key="top_exit", on_click=start_over)
     text, r = st.session_state.fx_read
-    st.markdown(f"<div class='msg'><small>Your message</small>\u201c{esc(text)}\u201d</div>", unsafe_allow_html=True)
+    message_card(text)
     if r["kind"] != "facts":
         show_result(text, r, echo=False)
         exit_row("exit_help")
@@ -344,8 +380,8 @@ def page_helper():
     answers, asked = st.session_state.fx_answers, st.session_state.fx_asked
     progress(2 if not st.session_state.get("fx_confirmed") else 3)
     if not st.session_state.get("fx_confirmed"):
-        st.markdown("<div class='lab' style='margin-top:14px'>Step 1: check what I understood</div>"
-                    "<div class='reason' style='font-size:1.15rem'>Is this right? Change anything I got wrong.</div>", unsafe_allow_html=True)
+        st.markdown("<div class='lab' style='margin-top:14px'>Quick check</div>"
+                    "<div class='reason' style='font-size:1.15rem'>Is this right? Change anything that's wrong.</div>", unsafe_allow_html=True)
         picks = {}
         for f in core.CONFIRM_FACTS:
             q, opts = core.QUESTIONS[f]
@@ -354,13 +390,14 @@ def page_helper():
             idx = codes.index(ai_val) if ai_val in codes else codes.index("not_said")
             ev = r["evidence"].get(f)
             if ev:
-                hint = f"I read this from your message: \u201c{ev}\u201d"
+                hint = None
             elif f == "stated_cause":
                 hint = "Your message doesn't name a reason. Pick one if the app or your bank SMS gives it."
             else:
-                hint = "Your message doesn't say, so I picked Not sure. Change it if you know."
+                hint = "Not sure? That's fine, leave it as it is."
             picks[f] = st.radio(q, codes, index=idx, format_func=dict(opts).get, key=f"cf_{f}", help=None)
-            st.caption(hint)
+            if hint:
+                st.caption(hint)
         if st.button("Looks right, continue", type="primary", use_container_width=True, key="cf_go"):
             for f, v in picks.items():
                 answers[f] = v
@@ -374,7 +411,7 @@ def page_helper():
     kind, val = core.decide(merged, skip=set(asked))
     if kind == "ask" and st.session_state.get("fx_qn", 0) >= core.MAX_QUESTIONS:
         kind, val = "fallback", None
-    st.markdown(f"<div class='card fb'><div class='lab'>What I understood</div>{facts_html(r['facts'], r['evidence'], answers)}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='card fb'><div class='lab'>Your details</div>{facts_html(r['facts'], r['evidence'], answers)}</div>", unsafe_allow_html=True)
     if kind == "ask":
         q, opts = core.QUESTIONS[val]
         st.markdown(f"<div class='lab' style='margin-top:14px'>Question {st.session_state.get('fx_qn', 0) + 1} of up to {core.MAX_QUESTIONS}</div><div class='reason' style='font-size:1.15rem'>{esc(q)}</div>", unsafe_allow_html=True)
@@ -396,7 +433,7 @@ def page_helper():
         res = {"kind": "answer", "reason": val, "label": core.LABELS.get(val, val), "evidence": "",
                "confidence": "medium", "mode": r.get("mode"),
                "checks": r["checks"] + [("You checked what I understood", True), ("Reason picked by fixed rules from the facts above", True), ("Fix steps from checked sources", True), ("Output guardrails passed", True)]}
-        show_result(text, res, echo=False, how="Based on the facts above" + (" and your answers." if answers else "."))
+        show_result(text, res, echo=False, how="Based on what you told me.")
         st.markdown(f"<div class='blk' style='margin-top:10px'><h4>Good to know</h4>{help_lines_html(GOOD_TO_KNOW)}</div>", unsafe_allow_html=True)
     else:
         show_result(text, {"kind": "fallback", "checks": r["checks"] + [("Not enough facts to name a reason, so no guess", True)], "mode": r.get("mode")}, echo=False)
@@ -404,8 +441,6 @@ def page_helper():
         exit_row("exit_result")
     if r.get("advice_note"):
         st.caption("You also asked for an opinion on funds or returns. I can't advise on that; this covers the payment only.")
-    if r.get("mode") == "basic":
-        st.caption("The AI is busy right now, so simple rules read your message. The questions still work.")
     st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
 
 def page_change():
@@ -420,7 +455,7 @@ def page_change():
         kind, msg = core.change_check(amt, lim or None)
         label = {"ok": "✓ Likely fine", "close": "● Likely fine, but close", "exceeds": "▲ May exceed your limit", "unsure": "? Not sure"}[kind]
         st.markdown(f"<div class='card{' fb' if kind in ('unsure',) else ''}'><div class='reason'>{esc(label)}</div><div class='why'>{esc(msg)}</div>"
-                    "<p class='src'>Rules only: this compares the numbers you enter. It never quotes a current limit as fact.</p></div>", unsafe_allow_html=True)
+                    "<p class='src'>Based only on the numbers you entered. Check your current limit in the app.</p></div>", unsafe_allow_html=True)
     st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
 
 def page_start():
@@ -429,18 +464,18 @@ def page_start():
     st.write("Groww's steps to start a SIP, plus a set-up checklist so your installments go through from the first month. "
              "Which fund to choose is your decision; this page never suggests one.")
     st.markdown(f"""<div class='card'><div class='lab'>Steps in the Groww app</div><div class='blk'><ol>
-<li>From Home, open Mutual Funds and tap Explore. <a href='{HELP.H["S15"][1]}' target='_blank'>[source]</a></li>
-<li>Find the fund you've chosen and tap Start SIP. <a href='{HELP.H["S15"][1]}' target='_blank'>[source]</a></li>
-<li>Enter the amount and choose the monthly date. <a href='{HELP.H["S15"][1]}' target='_blank'>[source]</a></li>
-<li>Pay the first installment with UPI or net banking. <a href='{HELP.H["S15"][1]}' target='_blank'>[source]</a></li>
-<li>Complete AutoPay (OTP or form) so later installments are debited automatically. <a href='{HELP.H["S15"][1]}' target='_blank'>[source]</a></li>
+<li>From Home, open Mutual Funds and tap Explore. <a href='{HELP.H["S15"][1]}' target='_blank'>Learn more</a></li>
+<li>Find the fund you've chosen and tap Start SIP. <a href='{HELP.H["S15"][1]}' target='_blank'>Learn more</a></li>
+<li>Enter the amount and choose the monthly date. <a href='{HELP.H["S15"][1]}' target='_blank'>Learn more</a></li>
+<li>Pay the first installment with UPI or net banking. <a href='{HELP.H["S15"][1]}' target='_blank'>Learn more</a></li>
+<li>Complete AutoPay (OTP or form) so later installments are debited automatically. <a href='{HELP.H["S15"][1]}' target='_blank'>Learn more</a></li>
 </ol></div></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class='card'><div class='lab'>Set it up so it doesn't fail</div><div class='blk'><ul>
-<li>Pick a date when your linked account usually has the money, for example a few days after your salary arrives. <span class='gg'>general guidance</span></li>
-<li>Keep the balance ready 4 days before the installment date. <a href='{SOURCES["S1"][1]}' target='_blank'>[source]</a></li>
-<li>Set an AutoPay limit above your planned amount, with room if you plan to increase it later. <span class='gg'>general guidance</span></li>
-<li>Check AutoPay shows as approved; bank approval takes 2 to 7 working days. <a href='{HELP.H["S9"][1]}' target='_blank'>[source]</a></li>
-<li>Expect the second installment about two months after the first: there's a 30-day minimum gap. <a href='{HELP.H["S16"][1]}' target='_blank'>[source]</a></li>
+<li>Pick a date when your linked account usually has the money, for example a few days after your salary arrives.</li>
+<li>Keep the balance ready 4 days before the installment date. <a href='{SOURCES["S1"][1]}' target='_blank'>Learn more</a></li>
+<li>Set an AutoPay limit above your planned amount, with room if you plan to increase it later.</li>
+<li>Check AutoPay shows as approved; bank approval takes 2 to 7 working days. <a href='{HELP.H["S9"][1]}' target='_blank'>Learn more</a></li>
+<li>Expect the second installment about two months after the first: there's a 30-day minimum gap. <a href='{HELP.H["S16"][1]}' target='_blank'>Learn more</a></li>
 </ul></div></div>""", unsafe_allow_html=True)
     c1, c2 = st.columns(2)
     amt = c1.number_input("Planned monthly amount (\u20b9)", min_value=0, step=500, value=0, key="st_amt")
@@ -449,7 +484,7 @@ def page_start():
         kind, msg = core.change_check(amt, lim or None)
         label = {"ok": "\u2713 Looks fine", "close": "\u25cf Fine, but close to the limit", "exceeds": "\u25b2 Above your AutoPay limit", "unsure": "? Not sure"}[kind]
         st.markdown(f"<div class='card{' fb' if kind == 'unsure' else ''}'><div class='reason'>{esc(label)}</div><div class='why'>{esc(msg)}</div>"
-                    "<p class='src'>Rules only: this compares the numbers you enter.</p></div>", unsafe_allow_html=True)
+                    "<p class='src'>Based only on the numbers you entered.</p></div>", unsafe_allow_html=True)
     st.caption("Mutual fund investing involves market risk. This page explains set-up steps only and isn't investment advice.")
     st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
 
