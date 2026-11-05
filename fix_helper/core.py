@@ -281,3 +281,33 @@ def read_facts(text, skip_route=False):
         facts[k], ev[k] = val, e
     checks.append(("Every fact quoted from your message" if not dropped else f"{dropped} fact(s) without quoted words ignored; asked instead", True))
     return {"kind": "facts", "facts": facts, "evidence": ev, "checks": checks, "mode": mode, "model": model, "advice_note": advice_note}
+
+
+# ---------------------------------------------------------------------------
+# Voice input: the AI transcribes a short recording; long numbers are masked before anyone sees the text.
+# ---------------------------------------------------------------------------
+TRANSCRIBE_PROMPT = ("Transcribe the human speech in this audio, word for word, in the language spoken. Hindi or Hinglish speech is written in Roman letters. "
+                     "If there is no clear human speech (silence, a tone, music, noise or unclear sounds), return an empty transcript. "
+                     "Never guess, complete or invent words, and never add anything that was not said.")
+TRANSCRIBE_SCHEMA = {"type": "OBJECT", "properties": {"transcript": {"type": "STRING"}}, "required": ["transcript"]}
+_LONG_NUM = re.compile(r"(?:\d[\s-]?){8,}")
+
+
+def transcribe(audio_bytes, mime="audio/wav"):
+    """Return (text, error). Text has long digit runs masked so account, phone or ID numbers never show."""
+    import base64, json as _json
+    if not audio_bytes:
+        return "", "empty"
+    if len(audio_bytes) > 8 * 1024 * 1024:
+        return "", "too_long"
+    body = {"contents": [{"role": "user", "parts": [{"inline_data": {"mime_type": mime, "data": base64.b64encode(audio_bytes).decode()}},
+                                                     {"text": TRANSCRIBE_PROMPT}]}],
+            "generationConfig": {"temperature": 0, "responseMimeType": "application/json", "responseSchema": TRANSCRIBE_SCHEMA}}
+    try:
+        d = llm._post(body, timeout=60)
+        txt = "".join(p.get("text", "") for p in d["candidates"][0]["content"].get("parts", []))
+        t = str(_json.loads(txt).get("transcript", "")).strip()
+    except Exception:
+        return "", "unavailable"
+    t = _LONG_NUM.sub("[number removed]", t)[:800]
+    return t, None if t else "no_speech"

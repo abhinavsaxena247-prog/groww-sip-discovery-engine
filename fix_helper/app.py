@@ -24,7 +24,7 @@ from fix_helper import core  # noqa: E402
 from fix_helper.kb import REASONS, SOURCES, GROWW_HELP  # noqa: E402
 from fix_helper import help as HELP  # noqa: E402
 
-st.set_page_config(page_title="SIP Fix Helper · NL-Groww concept", page_icon=":material/build:", layout="centered")
+st.set_page_config(page_title="SIP Fix Helper · NL-Groww concept", page_icon=":material/build:", layout="centered", initial_sidebar_state="collapsed")
 CSS = """
 <style>
 html, body, p, li, label, input, textarea, button, h1, h2, h3, .stMarkdown { font-family: "Inter", system-ui, sans-serif; }
@@ -39,10 +39,10 @@ p, li { color:#44475B; }
 .tag { font-size:.78rem; color:#00664C; background:#E5F7F1; border-radius:99px; padding:3px 10px; font-weight:500; }
 .notice { background:#F0FAF6; border-left:3px solid #04B488; border-radius:8px; padding:8px 12px; font-size:.86rem; color:#44475B; margin:10px 0 4px; }
 .msg { background:#F2F5F7; border-radius:10px; padding:10px 14px; font-size:.95rem; }
-.msg small { display:block; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:#55586A; margin-bottom:4px; }
+.msg small { display:block; font-size:.8rem; font-weight:600; color:#55586A; margin-bottom:4px; }
 .card { border:1.5px solid #04B488; border-radius:14px; padding:16px 18px; margin-top:12px; }
 .card.fb { border-color:#55586A; border-style:dashed; }
-.lab { font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:#55586A; }
+.lab { font-size:.82rem; font-weight:600; color:#55586A; }
 .reason { font-size:1.45rem; font-weight:700; color:#44475B; margin:2px 0 6px; line-height:1.25; }
 .conf { display:inline-block; background:#027F5F; color:#fff; border-radius:99px; padding:3px 12px; font-size:.82rem; font-weight:600; }
 .conf.medium { background:#fff; color:#027F5F; border:1.5px solid #027F5F; }
@@ -69,6 +69,15 @@ p, li { color:#44475B; }
 .tile { border:1px solid #E7E8EC; border-radius:12px; padding:12px 14px; }
 .tile .v { font-size:1.6rem; font-weight:700; color:#027F5F; }
 .tile .t { font-size:.82rem; color:#55586A; }
+.pgbar { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:6px 0 10px; font-size:.9rem; }
+.pg { color:#55586A; padding:3px 10px; border-radius:99px; border:1px solid #DDE3E6; }
+.pg b { margin-right:2px; }
+.pg.on { color:#fff; background:#027F5F; border-color:#027F5F; }
+.pg.done { color:#00664C; background:#E5F7F1; border-color:#E5F7F1; }
+.pgsep { color:#55586A; }
+.tiles-h { font-size:1.05rem; font-weight:700; color:#44475B; margin:18px 0 6px; }
+[data-testid="stPageLink"] a { border:1px solid #027F5F; border-radius:8px; justify-content:center; padding:6px 10px; }
+[data-testid="stPageLink"] a p { color:#027F5F !important; font-weight:500; }
 </style>"""
 NOTICE = "Independent concept by a NextLeap student. Not affiliated with Groww. Not investment advice: it explains what happened to a payment and never recommends a fund or tells you whether to continue."
 RISK = "Mutual fund investments are subject to market risks, read all scheme related documents carefully."
@@ -170,7 +179,7 @@ def start_over():
     st.session_state.fx_text = ""
 
 def reset_flow():
-    for k in ("fx_read", "fx_answers", "fx_asked", "fx_confirmed", "fx_qn"):
+    for k in ("fx_read", "fx_answers", "fx_asked", "fx_confirmed", "fx_qn", "fx_guide"):
         st.session_state.pop(k, None)
 
 def help_lines_html(lines):
@@ -184,6 +193,12 @@ def help_lines_html(lines):
     return "<ul>" + "".join(out) + "</ul>"
 
 def show_help(r):
+    if r["topic"] == "manage_menu":
+        st.markdown("<div class='card'><div class='lab'>Manage a SIP</div><div class='reason'>What would you like to do?</div></div>", unsafe_allow_html=True)
+        for lab, top in [("Skip or pause an installment", "manage_pause"), ("Change the amount or date", "manage_change"),
+                         ("Cancel a SIP", "manage_cancel"), ("Set up or change AutoPay", "manage_autopay")]:
+            st.button(lab, key=f"m_{top}", use_container_width=True, on_click=open_topic, args=(lab, top))
+        return
     t = HELP.TOPICS[r["topic"]]
     if r["topic"] == "start":
         st.markdown("<div class='card'><div class='lab'>Start a SIP</div><div class='reason'>Want to start a SIP?</div>"
@@ -205,39 +220,131 @@ GOOD_TO_KNOW = [("Money you've already invested stays invested; only this month'
                 ("Groww doesn't charge for a failed installment; your bank may charge a return fee.", "S1"),
                 ("3 failed or skipped installments in a row cancel the SIP automatically.", "S12")]
 
+def set_example(ex):
+    reset_flow()
+    st.session_state.fx_text = ex
+
+def open_topic(label, topic):
+    reset_flow()
+    st.session_state.fx_read = (label, {"kind": "help", "topic": topic, "can_continue": False,
+                                        "checks": [("Answer from checked sources", True)]})
+
+def go_back():
+    asked, answers = st.session_state.get("fx_asked", []), st.session_state.get("fx_answers", {})
+    if st.session_state.get("fx_qn", 0) > 0 and asked:
+        f = asked.pop()
+        answers.pop(f, None)
+        st.session_state.fx_qn -= 1
+    else:
+        for f in core.CONFIRM_FACTS:
+            answers.pop(f, None)
+            if f in asked:
+                asked.remove(f)
+        st.session_state.fx_confirmed = False
+
+def exit_row(key):
+    st.button("Ask something else", key=key, type="primary", use_container_width=True, on_click=start_over)
+
+def on_voice():
+    audio = st.session_state.get("fx_audio")
+    if audio is None:
+        return
+    with st.spinner("Listening to your recording\u2026"):
+        t, err = core.transcribe(audio.getvalue(), getattr(audio, "type", None) or "audio/wav")
+    if t:
+        reset_flow()
+        st.session_state.fx_text = t
+        st.session_state.fx_voice_msg = ("ok", "Here's what I heard. Check it, fix anything that's wrong, then tap Continue.")
+    else:
+        st.session_state.fx_voice_msg = ("err", {"no_speech": "I couldn't hear any words. Try again a little closer to the mic, or type instead.",
+                                                 "too_long": "That recording is too long. Keep it under a minute.",
+                                                 "unavailable": "Voice isn't available right now. Please type your message instead."}.get(err, "Please try again or type instead."))
+
+def progress(stage):
+    labels = ["Tell me", "Check", "Fix"]
+    parts = []
+    for i, lab in enumerate(labels, 1):
+        cls = "on" if i == stage else ("done" if i < stage else "")
+        mark = "\u2713" if i < stage else str(i)
+        parts.append(f"<span class='pg {cls}'><b>{mark}</b> {lab}</span>")
+    st.markdown("<div class='pgbar' role='list' aria-label='Progress'>" + "<span class='pgsep'>\u203a</span>".join(parts) + "</div>", unsafe_allow_html=True)
+
+def read_aloud(text, key):
+    import json as _json
+    import streamlit.components.v1 as components
+    components.html(f"""<button id="b" style="font:500 15px system-ui,sans-serif;border:1px solid #027F5F;color:#027F5F;background:#fff;border-radius:8px;padding:6px 12px;cursor:pointer">\U0001F50A Read aloud</button>
+<script>const t={_json.dumps(text)};document.getElementById('b').onclick=()=>{{try{{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-IN';u.rate=0.95;speechSynthesis.speak(u);}}catch(e){{}}}};</script>""", height=46)
+
+def guide(reason):
+    kb = REASONS[reason]
+    steps = list(kb["now"])
+    i = st.session_state.get("fx_guide", 0)
+    if i >= len(steps):
+        st.markdown("<div class='card'><div class='lab'>All steps done</div><div class='reason'>You've gone through every step</div>"
+                    f"<div class='why'>Next time: {esc(kb['next'][0][0])}</div></div>", unsafe_allow_html=True)
+        c1, c2 = st.columns(2)
+        c1.button("\u2190 Back to the last step", key="g_back_end", use_container_width=True, on_click=lambda: st.session_state.update(fx_guide=len(steps) - 1))
+        c2.button("Done", key="g_done", type="primary", use_container_width=True, on_click=start_over)
+        return
+    text, src = steps[i]
+    link = f" <a href='{SOURCES[src][1]}' target='_blank'>[source]</a>" if src else " <span class='gg'>general guidance</span>"
+    st.markdown(f"<div class='card'><div class='lab'>Step {i + 1} of {len(steps)}</div><div class='reason' style='font-size:1.3rem'>{esc(text)}</div>"
+                f"<p class='src'>{link}</p></div>", unsafe_allow_html=True)
+    read_aloud(f"Step {i + 1} of {len(steps)}. {text}", key=f"ra{i}")
+    c1, c2 = st.columns(2)
+    c1.button("\u2190 Back", key=f"g_back{i}", use_container_width=True, disabled=i == 0, on_click=lambda: st.session_state.update(fx_guide=max(0, i - 1)))
+    c2.button("Done, next step" if i < len(steps) - 1 else "Done, finish", key=f"g_next{i}", type="primary", use_container_width=True,
+              on_click=lambda: st.session_state.update(fx_guide=i + 1))
+    st.button("Show all steps at once", key="g_all", use_container_width=True, on_click=lambda: st.session_state.pop("fx_guide", None))
+
 def page_helper():
     header()
-    st.title("What happened to my SIP installment?")
-    st.write("Tell me in your own words, or paste the app status or bank SMS (English or Hinglish). "
-             "I'll show what I understood for you to check, ask up to 3 quick questions for anything missing, then show the fix.")
-    st.caption("Don't paste PAN, account or phone numbers. Nothing is stored.")
     if "fx_text" not in st.session_state:
         st.session_state.fx_text = ""
-    cols = st.columns(2)
-    for i, ex in enumerate(EXAMPLES):
-        if cols[i % 2].button(ex if len(ex) < 60 else ex[:57] + "\u2026", key=f"ex{i}", use_container_width=True):
-            st.session_state.fx_text = ex
-            reset_flow()
-    text = st.text_area("What happened?", key="fx_text", height=100, max_chars=800, placeholder="For example: my SIP failed this month and I don't know why")
-    b1, b2 = st.columns([3, 1])
-    if b1.button("Continue", type="primary", use_container_width=True) and text.strip():
-        reset_flow()
-        with st.spinner("Reading your message\u2026"):
-            st.session_state.fx_read = (text, core.read_facts(text))
-        st.session_state.fx_answers, st.session_state.fx_asked = {}, []
-    b2.button("Start over", key="clear", use_container_width=True, on_click=start_over)
     if not st.session_state.get("fx_read"):
+        st.title("What happened to your SIP?")
+        st.write("Describe it in your own words, or paste the app status or bank SMS. English or Hinglish is fine.")
+        progress(1)
+        vm = st.session_state.pop("fx_voice_msg", None)
+        if vm:
+            (st.success if vm[0] == "ok" else st.warning)(vm[1])
+        text = st.text_area("Your message", key="fx_text", height=100, max_chars=800,
+                            placeholder="For example: my SIP failed this month and I don't know why")
+        if hasattr(st, "audio_input") or hasattr(st, "experimental_audio_input"):
+            mic = getattr(st, "audio_input", None) or st.experimental_audio_input
+            mic("Or tap the mic and say what happened (English, Hindi or Hinglish)", key="fx_audio", on_change=on_voice)
+            st.caption("Your recording is only used to write the text above, then discarded. Don't say PAN, Aadhaar, account or phone numbers.")
+        if st.button("Continue", type="primary", use_container_width=True, key="go") and text.strip():
+            with st.spinner("Reading your message\u2026"):
+                st.session_state.fx_read = (text, core.read_facts(text))
+            st.session_state.fx_answers, st.session_state.fx_asked = {}, []
+            st.rerun()
+        st.caption("Don't paste PAN, Aadhaar, account or phone numbers. Nothing is stored.")
+        with st.expander("Not sure what to write? Try an example"):
+            for i, ex in enumerate(EXAMPLES):
+                st.button(ex, key=f"ex{i}", use_container_width=True, on_click=set_example, args=(ex,))
+        st.markdown("<div class='tiles-h'>Something else?</div>", unsafe_allow_html=True)
+        c1, c2 = st.columns(2)
+        with c1:
+            st.page_link(PAGE_START, label="Start a SIP", icon=":material/rocket_launch:", use_container_width=True)
+            st.button("Contact Groww support", key="t_support", use_container_width=True, on_click=open_topic, args=("Contact Groww support", "support"))
+        with c2:
+            st.button("Skip, change or cancel a SIP", key="t_manage", use_container_width=True, on_click=open_topic, args=("Skip, change or cancel a SIP", "manage_menu"))
+            st.button("What is a SIP?", key="t_faq", use_container_width=True, on_click=open_topic, args=("What is a SIP?", "faq_sip"))
         st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
         return
+    st.button("\u2190 Ask something else", key="top_exit", on_click=start_over)
     text, r = st.session_state.fx_read
     st.markdown(f"<div class='msg'><small>Your message</small>\u201c{esc(text)}\u201d</div>", unsafe_allow_html=True)
     if r["kind"] != "facts":
         show_result(text, r, echo=False)
+        exit_row("exit_help")
         st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
         return
     answers, asked = st.session_state.fx_answers, st.session_state.fx_asked
+    progress(2 if not st.session_state.get("fx_confirmed") else 3)
     if not st.session_state.get("fx_confirmed"):
-        st.markdown("<div class='lab' style='margin-top:14px'>Step 1 \u00b7 Check what I understood</div>"
+        st.markdown("<div class='lab' style='margin-top:14px'>Step 1: check what I understood</div>"
                     "<div class='reason' style='font-size:1.15rem'>Is this right? Change anything I got wrong.</div>", unsafe_allow_html=True)
         picks = {}
         for f in core.CONFIRM_FACTS:
@@ -279,7 +386,13 @@ def page_helper():
                 st.session_state.fx_qn = st.session_state.get("fx_qn", 0) + 1
                 st.rerun()
         st.caption("Not sure is a fine answer. You can check the status under My SIPs in the app, and your bank SMS.")
+        st.button("\u2190 Back", key="q_back", on_click=go_back)
     elif kind == "reason":
+        if st.session_state.get("fx_guide") is not None:
+            guide(val)
+            st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
+            return
+        st.button("Guide me step by step", key="g_start", type="primary", use_container_width=True, on_click=lambda: st.session_state.update(fx_guide=0))
         res = {"kind": "answer", "reason": val, "label": core.LABELS.get(val, val), "evidence": "",
                "confidence": "medium", "mode": r.get("mode"),
                "checks": r["checks"] + [("You checked what I understood", True), ("Reason picked by fixed rules from the facts above", True), ("Fix steps from checked sources", True), ("Output guardrails passed", True)]}
@@ -287,6 +400,8 @@ def page_helper():
         st.markdown(f"<div class='blk' style='margin-top:10px'><h4>Good to know</h4>{help_lines_html(GOOD_TO_KNOW)}</div>", unsafe_allow_html=True)
     else:
         show_result(text, {"kind": "fallback", "checks": r["checks"] + [("Not enough facts to name a reason, so no guess", True)], "mode": r.get("mode")}, echo=False)
+    if kind != "ask":
+        exit_row("exit_result")
     if r.get("advice_note"):
         st.caption("You also asked for an opinion on funds or returns. I can't advise on that; this covers the payment only.")
     if r.get("mode") == "basic":
