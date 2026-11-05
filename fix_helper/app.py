@@ -137,7 +137,7 @@ def facts_html(facts, ev, answers):
     for k, (name, vals) in FACT_LABEL.items():
         v = answers.get(k, facts.get(k))
         if v in vals:
-            src = "you told me" if k in answers else (f"from your message: \u201c{esc(ev.get(k, ''))}\u201d" if ev.get(k) else "from your message")
+            src = ("you confirmed" if v == facts.get(k) else "you told me") if k in answers else (f"from your message: \u201c{esc(ev.get(k, ''))}\u201d" if ev.get(k) else "from your message")
             rows.append(f"<li><b>{esc(name)}:</b> {esc(vals[v])} <span class='src'>({src})</span></li>")
         elif k in answers:
             shown = "no reason given" if v == "none" else "not sure"
@@ -145,14 +145,14 @@ def facts_html(facts, ev, answers):
     return "<ul>" + "".join(rows) + "</ul>" if rows else "<p class='src'>Nothing specific yet.</p>"
 
 def reset_flow():
-    for k in ("fx_read", "fx_answers", "fx_asked"):
+    for k in ("fx_read", "fx_answers", "fx_asked", "fx_confirmed", "fx_qn"):
         st.session_state.pop(k, None)
 
 def page_helper():
     header()
     st.title("What happened to my SIP installment?")
     st.write("Tell me in your own words, or paste the app status or bank SMS (English or Hinglish). "
-             "I'll note what you said, ask up to 3 quick questions for anything missing, then show the fix.")
+             "I'll show what I understood for you to check, ask up to 3 quick questions for anything missing, then show the fix.")
     st.caption("Don't paste PAN, account or phone numbers. Nothing is stored.")
     if "fx_text" not in st.session_state:
         st.session_state.fx_text = ""
@@ -182,25 +182,48 @@ def page_helper():
         st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
         return
     answers, asked = st.session_state.fx_answers, st.session_state.fx_asked
+    if not st.session_state.get("fx_confirmed"):
+        st.markdown("<div class='lab' style='margin-top:14px'>Step 1 \u00b7 Check what I understood</div>"
+                    "<div class='reason' style='font-size:1.15rem'>Is this right? Change anything I got wrong.</div>", unsafe_allow_html=True)
+        picks = {}
+        for f in core.CONFIRM_FACTS:
+            q, opts = core.QUESTIONS[f]
+            codes = [c for c, _ in opts]
+            ai_val = r["facts"].get(f)
+            idx = codes.index(ai_val) if ai_val in codes else codes.index("not_said")
+            ev = r["evidence"].get(f)
+            hint = f"I read this from your message: \u201c{ev}\u201d" if ev else "Your message doesn't say, so I picked Not sure. Change it if you know."
+            picks[f] = st.radio(q, codes, index=idx, format_func=dict(opts).get, key=f"cf_{f}", help=None)
+            st.caption(hint)
+        if st.button("Looks right, continue", type="primary", use_container_width=True, key="cf_go"):
+            for f, v in picks.items():
+                answers[f] = v
+                asked.append(f)
+            st.session_state.fx_confirmed = True
+            st.session_state.fx_qn = 0
+            st.rerun()
+        st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
+        return
     merged = dict(r["facts"]); merged.update(answers)
     kind, val = core.decide(merged, skip=set(asked))
-    if kind == "ask" and len(asked) >= core.MAX_QUESTIONS:
+    if kind == "ask" and st.session_state.get("fx_qn", 0) >= core.MAX_QUESTIONS:
         kind, val = "fallback", None
     st.markdown(f"<div class='card fb'><div class='lab'>What I understood</div>{facts_html(r['facts'], r['evidence'], answers)}</div>", unsafe_allow_html=True)
     if kind == "ask":
         q, opts = core.QUESTIONS[val]
-        st.markdown(f"<div class='lab' style='margin-top:14px'>Question {len(asked) + 1} of up to {core.MAX_QUESTIONS}</div><div class='reason' style='font-size:1.15rem'>{esc(q)}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='lab' style='margin-top:14px'>Question {st.session_state.get('fx_qn', 0) + 1} of up to {core.MAX_QUESTIONS}</div><div class='reason' style='font-size:1.15rem'>{esc(q)}</div>", unsafe_allow_html=True)
         oc = st.columns(2)
         for i, (code, label) in enumerate(opts):
             if oc[i % 2].button(label, key=f"q_{val}_{code}", use_container_width=True):
                 answers[val] = code
                 asked.append(val)
+                st.session_state.fx_qn = st.session_state.get("fx_qn", 0) + 1
                 st.rerun()
         st.caption("Not sure is a fine answer. You can check the status under My SIPs in the app, and your bank SMS.")
     elif kind == "reason":
         res = {"kind": "answer", "reason": val, "label": core.LABELS.get(val, val), "evidence": "",
-               "confidence": "high" if not answers else "medium", "mode": r.get("mode"),
-               "checks": r["checks"] + [("Reason picked by fixed rules from the facts above", True), ("Fix steps from checked sources", True), ("Output guardrails passed", True)]}
+               "confidence": "medium", "mode": r.get("mode"),
+               "checks": r["checks"] + [("You checked what I understood", True), ("Reason picked by fixed rules from the facts above", True), ("Fix steps from checked sources", True), ("Output guardrails passed", True)]}
         show_result(text, res, echo=False, how="Based on the facts above" + (" and your answers." if answers else "."))
     else:
         show_result(text, {"kind": "fallback", "checks": r["checks"] + [("Not enough facts to name a reason, so no guess", True)], "mode": r.get("mode")}, echo=False)
