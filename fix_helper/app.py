@@ -141,7 +141,8 @@ def facts_html(facts, ev, answers):
             rows.append(f"<li><b>{esc(name)}:</b> {esc(vals[v])} <span class='src'>({src})</span></li>")
         elif k in answers:
             shown = "no reason given" if v == "none" else "not sure"
-            rows.append(f"<li><b>{esc(name)}:</b> {shown} <span class='src'>(you told me)</span></li>")
+            who = "you confirmed" if v == facts.get(k) else "you told me"
+            rows.append(f"<li><b>{esc(name)}:</b> {shown} <span class='src'>({who})</span></li>")
     return "<ul>" + "".join(rows) + "</ul>" if rows else "<p class='src'>Nothing specific yet.</p>"
 
 def reset_flow():
