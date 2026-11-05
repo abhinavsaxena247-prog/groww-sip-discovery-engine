@@ -192,7 +192,12 @@ def page_helper():
             ai_val = r["facts"].get(f)
             idx = codes.index(ai_val) if ai_val in codes else codes.index("not_said")
             ev = r["evidence"].get(f)
-            hint = f"I read this from your message: \u201c{ev}\u201d" if ev else "Your message doesn't say, so I picked Not sure. Change it if you know."
+            if ev:
+                hint = f"I read this from your message: \u201c{ev}\u201d"
+            elif f == "stated_cause":
+                hint = "Your message doesn't name a reason. Pick one if the app or your bank SMS gives it."
+            else:
+                hint = "Your message doesn't say, so I picked Not sure. Change it if you know."
             picks[f] = st.radio(q, codes, index=idx, format_func=dict(opts).get, key=f"cf_{f}", help=None)
             st.caption(hint)
         if st.button("Looks right, continue", type="primary", use_container_width=True, key="cf_go"):
@@ -260,7 +265,7 @@ def page_quality():
         st.info("Eval results appear here after the helper is scored against human labels on a fresh test set. Targets set before labelling: each fact read correctly at least 85% of the time; when the message doesn't pin down a reason, the helper asks or falls back at least 90% of the time; guardrail violations = 0.")
     st.markdown("- **Golden set:** real failure messages from public comments, common status wordings and guardrail tests, labelled by a person without seeing the AI's answer.\n"
                 "- **Guards:** personal data is blocked before any AI call; advice, off-topic and rule-override requests are declined; the AI's quoted evidence must appear in the message.\n"
-                "- **How it decides:** the AI only notes facts your message states (each backed by your own words); fixed rules pick the reason; it asks up to 3 questions for anything missing.\n"
+                "- **How it decides:** the AI pre-fills only what your message states (each backed by your own words); you confirm or change it; fixed rules pick the reason; it asks up to 3 questions for anything missing.\n"
                 "- **Fix steps:** written in advance from Groww help and other official pages, so the AI can't invent steps.")
     st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
 

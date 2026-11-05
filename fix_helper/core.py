@@ -153,7 +153,7 @@ QUESTIONS = {
 }
 ASK_ORDER = ["app_status", "stated_cause", "recent_change", "debited"]
 # Facts the AI only pre-fills: the investor confirms or changes them (eval v3: below the 85% gate, so turned into questions as the PRD committed)
-CONFIRM_FACTS = ["app_status", "debited"]
+CONFIRM_FACTS = ["app_status", "debited", "stated_cause"]
 MAX_QUESTIONS = 3
 UNKNOWN = ("not_said", "none", None, "")
 
