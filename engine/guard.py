@@ -127,7 +127,7 @@ INJECTION = [
 
 # Investment-advice intent (deterministic backstop; the AI intent check runs too)
 ADVICE = [
-    re.compile('\\b(which|what|best|top|good|recommend\\w*|suggest\\w*)\\b.{0,40}\\b(fund|funds|scheme|stock|stocks|share|shares|sip|mf|mutual fund|etf|portfolio|nfo|ipo)\\b.{0,40}\\b(buy|invest|choose|pick|start|for me|should|to get|returns?|202\\d|now)\\b', re.I),
+    re.compile('\\b(which|what|best|top|good|recommend\\w*|suggest\\w*)\\b.{0,40}\\b(fund|funds|scheme|stock|stocks|share|shares|sip|mf|mutual fund|etf|portfolio|nfo|ipo)\\b.{0,40}\\b(buy|invest|choose|pick|start|for me|should|to get|(?<!balance )(?<!money )(?<!amount )(?<!refund )returns?(?!\\s+(my|me|the|back|of my|money|amount))|202\\d|now)\\b', re.I),
     re.compile('\\bshould i\\b.{0,60}\\b(invest|buy|sell|stop|start|continue|pause|cancel|redeem|withdraw|switch|increase|reduce|skip|exit|hold|put)\\b', re.I),
     re.compile('\\b(is|are)\\b.{0,40}\\b(fund|scheme|stock|sip|etf|small ?cap|mid ?cap|large ?cap|index fund)s?\\b.{0,30}\\b(good|safe|worth|better|best|bad|risky)\\b', re.I),
     re.compile('\\b(recommend|suggest)\\w*\\b.{0,25}\\b(me|a|an|some|good|best|any|which)\\b', re.I),

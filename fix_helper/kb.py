@@ -1,5 +1,5 @@
 """Checked fix steps for each failure reason. The AI never writes or edits these; it only picks the reason.
-Every step is either sourced (S1..S8) or labelled 'General guidance'. Sources accessed 2 Nov 2026."""
+Every step is either sourced (S1..S8) or labelled 'General guidance'. Sources accessed 2 Nov 2026 (S9, S10 on 5 Nov 2026)."""
 
 SOURCES = {
     "S1": ("Groww Help: Why did my installment fail", "https://groww.in/help/mutual-funds/order/why-did-my-installment-fail--25"),
@@ -8,6 +8,8 @@ SOURCES = {
     "S5": ("Business Standard: RBI raises recurring-payment limit for mutual funds (press report, Dec 2023)", "https://business-standard.com/finance/news/automatic-payment-limit-through-upi-raised-to-rs-1-lakh-says-rbi-123121201097_1.html"),
     "S6": ("Zerodha Support: AMC SIPs cancelled after 3 failed installments", "https://support.zerodha.com/category/mutual-funds/features-on-coin/systematic-investment-plan/articles/amc-sips-cancelled"),
     "S8": ("Kotak Mutual Fund: Why did my SIP installment fail", "https://www.kotakmf.com/Information/blogs/why-did-sip-installment-failed"),
+    "S9": ("Groww Help: How to set up AutoPay", "https://groww.in/help/mutual-funds/mf-autopay/how-to-set-up-autopay--45"),
+    "S10": ("Groww Help: How to change the AutoPay linked to a SIP", "https://groww.in/help/mutual-funds/discoverable/how-to-change-my-autopay-linked-to-an-sip--23"),
 }
 GROWW_HELP = "https://groww.in/help/mutual-funds/order/why-did-my-installment-fail--25"
 G = None  # marks general guidance (not from an official page)
@@ -25,15 +27,17 @@ REASONS = {
         "title": "AutoPay isn't set up or isn't approved yet",
         "means": "Your SIP has no working permission to debit your bank, so the installment couldn't be collected.",
         "now": [("Pay this installment with “Pay one-time”: My SIPs → choose the SIP → Pay one-time. NAV applies from when the payment completes.", "S1"),
-                ("Set up AutoPay, or link the SIP to an AutoPay that's already approved.", "S1"),
-                ("A new AutoPay can take a few working days to be approved.", "S8")],
+                ("Set up AutoPay: tap your profile icon \u2192 Bank and AutoPay \u2192 choose your bank \u2192 Set Up AutoPay, then follow the steps (keep net banking or your debit card ready).", "S9"),
+                ("Approval by your bank takes 2 to 7 working days. Once approved, link it to the SIP: SIPs \u2192 choose the SIP \u2192 Change AutoPay.", "S9"),
+                ("If you already have an approved AutoPay, link the SIP to it: SIPs \u2192 choose the SIP \u2192 Change AutoPay.", "S10")],
         "next": [("Check that the SIP shows a linked, approved AutoPay before the next date.", G)],
     },
     "mandate_stopped": {
         "title": "Your AutoPay mandate has expired, been paused or cancelled",
         "means": "The permission your bank gave for automatic debits is no longer active.",
         "now": [("Pay this installment with “Pay one-time”.", "S1"),
-                ("Create a new AutoPay mandate and link the SIP to it.", "S8"),
+                ("Set up a new AutoPay: profile icon \u2192 Bank and AutoPay \u2192 choose your bank \u2192 Set Up AutoPay (bank approval takes 2 to 7 working days).", "S9"),
+                ("Once it's approved, link the SIP to it: SIPs \u2192 choose the SIP \u2192 Change AutoPay.", "S10"),
                 ("If you didn't cancel it yourself, ask your bank why it stopped.", G)],
         "next": [("Check your AutoPay's status in the app before each installment date.", G)],
     },
@@ -78,8 +82,34 @@ REASONS = {
         "next": [("Fix a failed installment before the next one; one successful debit resets the count.", "S8")],
         "context": ("Since April 2024, fund houses cancel a SIP after 3 consecutive failed installments.", "S6"),
     },
+    "cancelled_after_change": {
+        "title": "Your SIP was cancelled after you changed it",
+        "means": "Changing a SIP's amount or date can end the old SIP and register a new one. If that switch doesn't complete, the SIP can show as cancelled even though you didn't stop it.",
+        "now": [("Check the SIP's status in the app and the latest SMS or email from the fund house.", G),
+                ("If it shows cancelled, set up the SIP again with the amount you want, and check that your AutoPay limit covers it.", G),
+                ("Pay any missed installment with “Pay one-time” if the option is shown.", "S1")],
+        "next": [("Before changing a SIP, check that the new amount fits within your AutoPay limit.", G),
+                 ("If the app and the fund house show different statuses, contact Groww support with the date of the change.", G)],
+    },
+    "failed_after_change": {
+        "title": "Your installment failed after you changed the SIP",
+        "means": "After an amount or date change, the new amount can be above your AutoPay limit, or the updated AutoPay can still be waiting for approval, so the debit doesn't go through.",
+        "now": [("Check your AutoPay limit in the app and compare it with the new installment amount.", G),
+                ("Pay this installment with \u201cPay one-time\u201d: My SIPs \u2192 choose the SIP \u2192 Pay one-time.", "S1"),
+                ("If the limit is lower than the new amount, set up an AutoPay with a higher limit before the next date.", G)],
+        "next": [("Before changing a SIP, check that the new amount fits within your AutoPay limit (use \u201cCheck a change\u201d).", G)],
+        "context": ("For mutual fund recurring payments, RBI allows UPI AutoPay up to \u20b91,00,000 without extra authentication (press report).", "S5"),
+    },
+    "debited_not_invested": {
+        "title": "Money left your account but the installment didn't go through",
+        "means": "The debit happened but the installment was marked failed or not allotted, so the amount should come back to your bank account.",
+        "now": [("Check your bank statement over the next few working days for the amount coming back.", G),
+                ("If it hasn't come back, contact Groww support from the app with the date and amount.", G),
+                ("Pay this month's installment with \u201cPay one-time\u201d if you want to keep the SIP on track.", "S1")],
+        "next": [("Keep the balance ready in your linked account 4 days before the installment date.", "S1")],
+    },
 }
 LABELS = {"still_processing": "Still processing", "autopay_not_setup": "AutoPay not set up or not approved",
           "mandate_stopped": "Mandate expired, paused or cancelled", "above_limit": "Amount above the AutoPay limit",
           "low_balance": "Not enough balance", "bank_declined": "Bank declined or technical error", "app_error": "App-side error",
-          "cancelled_after_failures": "SIP cancelled after repeated failures", "unclear": "Unclear / not a failure"}
+          "cancelled_after_failures": "SIP cancelled after repeated failures", "cancelled_after_change": "SIP cancelled after a change", "failed_after_change": "Failed after a SIP change", "debited_not_invested": "Debited but not invested", "unclear": "Unclear / not a failure"}

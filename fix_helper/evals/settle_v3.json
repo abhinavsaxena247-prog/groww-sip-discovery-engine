@@ -1,0 +1,20 @@
+{
+ "F01_debited": "not_said",
+ "F04_debited": "not_said",
+ "F04_stated_cause": "none",
+ "F07_app_status": "not_said",
+ "F10_debited": "not_said",
+ "F12_app_status": "not_said",
+ "F13_app_status": "failed",
+ "F15_app_status": "not_said",
+ "F18_stated_cause": "none",
+ "F19_debited": "not_said",
+ "F20_app_status": "failed",
+ "F22_debited": "yes",
+ "F22_stated_cause": "none",
+ "T03_debited": "not_said",
+ "T04_debited": "not_said",
+ "T05_app_status": "not_said",
+ "T05_debited": "no",
+ "T06_debited": "not_said"
+}

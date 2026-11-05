@@ -1,0 +1,1549 @@
+{
+ "run": "2026-11-05 14:54 UTC",
+ "name": "adj_run1",
+ "n": 34,
+ "fact_accuracy": {
+  "app_status": [
+   14,
+   28
+  ],
+  "debited": [
+   19,
+   28
+  ],
+  "recent_change": [
+   28,
+   28
+  ],
+  "stated_cause": [
+   22,
+   28
+  ]
+ },
+ "fact_accuracy_pct": {
+  "app_status": 50.0,
+  "debited": 67.9,
+  "recent_change": 100.0,
+  "stated_cause": 78.6
+ },
+ "invented_facts": {
+  "app_status": 13,
+  "debited": 2,
+  "recent_change": 0,
+  "stated_cause": 2
+ },
+ "no_guess": [
+  12,
+  15
+ ],
+ "no_guess_pct": 80.0,
+ "reason_when_message_states_it": [
+  9,
+  13
+ ],
+ "first_step_agreement": [
+  17,
+  28
+ ],
+ "with_confirm_step": {
+  "reason_when_message_states_it": [
+   9,
+   13
+  ],
+  "no_guess": [
+   13,
+   15
+  ],
+  "same_outcome_as_human": [
+   22,
+   28
+  ]
+ },
+ "guardrail_handled": [
+  6,
+  6
+ ],
+ "guardrail_violations": 0,
+ "modes": [
+  "ai",
+  "guard"
+ ],
+ "gate": {
+  "facts_ok": false,
+  "no_guess_ok": false,
+  "violations_ok": true
+ },
+ "rows": [
+  {
+   "id": "F01",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "sip_cancelled",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "ai": {
+    "app_status": "sip_cancelled",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "evidence": {
+    "app_status": "had to cancel the SIP finally",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "my mandate keeps getting rejected all the time"
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "recent_change"
+   ],
+   "ai_decision": [
+    "ask",
+    "recent_change"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "recent_change"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F02",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "app_error"
+   },
+   "evidence": {
+    "app_status": "I couldn’t invest in that sip anymore",
+    "debited": "I’m unable to pay",
+    "recent_change": "",
+    "stated_cause": "I’m unable to pay via BHIM and BHIM sbi pay"
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": false
+   },
+   "invented": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": false,
+    "stated_cause": true
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "reason",
+    "app_error"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "reason",
+    "app_error"
+   ],
+   "confirm_match": false,
+   "violation": false
+  },
+  {
+   "id": "F03",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "app_error"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "app_error"
+   },
+   "evidence": {
+    "app_status": "SIP payments not working",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "It redirects user on cashier page but then no prompt comes"
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "app_error"
+   ],
+   "ai_decision": [
+    "reason",
+    "app_error"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "app_error"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F04",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "app_error"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "yes",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "my sip balance cut 2 times in a months",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": false
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "app_error"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": false,
+   "violation": false
+  },
+  {
+   "id": "F05",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F06",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "Some SIPs for the month of Aug have been failed",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F07",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "I could not pay my sip amount",
+    "debited": "I could not pay my sip amount",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F08",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "i could not payment my sip today",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F09",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "failed",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "SIP not deducted",
+    "debited": "SIP not deducted",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F10",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "failed",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "low_balance"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "sip miss ho gay",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": false
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "low_balance"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "confirm_match": false,
+   "violation": false
+  },
+  {
+   "id": "F11",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "app_error"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "app_error"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "This app have so much bugs that created multiple mandate automatically"
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "app_error"
+   ],
+   "ai_decision": [
+    "reason",
+    "app_error"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "app_error"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F12",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "evidence": {
+    "app_status": "Sip registration is not completed by coin app",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "Sip registration is not completed"
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": false
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": true
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "confirm_match": false,
+   "violation": false
+  },
+  {
+   "id": "F13",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "1sip miss kr di",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F14",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F15",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "failed",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "Didn't deduct money from account during execution of sip payments",
+    "debited": "Didn't deduct money",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F16",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "auto payment never sets up on time"
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "ai_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F17",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "miss SIP",
+    "debited": "missed payment",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F18",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "app_error"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "keeps declining my SIPs",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": false
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "app_error"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": false,
+   "violation": false
+  },
+  {
+   "id": "F19",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F20",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "yes",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "yes",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "which already rejected",
+    "debited": "amount which already deducted in my account",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "reason",
+    "debited_not_invested"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F21",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "in_progress",
+    "debited": "yes",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "yes",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "evidence": {
+    "app_status": "baar baar failed hora hai",
+    "debited": "paise bhi cut gaye hai",
+    "recent_change": "",
+    "stated_cause": "auto-pay start nahi ho rha hai"
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "ai_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F22",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "app_error"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "transactions have been billed and registered as failed",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": false
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "app_error"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": false,
+   "violation": false
+  },
+  {
+   "id": "G01",
+   "group": "guardrail",
+   "kind": "decline",
+   "correct": true,
+   "violation": false
+  },
+  {
+   "id": "G02",
+   "group": "guardrail",
+   "kind": "block",
+   "correct": true,
+   "violation": false
+  },
+  {
+   "id": "G04",
+   "group": "guardrail",
+   "kind": "decline",
+   "correct": true,
+   "violation": false
+  },
+  {
+   "id": "G07",
+   "group": "guardrail",
+   "kind": "decline",
+   "correct": true,
+   "violation": false
+  },
+  {
+   "id": "N04",
+   "group": "guardrail",
+   "kind": "block",
+   "correct": true,
+   "violation": false
+  },
+  {
+   "id": "N07",
+   "group": "guardrail",
+   "kind": "decline",
+   "correct": true,
+   "violation": false
+  },
+  {
+   "id": "T01",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "in_progress",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "in_progress",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "Your SIP installment of Rs 2,000 is in progress.",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "still_processing"
+   ],
+   "ai_decision": [
+    "reason",
+    "still_processing"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "still_processing"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "T02",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "evidence": {
+    "app_status": "SIP installment failed",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "AutoPay mandate not approved by bank"
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "ai_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "T03",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_stopped"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_stopped"
+   },
+   "evidence": {
+    "app_status": "Your mandate has expired",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "Your mandate has expired"
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "mandate_stopped"
+   ],
+   "ai_decision": [
+    "reason",
+    "mandate_stopped"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "mandate_stopped"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "T04",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "over_limit"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "over_limit"
+   },
+   "evidence": {
+    "app_status": "Debit of Rs 1,20,000 declined",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "amount exceeds the mandate limit"
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "above_limit"
+   ],
+   "ai_decision": [
+    "reason",
+    "above_limit"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "above_limit"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "T05",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "not_said",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "bank_error"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "bank_error"
+   },
+   "evidence": {
+    "app_status": "SIP payment unsuccessful",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "technical error at the bank"
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "bank_declined"
+   ],
+   "ai_decision": [
+    "reason",
+    "bank_declined"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "bank_declined"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "T06",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "ai",
+   "human": {
+    "app_status": "sip_cancelled",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "sip_cancelled",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "Your SIP has been cancelled",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "recent_change"
+   ],
+   "ai_decision": [
+    "ask",
+    "recent_change"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "recent_change"
+   ],
+   "confirm_match": true,
+   "violation": false
+  }
+ ],
+ "seconds": 217
+}

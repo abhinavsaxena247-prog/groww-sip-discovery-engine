@@ -1,0 +1,116 @@
+[
+ {
+  "run": 1,
+  "acc": {
+   "app_status": 15,
+   "debited": 23,
+   "recent_change": 28,
+   "stated_cause": 25
+  },
+  "n": 28,
+  "invented": {
+   "app_status": 12,
+   "debited": 3,
+   "recent_change": 0,
+   "stated_cause": 2
+  },
+  "no_guess": [
+   15,
+   17
+  ],
+  "reason": [
+   10,
+   11
+  ],
+  "confirm_no_guess": [
+   15,
+   17
+  ],
+  "confirm_reason": [
+   10,
+   11
+  ],
+  "confirm_same": 25,
+  "guard": [
+   6,
+   6
+  ],
+  "viol": 0
+ },
+ {
+  "run": 2,
+  "acc": {
+   "app_status": 15,
+   "debited": 21,
+   "recent_change": 28,
+   "stated_cause": 23
+  },
+  "n": 28,
+  "invented": {
+   "app_status": 12,
+   "debited": 5,
+   "recent_change": 0,
+   "stated_cause": 3
+  },
+  "no_guess": [
+   14,
+   17
+  ],
+  "reason": [
+   9,
+   11
+  ],
+  "confirm_no_guess": [
+   14,
+   17
+  ],
+  "confirm_reason": [
+   9,
+   11
+  ],
+  "confirm_same": 23,
+  "guard": [
+   6,
+   6
+  ],
+  "viol": 0
+ },
+ {
+  "run": 3,
+  "acc": {
+   "app_status": 17,
+   "debited": 18,
+   "recent_change": 28,
+   "stated_cause": 23
+  },
+  "n": 28,
+  "invented": {
+   "app_status": 10,
+   "debited": 8,
+   "recent_change": 0,
+   "stated_cause": 4
+  },
+  "no_guess": [
+   13,
+   17
+  ],
+  "reason": [
+   10,
+   11
+  ],
+  "confirm_no_guess": [
+   13,
+   17
+  ],
+  "confirm_reason": [
+   10,
+   11
+  ],
+  "confirm_same": 23,
+  "guard": [
+   6,
+   6
+  ],
+  "viol": 0
+ }
+]
