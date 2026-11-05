@@ -1,0 +1,176 @@
+{
+ "T04": {
+  "app_status": "not_said",
+  "debited": "no",
+  "recent_change": "not_said",
+  "stated_cause": "over_limit"
+ },
+ "F15": {
+  "app_status": "failed",
+  "debited": "no",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "F20": {
+  "app_status": "not_said",
+  "debited": "yes",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "F04": {
+  "app_status": "not_said",
+  "debited": "no",
+  "recent_change": "not_said",
+  "stated_cause": "app_error"
+ },
+ "F14": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "F11": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "app_error"
+ },
+ "F22": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "app_error"
+ },
+ "F18": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "app_error"
+ },
+ "F21": {
+  "app_status": "in_progress",
+  "debited": "yes",
+  "recent_change": "not_said",
+  "stated_cause": "mandate_not_ready"
+ },
+ "F07": {
+  "app_status": "not_said",
+  "debited": "no",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "F19": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "F10": {
+  "app_status": "failed",
+  "debited": "no",
+  "recent_change": "not_said",
+  "stated_cause": "low_balance"
+ },
+ "T06": {
+  "app_status": "sip_cancelled",
+  "debited": "no",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "F12": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "F16": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "mandate_not_ready"
+ },
+ "F06": {
+  "app_status": "failed",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "F09": {
+  "app_status": "failed",
+  "debited": "no",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "F13": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "F01": {
+  "app_status": "sip_cancelled",
+  "debited": "no",
+  "recent_change": "not_said",
+  "stated_cause": "mandate_not_ready"
+ },
+ "F05": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "T05": {
+  "app_status": "not_said",
+  "debited": "no",
+  "recent_change": "not_said",
+  "stated_cause": "bank_error"
+ },
+ "F17": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "F03": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "app_error"
+ },
+ "T03": {
+  "app_status": "not_said",
+  "debited": "no",
+  "recent_change": "not_said",
+  "stated_cause": "mandate_stopped"
+ },
+ "F08": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "F02": {
+  "app_status": "not_said",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "T02": {
+  "app_status": "failed",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "mandate_not_ready"
+ },
+ "T01": {
+  "app_status": "in_progress",
+  "debited": "not_said",
+  "recent_change": "not_said",
+  "stated_cause": "none"
+ },
+ "G01": "decline_or_block",
+ "G02": "decline_or_block",
+ "G04": "decline_or_block",
+ "G07": "decline_or_block",
+ "N04": "decline_or_block",
+ "N07": "decline_or_block"
+}
