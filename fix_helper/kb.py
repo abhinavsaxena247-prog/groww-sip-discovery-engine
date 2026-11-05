@@ -1,5 +1,5 @@
 """Checked fix steps for each failure reason. The AI never writes or edits these; it only picks the reason.
-Every step is either sourced (S1..S8) or labelled 'General guidance'. Sources accessed 2 Nov 2026."""
+Every step is either sourced (S1..S8) or labelled 'General guidance'. Sources accessed 2 Nov 2026 (S9, S10 on 5 Nov 2026)."""
 
 SOURCES = {
     "S1": ("Groww Help: Why did my installment fail", "https://groww.in/help/mutual-funds/order/why-did-my-installment-fail--25"),
@@ -8,6 +8,8 @@ SOURCES = {
     "S5": ("Business Standard: RBI raises recurring-payment limit for mutual funds (press report, Dec 2023)", "https://business-standard.com/finance/news/automatic-payment-limit-through-upi-raised-to-rs-1-lakh-says-rbi-123121201097_1.html"),
     "S6": ("Zerodha Support: AMC SIPs cancelled after 3 failed installments", "https://support.zerodha.com/category/mutual-funds/features-on-coin/systematic-investment-plan/articles/amc-sips-cancelled"),
     "S8": ("Kotak Mutual Fund: Why did my SIP installment fail", "https://www.kotakmf.com/Information/blogs/why-did-sip-installment-failed"),
+    "S9": ("Groww Help: How to set up AutoPay", "https://groww.in/help/mutual-funds/mf-autopay/how-to-set-up-autopay--45"),
+    "S10": ("Groww Help: How to change the AutoPay linked to a SIP", "https://groww.in/help/mutual-funds/discoverable/how-to-change-my-autopay-linked-to-an-sip--23"),
 }
 GROWW_HELP = "https://groww.in/help/mutual-funds/order/why-did-my-installment-fail--25"
 G = None  # marks general guidance (not from an official page)
@@ -25,15 +27,17 @@ REASONS = {
         "title": "AutoPay isn't set up or isn't approved yet",
         "means": "Your SIP has no working permission to debit your bank, so the installment couldn't be collected.",
         "now": [("Pay this installment with “Pay one-time”: My SIPs → choose the SIP → Pay one-time. NAV applies from when the payment completes.", "S1"),
-                ("Set up AutoPay, or link the SIP to an AutoPay that's already approved.", "S1"),
-                ("A new AutoPay can take a few working days to be approved.", "S8")],
+                ("Set up AutoPay: tap your profile icon \u2192 Bank and AutoPay \u2192 choose your bank \u2192 Set Up AutoPay, then follow the steps (keep net banking or your debit card ready).", "S9"),
+                ("Approval by your bank takes 2 to 7 working days. Once approved, link it to the SIP: SIPs \u2192 choose the SIP \u2192 Change AutoPay.", "S9"),
+                ("If you already have an approved AutoPay, link the SIP to it: SIPs \u2192 choose the SIP \u2192 Change AutoPay.", "S10")],
         "next": [("Check that the SIP shows a linked, approved AutoPay before the next date.", G)],
     },
     "mandate_stopped": {
         "title": "Your AutoPay mandate has expired, been paused or cancelled",
         "means": "The permission your bank gave for automatic debits is no longer active.",
         "now": [("Pay this installment with “Pay one-time”.", "S1"),
-                ("Create a new AutoPay mandate and link the SIP to it.", "S8"),
+                ("Set up a new AutoPay: profile icon \u2192 Bank and AutoPay \u2192 choose your bank \u2192 Set Up AutoPay (bank approval takes 2 to 7 working days).", "S9"),
+                ("Once it's approved, link the SIP to it: SIPs \u2192 choose the SIP \u2192 Change AutoPay.", "S10"),
                 ("If you didn't cancel it yourself, ask your bank why it stopped.", G)],
         "next": [("Check your AutoPay's status in the app before each installment date.", G)],
     },
