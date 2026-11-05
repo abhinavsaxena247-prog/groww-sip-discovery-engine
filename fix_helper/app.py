@@ -4,6 +4,22 @@ import streamlit as st
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
+import hashlib, importlib  # noqa: E402
+import engine.guard, engine.llm, fix_helper.kb, fix_helper.help, fix_helper.core  # noqa: E402,F401
+# Streamlit Cloud keeps imported modules between deploys: reload any whose source changed.
+import builtins  # noqa: E402
+_H = getattr(builtins, "_nlg_fix_hashes", None)
+if _H is None:
+    _H = {}
+    builtins._nlg_fix_hashes = _H
+for _m in (engine.guard, engine.llm, fix_helper.kb, fix_helper.help, fix_helper.core):
+    try:
+        _h = hashlib.md5(open(_m.__file__, "rb").read()).hexdigest()
+        if _H.get(_m.__name__) not in (None, _h):
+            importlib.reload(_m)
+        _H[_m.__name__] = _h
+    except Exception:
+        pass
 from fix_helper import core  # noqa: E402
 from fix_helper.kb import REASONS, SOURCES, GROWW_HELP  # noqa: E402
 from fix_helper import help as HELP  # noqa: E402
