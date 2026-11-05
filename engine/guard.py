@@ -96,10 +96,12 @@ PII = [
     ('Aadhaar', re.compile('\\b[2-9][0-9]{3}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}\\b')),
     ('card number', re.compile('\\b(?:[0-9][\\s-]?){15,16}\\b')),
     ('IFSC', re.compile('\\b[a-z]{4}0[a-z0-9]{6}\\b', re.I)),
-    ('account number', re.compile('\\b(a/?c|acc(ount)?|folio|demat|client id)\\b[^0-9]{0,20}[0-9][0-9\\s-]{7,20}', re.I)),
+    ('account number', re.compile('\\b(a/?c|acc(ount)?|folio|demat|client id)\\b[^0-9]{0,20}[0-9][0-9\\s/-]{5,20}', re.I)),
     ('long number', re.compile('\\b[0-9]{9,18}\\b')),
     ('phone number', re.compile('(\\+91[\\s-]?)?\\b[6-9][0-9]{4}[\\s-]?[0-9]{5}\\b')),
     ('email address', re.compile('\\b[\\w.+-]+@[\\w-]+\\.[\\w.-]+\\b')),
+    ('UPI ID', re.compile('\\b[\\w.\\-]{2,}@[a-z]{2,15}\\b(?!\\.)', re.I)),
+    ('Aadhaar', re.compile('aadh?aa?r\\D{0,15}[0-9]{4}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}', re.I)),
     ('screenshot or statement', re.compile("\\b(here('s| is) my (portfolio|statement|cas)|attached (my )?(portfolio|statement|screenshot))\\b", re.I)),
 ]
 

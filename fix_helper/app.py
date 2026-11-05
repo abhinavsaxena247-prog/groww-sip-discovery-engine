@@ -6,6 +6,7 @@ if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 from fix_helper import core  # noqa: E402
 from fix_helper.kb import REASONS, SOURCES, GROWW_HELP  # noqa: E402
+from fix_helper import help as HELP  # noqa: E402
 
 st.set_page_config(page_title="SIP Fix Helper · NL-Groww concept", page_icon=":material/build:", layout="centered")
 CSS = """
@@ -19,13 +20,13 @@ p, li { color:#44475B; }
 .bar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; border:1px solid #E7E8EC; border-radius:12px; padding:10px 14px; }
 .bar .logo { display:flex; gap:10px; align-items:center; font-weight:600; color:#44475B; }
 .bar .logo b { width:16px; height:16px; border-radius:50%; background:#04B488; display:inline-block; }
-.tag { font-size:.78rem; color:#00875F; background:#E5F7F1; border-radius:99px; padding:3px 10px; font-weight:500; }
+.tag { font-size:.78rem; color:#00664C; background:#E5F7F1; border-radius:99px; padding:3px 10px; font-weight:500; }
 .notice { background:#F0FAF6; border-left:3px solid #04B488; border-radius:8px; padding:8px 12px; font-size:.86rem; color:#44475B; margin:10px 0 4px; }
 .msg { background:#F2F5F7; border-radius:10px; padding:10px 14px; font-size:.95rem; }
-.msg small { display:block; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:#6B6E80; margin-bottom:4px; }
+.msg small { display:block; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:#55586A; margin-bottom:4px; }
 .card { border:1.5px solid #04B488; border-radius:14px; padding:16px 18px; margin-top:12px; }
-.card.fb { border-color:#6B6E80; border-style:dashed; }
-.lab { font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:#6B6E80; }
+.card.fb { border-color:#55586A; border-style:dashed; }
+.lab { font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:#55586A; }
 .reason { font-size:1.45rem; font-weight:700; color:#44475B; margin:2px 0 6px; line-height:1.25; }
 .conf { display:inline-block; background:#027F5F; color:#fff; border-radius:99px; padding:3px 12px; font-size:.82rem; font-weight:600; }
 .conf.medium { background:#fff; color:#027F5F; border:1.5px solid #027F5F; }
@@ -36,13 +37,13 @@ p, li { color:#44475B; }
 .blk h4 { padding:0 !important; }
 .blk li, .blk ol, .blk ul { font-size:.9rem !important; line-height:1.45; margin-bottom:4px; }
 .blk ol, .blk ul { margin:0; padding-left:18px; }
-.src { font-size:.78rem; color:#6B6E80; }
+.src { font-size:.78rem; color:#55586A; }
 .src a, .blk a { color:#027F5F; }
-.gg { font-size:.72rem; color:#6B6E80; border:1px solid #C9CCD5; border-radius:99px; padding:0 6px; margin-left:4px; white-space:nowrap; }
+.gg { font-size:.72rem; color:#55586A; border:1px solid #C9CCD5; border-radius:99px; padding:0 6px; margin-left:4px; white-space:nowrap; }
 .checks { margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; }
 .chk { font-size:.78rem; border-radius:99px; padding:3px 10px; background:#E5F7F1; color:#00664C; }
 .chk.no { background:#F2F5F7; color:#44475B; }
-.risk { font-size:.78rem; color:#6B6E80; margin-top:18px; }
+.risk { font-size:.78rem; color:#55586A; margin-top:18px; }
 .stButton button { border-radius:8px; border:1px solid #027F5F !important; color:#027F5F !important; background:#fff !important; font-weight:500; }
 .stButton button[kind="primary"] { background:#027F5F !important; color:#fff !important; }
 .stButton button[kind="primary"] p { color:#fff !important; }
@@ -51,7 +52,7 @@ p, li { color:#44475B; }
 [data-testid="stSidebarNav"] a[aria-current="page"] { background:#E5F7F1 !important; }
 .tile { border:1px solid #E7E8EC; border-radius:12px; padding:12px 14px; }
 .tile .v { font-size:1.6rem; font-weight:700; color:#027F5F; }
-.tile .t { font-size:.82rem; color:#6B6E80; }
+.tile .t { font-size:.82rem; color:#55586A; }
 </style>"""
 NOTICE = "Independent concept by a NextLeap student. Not affiliated with Groww. Not investment advice: it explains what happened to a payment and never recommends a fund or tells you whether to continue."
 RISK = "Mutual fund investments are subject to market risks, read all scheme related documents carefully."
@@ -115,10 +116,13 @@ You can pay a missed installment with “Pay one-time”. Groww's help page expl
         if r["why"] == "advice":
             body = "I can't advise on funds, returns, or whether to stop or continue a SIP. I can explain why an installment failed and how to fix it."
         elif r["why"] == "off_topic":
-            body = "I can only help with SIP installment payments: why one failed and how to fix it."
+            body = ("I can only help with SIP payments and SIP basics. Try: \u201cMy SIP failed this month\u201d, \u201cWhat is a SIP?\u201d, "
+                    "\u201cHow do I skip an installment?\u201d or \u201cHow do I contact Groww support?\u201d.")
         else:
             body = r["why"]
         st.markdown(f"<div class='card fb'><div class='lab'>Can't help with this</div><div class='reason'>That's outside what I do</div><div class='why'>{esc(body)}</div>{checks_html(r['checks'])}</div>", unsafe_allow_html=True)
+    elif r["kind"] == "help":
+        show_help(r)
     else:
         st.markdown(f"<div class='card fb'><div class='lab'>Check your message</div><div class='why'>{esc(r['why'])}</div>{checks_html(r['checks'])}</div>", unsafe_allow_html=True)
     if r.get("mode") == "basic":
@@ -145,9 +149,45 @@ def facts_html(facts, ev, answers):
             rows.append(f"<li><b>{esc(name)}:</b> {shown} <span class='src'>({who})</span></li>")
     return "<ul>" + "".join(rows) + "</ul>" if rows else "<p class='src'>Nothing specific yet.</p>"
 
+def start_over():
+    reset_flow()
+    st.session_state.fx_text = ""
+
 def reset_flow():
     for k in ("fx_read", "fx_answers", "fx_asked", "fx_confirmed", "fx_qn"):
         st.session_state.pop(k, None)
+
+def help_lines_html(lines):
+    out = []
+    for text, src in lines:
+        if src:
+            name, url = HELP.H[src]
+            out.append(f"<li>{esc(text)} <a href='{url}' target='_blank' title='{esc(name)}'>[source]</a></li>")
+        else:
+            out.append(f"<li>{esc(text)} <span class='gg'>general guidance</span></li>")
+    return "<ul>" + "".join(out) + "</ul>"
+
+def show_help(r):
+    t = HELP.TOPICS[r["topic"]]
+    if r["topic"] == "start":
+        st.markdown("<div class='card'><div class='lab'>Start a SIP</div><div class='reason'>Want to start a SIP?</div>"
+                    "<div class='why'>The Start a SIP page shows Groww's steps and how to set it up so installments don't fail. It never suggests a fund.</div></div>", unsafe_allow_html=True)
+        st.page_link(PAGE_START, label="Open Start a SIP", icon=":material/rocket_launch:")
+        return
+    more = f"<p class='src'>{esc(t['more'])}</p>" if t.get("more") else ""
+    st.markdown(f"<div class='card'><div class='lab'>Answer</div><div class='reason'>{esc(t['title'])}</div>"
+                f"<div class='blk'>{help_lines_html(t['lines'])}</div>{more}{checks_html(r['checks'])}</div>", unsafe_allow_html=True)
+    if r.get("can_continue"):
+        if st.button("Find out why my installment failed", key="help_continue", use_container_width=True):
+            text = st.session_state.fx_read[0]
+            with st.spinner("Reading your message\u2026"):
+                st.session_state.fx_read = (text, core.read_facts(text, skip_route=True))
+            st.session_state.fx_answers, st.session_state.fx_asked = {}, []
+            st.rerun()
+
+GOOD_TO_KNOW = [("Money you've already invested stays invested; only this month's amount wasn't invested.", None),
+                ("Groww doesn't charge for a failed installment; your bank may charge a return fee.", "S1"),
+                ("3 failed or skipped installments in a row cancel the SIP automatically.", "S12")]
 
 def page_helper():
     header()
@@ -169,10 +209,7 @@ def page_helper():
         with st.spinner("Reading your message\u2026"):
             st.session_state.fx_read = (text, core.read_facts(text))
         st.session_state.fx_answers, st.session_state.fx_asked = {}, []
-    if b2.button("Start over", key="clear", use_container_width=True):
-        reset_flow()
-        st.session_state.fx_text = ""
-        st.rerun()
+    b2.button("Start over", key="clear", use_container_width=True, on_click=start_over)
     if not st.session_state.get("fx_read"):
         st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
         return
@@ -231,8 +268,11 @@ def page_helper():
                "confidence": "medium", "mode": r.get("mode"),
                "checks": r["checks"] + [("You checked what I understood", True), ("Reason picked by fixed rules from the facts above", True), ("Fix steps from checked sources", True), ("Output guardrails passed", True)]}
         show_result(text, res, echo=False, how="Based on the facts above" + (" and your answers." if answers else "."))
+        st.markdown(f"<div class='blk' style='margin-top:10px'><h4>Good to know</h4>{help_lines_html(GOOD_TO_KNOW)}</div>", unsafe_allow_html=True)
     else:
         show_result(text, {"kind": "fallback", "checks": r["checks"] + [("Not enough facts to name a reason, so no guess", True)], "mode": r.get("mode")}, echo=False)
+    if r.get("advice_note"):
+        st.caption("You also asked for an opinion on funds or returns. I can't advise on that; this covers the payment only.")
     if r.get("mode") == "basic":
         st.caption("The AI is busy right now, so simple rules read your message. The questions still work.")
     st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
@@ -250,6 +290,36 @@ def page_change():
         label = {"ok": "✓ Likely fine", "close": "● Likely fine, but close", "exceeds": "▲ May exceed your limit", "unsure": "? Not sure"}[kind]
         st.markdown(f"<div class='card{' fb' if kind in ('unsure',) else ''}'><div class='reason'>{esc(label)}</div><div class='why'>{esc(msg)}</div>"
                     "<p class='src'>Rules only: this compares the numbers you enter. It never quotes a current limit as fact.</p></div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
+
+def page_start():
+    header()
+    st.title("Start a SIP")
+    st.write("Groww's steps to start a SIP, plus a set-up checklist so your installments go through from the first month. "
+             "Which fund to choose is your decision; this page never suggests one.")
+    st.markdown(f"""<div class='card'><div class='lab'>Steps in the Groww app</div><div class='blk'><ol>
+<li>From Home, open Mutual Funds and tap Explore. <a href='{HELP.H["S15"][1]}' target='_blank'>[source]</a></li>
+<li>Find the fund you've chosen and tap Start SIP. <a href='{HELP.H["S15"][1]}' target='_blank'>[source]</a></li>
+<li>Enter the amount and choose the monthly date. <a href='{HELP.H["S15"][1]}' target='_blank'>[source]</a></li>
+<li>Pay the first installment with UPI or net banking. <a href='{HELP.H["S15"][1]}' target='_blank'>[source]</a></li>
+<li>Complete AutoPay (OTP or form) so later installments are debited automatically. <a href='{HELP.H["S15"][1]}' target='_blank'>[source]</a></li>
+</ol></div></div>""", unsafe_allow_html=True)
+    st.markdown(f"""<div class='card'><div class='lab'>Set it up so it doesn't fail</div><div class='blk'><ul>
+<li>Pick a date when your linked account usually has the money, for example a few days after your salary arrives. <span class='gg'>general guidance</span></li>
+<li>Keep the balance ready 4 days before the installment date. <a href='{SOURCES["S1"][1]}' target='_blank'>[source]</a></li>
+<li>Set an AutoPay limit above your planned amount, with room if you plan to increase it later. <span class='gg'>general guidance</span></li>
+<li>Check AutoPay shows as approved; bank approval takes 2 to 7 working days. <a href='{HELP.H["S9"][1]}' target='_blank'>[source]</a></li>
+<li>Expect the second installment about two months after the first: there's a 30-day minimum gap. <a href='{HELP.H["S16"][1]}' target='_blank'>[source]</a></li>
+</ul></div></div>""", unsafe_allow_html=True)
+    c1, c2 = st.columns(2)
+    amt = c1.number_input("Planned monthly amount (\u20b9)", min_value=0, step=500, value=0, key="st_amt")
+    lim = c2.number_input("AutoPay limit you'll set (\u20b9), if you know it", min_value=0, step=1000, value=0, key="st_lim")
+    if st.button("Check my set-up", type="primary", key="st_go"):
+        kind, msg = core.change_check(amt, lim or None)
+        label = {"ok": "\u2713 Looks fine", "close": "\u25cf Fine, but close to the limit", "exceeds": "\u25b2 Above your AutoPay limit", "unsure": "? Not sure"}[kind]
+        st.markdown(f"<div class='card{' fb' if kind == 'unsure' else ''}'><div class='reason'>{esc(label)}</div><div class='why'>{esc(msg)}</div>"
+                    "<p class='src'>Rules only: this compares the numbers you enter.</p></div>", unsafe_allow_html=True)
+    st.caption("Mutual fund investing involves market risk. This page explains set-up steps only and isn't investment advice.")
     st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
 
 def page_quality():
@@ -270,7 +340,9 @@ def page_quality():
                 "- **Fix steps:** written in advance from Groww help and other official pages, so the AI can't invent steps.")
     st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
 
+PAGE_START = st.Page(page_start, title="Start a SIP", icon=":material/rocket_launch:", url_path="start")
 pg = st.navigation([st.Page(page_helper, title="What happened?", icon=":material/help:", default=True),
+                    PAGE_START,
                     st.Page(page_change, title="Check a change", icon=":material/rule:", url_path="change"),
                     st.Page(page_quality, title="Quality", icon=":material/verified:", url_path="quality")])
 pg.run()

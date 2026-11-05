@@ -5,6 +5,7 @@ if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 from engine import guard as G, llm  # noqa: E402
 from fix_helper.kb import REASONS, LABELS  # noqa: E402
+from fix_helper import help as HELP  # noqa: E402
 
 CODES = list(REASONS) + ["unclear"]
 SCHEMA = {"type": "OBJECT", "properties": {
@@ -63,8 +64,10 @@ def explain(text):
         out, model, mode = rule_guess(text), "rules", "basic"
         if v == "off_topic":   # without the AI, fall back to the keyword topic check
             return {"kind": "decline", "why": "off_topic", "checks": checks + [("Off-topic message declined", True)], "mode": mode}
-    if out.get("asks_for_advice"):
+    if out.get("asks_for_advice") and not fw:
         return {"kind": "decline", "why": "advice", "checks": checks + [("Advice request declined", True)], "mode": mode}
+    if out.get("asks_for_advice"):
+        advice_note = True
     if not out.get("about_sip_payment", True):
         return {"kind": "decline", "why": "off_topic", "checks": checks + [("Off-topic message declined", True)], "mode": mode}
     reason, conf, ev = out.get("reason", "unclear"), out.get("confidence", "low"), str(out.get("evidence", "")).strip()
@@ -189,7 +192,7 @@ def decide(f, skip=()):
 
 FACT_RULES = {
     "app_status": [("sip_cancelled", r"sip\b.{0,40}(cancel|terminat)|(cancel|terminat)\w*.{0,20}sip"), ("in_progress", r"in progress|pending|processing"),
-                   ("failed", r"fail|unsuccessful|bounce|reject|missed|not deducted")],
+                   ("failed", r"fail|unsuccessful|bounce|reject|missed|not deducted|\u092b\u0947\u0932|\u0935\u093f\u092b\u0932")],
     "debited": [("refunded", r"refund|reversed|returned|credited back"), ("no", r"not (been )?(deducted|debited)|didn.?t deduct|did not deduct"),
                 ("yes", r"debited|deducted|kat (gaya|gya)|cut")],
     "recent_change": [("yes", r"(increas|chang|modif|step.?up)\w*.{0,40}(sip|amount|date)|(sip|amount).{0,20}(increas|chang|modif)")],
@@ -198,6 +201,9 @@ FACT_RULES = {
                      ("mandate_not_ready", r"(mandate|autopay|auto pay).{0,30}(not (approved|set ?up|register)|reject|pending approval)"),
                      ("bank_error", r"technical|network|server|bank.{0,20}(declin|reject)|npci"), ("app_error", r"api failed|something went wrong|crash|not loading")],
 }
+
+
+TOPIC_WORDS = re.compile("sip|mandate|auto ?pay|mutual|fund|instal|nav\\b|debit|deduct|bank|upi|nach|ecs|\u090f\u0938\u0906\u0908\u092a\u0940", re.I)
 
 
 def rule_facts(text):
@@ -213,10 +219,27 @@ def rule_facts(text):
     return out
 
 
-def read_facts(text):
-    """Guards first, then the AI reads facts (evidence must be in the message). Returns a dict with kind in {facts, decline, block}."""
+CONTINUABLE = {"faq_fail_effect", "vent", "account", "manage_cancel", "manage_pause", "manage_change", "manage_autopay", "support"}
+ALWAYS_HELP = {"manage_cancel", "manage_pause", "manage_change", "manage_autopay", "faq_fail_effect"}
+
+
+def read_facts(text, skip_route=False):
+    """Guards first, then help routing, then the AI reads facts (evidence must be in the message).
+    Returns a dict with kind in {facts, help, decline, block}."""
     c = G.check_input(text)
     v = c["verdict"]
+    fw = bool(HELP.FAILURE_WORDS.search(text or ""))
+    advice_note = False
+    if v not in ("empty", "too_long", "pii", "abuse", "injection"):
+        if v == "advice":
+            if not fw:
+                return {"kind": "decline", "why": "advice", "checks": [("Privacy check passed", True), ("Advice request declined", True)]}
+            advice_note, v = True, "ok"
+        if not skip_route:
+            intent = HELP.route(text)
+            if intent and (intent in ALWAYS_HELP or not fw):
+                return {"kind": "help", "topic": intent, "can_continue": fw or intent in CONTINUABLE,
+                        "checks": [("Privacy check passed", True), ("Answer from checked sources", True)]}
     if v in ("empty", "too_long"):
         return {"kind": "block", "why": "Describe what happened in up to 800 characters.", "checks": [("Input check", False)]}
     if v == "pii":
@@ -228,16 +251,20 @@ def read_facts(text):
         return {"kind": "decline", "why": "I can only help with what happened to a SIP payment.", "checks": [("Input check: rule override blocked", False)]}
     if v == "advice":
         return {"kind": "decline", "why": "advice", "checks": [("Privacy check passed", True), ("Advice request declined", True)]}
-    checks = [("Privacy check passed", True)]
+    checks = [("Privacy check passed", True)] + ([("Advice part declined; payment part answered", True)] if advice_note else [])
     try:
         out, model = llm.json_call(FACT_PROMPT + text, FACT_SCHEMA)
         mode = "ai"
     except Exception:
         out, model, mode = rule_facts(text), "rules", "basic"
+        if all(out[k] in UNKNOWN for k in FACTS) and not TOPIC_WORDS.search(text):
+            v = "off_topic"   # nothing SIP-related to work with
         if v == "off_topic":
             return {"kind": "decline", "why": "off_topic", "checks": checks + [("Off-topic message declined", True)], "mode": mode}
-    if out.get("asks_for_advice"):
+    if out.get("asks_for_advice") and not fw:
         return {"kind": "decline", "why": "advice", "checks": checks + [("Advice request declined", True)], "mode": mode}
+    if out.get("asks_for_advice"):
+        advice_note = True
     if not out.get("about_sip_payment", True):
         return {"kind": "decline", "why": "off_topic", "checks": checks + [("Off-topic message declined", True)], "mode": mode}
     facts, ev, dropped = {}, {}, 0
@@ -253,4 +280,4 @@ def read_facts(text):
             e = ""
         facts[k], ev[k] = val, e
     checks.append(("Every fact quoted from your message" if not dropped else f"{dropped} fact(s) without quoted words ignored; asked instead", True))
-    return {"kind": "facts", "facts": facts, "evidence": ev, "checks": checks, "mode": mode, "model": model}
+    return {"kind": "facts", "facts": facts, "evidence": ev, "checks": checks, "mode": mode, "model": model, "advice_note": advice_note}
