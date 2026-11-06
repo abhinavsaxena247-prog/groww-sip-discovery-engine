@@ -444,7 +444,7 @@ def page_helper():
     if not st.session_state.get("fx_confirmed"):
         st.markdown("<div class='lab' style='margin-top:14px'>Quick check</div>"
                     "<div class='reason' style='font-size:1.15rem'>Is this right? Change anything that's wrong.</div>", unsafe_allow_html=True)
-        st.caption("Filled in from the alert. Change anything that's wrong." if st.session_state.get("fx_alert") else "Don't know an answer? Pick Not sure.")
+        st.caption("Filled in from the alert." if st.session_state.get("fx_alert") else "Don't know an answer? Pick Not sure.")
         picks = {}
         for f in core.CONFIRM_FACTS:
             q, opts = core.QUESTIONS[f]
