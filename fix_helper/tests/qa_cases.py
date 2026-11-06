@@ -50,4 +50,10 @@ CASES = [
 ("F01","flow","SIP start ho gayi hai or paise bhi cut gaye hai lekin auto-pay start nahi ho rha hai baar baar failed hora hai",("facts",)),
 ("F02","flow","customer care not helping, my sip failed due to insufficient balance",("reason","low_balance")),
 ("F03","flow","this app is useless my sip failed again",("facts","app_status","failed")),
+# Added 6 Nov after the eval re-run: a real failure plus "what happens now?" stays in the fix flow; "what if" questions get the help answer
+("F04","flow","my sip failed, what happens now? will i lose my money?",("facts","app_status","failed")),
+("F05","flow","SIP miss ho gaya, kya penalty lagegi?",("facts",)),
+("F06","flow","Installment failed because of insufficient balance. Will I be charged a penalty?",("reason","low_balance")),
+("Q22","help","what happens if my sip fails",("help","faq_fail_effect")),
+("Q23","help","in case my sip gets missed, will groww charge me?",("help","faq_fail_effect")),
 ]

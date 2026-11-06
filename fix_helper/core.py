@@ -248,6 +248,18 @@ def rule_facts(text):
 
 
 CONTINUABLE = {"faq_fail_effect", "vent", "account", "manage_cancel", "manage_pause", "manage_change", "manage_autopay", "support"}
+# Words that say a failure actually happened (not a "what if" question).
+HAPPENED = re.compile(r"\b(failed|bounced|got declined|was declined|rejected|missed|miss ho|fail ho|ho gay\w*|ho gai|nahi hu[ai]|nahi kat\w*|deducted|debited|didn.?t go through|did not go through|hasn.?t gone through)\b", re.I)
+IF_WORDS = re.compile(r"\b(if|agar|in case|suppose|incase|jab bhi)\b", re.I)
+
+def happened(text):
+    """True if the message says a failure actually happened; False for 'what if' questions ("agar ... nahi hua to ...")."""
+    m = HAPPENED.search(text or "")
+    if not m:
+        return False
+    c = IF_WORDS.search(text[:m.start()])
+    return c is None
+
 ALWAYS_HELP = {"manage_cancel", "manage_pause", "manage_change", "manage_autopay", "faq_fail_effect"}
 
 
@@ -265,6 +277,10 @@ def read_facts(text, skip_route=False):
             advice_note, v = True, "ok"
         if not skip_route:
             intent = HELP.route(text)
+            # A message that describes a failure gets the fix flow, even if it also asks what a failure means;
+            # the result's "Good to know" panel answers that part. Found when the eval was re-run on 6 Nov.
+            if intent == "faq_fail_effect" and happened(text):
+                intent = None
             if intent and (intent in ALWAYS_HELP or not fw):
                 return {"kind": "help", "topic": intent, "can_continue": fw or intent in CONTINUABLE,
                         "checks": [("Privacy check passed", True), ("Answer from checked sources", True)]}

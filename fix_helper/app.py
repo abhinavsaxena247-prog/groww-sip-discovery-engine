@@ -434,6 +434,9 @@ def page_helper():
     st.button("\u2190 Ask something else", key="top_exit", on_click=start_over)
     text, r = st.session_state.fx_read
     message_card(text)
+    if r.get("advice_note"):
+        st.markdown("<div class='notice'><b>I can't advise on funds or returns.</b> You also asked which fund to pick or whether to switch. "
+                    "That's your decision, and this helper doesn't recommend funds. It covers the payment problem only.</div>", unsafe_allow_html=True)
     if r["kind"] != "facts":
         show_result(text, r, echo=False)
         exit_row("exit_help")
@@ -501,10 +504,9 @@ def page_helper():
         st.markdown(f"<div class='blk' style='margin-top:10px'><h4>Good to know</h4>{help_lines_html(GOOD_TO_KNOW)}</div>", unsafe_allow_html=True)
     else:
         show_result(text, {"kind": "fallback", "checks": r["checks"] + [("Not enough facts to name a reason, so no guess", True)], "mode": r.get("mode")}, echo=False)
+        st.markdown(f"<div class='blk' style='margin-top:10px'><h4>Good to know</h4>{help_lines_html(GOOD_TO_KNOW)}</div>", unsafe_allow_html=True)
     if kind != "ask":
         exit_row("exit_result")
-    if r.get("advice_note"):
-        st.caption("You also asked for an opinion on funds or returns. I can't advise on that; this covers the payment only.")
     st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
 
 def page_change():

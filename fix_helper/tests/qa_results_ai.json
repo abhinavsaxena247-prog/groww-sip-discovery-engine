@@ -1,6 +1,6 @@
 {
- "passed": 71,
- "total": 71,
+ "passed": 76,
+ "total": 76,
  "rows": [
   {
    "id": "H01",
@@ -822,6 +822,76 @@
    "got": [
     "ask",
     "stated_cause"
+   ],
+   "pass": true
+  },
+  {
+   "id": "F04",
+   "cat": "flow",
+   "input": "my sip failed, what happens now? will i lose my money?",
+   "expected": [
+    "facts",
+    "app_status",
+    "failed"
+   ],
+   "got": [
+    "ask",
+    "stated_cause"
+   ],
+   "pass": true
+  },
+  {
+   "id": "F05",
+   "cat": "flow",
+   "input": "SIP miss ho gaya, kya penalty lagegi?",
+   "expected": [
+    "facts"
+   ],
+   "got": [
+    "ask",
+    "stated_cause"
+   ],
+   "pass": true
+  },
+  {
+   "id": "F06",
+   "cat": "flow",
+   "input": "Installment failed because of insufficient balance. Will I be charged a penalty?",
+   "expected": [
+    "reason",
+    "low_balance"
+   ],
+   "got": [
+    "reason",
+    "low_balance"
+   ],
+   "pass": true
+  },
+  {
+   "id": "Q22",
+   "cat": "help",
+   "input": "what happens if my sip fails",
+   "expected": [
+    "help",
+    "faq_fail_effect"
+   ],
+   "got": [
+    "help",
+    "faq_fail_effect"
+   ],
+   "pass": true
+  },
+  {
+   "id": "Q23",
+   "cat": "help",
+   "input": "in case my sip gets missed, will groww charge me?",
+   "expected": [
+    "help",
+    "faq_fail_effect"
+   ],
+   "got": [
+    "help",
+    "faq_fail_effect"
    ],
    "pass": true
   }

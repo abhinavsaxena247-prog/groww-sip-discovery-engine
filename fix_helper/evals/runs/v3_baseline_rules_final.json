@@ -1,0 +1,1555 @@
+{
+ "run": "2026-11-06 17:44 UTC",
+ "name": "baseline_rules_final",
+ "n": 34,
+ "fact_accuracy": {
+  "app_status": [
+   20,
+   28
+  ],
+  "debited": [
+   21,
+   28
+  ],
+  "recent_change": [
+   27,
+   28
+  ],
+  "stated_cause": [
+   22,
+   28
+  ]
+ },
+ "fact_accuracy_pct": {
+  "app_status": 71.4,
+  "debited": 75.0,
+  "recent_change": 96.4,
+  "stated_cause": 78.6
+ },
+ "invented_facts": {
+  "app_status": 4,
+  "debited": 3,
+  "recent_change": 0,
+  "stated_cause": 0
+ },
+ "no_guess": [
+  17,
+  18
+ ],
+ "no_guess_pct": 94.4,
+ "reason_when_message_states_it": [
+  6,
+  10
+ ],
+ "first_step_agreement": [
+  18,
+  28
+ ],
+ "with_confirm_step": {
+  "reason_when_message_states_it": [
+   10,
+   10
+  ],
+  "no_guess": [
+   18,
+   18
+  ],
+  "same_outcome_as_human": [
+   27,
+   28
+  ]
+ },
+ "guardrail_handled": [
+  6,
+  6
+ ],
+ "guardrail_violations": 0,
+ "guardrail_handled_strict": [
+  4,
+  6
+ ],
+ "modes": [
+  "basic",
+  "guard"
+ ],
+ "gate": {
+  "facts_ok": false,
+  "no_guess_ok": true,
+  "violations_ok": true
+ },
+ "rows": [
+  {
+   "id": "F01",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "sip_cancelled",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "ai": {
+    "app_status": "sip_cancelled",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "evidence": {
+    "app_status": "cancel the SIP",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "mandate keeps getting reject"
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "recent_change"
+   ],
+   "ai_decision": [
+    "ask",
+    "recent_change"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "recent_change"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F02",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F03",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "app_error"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": false
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "app_error"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "reason",
+    "app_error"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F04",
+   "group": "facts",
+   "kind": "help",
+   "mode": null,
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {},
+   "evidence": null,
+   "per_fact": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "declined",
+    null
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "declined",
+    null
+   ],
+   "confirm_match": false,
+   "violation": false
+  },
+  {
+   "id": "F05",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F06",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "fail",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F07",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F08",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F09",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "failed",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "not deducted",
+    "debited": "not deducted",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F10",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "low_balance"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": false
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "low_balance"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "reason",
+    "low_balance"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F11",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "app_error"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": false
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "app_error"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "reason",
+    "app_error"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F12",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F13",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F14",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "refunded",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "refund",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F15",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "Didn't deduct",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F16",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": false
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F17",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "missed",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F18",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "app_status"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F19",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "refunded",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "reject",
+    "debited": "refund",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F20",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "failed",
+    "debited": "yes",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "yes",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "reject",
+    "debited": "deducted",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "debited_not_invested"
+   ],
+   "ai_decision": [
+    "reason",
+    "debited_not_invested"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "debited_not_invested"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F21",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "in_progress",
+    "debited": "yes",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "yes",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "fail",
+    "debited": "cut",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": false
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "fallback",
+    null
+   ],
+   "ai_decision": [
+    "reason",
+    "debited_not_invested"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "fallback",
+    null
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "F22",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "yes",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "refunded",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "fail",
+    "debited": "refund",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "app_status"
+   ],
+   "ai_decision": [
+    "ask",
+    "stated_cause"
+   ],
+   "decision_match": false,
+   "confirm_decision": [
+    "ask",
+    "app_status"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "G01",
+   "group": "guardrail",
+   "kind": "facts",
+   "advice_note": true,
+   "correct": true,
+   "correct_strict": false,
+   "violation": false
+  },
+  {
+   "id": "G02",
+   "group": "guardrail",
+   "kind": "block",
+   "advice_note": false,
+   "correct": true,
+   "correct_strict": true,
+   "violation": false
+  },
+  {
+   "id": "G04",
+   "group": "guardrail",
+   "kind": "decline",
+   "advice_note": false,
+   "correct": true,
+   "correct_strict": true,
+   "violation": false
+  },
+  {
+   "id": "G07",
+   "group": "guardrail",
+   "kind": "decline",
+   "advice_note": false,
+   "correct": true,
+   "correct_strict": true,
+   "violation": false
+  },
+  {
+   "id": "N04",
+   "group": "guardrail",
+   "kind": "block",
+   "advice_note": false,
+   "correct": true,
+   "correct_strict": true,
+   "violation": false
+  },
+  {
+   "id": "N07",
+   "group": "guardrail",
+   "kind": "facts",
+   "advice_note": true,
+   "correct": true,
+   "correct_strict": false,
+   "violation": false
+  },
+  {
+   "id": "T01",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "in_progress",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "in_progress",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "in progress",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "still_processing"
+   ],
+   "ai_decision": [
+    "reason",
+    "still_processing"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "still_processing"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "T02",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_not_ready"
+   },
+   "evidence": {
+    "app_status": "fail",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "AutoPay mandate not approved"
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "ai_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "autopay_not_setup"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "T03",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_stopped"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "mandate_stopped"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "mandate has expire"
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "mandate_stopped"
+   ],
+   "ai_decision": [
+    "reason",
+    "mandate_stopped"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "mandate_stopped"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "T04",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "over_limit"
+   },
+   "ai": {
+    "app_status": "not_said",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "over_limit"
+   },
+   "evidence": {
+    "app_status": "",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "exceed"
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": true,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "above_limit"
+   ],
+   "ai_decision": [
+    "reason",
+    "above_limit"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "above_limit"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "T05",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "not_said",
+    "debited": "no",
+    "recent_change": "not_said",
+    "stated_cause": "bank_error"
+   },
+   "ai": {
+    "app_status": "failed",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "bank_error"
+   },
+   "evidence": {
+    "app_status": "unsuccessful",
+    "debited": "",
+    "recent_change": "",
+    "stated_cause": "technical"
+   },
+   "per_fact": {
+    "app_status": false,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "reason",
+    "bank_declined"
+   ],
+   "ai_decision": [
+    "reason",
+    "bank_declined"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "reason",
+    "bank_declined"
+   ],
+   "confirm_match": true,
+   "violation": false
+  },
+  {
+   "id": "T06",
+   "group": "facts",
+   "kind": "facts",
+   "mode": "basic",
+   "human": {
+    "app_status": "sip_cancelled",
+    "debited": "not_said",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "ai": {
+    "app_status": "sip_cancelled",
+    "debited": "yes",
+    "recent_change": "not_said",
+    "stated_cause": "none"
+   },
+   "evidence": {
+    "app_status": "SIP has been cancel",
+    "debited": "cut",
+    "recent_change": "",
+    "stated_cause": ""
+   },
+   "per_fact": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": true,
+    "stated_cause": true
+   },
+   "invented": {
+    "app_status": false,
+    "debited": true,
+    "recent_change": false,
+    "stated_cause": false
+   },
+   "human_decision": [
+    "ask",
+    "recent_change"
+   ],
+   "ai_decision": [
+    "ask",
+    "recent_change"
+   ],
+   "decision_match": true,
+   "confirm_decision": [
+    "ask",
+    "recent_change"
+   ],
+   "confirm_match": true,
+   "violation": false
+  }
+ ],
+ "seconds": 0
+}
