@@ -66,6 +66,8 @@ p, li { color:#44475B; }
 .stButton button[kind="primary"] p { color:#fff !important; }
 .stButton button:hover { background:#E5F7F1 !important; }
 .stButton button[kind="primary"]:hover { background:#00664C !important; }
+.stButton button:disabled, .stButton button:disabled:hover { background:#ECEEF2 !important; color:#55586A !important; border-color:#C9CDD6 !important; cursor:not-allowed; }
+.stButton button:disabled p { color:#55586A !important; }
 [data-testid="stSidebarNav"] a[aria-current="page"] { background:#E5F7F1 !important; }
 .tile { border:1px solid #E7E8EC; border-radius:12px; padding:12px 14px; }
 .tile .v { font-size:1.6rem; font-weight:700; color:#027F5F; }
@@ -404,7 +406,10 @@ def page_helper():
                       on_click=lambda: st.session_state.update(cf_debited="no"))
             st.button("I'm not sure about either", key="cx_unsure", use_container_width=True,
                       on_click=lambda: st.session_state.update(cf_debited="not_said", cf_stated_cause="not_said"))
-        if st.button("Looks right, continue", type="primary", use_container_width=True, key="cf_go", disabled=bool(clash)):
+        go = st.button("Looks right, continue", type="primary", use_container_width=True, key="cf_go", disabled=bool(clash))
+        if clash:
+            st.caption("Pick one of the options above to continue.")
+        if go:
             for f, v in picks.items():
                 answers[f] = v
                 asked.append(f)
