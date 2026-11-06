@@ -177,6 +177,8 @@ def start_over():
 def reset_flow():
     for k in ("fx_read", "fx_answers", "fx_asked", "fx_confirmed", "fx_qn", "fx_guide", "fx_editing", "fx_tile", "fx_edit_err"):
         st.session_state.pop(k, None)
+    for k in [k for k in st.session_state if str(k).startswith("cf_")]:
+        st.session_state.pop(k, None)
 
 def help_lines_html(lines):
     out = []
@@ -382,23 +384,27 @@ def page_helper():
     if not st.session_state.get("fx_confirmed"):
         st.markdown("<div class='lab' style='margin-top:14px'>Quick check</div>"
                     "<div class='reason' style='font-size:1.15rem'>Is this right? Change anything that's wrong.</div>", unsafe_allow_html=True)
+        st.caption("Don't know an answer? Pick Not sure.")
         picks = {}
         for f in core.CONFIRM_FACTS:
             q, opts = core.QUESTIONS[f]
             codes = [c for c, _ in opts]
             ai_val = r["facts"].get(f)
-            idx = codes.index(ai_val) if ai_val in codes else codes.index("not_said")
-            ev = r["evidence"].get(f)
-            if ev:
-                hint = None
-            elif f == "stated_cause":
-                hint = "Your message doesn't name a reason. Pick one if the app or your bank SMS gives it."
-            else:
-                hint = "Not sure? That's fine, leave it as it is."
-            picks[f] = st.radio(q, codes, index=idx, format_func=dict(opts).get, key=f"cf_{f}", help=None)
-            if hint:
-                st.caption(hint)
-        if st.button("Looks right, continue", type="primary", use_container_width=True, key="cf_go"):
+            if f"cf_{f}" not in st.session_state:
+                st.session_state[f"cf_{f}"] = ai_val if ai_val in codes else "not_said"
+            picks[f] = st.radio(q, codes, format_func=dict(opts).get, key=f"cf_{f}")
+        clash = core.conflict(picks)
+        if clash:
+            cause = core.NO_DEBIT_CAUSES[clash]
+            money = "taken and then returned" if picks["debited"] == "refunded" else "taken from your account"
+            st.warning(f"These two answers don't go together. If the money was {money}, the installment didn't fail because of {cause}. Which one is right?")
+            st.button("Money was taken. The reason may be from another payment", key="cx_money", use_container_width=True,
+                      on_click=lambda: st.session_state.update(cf_stated_cause="not_said"))
+            st.button(f"The reason is right: {cause}. No money was taken", key="cx_cause", use_container_width=True,
+                      on_click=lambda: st.session_state.update(cf_debited="no"))
+            st.button("I'm not sure about either", key="cx_unsure", use_container_width=True,
+                      on_click=lambda: st.session_state.update(cf_debited="not_said", cf_stated_cause="not_said"))
+        if st.button("Looks right, continue", type="primary", use_container_width=True, key="cf_go", disabled=bool(clash)):
             for f, v in picks.items():
                 answers[f] = v
                 asked.append(f)

@@ -161,9 +161,24 @@ MAX_QUESTIONS = 3
 UNKNOWN = ("not_said", "none", None, "")
 
 
+# Causes that mean the bank never released the money. They can't be true if money was taken from the account.
+NO_DEBIT_CAUSES = {"low_balance": "not enough balance", "over_limit": "the AutoPay limit",
+                   "mandate_not_ready": "AutoPay not being set up", "mandate_stopped": "AutoPay being stopped"}
+
+
+def conflict(f):
+    """Returns a short description if the facts contradict each other, else None."""
+    d, c = f.get("debited"), f.get("stated_cause")
+    if d in ("yes", "refunded") and c in NO_DEBIT_CAUSES:
+        return c
+    return None
+
+
 def decide(f, skip=()):
     """Deterministic rules. Returns ('reason', code) or ('ask', fact) or ('fallback', None). Facts in `skip` were already asked."""
     s, d, ch, c = f.get("app_status"), f.get("debited"), f.get("recent_change"), f.get("stated_cause")
+    if conflict(f):
+        return ("fallback", None)  # never name a reason from facts that contradict each other
     if s == "sip_cancelled":
         if ch == "yes":
             return ("reason", "cancelled_after_change")
