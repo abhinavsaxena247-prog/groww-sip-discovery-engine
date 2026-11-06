@@ -397,15 +397,10 @@ def page_helper():
             picks[f] = st.radio(q, codes, format_func=dict(opts).get, key=f"cf_{f}")
         clash = core.conflict(picks)
         if clash:
-            cause = core.NO_DEBIT_CAUSES[clash]
-            money = "taken and then returned" if picks["debited"] == "refunded" else "taken from your account"
-            st.warning(f"These two answers don't go together. If the money was {money}, the installment didn't fail because of {cause}. Which one is right?")
-            st.button("Money was taken. The reason may be from another payment", key="cx_money", use_container_width=True,
-                      on_click=lambda: st.session_state.update(cf_stated_cause="not_said"))
-            st.button(f"The reason is right: {cause}. No money was taken", key="cx_cause", use_container_width=True,
-                      on_click=lambda: st.session_state.update(cf_debited="no"))
-            st.button("I'm not sure about either", key="cx_unsure", use_container_width=True,
-                      on_click=lambda: st.session_state.update(cf_debited="not_said", cf_stated_cause="not_said"))
+            st.warning(clash["msg"])
+            for n, (label, upd) in enumerate(clash["fixes"]):
+                st.button(label, key=f"cx_{n}", use_container_width=True,
+                          on_click=lambda u=upd: st.session_state.update({f"cf_{k}": v for k, v in u.items()}))
         go = st.button("Looks right, continue", type="primary", use_container_width=True, key="cf_go", disabled=bool(clash))
         if clash:
             st.caption("Pick one of the options above to continue.")

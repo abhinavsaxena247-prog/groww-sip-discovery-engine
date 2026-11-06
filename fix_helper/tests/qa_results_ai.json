@@ -791,8 +791,8 @@
     "facts"
    ],
    "got": [
-    "reason",
-    "autopay_not_setup"
+    "fallback",
+    null
    ],
    "pass": true
   },

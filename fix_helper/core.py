@@ -167,10 +167,20 @@ NO_DEBIT_CAUSES = {"low_balance": "not enough balance", "over_limit": "the AutoP
 
 
 def conflict(f):
-    """Returns a short description if the facts contradict each other, else None."""
-    d, c = f.get("debited"), f.get("stated_cause")
+    """If two answers can't both be true, returns {"msg", "fixes": [(button label, answers to set)]}; else None."""
+    a, d, c = f.get("app_status"), f.get("debited"), f.get("stated_cause")
     if d in ("yes", "refunded") and c in NO_DEBIT_CAUSES:
-        return c
+        cause = NO_DEBIT_CAUSES[c]
+        money = "taken and then returned" if d == "refunded" else "taken from your account"
+        return {"msg": f"These two answers don't go together. If the money was {money}, the installment didn't fail because of {cause}. Which one is right?",
+                "fixes": [("Money was taken. The reason may be from another payment", {"stated_cause": "not_said"}),
+                          (f"The reason is right: {cause}. No money was taken", {"debited": "no"}),
+                          ("I'm not sure about either", {"debited": "not_said", "stated_cause": "not_said"})]}
+    if a == "in_progress" and d == "refunded":
+        return {"msg": "These two answers don't go together. If the money was returned, this installment is no longer in progress. Which one is right?",
+                "fixes": [("The money was returned, so it didn't go through", {"app_status": "failed"}),
+                          ("The app still shows in progress. Money not returned yet", {"debited": "not_said"}),
+                          ("I'm not sure about either", {"app_status": "not_said", "debited": "not_said"})]}
     return None
 
 
@@ -189,10 +199,13 @@ def decide(f, skip=()):
                  "mandate_not_ready": "autopay_not_setup"}
     if c in cause_map:
         return ("reason", cause_map[c])
-    if ch == "yes" and s != "in_progress":
+    if d == "yes" and s == "failed":
+        return ("reason", "debited_not_invested")  # money left the account, so a limit or AutoPay change can't explain it
+    if ch == "yes" and s != "in_progress" and d not in ("yes", "refunded"):
         return ("reason", "failed_after_change")
     if c == "bank_error":
-        return ("reason", "bank_declined")
+        # a bank decline means no money left; if money was taken and the status isn't clear, don't guess
+        return ("reason", "bank_declined") if d != "yes" else ("fallback", None)
     if c == "app_error":
         return ("reason", "app_error")
     if s == "in_progress":
