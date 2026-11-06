@@ -376,8 +376,22 @@ def guide(reason):
               on_click=lambda: st.session_state.update(fx_guide=i + 1))
     st.button("Show all steps at once", key="g_all", use_container_width=True, on_click=lambda: st.session_state.pop("fx_guide", None))
 
+def scroll_top_on_new_screen():
+    """Streamlit keeps the old scroll position; open each new screen at the top."""
+    rd = st.session_state.get("fx_read")
+    screen = (bool(st.session_state.get("fx_demo")), rd[0] if rd else None, st.session_state.get("fx_confirmed"),
+              st.session_state.get("fx_qn"), st.session_state.get("fx_guide"), st.session_state.get("fx_editing"))
+    if st.session_state.get("_screen") != screen:
+        st.session_state["_screen"] = screen
+        import streamlit.components.v1 as components
+        st.session_state["_screen_n"] = st.session_state.get("_screen_n", 0) + 1
+        components.html(f"<!-- {st.session_state['_screen_n']} --><script>function up(){{try{{const d=window.parent.document;"
+                        "['[data-testid=stMain]','[data-testid=stAppViewContainer]','section.main'].forEach(q=>{const e=d.querySelector(q);if(e)e.scrollTo(0,0)});"
+                        "window.parent.scrollTo(0,0);}catch(e){}}up();[60,250,600,1200].forEach(t=>setTimeout(up,t));</script>", height=0)
+
 def page_helper():
     header()
+    scroll_top_on_new_screen()
     if "fx_text" not in st.session_state:
         st.session_state.fx_text = ""
     if st.session_state.get("fx_demo") and not st.session_state.get("fx_read"):
