@@ -57,6 +57,11 @@ p, li { color:#44475B; }
 .src a, .blk a { color:#027F5F; }
 .gg { font-size:.72rem; color:#55586A; border:1px solid #C9CCD5; border-radius:99px; padding:0 6px; margin-left:4px; white-space:nowrap; }
 [data-testid="stSidebarNav"] a[href$="/quality"] { display:none; }
+.alert { background:#fff; border:1px solid #D5D9E0; border-radius:16px; padding:12px 14px; margin:14px 0 6px; box-shadow:0 2px 8px rgba(20,30,50,.08); }
+.alert .ahd { font-size:.8rem; color:#55586A; display:flex; align-items:center; gap:6px; }
+.alert .adot { width:10px; height:10px; border-radius:3px; background:#027F5F; display:inline-block; }
+.alert .att { font-weight:600; color:#22232B; margin-top:4px; }
+.alert .abd { color:#22232B; font-size:.95rem; }
 .checks { margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; }
 .chk { font-size:.78rem; border-radius:99px; padding:3px 10px; background:#E5F7F1; color:#00664C; }
 .chk.no { background:#F2F5F7; color:#44475B; }
@@ -177,7 +182,7 @@ def start_over():
     st.session_state.fx_text = ""
 
 def reset_flow():
-    for k in ("fx_read", "fx_answers", "fx_asked", "fx_confirmed", "fx_qn", "fx_guide", "fx_editing", "fx_tile", "fx_edit_err"):
+    for k in ("fx_read", "fx_answers", "fx_asked", "fx_confirmed", "fx_qn", "fx_guide", "fx_editing", "fx_tile", "fx_edit_err", "fx_alert", "fx_demo"):
         st.session_state.pop(k, None)
     for k in [k for k in st.session_state if str(k).startswith("cf_")]:
         st.session_state.pop(k, None)
@@ -231,7 +236,7 @@ def open_topic(label, topic):
     st.session_state.fx_tile = True
 
 def start_edit():
-    tile = st.session_state.get("fx_tile")
+    tile = st.session_state.get("fx_tile") or st.session_state.get("fx_alert")
     st.session_state.fx_edit = "" if tile else st.session_state.fx_read[0]
     st.session_state.fx_editing = True
     st.session_state.pop("fx_edit_err", None)
@@ -262,12 +267,46 @@ def message_card(text):
         c2.button("Update", key="ed_go", type="primary", use_container_width=True, on_click=apply_edit)
         st.caption("Your answers so far are cleared and I'll read the new message from the start. Don't include PAN, Aadhaar, account or phone numbers.")
         return
-    lab = "You chose" if st.session_state.get("fx_tile") else "Your message"
-    shown = esc(text) if st.session_state.get("fx_tile") else f"\u201c{esc(text)}\u201d"
+    alert = st.session_state.get("fx_alert")
+    lab = "From the alert" if alert else ("You chose" if st.session_state.get("fx_tile") else "Your message")
+    shown = esc(text) if (st.session_state.get("fx_tile") or alert) else f"\u201c{esc(text)}\u201d"
     c1, c2 = st.columns([4, 1], vertical_alignment="center")
     c1.markdown(f"<div class='msg'><small>{lab}</small>{shown}</div>", unsafe_allow_html=True)
-    c2.button("Edit" if not st.session_state.get("fx_tile") else "Type instead", key="ed_open", use_container_width=True, on_click=start_edit,
+    c2.button("Type instead" if (st.session_state.get("fx_tile") or alert) else "Edit", key="ed_open", use_container_width=True, on_click=start_edit,
               help="Change your message or write a new one")
+
+ALERTS = [
+    ("Your SIP installment didn't go through", "Reason from your bank: not enough balance in the linked account.",
+     {"app_status": "failed", "debited": "no", "stated_cause": "low_balance"}),
+    ("Your SIP installment didn't go through", "Reason from your bank: the amount is above your AutoPay limit.",
+     {"app_status": "failed", "debited": "no", "stated_cause": "over_limit"}),
+    ("Your SIP installment didn't go through", "Your bank didn't share a reason.",
+     {"app_status": "failed", "debited": "no", "stated_cause": "none"}),
+]
+
+def open_demo():
+    reset_flow()
+    st.session_state.fx_demo = True
+
+def open_alert(i):
+    title, body, facts = ALERTS[i]
+    reset_flow()
+    st.session_state.fx_read = (f"{title}. {body}", {"kind": "facts", "facts": dict(facts, recent_change="not_said"), "evidence": {},
+                                                  "checks": [], "mode": "alert"})
+    st.session_state.fx_answers, st.session_state.fx_asked = {}, []
+    st.session_state.fx_alert = True
+
+def demo_page():
+    st.button("\u2190 Back", key="demo_back", on_click=start_over)
+    st.title("See it from a failure alert")
+    st.markdown("<div class='notice'>Demo only. This shows what an alert at the moment of failure could look like. "
+                "Real alerts would need Groww's payment data, so none are sent here.</div>", unsafe_allow_html=True)
+    st.write("Tap “See how to fix it” on one of these example alerts.")
+    for i, (title, body, _) in enumerate(ALERTS):
+        st.markdown(f"<div class='alert'><div class='ahd'><span class='adot'></span>SIP Fix Helper · now</div>"
+                    f"<div class='att'>{esc(title)}</div><div class='abd'>{esc(body)}</div></div>", unsafe_allow_html=True)
+        st.button("See how to fix it", key=f"al_{i}", type="primary", use_container_width=True, on_click=open_alert, args=(i,))
+    st.markdown(f"<div class='risk'>{RISK}</div>", unsafe_allow_html=True)
 
 def go_back():
     asked, answers = st.session_state.get("fx_asked", []), st.session_state.get("fx_answers", {})
@@ -341,6 +380,9 @@ def page_helper():
     header()
     if "fx_text" not in st.session_state:
         st.session_state.fx_text = ""
+    if st.session_state.get("fx_demo") and not st.session_state.get("fx_read"):
+        demo_page()
+        return
     if not st.session_state.get("fx_read"):
         st.title("What happened to your SIP?")
         st.write("Describe it in your own words, or paste the app status or bank SMS. English or Hinglish is fine.")
@@ -363,6 +405,8 @@ def page_helper():
         with st.expander("Not sure what to write? Try an example"):
             for i, ex in enumerate(EXAMPLES):
                 st.button(ex, key=f"ex{i}", use_container_width=True, on_click=set_example, args=(ex,))
+        st.button("See it from a failure alert (demo)", key="t_demo", use_container_width=True, on_click=open_demo,
+                  help="How this could work if an alert reached you the moment an installment fails")
         st.markdown("<div class='tiles-h'>Something else?</div>", unsafe_allow_html=True)
         c1, c2 = st.columns(2)
         with c1:
@@ -386,7 +430,7 @@ def page_helper():
     if not st.session_state.get("fx_confirmed"):
         st.markdown("<div class='lab' style='margin-top:14px'>Quick check</div>"
                     "<div class='reason' style='font-size:1.15rem'>Is this right? Change anything that's wrong.</div>", unsafe_allow_html=True)
-        st.caption("Don't know an answer? Pick Not sure.")
+        st.caption("Filled in from the alert. Change anything that's wrong." if st.session_state.get("fx_alert") else "Don't know an answer? Pick Not sure.")
         picks = {}
         for f in core.CONFIRM_FACTS:
             q, opts = core.QUESTIONS[f]
