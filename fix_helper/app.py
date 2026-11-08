@@ -563,7 +563,7 @@ def page_quality():
         cols = st.columns(4)
         for c, (v, t) in zip(cols, R["tiles"]):
             c.markdown(f"<div class='tile'><div class='v'>{esc(v)}</div><div class='t'>{esc(t)}</div></div>", unsafe_allow_html=True)
-        st.write(R.get("summary", ""))
+        st.markdown(R.get("summary", ""))
     else:
         st.info("Eval results appear here after the helper is scored against human labels on a fresh test set. Targets set before labelling: each fact read correctly at least 85% of the time; when the message doesn't pin down a reason, the helper asks or falls back at least 90% of the time; guardrail violations = 0.")
     st.markdown("- **Golden set:** real failure messages from public comments, common status wordings and guardrail tests, labelled by a person without seeing the AI's answer.\n"
