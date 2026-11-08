@@ -1,14 +1,14 @@
 {
- "run": "2026-11-08 06:27 UTC",
+ "run": "2026-11-08 06:53 UTC",
  "name": "release",
  "n": 34,
  "fact_accuracy": {
   "app_status": [
-   15,
+   13,
    28
   ],
   "debited": [
-   17,
+   21,
    28
   ],
   "recent_change": [
@@ -21,14 +21,14 @@
   ]
  },
  "fact_accuracy_pct": {
-  "app_status": 53.6,
-  "debited": 60.7,
+  "app_status": 46.4,
+  "debited": 75.0,
   "recent_change": 96.4,
   "stated_cause": 82.1
  },
  "invented_facts": {
-  "app_status": 11,
-  "debited": 8,
+  "app_status": 13,
+  "debited": 4,
   "recent_change": 0,
   "stated_cause": 3
  },
@@ -38,11 +38,11 @@
  ],
  "no_guess_pct": 77.8,
  "reason_when_message_states_it": [
-  10,
+  9,
   10
  ],
  "first_step_agreement": [
-  19,
+  18,
   28
  ],
  "with_confirm_step": {
@@ -147,10 +147,10 @@
     "stated_cause": "app_error"
    },
    "evidence": {
-    "app_status": "today was the date for my sip. I couldn’t invest in that sip anymore.",
-    "debited": "I’m unable to pay via BHIM and BHIM sbi pay.",
+    "app_status": "I couldn’t invest in that sip anymore",
+    "debited": "I’m unable to pay",
     "recent_change": "",
-    "stated_cause": "removed the option to pay via debit card. I’m unable to pay via BHIM"
+    "stated_cause": "I’m unable to pay via BHIM and BHIM sbi pay"
    },
    "per_fact": {
     "app_status": false,
@@ -193,25 +193,25 @@
    },
    "ai": {
     "app_status": "failed",
-    "debited": "no",
+    "debited": "not_said",
     "recent_change": "not_said",
     "stated_cause": "app_error"
    },
    "evidence": {
-    "app_status": "payments not working. SIP payments not working.",
-    "debited": "no prompt comes in google pay",
+    "app_status": "SIP payments not working",
+    "debited": "",
     "recent_change": "",
-    "stated_cause": "payments not working. SIP payments not working."
+    "stated_cause": "It redirects user on cashier page but then no prompt comes"
    },
    "per_fact": {
     "app_status": false,
-    "debited": false,
+    "debited": true,
     "recent_change": true,
     "stated_cause": true
    },
    "invented": {
     "app_status": true,
-    "debited": true,
+    "debited": false,
     "recent_change": false,
     "stated_cause": false
    },
@@ -437,36 +437,36 @@
     "stated_cause": "none"
    },
    "ai": {
-    "app_status": "not_said",
-    "debited": "no",
+    "app_status": "failed",
+    "debited": "not_said",
     "recent_change": "not_said",
-    "stated_cause": "app_error"
+    "stated_cause": "none"
    },
    "evidence": {
-    "app_status": "",
-    "debited": "i could not payment my sip today",
+    "app_status": "i could not payment my sip today",
+    "debited": "",
     "recent_change": "",
-    "stated_cause": "Is any issue here ?"
+    "stated_cause": ""
    },
    "per_fact": {
-    "app_status": true,
-    "debited": false,
-    "recent_change": true,
-    "stated_cause": false
-   },
-   "invented": {
     "app_status": false,
     "debited": true,
-    "recent_change": false,
+    "recent_change": true,
     "stated_cause": true
+   },
+   "invented": {
+    "app_status": true,
+    "debited": false,
+    "recent_change": false,
+    "stated_cause": false
    },
    "human_decision": [
     "ask",
     "app_status"
    ],
    "ai_decision": [
-    "reason",
-    "app_error"
+    "ask",
+    "stated_cause"
    ],
    "decision_match": false,
    "confirm_decision": [
@@ -540,25 +540,25 @@
    },
    "ai": {
     "app_status": "failed",
-    "debited": "no",
+    "debited": "not_said",
     "recent_change": "not_said",
-    "stated_cause": "low_balance"
+    "stated_cause": "none"
    },
    "evidence": {
     "app_status": "sip miss ho gay",
-    "debited": "bank ne 295 ka charge kat liya phir bhi maine shaam tak account me paise dal diya",
+    "debited": "",
     "recent_change": "",
-    "stated_cause": "account me paise dal diya"
+    "stated_cause": ""
    },
    "per_fact": {
     "app_status": true,
-    "debited": false,
+    "debited": true,
     "recent_change": true,
-    "stated_cause": true
+    "stated_cause": false
    },
    "invented": {
     "app_status": false,
-    "debited": true,
+    "debited": false,
     "recent_change": false,
     "stated_cause": false
    },
@@ -567,10 +567,10 @@
     "low_balance"
    ],
    "ai_decision": [
-    "reason",
-    "low_balance"
+    "ask",
+    "stated_cause"
    ],
-   "decision_match": true,
+   "decision_match": false,
    "confirm_decision": [
     "reason",
     "low_balance"
@@ -647,7 +647,7 @@
     "stated_cause": "mandate_not_ready"
    },
    "evidence": {
-    "app_status": "Sip registration is not completed by coin app",
+    "app_status": "Sip registration is not completed",
     "debited": "",
     "recent_change": "",
     "stated_cause": "Sip registration is not completed"
@@ -699,7 +699,7 @@
    },
    "evidence": {
     "app_status": "mene kl 1sip miss kr di autopay",
-    "debited": "mene kl 1sip miss kr di autopay",
+    "debited": "miss kr di",
     "recent_change": "",
     "stated_cause": ""
    },
@@ -744,25 +744,25 @@
    },
    "ai": {
     "app_status": "not_said",
-    "debited": "refunded",
+    "debited": "not_said",
     "recent_change": "not_said",
     "stated_cause": "none"
    },
    "evidence": {
     "app_status": "",
-    "debited": "They started initiation of refunds yesterday",
+    "debited": "",
     "recent_change": "",
     "stated_cause": ""
    },
    "per_fact": {
     "app_status": true,
-    "debited": false,
+    "debited": true,
     "recent_change": true,
     "stated_cause": true
    },
    "invented": {
     "app_status": false,
-    "debited": true,
+    "debited": false,
     "recent_change": false,
     "stated_cause": false
    },
@@ -800,7 +800,7 @@
     "stated_cause": "none"
    },
    "evidence": {
-    "app_status": "Didn't deduct money from account during execution of sip payments",
+    "app_status": "execution of sip payments",
     "debited": "Didn't deduct money from account",
     "recent_change": "",
     "stated_cause": ""
@@ -846,25 +846,25 @@
    },
    "ai": {
     "app_status": "failed",
-    "debited": "no",
+    "debited": "not_said",
     "recent_change": "not_said",
     "stated_cause": "mandate_not_ready"
    },
    "evidence": {
-    "app_status": "auto payment never sets up on time",
-    "debited": "never sets up on time",
+    "app_status": "never sets up on time",
+    "debited": "",
     "recent_change": "",
-    "stated_cause": "never sets up on time"
+    "stated_cause": "auto payment never sets up on time"
    },
    "per_fact": {
     "app_status": false,
-    "debited": false,
+    "debited": true,
     "recent_change": true,
     "stated_cause": true
    },
    "invented": {
     "app_status": true,
-    "debited": true,
+    "debited": false,
     "recent_change": false,
     "stated_cause": false
    },
@@ -948,35 +948,35 @@
    },
    "ai": {
     "app_status": "failed",
-    "debited": "not_said",
+    "debited": "no",
     "recent_change": "not_said",
-    "stated_cause": "none"
+    "stated_cause": "app_error"
    },
    "evidence": {
     "app_status": "keeps declining my SIPs",
-    "debited": "",
+    "debited": "keeps declining my SIPs",
     "recent_change": "",
-    "stated_cause": ""
+    "stated_cause": "Grow Wallet for 2 months now - keeps declining"
    },
    "per_fact": {
     "app_status": false,
-    "debited": true,
+    "debited": false,
     "recent_change": true,
-    "stated_cause": true
+    "stated_cause": false
    },
    "invented": {
     "app_status": true,
-    "debited": false,
+    "debited": true,
     "recent_change": false,
-    "stated_cause": false
+    "stated_cause": true
    },
    "human_decision": [
     "ask",
     "app_status"
    ],
    "ai_decision": [
-    "ask",
-    "stated_cause"
+    "reason",
+    "app_error"
    ],
    "decision_match": false,
    "confirm_decision": [
@@ -998,26 +998,26 @@
     "stated_cause": "none"
    },
    "ai": {
-    "app_status": "not_said",
-    "debited": "not_said",
+    "app_status": "failed",
+    "debited": "yes",
     "recent_change": "not_said",
     "stated_cause": "none"
    },
    "evidence": {
-    "app_status": "",
-    "debited": "",
+    "app_status": "At times investment is deducted but not invested, which later gets rejected",
+    "debited": "investment is deducted",
     "recent_change": "",
     "stated_cause": ""
    },
    "per_fact": {
-    "app_status": true,
-    "debited": true,
+    "app_status": false,
+    "debited": false,
     "recent_change": true,
     "stated_cause": true
    },
    "invented": {
-    "app_status": false,
-    "debited": false,
+    "app_status": true,
+    "debited": true,
     "recent_change": false,
     "stated_cause": false
    },
@@ -1026,10 +1026,10 @@
     "app_status"
    ],
    "ai_decision": [
-    "ask",
-    "app_status"
+    "reason",
+    "debited_not_invested"
    ],
-   "decision_match": true,
+   "decision_match": false,
    "confirm_decision": [
     "ask",
     "app_status"
@@ -1103,19 +1103,19 @@
     "app_status": "failed",
     "debited": "yes",
     "recent_change": "not_said",
-    "stated_cause": "app_error"
+    "stated_cause": "mandate_not_ready"
    },
    "evidence": {
     "app_status": "baar baar failed hora hai",
     "debited": "paise bhi cut gaye hai",
     "recent_change": "",
-    "stated_cause": "baar baar failed hora hai"
+    "stated_cause": "auto-pay start nahi ho rha hai"
    },
    "per_fact": {
     "app_status": false,
     "debited": true,
     "recent_change": true,
-    "stated_cause": false
+    "stated_cause": true
    },
    "invented": {
     "app_status": false,
@@ -1128,10 +1128,10 @@
     null
    ],
    "ai_decision": [
-    "reason",
-    "debited_not_invested"
+    "fallback",
+    null
    ],
-   "decision_match": false,
+   "decision_match": true,
    "confirm_decision": [
     "fallback",
     null
@@ -1364,10 +1364,10 @@
     "stated_cause": "mandate_stopped"
    },
    "evidence": {
-    "app_status": "Your mandate has expired",
+    "app_status": "Your mandate has expired.",
     "debited": "",
     "recent_change": "",
-    "stated_cause": "Your mandate has expired"
+    "stated_cause": "Your mandate has expired."
    },
    "per_fact": {
     "app_status": false,
@@ -1469,7 +1469,7 @@
     "app_status": "SIP payment unsuccessful",
     "debited": "",
     "recent_change": "",
-    "stated_cause": "due to a technical error at the bank"
+    "stated_cause": "technical error at the bank"
    },
    "per_fact": {
     "app_status": false,
@@ -1512,25 +1512,25 @@
    },
    "ai": {
     "app_status": "sip_cancelled",
-    "debited": "no",
+    "debited": "not_said",
     "recent_change": "not_said",
     "stated_cause": "none"
    },
    "evidence": {
     "app_status": "Your SIP has been cancelled",
-    "debited": "three consecutive installments could not be processed",
+    "debited": "",
     "recent_change": "",
     "stated_cause": ""
    },
    "per_fact": {
     "app_status": true,
-    "debited": false,
+    "debited": true,
     "recent_change": true,
     "stated_cause": true
    },
    "invented": {
     "app_status": false,
-    "debited": true,
+    "debited": false,
     "recent_change": false,
     "stated_cause": false
    },
@@ -1551,5 +1551,5 @@
    "violation": false
   }
  ],
- "seconds": 72
+ "seconds": 97
 }

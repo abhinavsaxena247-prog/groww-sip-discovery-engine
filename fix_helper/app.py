@@ -424,7 +424,8 @@ def page_helper():
         st.markdown("<div class='tiles-h'>Something else?</div>", unsafe_allow_html=True)
         c1, c2 = st.columns(2)
         with c1:
-            st.page_link(PAGE_START, label="Start a SIP", icon=":material/rocket_launch:", use_container_width=True)
+            if st.button("Start a SIP", key="t_start", icon=":material/rocket_launch:", use_container_width=True):
+                st.switch_page(PAGE_START)
             st.button("Contact Groww support", key="t_support", use_container_width=True, on_click=open_topic, args=("Contact Groww support", "support"))
         with c2:
             st.button("Skip, change or cancel a SIP", key="t_manage", use_container_width=True, on_click=open_topic, args=("Skip, change or cancel a SIP", "manage_menu"))
